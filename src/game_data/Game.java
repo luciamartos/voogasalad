@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class Game {
 	
-	List<Stage> myStages;
+	List<Level> myLevels;
 	
 	public Game(){
-		myStages = new ArrayList<Stage>();
+		myLevels = new ArrayList<Level>();
 	}
 
 	/**
@@ -38,8 +38,8 @@ public class Game {
 		}
 	}
 
-	public void addNewStage(Stage aStage){
-		myStages.add(aStage);
+	public void addNewStage(Level aLevel){
+		myLevels.add(aLevel);
 	}
 
 }

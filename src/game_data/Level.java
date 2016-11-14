@@ -14,15 +14,15 @@ import javafx.scene.input.KeyCode;
  * 
  * @author Addison
  */
-public class Stage {
+public class Level {
 	
 	private int width, height;
 	private String backgroundImageFilePath;
-	Stage nextStage;
+	Level nextStage;
 	List<Sprite> mySprites;
 	Map<KeyCode, KeyCommand> myKeyCommands;
 	
-	public Stage(int width, int height, String backgroundImageFilePath){
+	public Level(int width, int height, String backgroundImageFilePath){
 		this.width = width;
 		this.height = height;
 		this.backgroundImageFilePath = backgroundImageFilePath;
