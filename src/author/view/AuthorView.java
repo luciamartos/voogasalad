@@ -1,8 +1,13 @@
 package author.view;
 
+import author.view.utility.TabPaneFacade;
+import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
@@ -57,11 +62,19 @@ public class AuthorView {
 	}
 
 	private TabPane buildTabPane(){
-		TabPane tabpane = new TabPane();
+		TabPaneFacade tabpaneFacade = new TabPaneFacade();
 		
-		tabpane.prefWidthProperty().bind(myScene.widthProperty());
+		String[] names = new String[]{"Level Editor", "Entity Editor"};
 		
-		return tabpane;
+		for (int i = 0; i < names.length; i++) {
+            tabpaneFacade.addTab(names[i], null);
+        }
+		
+		tabpaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
+		tabpaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
+		tabpaneFacade.getTabPane().setSide(Side.BOTTOM);
+		
+		return tabpaneFacade.getTabPane();
 	}
 	
 	public Scene getScene(){
