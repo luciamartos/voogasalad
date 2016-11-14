@@ -1,18 +1,12 @@
 package author.view;
 
 import author.view.utility.TabPaneFacade;
-import javafx.geometry.Pos;
+import author.view.utility.ToolBarBuilder;
 import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -24,55 +18,49 @@ import javafx.scene.paint.Color;
 public class AuthorView {
 
 	Scene myScene;
-	Pane myLayout;
+	Pane myPane;
 	
+	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 450;
 	
 	public AuthorView(){
-		myLayout = new VBox();
-		myScene = new Scene(myLayout, WIDTH, HEIGHT, Color.WHITE);
+		myPane = new VBox();
+		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
 		
-		myLayout.getChildren().addAll(buildToolBar(), buildTabPane());
+		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
 	}
 
-	private ToolBar buildToolBar(){
-		ToolBar toolbar = new ToolBar();
+	/**
+	 * Returns Toolbar built for primary AuthorScene
+	 */
+	private Node buildToolBar(){
+		ToolBarBuilder toolBarBuilder = new ToolBarBuilder();
 		
-		final Pane filler = new Pane();
-        HBox.setHgrow(
-                filler,
-                Priority.SOMETIMES
-        );
+		toolBarBuilder.getToolBar().prefWidthProperty().bind(myScene.widthProperty());
+		toolBarBuilder.addBurst( new Button("New"), new Button("Save"), new Button("Load"));
+		toolBarBuilder.addFiller();
+		toolBarBuilder.addBurst(new Button("Save and Close"));
 		
-		toolbar.prefWidthProperty().bind(myScene.widthProperty());
-		toolbar.getItems().addAll(
-				new Separator(),
-				new Button("New"),
-				new Button("Save"),
-				new Button("Load"),
-				new Separator(),
-				filler,
-				new Separator(),
-				new Button("Save and Close"),
-				new Separator()
-				);
-		
-		return toolbar;
+		return toolBarBuilder.getToolBar();
 	}
 
-	private TabPane buildTabPane(){
+	/**
+	 * Returns TabPane built for primary AuthorScene
+	 */
+	private Node buildTabPane(){
 		TabPaneFacade tabpaneFacade = new TabPaneFacade();
+		tabpaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
+		tabpaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
+		tabpaneFacade.getTabPane().setSide(Side.BOTTOM);
+
 		
+		// Test Code, TODO change once built page components
 		String[] names = new String[]{"Level Editor", "Entity Editor"};
 		
 		for (int i = 0; i < names.length; i++) {
             tabpaneFacade.addTab(names[i], null);
         }
-		
-		tabpaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
-		tabpaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
-		tabpaneFacade.getTabPane().setSide(Side.BOTTOM);
 		
 		return tabpaneFacade.getTabPane();
 	}
