@@ -1,11 +1,8 @@
 package author.view.utility;
 
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.HBox;
 
 /**
  * Simple Facade for adding new tabs to TabPane. 
@@ -35,10 +32,7 @@ public class TabPaneFacade {
 		Tab tab = new Tab();
 		tab.setText(aName);
 		tab.setClosable(false);
-        HBox hbox = new HBox();
-        hbox.getChildren().add(new Label(aName));
-        hbox.setAlignment(Pos.CENTER);
-        tab.setContent(hbox);
+        tab.setContent(aContent);
         myTabPane.getTabs().add(tab);
 	}
 

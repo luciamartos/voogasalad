@@ -1,5 +1,6 @@
 package author.view;
 
+import author.view.pages.level_editor.LevelEditor;
 import author.view.utility.TabPaneFacade;
 import author.view.utility.ToolBarBuilder;
 import javafx.geometry.Side;
@@ -19,16 +20,17 @@ public class AuthorView {
 
 	Scene myScene;
 	Pane myPane;
+	TabPaneFacade myTabPaneFacade;
 	
 	// TODO move these to properties, as well as button names
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 450;
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 650;
 	
 	public AuthorView(){
 		myPane = new VBox();
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
-		
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
+		
 	}
 
 	/**
@@ -49,20 +51,24 @@ public class AuthorView {
 	 * Returns TabPane built for primary AuthorScene
 	 */
 	private Node buildTabPane(){
-		TabPaneFacade tabpaneFacade = new TabPaneFacade();
-		tabpaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
-		tabpaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
-		tabpaneFacade.getTabPane().setSide(Side.BOTTOM);
+		myTabPaneFacade = new TabPaneFacade();
+		myTabPaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
+		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
+		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
 
 		
 		// Test Code, TODO change once built page components
-		String[] names = new String[]{"Level Editor", "Entity Editor"};
+		String[] names = new String[]{"Entity Editor"};
 		
 		for (int i = 0; i < names.length; i++) {
-            tabpaneFacade.addTab(names[i], null);
+            myTabPaneFacade.addTab(names[i], null);
         }
 		
-		return tabpaneFacade.getTabPane();
+		LevelEditor levelEditor = new LevelEditor();
+		myTabPaneFacade.addTab(levelEditor.toString(), levelEditor.getPane());
+
+		
+		return myTabPaneFacade.getTabPane();
 	}
 	
 	public Scene getScene(){
