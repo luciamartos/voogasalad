@@ -3,6 +3,6 @@ package author.controller;
 /**
  * @author George Bernard
  */
-public class AuthorController {
+public class AuthorController implements IAuthorController{
 
 }

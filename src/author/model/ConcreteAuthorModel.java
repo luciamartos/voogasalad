@@ -1,5 +1,7 @@
 package author.model;
 
+import author.controller.IAuthorController;
+
 /**
  * 
  * @author Cleveland Thompson V (ct168)
@@ -7,8 +9,8 @@ package author.model;
  */
 class ConcreteAuthorModel extends AuthorModel{
 
-	ConcreteAuthorModel() {
-		// TODO Auto-generated constructor stub
+	ConcreteAuthorModel(IAuthorController aAuthorController) {
+		super(aAuthorController);
 	}
 
 }

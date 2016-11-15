@@ -15,7 +15,7 @@ public class ObservableSpriteFactory {
 	 * 
 	 */
 	public ObservableSpriteFactory() {
-		// TODO Auto-generated constructor stub
+		// Does Nothing, Intentionally
 	}
 	
 	public ObservableSprite create(Sprite aSprite){
