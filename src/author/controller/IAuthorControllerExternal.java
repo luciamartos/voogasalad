@@ -9,8 +9,7 @@ import javafx.scene.Scene;
  * @author Cleveland Thompson V (ct168)
  *
  */
-public interface IAuthorController {
+public interface IAuthorControllerExternal {
 
-	
-	
+	public Scene getScene();
 }
