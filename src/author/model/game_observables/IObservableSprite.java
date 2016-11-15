@@ -3,14 +3,13 @@
  */
 package author.model.game_observables;
 
-import game_data.Sprite;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.Observable;
 
 /**
  * @author Cleveland Thompson V (ct168)
  *
  */
-public interface IObservableSprite extends ObservableValue<Sprite>{
+public interface IObservableSprite extends Observable{
 	
 
 }

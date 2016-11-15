@@ -3,7 +3,6 @@
  */
 package author.controller;
 
-import javafx.scene.Scene;
 
 /**
  * @author Cleveland Thompson V (ct168)
