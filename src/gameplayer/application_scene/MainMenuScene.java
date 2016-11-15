@@ -27,7 +27,7 @@ public class MainMenuScene extends AbstractPlayerScene {
 		VBox options = new VBox(BOX_INSETS);
 		options.getChildren().addAll(createLabel("Main Menu", 0, 0),
 				createButton("Click to Play", 0, 0, e -> {
-					transitionScene(new GameChoiceScene(myStage));
+					transitionScene(new SceneFactory().create(myStage, "GameChoice"));
 				}),
 				createButton("Click to Author", 0, 0, e -> {
 					//TODO: Implement transition to authoring environment

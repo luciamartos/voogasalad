@@ -19,12 +19,12 @@ import javafx.stage.Stage;
  *
  */
 
-public class PlayerScene extends AbstractPlayerScene {
+public class GamePlayScene extends AbstractPlayerScene {
 	
 	private BorderPane myRoot;
 	private Pane myGamePlayCanvas;
 	
-	public PlayerScene(Stage aStage){
+	public GamePlayScene(Stage aStage){
 		super(aStage);
 	}
 	
@@ -79,13 +79,13 @@ public class PlayerScene extends AbstractPlayerScene {
 	
 	private Button createRestartButton(){
 		return createButton("Restart", 0, 0, e -> {
-			transitionScene(new PlayerScene(myStage));
+			transitionScene(new SceneFactory().create(myStage, "GamePlay"));
 		});
 	}
 	
 	private Button createMainMenuButton(){
 		return createButton("Main Menu", 0, 0, e -> {
-			transitionScene(new MainMenuScene(myStage));
+			transitionScene(new SceneFactory().create(myStage, "MainMenu"));
 		});
 	}
 	
