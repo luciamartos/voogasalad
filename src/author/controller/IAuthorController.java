@@ -3,6 +3,7 @@
  */
 package author.controller;
 
+import author.model.IAuthorModel;
 
 /**
  * @author Cleveland Thompson V (ct168)
@@ -10,6 +11,6 @@ package author.controller;
  */
 public interface IAuthorController {
 
-	
+	public IAuthorModel getModel();
 	
 }

@@ -1,6 +1,7 @@
 package author.main;
 
-import author.view.AuthorView;
+import author.controller.AuthorControllerFactory;
+import author.controller.IAuthorControllerExternal;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,10 +10,10 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage aStage) throws Exception {
-		AuthorView authorView = new AuthorView();
+		IAuthorControllerExternal authorControllerExternal = new AuthorControllerFactory().create();
 		aStage.setTitle("VOOGASalad");
 		
-		Scene scene = authorView.getScene();
+		Scene scene = authorControllerExternal.getScene();
 		aStage.setResizable(false);
 		aStage.setScene(scene);
 		aStage.show();
