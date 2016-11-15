@@ -1,10 +1,13 @@
 package game_data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- * Represents any viewable object in a Stage including
+ * Represents any viewable object in a Level including
  * characters, items, terrains, projectiles, etc.
  * 
- * @author Addison
+ * @author Addison, Austin
  */
 public abstract class Sprite {
 	
@@ -12,14 +15,40 @@ public abstract class Sprite {
 	private String myImagePath;
 	private int myVelocity;
 	private CollisionHandler myCollisionHandler;
-	private int myHeading;
+	private Set<Characteristic> myCharacteristics;
 	
 	public Sprite(Location aLocation, String aImagePath){
 		myLocation = aLocation;
 		myImagePath = aImagePath;
 		myVelocity = 0;
 		myCollisionHandler = null;
-		myHeading = 0;
+		myCharacteristics = new HashSet<Characteristic>();
+	}
+	
+	//for copying sprites
+	public Sprite(Sprite aSprite){
+		myLocation = new Location(aSprite.getMyLocation().getXLocation(),
+				aSprite.getMyLocation().getYLocation(), aSprite.getMyLocation().getMyHeading());
+		myImagePath = aSprite.getMyImagePath();
+		myVelocity = aSprite.getMyVelocity();
+		myCollisionHandler = null; //to change: would need to have the same collision handler but we don't know what that is yet
+		myCharacteristics = copyCharacteristics(this.getCharacteristics());
+	}
+	
+	public Set<Characteristic> copyCharacteristics(Set<Characteristic> origCharacteristics){
+		Set<Characteristic> characteristicCopies = new HashSet<Characteristic>();
+		for(Characteristic c: origCharacteristics){
+			characteristicCopies.add(c.copy());
+		}
+		return characteristicCopies;	
+	}
+	
+	public Set<Characteristic> getCharacteristics(){
+		return myCharacteristics;
+	}
+	
+	public void addCharacteristic(Characteristic aCharacteristic){
+		myCharacteristics.add(aCharacteristic);
 	}
 	
 	public Location getMyLocation() {
@@ -45,11 +74,5 @@ public abstract class Sprite {
 	}
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
-	}
-	public int getMyHeading() {
-		return myHeading;
-	}
-	public void setMyHeading(int myHeading) {
-		this.myHeading = myHeading;
 	}
 }
