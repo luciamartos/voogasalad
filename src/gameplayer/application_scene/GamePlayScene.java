@@ -79,13 +79,13 @@ public class GamePlayScene extends AbstractPlayerScene {
 	
 	private Button createRestartButton(){
 		return createButton("Restart", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, "GamePlay"));
+			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.GAMEPLAY.toString()));
 		});
 	}
 	
 	private Button createMainMenuButton(){
 		return createButton("Main Menu", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, "MainMenu"));
+			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU.toString()));
 		});
 	}
 	

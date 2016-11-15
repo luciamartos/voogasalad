@@ -28,7 +28,7 @@ public class GameChoiceScene extends AbstractPlayerScene {
 		options.getChildren().addAll(createButton("Choose Game", 0, 0, e -> {
 			//TODO: Implement choosing games pre-loaded
 			//For now it goes to the scene where they will play a game
-			transitionScene(new SceneFactory().create(myStage, "GamePlay"));
+			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.GAMEPLAY.toString()));
 		}), createButton("Load New Game", 0, 0, e -> {
 			//TODO: Implement choosing games from the file system
 		}));
