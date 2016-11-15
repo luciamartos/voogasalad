@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 
 public class GamePlayScene extends AbstractPlayerScene {
 	
-	private BorderPane myRoot;
 	private Pane myGamePlayCanvas;
 	
 	public GamePlayScene(Stage aStage){
@@ -35,8 +34,6 @@ public class GamePlayScene extends AbstractPlayerScene {
 	
 	@Override
 	public Scene init(){
-		myRoot = new BorderPane();
-		myScene = new Scene(myRoot, SCENE_WIDTH, SCENE_HEIGHT);
 		myGamePlayCanvas = new Pane();
 		myGamePlayCanvas.setStyle("-fx-background-color: blue;");
 		myRoot.setCenter(myGamePlayCanvas);
