@@ -3,6 +3,8 @@ package game_data;
 import java.util.HashSet;
 import java.util.Set;
 
+import game_data.characteristics.Characteristic;
+
 /**
  * Represents any viewable object in a Level including
  * characters, items, terrains, projectiles, etc.
