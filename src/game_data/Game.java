@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A Game has a List of Stages. Each Stage may contain Sprites
+ * A Game has a List of Levels. Each Level may contain Sprites
  * and other elements. A Game can be saved to a serialized XML
  * file to be loaded elsewhere.
  * 
@@ -21,7 +21,7 @@ public class Game {
 	}
 
 	/**
-	 * Saves Game, Stages, and all states to a serialized XML File
+	 * Saves Game, Levels, and all states to a serialized XML File
 	 * 
 	 * @param filePath
 	 * @param fileName
@@ -38,7 +38,7 @@ public class Game {
 		}
 	}
 
-	public void addNewStage(Level aLevel){
+	public void addNewLevel(Level aLevel){
 		myLevels.add(aLevel);
 	}
 

@@ -1,7 +1,7 @@
 package game_data;
 
 /**
- * Represents any viewable object in a Stage including
+ * Represents any viewable object in a Level including
  * characters, items, terrains, projectiles, etc.
  * 
  * @author Addison
@@ -12,14 +12,21 @@ public abstract class Sprite {
 	private String myImagePath;
 	private int myVelocity;
 	private CollisionHandler myCollisionHandler;
-	private int myHeading;
 	
 	public Sprite(Location aLocation, String aImagePath){
 		myLocation = aLocation;
 		myImagePath = aImagePath;
 		myVelocity = 0;
 		myCollisionHandler = null;
-		myHeading = 0;
+	}
+	
+	//for copying sprites
+	public Sprite(Sprite aSprite){
+		myLocation = new Location(aSprite.getMyLocation().getXLocation(),
+				aSprite.getMyLocation().getYLocation(), aSprite.getMyLocation().getMyHeading());
+		myImagePath = aSprite.getMyImagePath();
+		myVelocity = aSprite.getMyVelocity();
+		myCollisionHandler = null; //to change: would need to have the same collision handler but we don't know what that is yet	
 	}
 	
 	public Location getMyLocation() {
@@ -45,11 +52,5 @@ public abstract class Sprite {
 	}
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
-	}
-	public int getMyHeading() {
-		return myHeading;
-	}
-	public void setMyHeading(int myHeading) {
-		this.myHeading = myHeading;
 	}
 }
