@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -43,7 +44,13 @@ public class GamePlayScene extends AbstractPlayerScene {
 		myRoot.setLeft(createLeft());
 		myRoot.setRight(createRight());
 		myRoot.setBottom(createBottom());
+		myScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
 		return myScene;
+	}
+	
+	//Send code to back end through controller
+	private void handleKeyInput(KeyCode key){
+		
 	}
 
 	private Node createTop() {
