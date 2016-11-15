@@ -1,5 +1,7 @@
 package author.model.presets;
 
+import author.model.game_observables.ObservableSprite;
+
 /**
  * 
  * @author Cleveland Thompson V
@@ -7,8 +9,9 @@ package author.model.presets;
  */
 class ConcreteSpritePreset extends SpritePreset{
 
-	ConcreteSpritePreset() {
-		// TODO Auto-generated constructor stub
+	public ConcreteSpritePreset(ObservableSprite aObservableSprite) {
+		super(aObservableSprite);
 	}
 
+	
 }
