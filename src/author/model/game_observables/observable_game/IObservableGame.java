@@ -1,27 +1,24 @@
 /**
  * 
  */
-package author.controller;
+package author.model.game_observables.observable_game;
 
 import java.util.List;
 
-import author.model.IAuthorModel;
 import author.model.game_observables.observable_level.ObservableLevel;
+import javafx.beans.Observable;
 
 /**
  * @author Cleveland Thompson V (ct168)
  *
  */
-public interface IAuthorController {
+public interface IObservableGame extends Observable{
 
-	public IAuthorModel getModel();
-	
 	public ObservableLevel getCurrentLevel();
 	
 	public ObservableLevel newLevel(int width, int height, String backgroundImageFilePath);
 	
 	public List<ObservableLevel> getLevels();
 	
-	public void setLevel(ObservableLevel existingLevel);
-	
+	public Boolean setLevel(ObservableLevel existingLevel);
 }

@@ -1,7 +1,10 @@
 package author.controller;
 
+import java.util.List;
+
 import author.model.AuthorModelFactory;
 import author.model.IAuthorModel;
+import author.model.game_observables.observable_level.ObservableLevel;
 import author.view.AuthorView;
 import javafx.scene.Scene;
 
@@ -32,7 +35,5 @@ public class ConcreteAuthorController implements IAuthorController, IAuthorContr
 	public IAuthorModel getModel() {
 		return this.authorModel;
 	}
-	
-	
 
 }
