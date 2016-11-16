@@ -8,7 +8,7 @@ import author.view.pages.sprite.editor.character.PlayerSpriteEditPage;
 import author.view.pages.sprite.editor.item.ItemSpriteEditPage;
 import author.view.pages.sprite.editor.projectile.ProjectileSpriteEditPage;
 import author.view.pages.sprite.editor.terrain.TerrainSpriteEditPage;
-import author.view.utility.TabPaneFacade;
+import author.view.util.TabPaneFacade;
 import javafx.geometry.Side;
 import javafx.scene.layout.Region;
 

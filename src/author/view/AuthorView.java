@@ -2,8 +2,8 @@ package author.view;
 
 import author.view.pages.level_editor.LevelEditor;
 import author.view.pages.sprite.SpritesPage;
-import author.view.utility.TabPaneFacade;
-import author.view.utility.ToolBarBuilder;
+import author.view.util.TabPaneFacade;
+import author.view.util.ToolBarBuilder;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
