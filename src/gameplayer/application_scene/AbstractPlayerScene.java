@@ -1,5 +1,7 @@
 package gameplayer.application_scene;
 
+import java.util.Observable;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -25,7 +27,7 @@ import javafx.scene.paint.Paint;
  * @author tedmarchildon, hannah
  *
  */
-public abstract class AbstractPlayerScene implements IDisplay {
+public abstract class AbstractPlayerScene extends Observable implements IDisplay {
 	
 	protected Scene myScene;
 	protected BorderPane myRoot;
