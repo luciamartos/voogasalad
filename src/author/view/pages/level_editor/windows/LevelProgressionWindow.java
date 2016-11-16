@@ -15,40 +15,25 @@ import javafx.scene.layout.VBox;
  * @see ../LevelEditor
  *
  */
-public class LevelProgressionWindow {
-
-	private Pane myProgressionWindow;
+public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 
 	public LevelProgressionWindow() {
-		createWindow();
+		super.createWindow();
 		createToolBar();
 	}
 
-	private void createWindow() {
-		myProgressionWindow = new VBox();
-	}
-
-	public <T extends Node> void addChild(T child) {
-		myProgressionWindow.getChildren().add(child);
-	}
-
-	private void createToolBar() {
-		myProgressionWindow = new VBox();
-		
+	@Override
+	protected void createToolBar() {		
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Level Progression"));
 		
 		ScrollPane entityScroller = new ScrollPane();
 		entityScroller.setVbarPolicy(ScrollBarPolicy.NEVER);
 		entityScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-		entityScroller.prefViewportWidthProperty().bind(myProgressionWindow.widthProperty());
+		entityScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
 		
 		addChild(tbb.getToolBar());
 		addChild(entityScroller);
-	}
-
-	public Pane getWindow() {
-		return myProgressionWindow;
 	}
 
 }

@@ -1,5 +1,6 @@
 package author.view.pages.level_editor;
 
+import author.view.pages.level_editor.windows.AbstractLevelEditorWindow;
 import author.view.pages.level_editor.windows.EntityWindow;
 import author.view.pages.level_editor.windows.LevelProgressionWindow;
 import author.view.pages.level_editor.windows.LevelSelectionWindow;
@@ -11,51 +12,51 @@ import javafx.scene.layout.Pane;
  * This Class serves as a view for the level editor page
  * 
  * @author George Bernard
+ * @author Jordan Frazier
  */
 public class LevelEditor {
 	BorderPane myPane;
-	
-	private LevelWindow myLevelWindow;
-	private EntityWindow myEntityWindow;
-	private LevelSelectionWindow mySelectionWindow;
-	private LevelProgressionWindow myProgressionWindow;
-	
-	public LevelEditor(){
+
+	private AbstractLevelEditorWindow myLevelWindow;
+	private AbstractLevelEditorWindow myEntityWindow;
+	private AbstractLevelEditorWindow mySelectionWindow;
+	private AbstractLevelEditorWindow myProgressionWindow;
+
+	public LevelEditor() {
 		myPane = new BorderPane();
 		myPane.setCenter(buildLevelWindow());
 		myPane.setRight(buildEntityWindow());
 		myPane.setBottom(buildLevelProgressionWindow());
 		myPane.setLeft(buildLevelSelectionWindow());
 	}
-	
-	private Pane buildLevelWindow(){
+
+	private Pane buildLevelWindow() {
 		myLevelWindow = new LevelWindow();
 		return myLevelWindow.getWindow();
 	}
-	
-	private Pane buildEntityWindow(){
+
+	private Pane buildEntityWindow() {
 		myEntityWindow = new EntityWindow();
 		return myEntityWindow.getWindow();
 	}
-	
-	private Pane buildLevelProgressionWindow(){
+
+	private Pane buildLevelProgressionWindow() {
 		myProgressionWindow = new LevelProgressionWindow();
 		return myProgressionWindow.getWindow();
 	}
-	
-	private Pane buildLevelSelectionWindow(){
+
+	private Pane buildLevelSelectionWindow() {
 		mySelectionWindow = new LevelSelectionWindow();
 		return mySelectionWindow.getWindow();
 	}
 
-	
-	public Pane getPane(){
+	public Pane getPane() {
 		return myPane;
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return "Level Editor";
 	}
-	
+
 }

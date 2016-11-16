@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 /**
- * 
+ * This abstract class is the framework for making a sprite draggable
  * @author Jordan Frazier
  *
  */
@@ -39,7 +39,7 @@ public abstract class DraggableSprite {
 		myImageView.setOnDragDone(e -> {
 			// TODO: Jordan - drag - Do not remove from pane. Clone and add to level editor pane. 
 			// Update the coordinates of the ObservableSprite with the imageview's position
-			mySprite.getMyLocation().setLocation(myImageView.getTranslateX(), myImageView.getTranslateY());
+			mySprite.getMyLocation().setLocation((int)myImageView.getTranslateX(), (int)myImageView.getTranslateY());
 			e.consume();
 		});
 	}
