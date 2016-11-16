@@ -39,6 +39,7 @@ public abstract class DraggableSprite {
 		myImageView.setOnDragDone(e -> {
 			// TODO: Jordan - drag - Do not remove from pane. Clone and add to level editor pane. 
 			// Update the coordinates of the ObservableSprite with the imageview's position
+			mySprite.getMyLocation().setLocation(myImageView.getTranslateX(), myImageView.getTranslateY());
 			e.consume();
 		});
 	}

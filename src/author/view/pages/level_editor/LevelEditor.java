@@ -1,13 +1,11 @@
 package author.view.pages.level_editor;
 
-import author.view.util.ToolBarBuilder;
-import author.view.util.authoring_buttons.ButtonFactory;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import author.view.pages.level_editor.windows.EntityWindow;
+import author.view.pages.level_editor.windows.LevelProgressionWindow;
+import author.view.pages.level_editor.windows.LevelSelectionWindow;
+import author.view.pages.level_editor.windows.LevelWindow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * This Class serves as a view for the level editor page
@@ -16,6 +14,11 @@ import javafx.scene.layout.VBox;
  */
 public class LevelEditor {
 	BorderPane myPane;
+	
+	private LevelWindow myLevelWindow;
+	private EntityWindow myEntityWindow;
+	private LevelSelectionWindow mySelectionWindow;
+	private LevelProgressionWindow myProgressionWindow;
 	
 	public LevelEditor(){
 		myPane = new BorderPane();
@@ -26,74 +29,25 @@ public class LevelEditor {
 	}
 	
 	private Pane buildLevelWindow(){
-		Pane levelWindow = new VBox();
-		
-		ToolBarBuilder tbb = new ToolBarBuilder();
-		tbb.addBurst(new Label("Level Window"));
-		tbb.addFiller();
-		
-		tbb.addBurst(new ButtonFactory().createButton("Set Background", e -> {
-			// TODO: Jordan - Add functionality to changing background
-			System.out.println("Change background here");
-		}).getButton(), 
-				new ButtonFactory().createButton("Set Theme", e -> {
-			// TODO: Jordan - Add functionality to changing theme
-			System.out.println("Change theme here");
-		}).getButton());
-		
-		levelWindow.getChildren().add(tbb.getToolBar());
-		
-		return levelWindow;
+		myLevelWindow = new LevelWindow();
+		return myLevelWindow.getWindow();
 	}
 	
 	private Pane buildEntityWindow(){
-		Pane entityWindow = new VBox();
-		
-		ToolBarBuilder tbb = new ToolBarBuilder();
-		tbb.addBurst(new Label("Entity Selector"));
-		entityWindow.getChildren().add(tbb.getToolBar());
-		
-		ScrollPane entityScroller = new ScrollPane();
-		entityScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		entityScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
-		entityWindow.getChildren().add(entityScroller);
-		entityScroller.prefViewportHeightProperty().bind(entityWindow.heightProperty());
-		
-		return entityWindow;
-	}
-	
-	private Pane buildLevelSelectionWindow(){
-		Pane selectionWindow = new VBox();
-		
-		ToolBarBuilder tbb = new ToolBarBuilder();
-		tbb.addBurst(new Label("Level Selection"));
-		selectionWindow.getChildren().add(tbb.getToolBar());
-		
-		ScrollPane entityScroller = new ScrollPane();
-		entityScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		entityScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
-		
-		selectionWindow.getChildren().add(entityScroller);
-		entityScroller.prefViewportHeightProperty().bind(selectionWindow.heightProperty());
-		
-		return selectionWindow;
+		myEntityWindow = new EntityWindow();
+		return myEntityWindow.getWindow();
 	}
 	
 	private Pane buildLevelProgressionWindow(){
-		Pane progressionWindow = new VBox();
-		
-		ToolBarBuilder tbb = new ToolBarBuilder();
-		tbb.addBurst(new Label("Level Progression"));
-		progressionWindow.getChildren().add(tbb.getToolBar());
-		
-		ScrollPane entityScroller = new ScrollPane();
-		entityScroller.setVbarPolicy(ScrollBarPolicy.NEVER);
-		entityScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-		progressionWindow.getChildren().add(entityScroller);
-		entityScroller.prefViewportWidthProperty().bind(progressionWindow.widthProperty());
-		
-		return progressionWindow;
+		myProgressionWindow = new LevelProgressionWindow();
+		return myProgressionWindow.getWindow();
 	}
+	
+	private Pane buildLevelSelectionWindow(){
+		mySelectionWindow = new LevelSelectionWindow();
+		return mySelectionWindow.getWindow();
+	}
+
 	
 	public Pane getPane(){
 		return myPane;
