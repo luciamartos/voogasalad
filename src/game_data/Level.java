@@ -2,32 +2,32 @@ package game_data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.scene.input.KeyCode;
 
 /**
  * Represents a level of a Game. Has a List of Sprites
- * active on that Stage as well as a background image and
- * Stage specific KeyCommands
+ * active on that Level as well as a background image and
+ * Level specific KeyCommands
  * 
  * @author Addison
  */
-public class Stage {
+public class Level {
 	
 	private int width, height;
 	private String backgroundImageFilePath;
-	Stage nextStage;
-	List<Sprite> mySprites;
+	Set<Sprite> mySprites;
 	Map<KeyCode, KeyCommand> myKeyCommands;
 	
-	public Stage(int width, int height, String backgroundImageFilePath){
+	public Level(int width, int height, String backgroundImageFilePath){
 		this.width = width;
 		this.height = height;
 		this.backgroundImageFilePath = backgroundImageFilePath;
-		nextStage = null;
-		mySprites = new ArrayList<Sprite>();
+		mySprites = new HashSet<Sprite>();
 		myKeyCommands = new HashMap<KeyCode, KeyCommand>();
 	}
 	
@@ -59,8 +59,19 @@ public class Stage {
 		mySprites.add(aSprite);
 	}
 	
-	public void addNewKeyCommand(KeyCode aKeyCode, KeyCommand aKeyCommand){
+	public void setKeyCommand(KeyCode aKeyCode, KeyCommand aKeyCommand){
 		myKeyCommands.put(aKeyCode, aKeyCommand);
+	}
+	
+	public void deleteKeyCommand(KeyCode aKeyCode){
+		myKeyCommands.remove(aKeyCode);
+	}
+	//Big Question: how do you know what is "currently selected"
+	
+	public void removeSprite(Sprite aSprite){
+		if(mySprites.contains(aSprite)){
+			mySprites.remove(aSprite);
+		}
 	}
 
 }
