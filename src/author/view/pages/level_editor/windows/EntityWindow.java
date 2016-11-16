@@ -7,7 +7,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+/**
+ * This window contains all of the preset sprites. A user will drag and drop sprites from this window
+ * onto the LevelWindow
+ * @author Jordan Frazier
+ * @see LevelWindow
+ * @see ../LevelEditor
+ */
 public class EntityWindow {
 	
 	private Pane myEntityWindow;

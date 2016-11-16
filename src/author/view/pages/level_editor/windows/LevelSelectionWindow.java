@@ -8,7 +8,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+/**
+ * This window serves as the container for all levels, where a user will be able to select a level name and
+ * the LevelWindow will change to reflect that new level
+ * @author Jordan Frazier
+ * @see ../LevelEditor
+ */
 public class LevelSelectionWindow {
 	
 	private Pane mySelectionWindow;

@@ -7,7 +7,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+/**
+ * This window will allow a user to see the progression of their levels. 
+ * (@george so this window will need to automatically update when a user changes the 'end level' condition
+ * on a level?)
+ * @author Jordan Frazier
+ * @see ../LevelEditor
+ *
+ */
 public class LevelProgressionWindow {
 
 	private Pane myProgressionWindow;

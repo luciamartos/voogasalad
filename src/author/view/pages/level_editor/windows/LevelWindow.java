@@ -6,7 +6,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+/**
+ * This window is the actual level editor, where sprites will be placed from the EntityWindow
+ * @author Jordan Frazier
+ * @see EntityWindow
+ * @see ../LevelEditor
+ */
 public class LevelWindow {
 	
 	private Pane myLevelWindow;
