@@ -9,7 +9,7 @@ public interface Characteristic {
 	 * 
 	 * @author Austin Gartside
 	 */
-	public void express();
+	public boolean toAct();
 	
 	public Characteristic copy();
 
