@@ -15,7 +15,7 @@ public class GamePlayController {
         @Override
         public void update(java.util.Observable o, Object arg) {
         	//TODO: Send to game engine for processing
-            System.out.println("key input");
+            System.out.println(myGamePlay.getLastKeyPressed());
         }
 	}
 	

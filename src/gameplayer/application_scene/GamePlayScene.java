@@ -25,6 +25,7 @@ public class GamePlayScene extends AbstractPlayerScene {
 	private Pane myGamePlayCanvas;
 	private Button myMainMenuButton;
 	private Button myRestartButton;
+	private KeyCode myCurrentKeyCode = null;
 	
 	public GamePlayScene(){
 		super();
@@ -54,9 +55,14 @@ public class GamePlayScene extends AbstractPlayerScene {
 		myRestartButton.setOnMouseClicked(handler);
 	}
 	
+	public KeyCode getLastKeyPressed(){
+		return myCurrentKeyCode != null ? myCurrentKeyCode : null;
+	}
+	
 	//Send code to back end through controller
 	private void handleKeyInput(KeyCode key){
 		setChanged();
+		myCurrentKeyCode = key;
 		notifyObservers();
 		clearChanged();
 	}
