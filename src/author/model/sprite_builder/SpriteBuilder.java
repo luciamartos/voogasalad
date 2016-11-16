@@ -17,7 +17,7 @@ public class SpriteBuilder {
 	/**
 	 * 
 	 */
-	public SpriteBuilder(ISpritePreset spritePreset) {
+	public SpriteBuilder() {
 		// Intentionally Empty
 	}
 	

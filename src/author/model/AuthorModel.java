@@ -42,11 +42,13 @@ public abstract class AuthorModel implements IAuthorModel{
 	}
 	
 	/**
-	 * @return createdSprite. For use when dragging sprites to level. Returns Null right now.
+	 * @return createdSprite
+	 * For use when dragging sprites to level. SpriteBuilder Doesn't do much right now, essentially dummy. 
+	 * Will have to improve to use generics or reflection or something.
 	 */
 	@Override
 	public Sprite addSprite(ISpritePreset spritePreset){
-		Sprite createdSprite = new SpriteBuilder(spritePreset).createSpriteFromPreset(spritePreset);
+		Sprite createdSprite = new SpriteBuilder().createSpriteFromPreset(spritePreset);
 		this.authorController.getCurrentGame().getCurrentLevel().addNewSprite(createdSprite);
 		return createdSprite;
 	}
