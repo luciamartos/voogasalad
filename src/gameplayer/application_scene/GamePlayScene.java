@@ -1,11 +1,13 @@
 package gameplayer.application_scene;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -23,9 +25,11 @@ import javafx.stage.Stage;
 public class GamePlayScene extends AbstractPlayerScene {
 	
 	private Pane myGamePlayCanvas;
+	private Button myMainMenuButton;
+	private Button myRestartButton;
 	
-	public GamePlayScene(Stage aStage){
-		super(aStage);
+	public GamePlayScene(){
+		super();
 	}
 	
 	/**
@@ -35,7 +39,6 @@ public class GamePlayScene extends AbstractPlayerScene {
 	@Override
 	public Scene init(){
 		myGamePlayCanvas = new Pane();
-		myGamePlayCanvas.setStyle("-fx-background-color: blue;");
 		myRoot.setCenter(myGamePlayCanvas);
 		myRoot.setTop(createTop());
 		myRoot.setLeft(createLeft());
@@ -43,6 +46,14 @@ public class GamePlayScene extends AbstractPlayerScene {
 		myRoot.setBottom(createBottom());
 		myScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
 		return myScene;
+	}
+	
+	public void setOnMain(EventHandler<? super MouseEvent> handler){
+		myMainMenuButton.setOnMouseClicked(handler);
+	}
+	
+	public void setOnRestart(EventHandler<? super MouseEvent> handler){
+		myRestartButton.setOnMouseClicked(handler);
 	}
 	
 	//Send code to back end through controller
@@ -82,15 +93,13 @@ public class GamePlayScene extends AbstractPlayerScene {
 	}
 	
 	private Button createRestartButton(){
-		return createButton("Restart", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.GAMEPLAY.toString()));
-		});
+		myRestartButton = createButton("Restart", 0, 0, null);
+		return myRestartButton;
 	}
 	
 	private Button createMainMenuButton(){
-		return createButton("Main Menu", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU.toString()));
-		});
+		myMainMenuButton = createButton("Main Menu", 0, 0, null);
+		return myMainMenuButton;
 	}
 	
 	private void addSprite(String aFilepath, int x, int y){

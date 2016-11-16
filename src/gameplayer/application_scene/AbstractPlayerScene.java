@@ -1,6 +1,5 @@
 package gameplayer.application_scene;
 
-import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -28,20 +27,12 @@ import javafx.scene.paint.Paint;
  */
 public abstract class AbstractPlayerScene implements IDisplay {
 	
-	protected Stage myStage;
 	protected Scene myScene;
 	protected BorderPane myRoot;
 	
-	public AbstractPlayerScene(Stage astage){
-		myStage = astage;
+	public AbstractPlayerScene(){
 		myRoot = new BorderPane();
 		myScene = new Scene(myRoot, SCENE_WIDTH, SCENE_HEIGHT);
-	}
-	
-	protected void transitionScene(IDisplay aPlayerScene){
-		myStage.close();
-		myStage.setScene(aPlayerScene.init());
-		myStage.show();
 	}
 	
 	protected Button createButton(String amessage, int x, int y, EventHandler<? super MouseEvent> ahandler){
