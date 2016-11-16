@@ -21,18 +21,20 @@ public abstract class SpriteEditPage {
 	
 	private Sprite mySprite;
 	private SpriteEditBox mySpriteEditBox;
-
+	
 	public SpriteEditPage(){
 		myPane = new VBox();
 		myToolBarBuilder = new ToolBarBuilder();
-
-		myPane.getChildren().add(myToolBarBuilder.getToolBar());
+		mySpriteEditBox = new SpriteEditBox();
+		myPane.getChildren().addAll(myToolBarBuilder.getToolBar(), mySpriteEditBox.getPane());
 		myToolBarBuilder.addBurst(new Label(getName()));
-		addGeneralSpriteEdit();
+
 	}
 
 	public SpriteEditPage(Sprite aSprite){
 		mySprite = aSprite;
+		mySpriteEditBox.setLocation(aSprite.getMyLocation());
+		mySpriteEditBox.setImageFile(new File(aSprite.getMyImagePath()));
 	}
 	
 	public abstract Sprite buildSprite();
@@ -41,11 +43,6 @@ public abstract class SpriteEditPage {
 
 	public Pane getPane(){
 		return myPane;
-	}
-
-	private void addGeneralSpriteEdit(){
-		SpriteEditBox generalEditBox = new SpriteEditBox();
-		getPane().getChildren().add(generalEditBox.getPane());
 	}
 	
 	protected final boolean hasSprite(){
