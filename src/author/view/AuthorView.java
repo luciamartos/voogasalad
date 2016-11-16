@@ -7,6 +7,7 @@ import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
+import javafx.application.Platform;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
