@@ -1,7 +1,7 @@
 package author.view.pages.level_editor;
 
 import author.view.util.ToolBarBuilder;
-import javafx.scene.control.Button;
+import author.view.util.authoring_buttons.ButtonFactory;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -31,7 +31,16 @@ public class LevelEditor {
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Level Window"));
 		tbb.addFiller();
-		tbb.addBurst(new Button("Set Background"), new Button("Set Theme"));
+		
+		tbb.addBurst(new ButtonFactory().createButton("Set Background", e -> {
+			// TODO: Jordan - Add functionality to changing background
+			System.out.println("Change background here");
+		}).getButton(), 
+				new ButtonFactory().createButton("Set Theme", e -> {
+			// TODO: Jordan - Add functionality to changing theme
+			System.out.println("Change theme here");
+		}).getButton());
+		
 		levelWindow.getChildren().add(tbb.getToolBar());
 		
 		return levelWindow;
