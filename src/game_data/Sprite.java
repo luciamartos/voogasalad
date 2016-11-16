@@ -37,6 +37,11 @@ public abstract class Sprite {
 		myCharacteristics = copyCharacteristics(this.getCharacteristics());
 	}
 	
+	/**
+	 * should return a clone using the new Sprite(this) constructor
+	 */
+	public abstract Sprite clone();
+	
 	public Set<Characteristic> copyCharacteristics(Set<Characteristic> origCharacteristics){
 		Set<Characteristic> characteristicCopies = new HashSet<Characteristic>();
 		for(Characteristic c: origCharacteristics){
