@@ -1,4 +1,4 @@
-package author.view.pages.sprite_editor;
+package author.view.pages.sprite.editor;
 
 import author.view.utility.ToolBarBuilder;
 import javafx.scene.control.Label;
@@ -11,16 +11,16 @@ import javafx.scene.layout.VBox;
  * 
  * @author George Bernard
  */
-public abstract class SpriteEditor {
+public abstract class SpriteEditPage {
 	private Pane myPane;
 	private ToolBarBuilder myToolBarBuilder;
 	
-	public SpriteEditor(){
+	public SpriteEditPage(){
 		myPane = new VBox();
 		myToolBarBuilder = new ToolBarBuilder();
 		
 		myPane.getChildren().add(myToolBarBuilder.getToolBar());
-		myToolBarBuilder.addBurst(new Label(toString()));
+		myToolBarBuilder.addBurst(new Label(getName()));
 	}
 	
 	public abstract String getName();
