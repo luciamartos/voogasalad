@@ -1,4 +1,4 @@
-package author.view.utility;
+package author.view.util;
 
 import java.util.Arrays;
 import java.util.Collection;

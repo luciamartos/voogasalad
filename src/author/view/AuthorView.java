@@ -1,8 +1,9 @@
 package author.view;
 
 import author.view.pages.level_editor.LevelEditor;
-import author.view.utility.TabPaneFacade;
-import author.view.utility.ToolBarBuilder;
+import author.view.pages.sprite.SpritesPage;
+import author.view.util.TabPaneFacade;
+import author.view.util.ToolBarBuilder;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ public class AuthorView {
 	TabPaneFacade myTabPaneFacade;
 	
 	// TODO move these to properties, as well as button names
-	public static final int WIDTH = 1000;
+	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
 	
 	public AuthorView(){
@@ -57,15 +58,11 @@ public class AuthorView {
 		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
 
 		
-		// Test Code, TODO change once built page components
-		String[] names = new String[]{"Entity Editor"};
-		
-		for (int i = 0; i < names.length; i++) {
-            myTabPaneFacade.addTab(names[i], null);
-        }
-		
 		LevelEditor levelEditor = new LevelEditor();
+		SpritesPage spritesPage = new SpritesPage();
+		
 		myTabPaneFacade.addTab(levelEditor.toString(), levelEditor.getPane());
+		myTabPaneFacade.addTab(spritesPage.toString(), spritesPage.getRegion());
 
 		
 		return myTabPaneFacade.getTabPane();
