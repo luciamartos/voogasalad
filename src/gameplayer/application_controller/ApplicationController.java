@@ -1,6 +1,7 @@
 package gameplayer.application_controller;
 
 import gameplayer.application_scene.GameChoiceScene;
+import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.LoginScene;
 import gameplayer.application_scene.MainMenuScene;
 import javafx.stage.Stage;
@@ -32,8 +33,11 @@ public class ApplicationController {
 	
 	public void displayMainMenu(){
 		MainMenuScene mainMenu = new MainMenuScene();
-		myStage.close();
-		myStage.setScene(mainMenu.init());
+		resetStage(mainMenu);
+		setMainMenuButtonHandlers(mainMenu);
+	}
+
+	private void setMainMenuButtonHandlers(MainMenuScene mainMenu) {
 		mainMenu.setOnPlay(e -> {
 			displayGameChoice();
 		});
@@ -43,13 +47,15 @@ public class ApplicationController {
 		mainMenu.setOnSignOut(e -> {
 			displayLogin();
 		});
-		myStage.show();
 	}
 	
 	private void displayGameChoice(){
 		GameChoiceScene gameChoice = new GameChoiceScene();
-		myStage.close();
-		myStage.setScene(gameChoice.init());
+		resetStage(gameChoice);
+		setGameChoiceButtonHandlers(gameChoice);
+	}
+
+	private void setGameChoiceButtonHandlers(GameChoiceScene gameChoice) {
 		gameChoice.setOnChoose(e -> {
 			GamePlayController gamePlay = new GamePlayController(myStage);
 			gamePlay.displayGame();
@@ -57,6 +63,11 @@ public class ApplicationController {
 		gameChoice.setOnLoad(e -> {
 			// TODO: Implement file chooser
 		});
+	}
+	
+	private void resetStage(IDisplay ascene){
+		myStage.close();
+		myStage.setScene(ascene.init());
 		myStage.show();
 	}
 }
