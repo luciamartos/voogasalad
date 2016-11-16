@@ -8,7 +8,8 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Scene startScene = new LoginScene(primaryStage).init();
+		SceneFactory sceneBuilder = new SceneFactory();
+		Scene startScene = sceneBuilder.create(primaryStage, SceneIdentifier.LOGIN).init();
 		primaryStage.setScene(startScene);
 		primaryStage.show();
 	}

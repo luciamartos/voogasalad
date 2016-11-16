@@ -8,7 +8,7 @@ package gameplayer.application_controller;
  */
 public class ApplicationController {
 
-	public ApplicationController(){
+	public ApplicationController() {
 		
 	}
 	

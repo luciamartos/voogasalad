@@ -77,26 +77,26 @@ public class GamePlayScene extends AbstractPlayerScene {
 		return rightMenu;
 	}
 	
-	private Node createBottom(){
+	private Node createBottom() {
 		HBox bottomMenu = new HBox();
 		bottomMenu.getChildren().add(createLabel("Bottom", 0, 0));
 		bottomMenu.setAlignment(Pos.CENTER);
 		return bottomMenu;
 	}
 	
-	private Button createRestartButton(){
+	private Button createRestartButton() {
 		return createButton("Restart", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.GAMEPLAY.toString()));
+			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.GAMEPLAY));
 		});
 	}
 	
-	private Button createMainMenuButton(){
+	private Button createMainMenuButton() {
 		return createButton("Main Menu", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU.toString()));
+			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU));
 		});
 	}
 	
-	private void addSprite(String aFilepath, int x, int y){
+	private void addSprite(String aFilepath, int x, int y) {
 		ImageView spriteRep = new ImageView(aFilepath);
 		spriteRep.setTranslateX(x);
 		spriteRep.setTranslateY(y);

@@ -1,4 +1,4 @@
-package gameplayer.ISprintDisplay;
+package gameplayer.sprite_display;
 
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;

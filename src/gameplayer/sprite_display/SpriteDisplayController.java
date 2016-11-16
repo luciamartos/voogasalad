@@ -1,4 +1,4 @@
-package gameplayer.ISprintDisplay;
+package gameplayer.sprite_display;
 
 import java.util.ArrayList;
 import java.util.Iterator;

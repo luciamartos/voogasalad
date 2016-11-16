@@ -24,7 +24,6 @@ public class AnimationLoop {
 
 	private void step() {
 	}
-	
 
 
 }
