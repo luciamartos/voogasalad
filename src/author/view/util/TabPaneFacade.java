@@ -1,4 +1,4 @@
-package author.view.utility;
+package author.view.util;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tab;

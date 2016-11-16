@@ -1,9 +1,9 @@
 package author.view;
 
 import author.view.pages.level_editor.LevelEditor;
-import author.view.pages.sprite_editor.sprite_page.SpritesPage;
-import author.view.utility.TabPaneFacade;
-import author.view.utility.ToolBarBuilder;
+import author.view.pages.sprite.SpritesPage;
+import author.view.util.TabPaneFacade;
+import author.view.util.ToolBarBuilder;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -55,7 +55,7 @@ public class AuthorView {
 		myTabPaneFacade = new TabPaneFacade();
 		myTabPaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
 		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
-		myTabPaneFacade.getTabPane().setSide(Side.LEFT);
+		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
 
 		
 		LevelEditor levelEditor = new LevelEditor();
