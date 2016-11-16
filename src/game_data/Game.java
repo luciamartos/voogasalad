@@ -31,7 +31,7 @@ public class Game {
 	    java.io.FileWriter fw;
 		try {
 			fw = new java.io.FileWriter(filePath + fileName + ".xml");
-		    fw.write(((new GameSaver()).serialize(this)));
+		    fw.write(((new XMLSaver()).serialize(this)));
 		    fw.close();
 		} catch (IOException e) {
 			System.out.println("Trouble printing XML to file");
