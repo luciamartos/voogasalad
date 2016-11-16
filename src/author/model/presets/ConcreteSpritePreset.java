@@ -1,6 +1,6 @@
 package author.model.presets;
 
-import author.model.game_observables.ObservableSprite;
+import author.model.game_observables.observable_sprite.ObservableSprite;
 
 /**
  * 

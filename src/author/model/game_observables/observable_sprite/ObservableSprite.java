@@ -1,19 +1,20 @@
 /**
  * 
  */
-package author.model.game_observables;
+package author.model.game_observables.observable_sprite;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 import game_data.Sprite;
 import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
 /**
  * @author Cleveland Thompson V (ct168)
  *
  */
-public abstract class ObservableSprite extends Sprite implements IObservableSprite{
+public abstract class ObservableSprite extends Sprite implements Observable{
 	Collection<InvalidationListener> invalidationListeners = new HashSet<>();
 	
 	/**
@@ -23,10 +24,11 @@ public abstract class ObservableSprite extends Sprite implements IObservableSpri
 		super(aSprite);
 	}
 	
+	
 	@Override
 	public void setMyImagePath(String myImagePath) {
 		super.setMyImagePath(myImagePath);
-		invalidationListeners.forEach((listener) -> listener.invalidated(this));
+		notifyListeners();
 	}
 
 	/* (non-Javadoc)
@@ -34,7 +36,7 @@ public abstract class ObservableSprite extends Sprite implements IObservableSpri
 	 */
 	@Override
 	public void addListener(InvalidationListener listener) {
-		invalidationListeners.add(listener);
+		this.invalidationListeners.add(listener);
 	}
 
 	/* (non-Javadoc)
@@ -42,7 +44,11 @@ public abstract class ObservableSprite extends Sprite implements IObservableSpri
 	 */
 	@Override
 	public void removeListener(InvalidationListener listener) {
-		invalidationListeners.remove(listener);
+		this.invalidationListeners.remove(listener);
+	}
+	
+	private void notifyListeners(){
+		this.invalidationListeners.forEach((listener) -> listener.invalidated(this));
 	}
 
 }

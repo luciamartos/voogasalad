@@ -1,7 +1,7 @@
 /**
  * 
  */
-package author.model.game_observables;
+package author.model.game_observables.observable_sprite;
 
 import game_data.Sprite;
 

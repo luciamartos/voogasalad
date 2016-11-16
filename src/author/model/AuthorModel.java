@@ -8,8 +8,8 @@ import java.util.List;
 
 
 import author.controller.IAuthorController;
-import author.model.game_observables.ObservableSprite;
-import author.model.game_observables.ObservableSpriteFactory;
+import author.model.game_observables.observable_sprite.ObservableSprite;
+import author.model.game_observables.observable_sprite.ObservableSpriteFactory;
 import author.model.presets.ISpritePreset;
 import author.model.presets.SpritePresetFactory;
 import author.model.sprite_builder.SpriteBuilder;
