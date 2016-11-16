@@ -4,4 +4,4 @@
  * 
  * @author George Bernard
  */
-package author.view.utility;
+package author.view.util;

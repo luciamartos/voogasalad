@@ -5,4 +5,4 @@
  * @author George Bernard
  *
  */
-package author.view.pages.sprite_editor;
+package author.view.pages.sprite.editor;
