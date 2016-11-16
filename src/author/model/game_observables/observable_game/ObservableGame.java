@@ -37,6 +37,7 @@ public abstract class ObservableGame extends Game implements IObservableGame{
 	public ObservableLevel newLevel(int width, int height, String backgroundImageFilePath){
 		this.currentLevel = new ObservableLevelFactory().create(width, height, backgroundImageFilePath);
 		levels.add(this.currentLevel);
+		super.addNewLevel(this.currentLevel);
 		notifyListeners();
 		return this.currentLevel;
 	}
@@ -51,12 +52,6 @@ public abstract class ObservableGame extends Game implements IObservableGame{
 			return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public void addNewLevel(Level aLevel){
-		//Intentionally Empty
-		
 	}
 	
 	@Override

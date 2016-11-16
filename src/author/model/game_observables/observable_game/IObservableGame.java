@@ -21,4 +21,6 @@ public interface IObservableGame extends Observable{
 	public List<ObservableLevel> getLevels();
 	
 	public Boolean setLevel(ObservableLevel existingLevel);
+	
+	public void saveGameAs(String filePath, String fileName);
 }
