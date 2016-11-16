@@ -23,12 +23,14 @@ public class ApplicationController {
 
 	public void displayLogin(){
 		LoginScene login = new LoginScene();
-		myStage.close();
-		myStage.setScene(login.init());
+		resetStage(login);
+		setLoginButtonHandlers(login);
+	}
+	
+	private void setLoginButtonHandlers(LoginScene login){
 		login.setOnEnter(e -> {
 			displayMainMenu();
 		});
-		myStage.show();
 	}
 	
 	public void displayMainMenu(){
