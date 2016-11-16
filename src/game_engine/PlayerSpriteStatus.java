@@ -7,11 +7,15 @@ public class PlayerSpriteStatus {
 	private double xCordinate;
 	private double yCordinate;
 	private Image playerImage;
+	private int lifePlayer;
+	private int scorePlayer;
 
-	public PlayerSpriteStatus(double xCordinate, double yCordinate, Image playerImage) {
+	public PlayerSpriteStatus(double xCordinate, double yCordinate, Image playerImage, int lifePlayer, int scorePlayer) {
 		this.xCordinate = xCordinate;
 		this.yCordinate = yCordinate;
 		this.playerImage = playerImage;
+		this.lifePlayer = lifePlayer;
+		this.scorePlayer = scorePlayer;
 	}
 	
 	public double getxCordinate() {
@@ -37,6 +41,23 @@ public class PlayerSpriteStatus {
 	public void setPlayerImage(Image playerImage) {
 		this.playerImage = playerImage;
 	}
+	
+	public int getLifePlayer() {
+		return lifePlayer;
+	}
+
+	public void setLifePlayer(int lifePlayer) {
+		this.lifePlayer = lifePlayer;
+	}
+
+	public int getScorePlayer() {
+		return scorePlayer;
+	}
+
+	public void setScorePlayer(int scorePlayer) {
+		this.scorePlayer = scorePlayer;
+	}
+	
 	
 
 }
