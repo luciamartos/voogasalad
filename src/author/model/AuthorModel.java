@@ -13,7 +13,6 @@ import author.model.game_observables.observable_sprite.ObservableSpriteFactory;
 import author.model.presets.ISpritePreset;
 import author.model.presets.SpritePresetFactory;
 import author.model.sprite_builder.SpriteBuilder;
-import game_data.Level;
 import game_data.Sprite;
 
 /**
@@ -24,7 +23,6 @@ public abstract class AuthorModel implements IAuthorModel{
 
 	private List<ISpritePreset> spritePresets = new ArrayList<>();
 	private IAuthorController authorController;
-	private Level currentLevel = new Level(500, 500, "background_image.jpg");
 	/**
 	 * 
 	 */
@@ -49,7 +47,7 @@ public abstract class AuthorModel implements IAuthorModel{
 	@Override
 	public Sprite addSprite(ISpritePreset spritePreset){
 		Sprite createdSprite = new SpriteBuilder(spritePreset).createSpriteFromPreset(spritePreset);
-		this.currentLevel.addNewSprite(createdSprite);
+		this.authorController.getCurrentGame().getCurrentLevel().addNewSprite(createdSprite);
 		return createdSprite;
 	}
 
