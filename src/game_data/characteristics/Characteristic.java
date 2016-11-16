@@ -1,4 +1,4 @@
-package game_data;
+package game_data.characteristics;
 
 public interface Characteristic {
 	
