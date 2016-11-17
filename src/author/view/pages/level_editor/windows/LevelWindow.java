@@ -2,13 +2,17 @@ package author.view.pages.level_editor.windows;
 
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Pane;
 
 /**
  * This window is the actual level editor, where sprites will be placed from the
@@ -20,9 +24,19 @@ import javafx.scene.layout.BackgroundSize;
  */
 public class LevelWindow extends AbstractLevelEditorWindow {
 
+	private ScrollPane levelScroller;
+	private Pane container;
+
 	public LevelWindow() {
 		super.createWindow();
 		createToolBar();
+	}
+
+	@Override
+	public <T extends Node> void addChildren(T... child) {
+		for (T node : child) {
+			container.getChildren().add(node);
+		}
 	}
 
 	@Override
@@ -35,17 +49,25 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			setBackgroundImage();
 			System.out.println("Change background here");
 		}).getButton(), new ButtonFactory().createButton("Set Theme", e -> {
-			// TODO: Jordan - Add functionality to changing theme, what the fucks a theme
+			// TODO: Jordan - Add functionality to changing theme, what the
+			// fucks a theme
 			System.out.println("Change theme here");
 		}).getButton());
 
-		addChild(tbb.getToolBar());
+		levelScroller = new ScrollPane();
+		levelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		levelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		levelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+
+		super.getWindow().getChildren().add(tbb.getToolBar());
+		super.getWindow().getChildren().add(levelScroller);
 	}
 
 	private void setBackgroundImage() {
 		Image image = new Image("author/images/mario.jpg");
-		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1, 1, true, true, false, false));
+		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+				BackgroundPosition.CENTER, new BackgroundSize(1, 1, true, true, false, false));
 		super.getWindow().setBackground(new Background(backIm));
 	}
-	
+
 }
