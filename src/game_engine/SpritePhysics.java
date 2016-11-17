@@ -1,6 +1,13 @@
 package game_engine;
-
+/**
+ * 
+ * @author LuciaMartos
+ *
+ */
 public class SpritePhysics {
+	//environment
+	private double verticalGravity;
+	private double horizontalGravity;
 
 	// acceleration
 	private double downAcceleration;
@@ -13,12 +20,15 @@ public class SpritePhysics {
 	private double initUpVelocity;
 	private double initLeftVelocity;
 	private double initRightVelocity;
-	
+		
 	
 	//all parameters are specified
-	public SpritePhysics(double downAcceleration, double upAcceleration, double leftAcceleration,
+	public SpritePhysics(double verticalGravity, double horizontalGravity,  double downAcceleration, double upAcceleration, double leftAcceleration,
 			double rightAcceleration, double initDownVelocity, double initUpVelocity, double initLeftVelocity,
 			double initRightVelocity) {
+		this.verticalGravity = verticalGravity;
+		this.horizontalGravity =horizontalGravity;
+		
 		this.downAcceleration = downAcceleration;
 		this.upAcceleration = upAcceleration;
 		this.leftAcceleration = leftAcceleration;
@@ -36,15 +46,23 @@ public class SpritePhysics {
 	}
 	
 	//change gravity
-	public SpritePhysics(double newGravity){
+	public SpritePhysics(double verticalGravity){
 		setDefaults();
-		this.downAcceleration = newGravity;
+		this.verticalGravity = verticalGravity;
+	}
+	
+	public SpritePhysics(double verticalGravity, double horizontalGravity){
+		setDefaults();
+		this.verticalGravity = verticalGravity;
+		this.horizontalGravity = horizontalGravity;
 	}
 	
 	//change gravity and velocities up right left
-	public SpritePhysics(double downAcceleration, double initUpVelocity, double initRightVelocity, double initLeftVelocity){
+	public SpritePhysics(double verticalGravity, double horizontalGravity, double initDownVelocity, double initUpVelocity, double initRightVelocity, double initLeftVelocity){
 		setDefaults();
-		this.downAcceleration = downAcceleration;
+		this.verticalGravity = verticalGravity;
+		this.horizontalGravity =horizontalGravity;
+		this.initDownVelocity = initDownVelocity;
 		this.initUpVelocity = initUpVelocity;
 		this.initLeftVelocity = initLeftVelocity;
 		this.initRightVelocity = initRightVelocity;
@@ -52,6 +70,9 @@ public class SpritePhysics {
 
 	
 	private void setDefaults() {
+		this.verticalGravity = GameResources.DEFAULT_VERTICAL_GRAVITY.getDoubleResource();
+		this.horizontalGravity = GameResources.DEFAULT_HORIZONTAL_GRAVITY.getDoubleResource();
+	
 		this.downAcceleration = GameResources.DEFAULT_DOWN_ACCELERATION.getDoubleResource();
 		this.upAcceleration = GameResources.DEFAULT_UP_ACCELERATION.getDoubleResource();
 		this.leftAcceleration = GameResources.DEFAULT_LEFT_ACCELERATION.getDoubleResource();
@@ -63,6 +84,14 @@ public class SpritePhysics {
 		this.initUpVelocity = GameResources.DEFAULT_UP_VELOCITY.getDoubleResource();
 	}
 
+	public double getVerticalGravity(){
+		return verticalGravity;
+	}
+	
+	public double getHorizontalGravity(){
+		return horizontalGravity;
+	}
+	
 	public double getDownAcceleration() {
 		return downAcceleration;
 	}

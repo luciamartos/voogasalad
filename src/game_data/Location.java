@@ -7,24 +7,24 @@ package game_data;
  */
 public class Location {
 	
-	private int myXLocation;
-	private int myYLocation;
+	private double myXLocation;
+	private double myYLocation;
 	
-	public Location(int myXLocation, int myYLocation){
-		setLocation(myXLocation, myYLocation);
+	public Location(double myXLocation2, double myYLocation2){
+		setLocation(myXLocation2, myYLocation2);
 	}
 	
-	public int getXLocation(){
+	public double getXLocation(){
 		return myXLocation;
 	}
 	
-	public int getYLocation(){
+	public double getYLocation(){
 		return myYLocation;
 	}
 	
-	public void setLocation(int myXLocation, int myYLocation){
-		this.myXLocation = myXLocation;
-		this.myYLocation = myYLocation;
+	public void setLocation(double myXLocation2, double myYLocation2){
+		this.myXLocation = myXLocation2;
+		this.myYLocation = myYLocation2;
 	}
 
 }
