@@ -26,35 +26,29 @@ public class LevelEditor {
 
 	public LevelEditor() {
 		myPane = new BorderPane();
-		try {
-			myPane.setCenter(buildLevelWindow());
-			myPane.setRight(buildEntityWindow());
-			myPane.setBottom(buildLevelProgressionWindow());
-			myPane.setLeft(buildLevelSelectionWindow());
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			// TODO: Jordan(Vooga): Handle class not found exception;
-			e.printStackTrace();
-			Platform.exit();
-		}
+		myPane.setCenter(buildLevelWindow());
+		myPane.setRight(buildEntityWindow());
+		myPane.setBottom(buildLevelProgressionWindow());
+		myPane.setLeft(buildLevelSelectionWindow());
 	}
 
-	private Pane buildLevelWindow() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	private Pane buildLevelWindow() {
 		myLevelWindow = new LevelWindowFactory().create("LevelWindow");
 		return myLevelWindow.getWindow();
 	}
 
-	private Pane buildEntityWindow() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	private Pane buildEntityWindow() {
 		myEntityWindow = new LevelWindowFactory().create("EntityWindow");
 		return myEntityWindow.getWindow();
 	}
 
-	private Pane buildLevelProgressionWindow() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	private Pane buildLevelProgressionWindow() {
 		myProgressionWindow = new LevelWindowFactory().create("LevelProgressionWindow");
 		return myProgressionWindow.getWindow();
 	}
 
-	private Pane buildLevelSelectionWindow() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		mySelectionWindow =  new LevelWindowFactory().create("LevelSelectionWindow");
+	private Pane buildLevelSelectionWindow() {
+		mySelectionWindow = new LevelWindowFactory().create("LevelSelectionWindow");
 		return mySelectionWindow.getWindow();
 	}
 
