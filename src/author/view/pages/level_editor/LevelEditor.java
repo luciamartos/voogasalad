@@ -56,6 +56,22 @@ public class LevelEditor {
 		return myPane;
 	}
 
+	public AbstractLevelEditorWindow getMyLevelWindow() {
+		return myLevelWindow;
+	}
+
+	public AbstractLevelEditorWindow getMyEntityWindow() {
+		return myEntityWindow;
+	}
+
+	public AbstractLevelEditorWindow getMySelectionWindow() {
+		return mySelectionWindow;
+	}
+
+	public AbstractLevelEditorWindow getMyProgressionWindow() {
+		return myProgressionWindow;
+	}
+
 	@Override
 	public String toString() {
 		return "Level Editor";
