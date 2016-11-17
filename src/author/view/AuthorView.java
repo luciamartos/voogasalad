@@ -1,5 +1,6 @@
 package author.view;
 
+import author.controller.IAuthorController;
 import author.model.game_observables.observable_level.ObservableLevel;
 import author.model.game_observables.observable_level.ObservableLevelFactory;
 import author.view.pages.level_editor.LevelEditor;
@@ -25,6 +26,7 @@ public class AuthorView {
 	Scene myScene;
 	Pane myPane;
 	TabPaneFacade myTabPaneFacade;
+	IAuthorController authorController;
 	
 	private LevelEditor myLevelEditor;
 	private SpritesPage mySpritesPage;
@@ -32,9 +34,10 @@ public class AuthorView {
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
-	public static final String BACKGROUND_IMAGE_PATH = "dummy/path";
+	public static final String BACKGROUND_IMAGE_PATH = "data/mario.jpg";
 
-	public AuthorView() {
+	public AuthorView(IAuthorController authorController) {
+		this.authorController = authorController;
 		myPane = new VBox();
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
 		myLevelEditor = new LevelEditor();
@@ -52,8 +55,8 @@ public class AuthorView {
 		toolBarBuilder.getToolBar().prefWidthProperty().bind(myScene.widthProperty());
 
 		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
-			ObservableLevel level = new ObservableLevelFactory().create(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
-			myLevelEditor.getMySelectionWindow().addChild(new Label("Level 1"));
+			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
+			this.authorController.getCurrentGame().newLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			// TODO: Jordan(vooga) - New button functionality
 			System.out.println("Create new level");
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {

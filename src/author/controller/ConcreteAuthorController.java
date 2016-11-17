@@ -23,7 +23,7 @@ public class ConcreteAuthorController implements IAuthorController, IAuthorContr
 	 */
 	public ConcreteAuthorController() {
 		this.authorModel = new AuthorModelFactory().create((IAuthorController) this);
-		this.authorView = new AuthorView();
+		this.authorView = new AuthorView((IAuthorController) this);
 		this.currentGame = new ObservableGameFactory().create();
 	}
 	

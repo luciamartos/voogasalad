@@ -11,9 +11,7 @@ import java.util.List;
 import author.model.game_observables.observable_level.ObservableLevel;
 import author.model.game_observables.observable_level.ObservableLevelFactory;
 import game_data.Game;
-import game_data.Level;
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 
 /**
  * @author Cleveland Thompson V (ct168)
