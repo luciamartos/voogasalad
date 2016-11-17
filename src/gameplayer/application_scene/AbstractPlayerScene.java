@@ -19,6 +19,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 
 /**
@@ -31,10 +32,15 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 	
 	protected Scene myScene;
 	protected BorderPane myRoot;
+	protected VBox myOptions;
 	
 	public AbstractPlayerScene(){
 		myRoot = new BorderPane();
 		myScene = new Scene(myRoot, SCENE_WIDTH, SCENE_HEIGHT);
+	}
+	
+	public void addButton(String text, EventHandler<? super MouseEvent> handler){
+		myOptions.getChildren().add(createButton(text, 0, 0, handler));
 	}
 	
 	protected Button createButton(String amessage, int x, int y, EventHandler<? super MouseEvent> ahandler){

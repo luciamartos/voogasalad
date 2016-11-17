@@ -40,13 +40,13 @@ public class ApplicationController {
 	}
 
 	private void setMainMenuButtonHandlers(MainMenuScene mainMenu) {
-		mainMenu.setOnPlay(e -> {
+		mainMenu.addButton("Click To Play", e -> {
 			displayGameChoice();
 		});
-		mainMenu.setOnAuthor(e -> {
+		mainMenu.addButton("Click To Author", e -> {
 			//TODO: implement authoring environment
 		});
-		mainMenu.setOnSignOut(e -> {
+		mainMenu.addButton("Sign Out", e -> {
 			displayLogin();
 		});
 	}
@@ -58,11 +58,11 @@ public class ApplicationController {
 	}
 
 	private void setGameChoiceButtonHandlers(GameChoiceScene gameChoice) {
-		gameChoice.setOnChoose(e -> {
+		gameChoice.addButton("Choose Game", e -> {
 			GamePlayController gamePlay = new GamePlayController(myStage);
 			gamePlay.displayGame();
 		});
-		gameChoice.setOnLoad(e -> {
+		gameChoice.addButton("Load New Game", e -> {
 			// TODO: Implement file chooser
 		});
 	}
