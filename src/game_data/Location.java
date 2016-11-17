@@ -6,23 +6,33 @@ package game_data;
  * @author Addison
  */
 public class Location {
+
+	private double myHeading;
+	private double myXLocation;
+	private double myYLocation;
 	
-	private int myXLocation;
-	private int myYLocation;
-	
-	public Location(int myXLocation, int myYLocation){
-		setLocation(myXLocation, myYLocation);
+	public Location(double aXLocation, double aYLocation, double aHeading){
+		setLocation(aXLocation, aYLocation);
+		setMyHeading(aHeading);
 	}
 	
-	public int getXLocation(){
+	public double getMyHeading() {
+		return myHeading;
+	}
+
+	public void setMyHeading(double myHeading) {
+		this.myHeading = myHeading % 360;
+	}
+	
+	public double getXLocation(){
 		return myXLocation;
 	}
 	
-	public int getYLocation(){
+	public double getYLocation(){
 		return myYLocation;
 	}
 	
-	public void setLocation(int myXLocation, int myYLocation){
+	public void setLocation(double myXLocation, double myYLocation){
 		this.myXLocation = myXLocation;
 		this.myYLocation = myYLocation;
 	}
