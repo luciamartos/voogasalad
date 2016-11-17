@@ -4,15 +4,15 @@ import javafx.stage.Stage;
 
 public class SceneFactory {
 
-	public IDisplay create(Stage aStage, SceneIdentifier aIdentifier){
+	public IDisplay create(SceneIdentifier aIdentifier){
 		if(aIdentifier.equals(SceneIdentifier.LOGIN)){
-			return new LoginScene(aStage);
+			return new LoginScene();
 		} else if(aIdentifier.equals(SceneIdentifier.MAINMENU)){
-			return new MainMenuScene(aStage);
+			return new MainMenuScene();
 		} else if(aIdentifier.equals(SceneIdentifier.GAMECHOICE)){
-			return new GameChoiceScene(aStage);
+			return new GameChoiceScene();
 		} else if(aIdentifier.equals(SceneIdentifier.GAMEPLAY)){
-			return new GamePlayScene(aStage);
+			return new GamePlayScene();
 		} else {
 			return null;
 		}

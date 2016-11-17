@@ -6,24 +6,30 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class ButtonFactory {
+public class ButtonFactory implements IButton {
 	
-	public Node createButton(String aMessage, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler) {
-		Button button = new Button(aMessage);
-		createButtonHelper(button, aXPos, aYPos, aHandler);
-		return button;
+	private Button myButton;
+	
+	public Node createButton(String aMessage, int aXPos, int aYPos) {
+		this.myButton = new Button(aMessage);
+		createButtonHelper(aXPos, aYPos);
+		return myButton;
 	}
 	
-	public Node createButton(ImageView aImage, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler) {
-		Button button = new Button("", (Node) aImage);
-		createButtonHelper(button, aXPos, aYPos, aHandler);
-		return button;
+	public Node createButton(ImageView aImage, int aXPos, int aYPos) {
+		this.myButton = new Button("", (Node) aImage);
+		createButtonHelper(aXPos, aYPos);
+		return myButton;
 	}
 	
-	private void createButtonHelper(Button button, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler) {
-		button.setOnMouseClicked(aHandler);
-		button.setTranslateX(aXPos);
-		button.setTranslateY(aYPos);
+	private void createButtonHelper(int aXPos, int aYPos) {
+		myButton.setTranslateX(aXPos);
+		myButton.setTranslateY(aYPos);
+	}
+
+	@Override
+	public void setOnClick(EventHandler<? super MouseEvent> aEvent) {
+		myButton.setOnMouseClicked(aEvent);
 	}
 
 }

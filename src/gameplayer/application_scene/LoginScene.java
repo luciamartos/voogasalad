@@ -14,8 +14,8 @@ import javafx.stage.Stage;
  */
 public class LoginScene extends AbstractPlayerScene {
 
-	public LoginScene(Stage astage) {
-		super(astage);
+	public LoginScene() {
+		super();
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class LoginScene extends AbstractPlayerScene {
 		options.getChildren().add(createTextField("Enter Password", 0, 0, 500));
 		HBox loginOptions = new HBox(BOX_INSETS);
 		loginOptions.getChildren().add(createButton("Enter", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU));
+			transitionScene(new SceneFactory().create(SceneIdentifier.MAINMENU));
 		}));
 		loginOptions.getChildren().add(createButton("Sign Up", 0, 0, e -> {
 			//TODO: Implement Signing Up

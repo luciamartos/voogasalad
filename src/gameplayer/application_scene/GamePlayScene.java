@@ -24,9 +24,10 @@ public class GamePlayScene extends AbstractPlayerScene {
 	
 	private BorderPane myRoot;
 	private Pane myGamePlayCanvas;
+	private Scene myScene;
 	
-	public GamePlayScene(Stage aStage){
-		super(aStage);
+	public GamePlayScene(){
+		super();
 	}
 	
 	/**
@@ -86,13 +87,13 @@ public class GamePlayScene extends AbstractPlayerScene {
 	
 	private Button createRestartButton() {
 		return createButton("Restart", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.GAMEPLAY));
+			transitionScene(new SceneFactory().create(SceneIdentifier.GAMEPLAY));
 		});
 	}
 	
 	private Button createMainMenuButton() {
 		return createButton("Main Menu", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU));
+			transitionScene(new SceneFactory().create(SceneIdentifier.MAINMENU));
 		});
 	}
 	
