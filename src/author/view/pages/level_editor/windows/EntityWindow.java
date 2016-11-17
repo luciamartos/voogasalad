@@ -28,7 +28,7 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 		entityScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
 		entityScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
 		
-		addChild(tbb.getToolBar());
-		addChild(entityScroller);
+		addChildren(tbb.getToolBar());
+		addChildren(entityScroller);
 	}
 }
