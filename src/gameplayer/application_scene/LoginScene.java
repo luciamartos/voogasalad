@@ -19,8 +19,8 @@ public class LoginScene extends AbstractPlayerScene {
 	private VBox myOptions;
 	private HBox myLoginOptions;
 	
-	public LoginScene() {
-		super();
+	public LoginScene(double aWidth, double aHeight) {
+		super(aWidth, aHeight);
 	}
 	
 	@Override

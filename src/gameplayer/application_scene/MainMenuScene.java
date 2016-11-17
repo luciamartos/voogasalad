@@ -10,9 +10,9 @@ import javafx.scene.layout.VBox;
  *
  */
 public class MainMenuScene extends AbstractPlayerScene {
-	
-	public MainMenuScene(){
-		super();
+
+	public MainMenuScene(double aWidth, double aHeight) {
+		super(aWidth, aHeight);
 	}
 
 	@Override

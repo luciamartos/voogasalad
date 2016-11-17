@@ -27,8 +27,8 @@ public class GamePlayScene extends AbstractPlayerScene {
 	private Button myRestartButton;
 	private KeyCode myCurrentKeyCode = null;
 	
-	public GamePlayScene(){
-		super();
+	public GamePlayScene(double aWidth, double aHeight){
+		super(aWidth, aHeight);
 	}
 	
 	/**
