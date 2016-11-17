@@ -1,8 +1,6 @@
 package author.view;
 
 import author.controller.IAuthorController;
-import author.model.game_observables.observable_level.ObservableLevel;
-import author.model.game_observables.observable_level.ObservableLevelFactory;
 import author.view.pages.level_editor.LevelEditor;
 import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
@@ -11,7 +9,12 @@ import author.view.util.authoring_buttons.ButtonFactory;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -43,7 +46,6 @@ public class AuthorView {
 		myLevelEditor = new LevelEditor();
 		mySpritesPage = new SpritesPage();
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
-
 	}
 
 	/**
@@ -57,7 +59,7 @@ public class AuthorView {
 		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
 			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
 			this.authorController.getCurrentGame().newLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
-			// TODO: Jordan(vooga) - New button functionality
+			
 			System.out.println("Create new level");
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {
 			// TODO: Jordan(vooga) - Save button functionality
