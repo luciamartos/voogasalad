@@ -1,0 +1,31 @@
+Jordan Frazier
+Ray Song
+
+API Review:
+
+
+Part 1:
+    1) What about your API/design is intended to be flexible?
+        Serializing into XML file, passing to game engine
+    2) How is your API/design encapsulating your implementation decisions?
+        The only element that the Authoring environment is sharing externally is the XML file, and everything else is contained.
+    3) How is your part linked to other parts of the project?
+        Passing all data to the Game Data, so that everything that the authoring environment creates is represented in the Game Data, which creates an XML file on saving.
+    4) What exceptions (error cases) might occur in your part and how will you handle them (or not, by throwing)?
+        Invalid XML format, and we handle them by displaying an error, and telling user to choose a new file.
+        User attempting to upload incorrect image file format for a sprite. 
+    5) Why do you think your API/design is good (also define what your measure of good is)?
+        It's flexible and open for extension but closed for modification. That is good.
+        
+Part 2:
+    1) What feature/design problem are you most excited to work on?
+        Populating the level with the sprites.
+    2) What feature/design problem are you most worried about working on?
+        Collisions, how to define the interactions
+    3) What is do you plan to implement this weekend?
+        Dragging a sprite onto the level window
+    4) Discuss the use cases/issues created for your pieces: are they descriptive, appropriate, and reasonably sized?
+        Yes. As shown in our design file for Authoring, they outline all basic cases, such as dragging a sprite onto the screen, changing it's
+        properties, etc. Reasonably defined for the scope of this sprint. 
+    5) Do you have use cases for errors that might occur?
+        Not enough. We should have use cases for a user intentionally trying to upload an incorrect file format. 
