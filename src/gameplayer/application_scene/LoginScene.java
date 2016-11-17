@@ -1,10 +1,12 @@
 package gameplayer.application_scene;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  * Login Scene Initiation
@@ -14,8 +16,13 @@ import javafx.stage.Stage;
  */
 public class LoginScene extends AbstractPlayerScene {
 
-	public LoginScene(Stage astage) {
-		super(astage);
+	private Button myEnterButton;
+	private Button mySignUpButton;
+	private VBox myOptions;
+	private HBox myLoginOptions;
+	
+	public LoginScene() {
+		super();
 	}
 
 	@Override
@@ -24,20 +31,26 @@ public class LoginScene extends AbstractPlayerScene {
 		return myScene;
 	}
 	
+	public void setOnEnter(EventHandler<? super MouseEvent> handler){
+		myEnterButton.setOnMouseClicked(handler);
+	}
+	
+	public void setOnSignUp(EventHandler<? super MouseEvent> handler){
+		mySignUpButton.setOnMouseClicked(handler);
+	}
+	
 	private VBox addNodes(){
-		VBox options = new VBox(BOX_INSETS);
-		options.getChildren().add(createTextField("Enter Username", 0, 0, 500));
-		options.getChildren().add(createTextField("Enter Password", 0, 0, 500));
-		HBox loginOptions = new HBox(BOX_INSETS);
-		loginOptions.getChildren().add(createButton("Enter", 0, 0, e -> {
-			transitionScene(new SceneFactory().create(myStage, SceneIdentifier.MAINMENU.toString()));
-		}));
-		loginOptions.getChildren().add(createButton("Sign Up", 0, 0, e -> {
-			//TODO: Implement Signing Up
-		}));
-		loginOptions.setAlignment(Pos.CENTER);
-		options.getChildren().add(loginOptions);
-		options.setAlignment(Pos.CENTER);
-		return options;
+		myOptions = new VBox(BOX_INSETS);
+		myLoginOptions = new HBox(BOX_INSETS);
+		myOptions.getChildren().add(createTextField("Enter Username", 0, 0, 500));
+		myOptions.getChildren().add(createTextField("Enter Password", 0, 0, 500));
+		myEnterButton = createButton("Enter", 0, 0, null);
+		myLoginOptions.getChildren().add(myEnterButton);
+		mySignUpButton = createButton("Sign Up", 0, 0, null);
+		myLoginOptions.getChildren().add(mySignUpButton);
+		myLoginOptions.setAlignment(Pos.CENTER);
+		myOptions.getChildren().add(myLoginOptions);
+		myOptions.setAlignment(Pos.CENTER);
+		return myOptions;
 	}
 }
