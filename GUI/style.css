@@ -2,10 +2,12 @@
     Document   : control Style
 */
 
+
 #pane{
     -fx-background-image: url("hawaiian_shirt_background2.jpeg");
     -fx-background-repeat: stretch;   
-    -fx-background-size: 1000 1000;
+    -fx-background-width: 100%;
+    -fx-background-height:100%;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }

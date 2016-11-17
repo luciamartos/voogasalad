@@ -39,6 +39,7 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 		File file = new File(STYLESHEET);
 	    myScene.getStylesheets().add(FILE + file.getAbsolutePath());
 	    myRoot.setId("pane");
+	    
 	}
 	
 	public void addButton(String text, EventHandler<? super MouseEvent> handler){
@@ -68,9 +69,9 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 		return newLabel;
 	}
 	
-	//private BackgroundImage createBackgroundImage(String afilepath){
-		//return new BackgroundImage(new Image(afilepath, SCENE_WIDTH, SCENE_HEIGHT, false, true), BackgroundRepeat.REPEAT, 
-				//BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+	//private BackgroundImage createBackgroundImage(String afilepath, double aWidth, aHeight){
+		//return new BackgroundImage(new Image(afilepath, aWidth, aHeight, false, true), BackgroundRepeat.REPEAT, 
+			//	BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 	//}
 	
 	//protected void setBackground(Pane avalue, String afilepath){

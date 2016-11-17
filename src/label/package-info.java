@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author hannahfuchshuber
- *
- */
-package label;
