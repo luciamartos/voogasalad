@@ -1,5 +1,7 @@
-package game_data;
+package game_data.sprites;
 
+import game_data.Location;
+import game_data.Sprite;
 
 public class Character extends Sprite {
 	private int myHealth;
@@ -7,6 +9,15 @@ public class Character extends Sprite {
 	public Character(Location aLocation, String aImagePath, int aHealth) {
 		super(aLocation, aImagePath);
 		myIsAlive=true;
+	}
+
+	public Character(Character aCharacter) {
+		super(aCharacter);
+	}
+
+	@Override
+	public Sprite clone() {
+		return new Character(this);
 	}
 	public int getMyHealth(){
 		return myHealth;

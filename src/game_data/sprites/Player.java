@@ -1,4 +1,6 @@
-package game_data;
+package game_data.sprites;
+
+import game_data.Location;
 
 public class Player extends Character {
 

@@ -1,5 +1,7 @@
 package game_data;
 
+import game_data.sprites.Player;
+
 public class GameDataTestingMain {
 
 	public static void main(String[] args){

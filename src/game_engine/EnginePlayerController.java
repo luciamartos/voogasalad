@@ -4,15 +4,15 @@ import java.util.List;
 import game_data.Sprite;
 import game_data.Level;
 import game_data.Location;
-import game_data.Character;
+import game_data.sprites.Character;
 public class EnginePlayerController {
 	private Level myLevel;
 	private int myWidth, myHeight;
 	private String myBackgroundImageFilePath;
 	private List<Sprite> mySpriteList;
-	private List<Integer> mySpriteXCoordinateList;
-	private List<Integer> mySpriteYCoordinateList;
-	private List<Integer> mySpriteHeadingList;
+	private List<Double> mySpriteXCoordinateList;
+	private List<Double> mySpriteYCoordinateList;
+	private List<Double> mySpriteHeadingList;
 	private List<String> mySpriteImagePathList;
 	private List<Integer> mySpriteHealthList;
 	private List<Boolean> mySpriteIsAliveList;
@@ -77,13 +77,13 @@ public class EnginePlayerController {
 	public List<Sprite> getMySpriteList() {
 		return mySpriteList;
 	}
-	public List<Integer> getMySpriteXCoordinateList() {
+	public List<Double> getMySpriteXCoordinateList() {
 		return mySpriteXCoordinateList;
 	}
-	public List<Integer> getMySpriteYCoordinateList() {
+	public List<Double> getMySpriteYCoordinateList() {
 		return mySpriteYCoordinateList;
 	}
-	public List<Integer> getMySpriteHeadingList() {
+	public List<Double> getMySpriteHeadingList() {
 		return mySpriteHeadingList;
 	}
 	public List<String> getMySpriteImagePathList() {
