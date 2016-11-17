@@ -27,16 +27,19 @@ public class ApplicationController {
 		setLoginButtonHandlers(login);
 	}
 	
-	private void setLoginButtonHandlers(LoginScene login){
-		login.setOnEnter(e -> {
-			displayMainMenu();
-		});
-	}
-	
 	public void displayMainMenu(){
 		MainMenuScene mainMenu = new MainMenuScene();
 		resetStage(mainMenu);
 		setMainMenuButtonHandlers(mainMenu);
+	}
+	
+	private void setLoginButtonHandlers(LoginScene login){
+		login.addButton("Enter", e -> {
+			displayMainMenu();
+		});
+		login.addButton("Sign Up", e -> {
+			//TODO: 
+		});
 	}
 
 	private void setMainMenuButtonHandlers(MainMenuScene mainMenu) {
