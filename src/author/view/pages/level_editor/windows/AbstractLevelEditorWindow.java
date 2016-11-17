@@ -14,8 +14,10 @@ public abstract class AbstractLevelEditorWindow {
 
 	private Pane myWindow;
 
-	public <T extends Node> void addChild(T child) {
-		myWindow.getChildren().add(child);
+	public <T extends Node> void addChildren(T... child) {
+		for(T node : child) {
+			myWindow.getChildren().add(node);
+		}
 	}
 
 	public Pane getWindow() {

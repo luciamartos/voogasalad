@@ -32,8 +32,8 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		entityScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		entityScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
 		
-		addChild(tbb.getToolBar());
-		addChild(entityScroller);
+		addChildren(tbb.getToolBar());
+		addChildren(entityScroller);
 	}
 
 }
