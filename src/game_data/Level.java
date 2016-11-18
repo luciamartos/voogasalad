@@ -1,6 +1,7 @@
 package game_data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -72,6 +73,10 @@ public class Level {
 		if(mySprites.contains(aSprite)){
 			mySprites.remove(aSprite);
 		}
+	}
+
+	public List<Sprite> getMySpriteList() {
+		return new ArrayList<>(mySprites);
 	}
 
 }
