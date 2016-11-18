@@ -11,15 +11,15 @@ public class HighScoreScene extends AbstractNavigationPlayerScene {
 	}
 	
 	@Override
-	public Scene init(IHighScoreView aHighScoreView) {
-		myRoot.setCenter(addCenter());
+	public Scene init() {
 		return myScene;
 	}
+	
 
-	private Node addCenter(List ) {
-		Pane highScoreCanvas = new Pane();
-		for (int i = 0; i < )
-		return null;
-	}
+	//private Node addCenter(List ) {
+		//Pane highScoreCanvas = new Pane();
+		//for (int i = 0; i < )
+		//return null;
+	//}
 
 }
