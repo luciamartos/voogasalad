@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import game_data.characteristics.Characteristic;
+import game_engine.SpritePhysics;
 
 /**
  * Represents any viewable object in a Level including
@@ -81,5 +82,10 @@ public abstract class Sprite {
 	}
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
+	}
+
+	public SpritePhysics getSpritePhysics() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
