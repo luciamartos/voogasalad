@@ -4,5 +4,6 @@ public enum SceneIdentifier {
 	LOGIN, 
 	MAINMENU, 
 	GAMECHOICE, 
-	GAMEPLAY
+	GAMEPLAY,
+	STARTSCREEN
 }

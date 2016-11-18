@@ -9,6 +9,9 @@ import gameplayer.application_scene.MainMenuScene;
 import gameplayer.application_scene.PlayerOptions;
 import gameplayer.application_scene.PopUpManager;
 import javafx.scene.layout.HBox;
+import gameplayer.application_scene.IDisplay;
+import gameplayer.application_scene.SceneFactory;
+import gameplayer.application_scene.SceneIdentifier;
 import javafx.stage.Stage;
 
 /**
@@ -19,26 +22,31 @@ import javafx.stage.Stage;
  */
 
 public class ApplicationController {
+	
+	public static final int SCENE_WIDTH = 1000;
+	public static final int SCENE_HEIGHT = 1000;
 
 	private Stage myStage;
+	private SceneFactory mySceneBuilder;
 
 	public ApplicationController(Stage astage){
 		myStage = astage;
+		mySceneBuilder = new SceneFactory();
 	}
 
 	public void displayLogin(){
-		LoginScene login = new LoginScene();
+		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
 		resetStage(login);
 		setLoginButtonHandlers(login);
 	}
 
 	public void displayMainMenu(){
-		MainMenuScene mainMenu = new MainMenuScene();
+		IDisplay mainMenu = mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
 		resetStage(mainMenu);
 		setMainMenuButtonHandlers(mainMenu);
 	}
-
-	private void setLoginButtonHandlers(LoginScene login){
+	
+	private void setLoginButtonHandlers(IDisplay login){
 		login.addButton("Enter", e -> {
 			displayMainMenu();
 		});
@@ -47,7 +55,7 @@ public class ApplicationController {
 		});
 	}
 
-	private void setMainMenuButtonHandlers(MainMenuScene mainMenu) {
+	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
 		mainMenu.addButton("Click To Play", e -> {
 			displayGameChoice();
 		});
@@ -58,14 +66,23 @@ public class ApplicationController {
 			displayLogin();
 		});
 	}
-
+	
+	private void createNavigationButtons(IDisplay aMenu) {
+		aMenu.addNavigationButton("Main Menu", e -> {
+			displayMainMenu();
+		});
+		aMenu.addNavigationButton("Sign Out", e -> {
+			displayLogin();
+		});
+	}
+	
 	private void displayGameChoice(){
-		GameChoiceScene gameChoice = new GameChoiceScene();
+		IDisplay gameChoice = mySceneBuilder.create(SceneIdentifier.GAMECHOICE, myStage.getWidth(), myStage.getHeight());
 		resetStage(gameChoice);
 		setGameChoiceButtonHandlers(gameChoice);
 	}
 
-	private void setGameChoiceButtonHandlers(GameChoiceScene gameChoice) {
+	private void setGameChoiceButtonHandlers(IDisplay gameChoice) {
 		gameChoice.addButton("Choose Game", e -> {
 			GamePlayController gamePlay = new GamePlayController(myStage);
 			gamePlay.displayGame();
@@ -85,10 +102,17 @@ public class ApplicationController {
 			popup.show();
 		});
 	}
-
-	private void resetStage(IDisplay ascene){
+	
+	private void resetStage(IDisplay aScene){
 		myStage.close();
-		myStage.setScene(ascene.init());
+		myStage.setScene(aScene.init());
 		myStage.show();
+		createNavigationButtons(aScene);
+	}
+
+	public void startScene() {
+		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_WIDTH, SCENE_HEIGHT);
+		resetStage(login);
+		setLoginButtonHandlers(login);
 	}
 }

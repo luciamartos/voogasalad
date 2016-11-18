@@ -1,6 +1,8 @@
 package gameplayer.application_scene;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Every display must have an init method that returns a Scene
@@ -11,10 +13,12 @@ import javafx.scene.Scene;
  */
 public interface IDisplay {
 
-	public final int SCENE_WIDTH = 1000;
-	public final int SCENE_HEIGHT = 1000;
 	public final int BOX_INSETS = 20;
 	
 	public Scene init();
+	
+	public void addButton(String aLabel, EventHandler<? super MouseEvent> aHandler);
+	
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler);
 	
 }
