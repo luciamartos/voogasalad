@@ -1,25 +1,16 @@
 package gameplayer.application_scene;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 
-public class HighScoreScene extends AbstractNavigationPlayerScene { 
+public class HighScoreScene extends AbstractNavigationPlayerScene {
 
 	public HighScoreScene(double aWidth, double aHeight) {
 		super(aWidth, aHeight);
-	}
-	
+	} 
+
 	@Override
 	public Scene init() {
-		return myScene;
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-
-	//private Node addCenter(List ) {
-		//Pane highScoreCanvas = new Pane();
-		//for (int i = 0; i < )
-		//return null;
-	//}
-
 }
