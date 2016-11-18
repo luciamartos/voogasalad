@@ -1,9 +1,9 @@
 <game__data.Game>
   <myLevels>
-    <game__data.Level>
+    <author.model.game__observables.observable__level.ConcreteObservableLevel>
       <width>500</width>
-      <height>8000</height>
-      <backgroundImageFilePath>path/backgroundImage.jpg</backgroundImageFilePath>
+      <height>500</height>
+      <backgroundImageFilePath>Image</backgroundImageFilePath>
       <mySprites>
         <game__data.Player>
           <myLocation>
@@ -16,6 +16,7 @@
         </game__data.Player>
       </mySprites>
       <myKeyCommands/>
-    </game__data.Level>
+      <invalidationListeners class="set"/>
+    </author.model.game__observables.observable__level.ConcreteObservableLevel>
   </myLevels>
 </game__data.Game>
