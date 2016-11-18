@@ -1,0 +1,17 @@
+package game_data.characteristics;
+
+import game_data.Sprite;
+
+public class CollisionPacer extends Pacer{
+
+	public CollisionPacer(int speed) {
+		super(speed);
+	}
+
+	@Override
+	public boolean toChangeDirection(Sprite aSprite) {
+		//return isColliding();??? how are we gonna know if there's a collision
+		return false;
+	}
+
+}
