@@ -9,9 +9,9 @@ import game_data.characteristics.Characteristic;
  * Represents any viewable object in a Level including
  * characters, items, terrains, projectiles, etc.
  * 
- * @author Addison, Austin
+ * @author Addison, Austin, Cleveland Thompson
  */
-public abstract class Sprite {
+public abstract class Sprite extends GameObject{
 	
 	private Location myLocation;
 	private String myImagePath;
@@ -63,23 +63,27 @@ public abstract class Sprite {
 	}
 	public void setMyLocation(Location myLocation) {
 		this.myLocation = myLocation;
+		notifyListeners();
 	}
 	public int getMyVelocity() {
 		return myVelocity;
 	}
 	public void setMyVelocity(int myVelocity) {
 		this.myVelocity = myVelocity;
+		notifyListeners();
 	}
 	public String getMyImagePath() {
 		return myImagePath;
 	}
 	public void setMyImagePath(String myImagePath) {
 		this.myImagePath = myImagePath;
+		notifyListeners();
 	}
 	public CollisionHandler getMyCollisionHandler() {
 		return myCollisionHandler;
 	}
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
+		notifyListeners();
 	}
 }

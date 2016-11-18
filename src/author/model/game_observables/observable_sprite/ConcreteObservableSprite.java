@@ -17,6 +17,15 @@ class ConcreteObservableSprite extends ObservableSprite{
 	 */
 	ConcreteObservableSprite(Sprite aSprite) {
 		super(aSprite);
+	}
+
+	/* (non-Javadoc)
+	 * @see game_data.Sprite#clone()
+	 */
+	@Override
+	public Sprite clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 
 }

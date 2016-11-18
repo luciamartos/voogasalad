@@ -3,6 +3,11 @@ package game_data.sprites;
 import game_data.Location;
 import game_data.Sprite;
 
+/**
+ * 
+ * @author Cleveland Thompson V (ct168), Addison
+ *
+ */
 public class Character extends Sprite {
 	private int myHealth;
 	private boolean myIsAlive;
@@ -25,6 +30,7 @@ public class Character extends Sprite {
 	public void setMyHealth(int aHealth){
 		myHealth+=aHealth;
 		updateIsAlive();
+		this.notifyListeners();
 	}
 	public boolean isAlive(){
 		return myIsAlive;
@@ -33,5 +39,6 @@ public class Character extends Sprite {
 		if(myHealth<=0){
 			myIsAlive=false;
 		}
+		this.notifyListeners();
 	}
 }

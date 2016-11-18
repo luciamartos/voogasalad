@@ -9,10 +9,10 @@ import java.util.List;
  * and other elements. A Game can be saved to a serialized XML
  * file to be loaded elsewhere.
  * 
- * @author Addison
+ * @author Addison, Cleveland Thompson
  *
  */
-public class Game {
+public class Game extends GameObject{
 	
 	List<Level> myLevels;
 	
@@ -40,6 +40,11 @@ public class Game {
 
 	public void addNewLevel(Level aLevel){
 		myLevels.add(aLevel);
+		this.notifyListeners();
+	}
+	
+	public List<Level> getLevels(){
+		return myLevels;
 	}
 
 }

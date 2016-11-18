@@ -1,7 +1,6 @@
 package game_data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -15,9 +14,9 @@ import javafx.scene.input.KeyCode;
  * active on that Level as well as a background image and
  * Level specific KeyCommands
  * 
- * @author Addison
+ * @author Addison, Cleveland Thompson
  */
-public class Level {
+public class Level extends GameObject{
 	
 	private int width, height;
 	private String backgroundImageFilePath;
@@ -38,6 +37,7 @@ public class Level {
 
 	public void setWidth(int width) {
 		this.width = width;
+		this.notifyListeners();
 	}
 
 	public int getHeight() {
@@ -46,10 +46,12 @@ public class Level {
 
 	public void setHeight(int height) {
 		this.height = height;
+		this.notifyListeners();
 	}
 
 	public void setBackgroundImageFilePath(String backgroundImageFilePath){
 		this.backgroundImageFilePath = backgroundImageFilePath;
+		this.notifyListeners();
 	}
 	
 	public String getBackgroundImageFilePath(){
@@ -62,16 +64,19 @@ public class Level {
 	
 	public void setKeyCommand(KeyCode aKeyCode, KeyCommand aKeyCommand){
 		myKeyCommands.put(aKeyCode, aKeyCommand);
+		this.notifyListeners();
 	}
 	
 	public void deleteKeyCommand(KeyCode aKeyCode){
 		myKeyCommands.remove(aKeyCode);
+		this.notifyListeners();
 	}
 	//Big Question: how do you know what is "currently selected"
 	
 	public void removeSprite(Sprite aSprite){
 		if(mySprites.contains(aSprite)){
 			mySprites.remove(aSprite);
+			this.notifyListeners();
 		}
 	}
 
