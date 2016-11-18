@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,8 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -32,6 +35,7 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 	protected Scene myScene;
 	protected BorderPane myRoot;
 	protected VBox myOptions;
+	protected HBox myNavigation;
 	
 	public AbstractPlayerScene(double aWidth, double aHeight) {
 		myRoot = new BorderPane();
@@ -39,7 +43,6 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 		File file = new File(STYLESHEET);
 	    myScene.getStylesheets().add(FILE + file.getAbsolutePath());
 	    myRoot.setId("pane");
-	    
 	}
 	
 	public void addButton(String text, EventHandler<? super MouseEvent> handler){
@@ -69,16 +72,17 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 		return newLabel;
 	}
 	
-	//private BackgroundImage createBackgroundImage(String afilepath, double aWidth, aHeight){
-		//return new BackgroundImage(new Image(afilepath, aWidth, aHeight, false, true), BackgroundRepeat.REPEAT, 
-			//	BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+	//private BackgroundImage createBackgroundImage(String afilepath){
+		//return new BackgroundImage(new Image(afilepath, false, true), BackgroundRepeat.REPEAT, 
+			//BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 	//}
 	
-	//protected void setBackground(Pane avalue, String afilepath){
+	protected void setBackground(Pane avalue, String afilepath){
 		//avalue.setBackground(new Background(createBackgroundImage(afilepath)));
-	//}
+	}
 	
 	protected void setBackground(Pane avalue, Paint fill){
 		avalue.setBackground(new Background(new BackgroundFill(fill, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
+
 }

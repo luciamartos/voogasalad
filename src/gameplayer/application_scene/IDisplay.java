@@ -19,4 +19,6 @@ public interface IDisplay {
 	
 	public void addButton(String aLabel, EventHandler<? super MouseEvent> aHandler);
 	
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler);
+	
 }

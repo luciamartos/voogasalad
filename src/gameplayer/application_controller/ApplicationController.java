@@ -58,6 +58,15 @@ public class ApplicationController {
 		});
 	}
 	
+	private void createNavigationButtons(IDisplay aMenu) {
+		aMenu.addNavigationButton("Main Menu", e -> {
+			displayMainMenu();
+		});
+		aMenu.addNavigationButton("Sign Out", e -> {
+			displayLogin();
+		});
+	}
+	
 	private void displayGameChoice(){
 		IDisplay gameChoice = mySceneBuilder.create(SceneIdentifier.GAMECHOICE, myStage.getWidth(), myStage.getHeight());
 		resetStage(gameChoice);
@@ -78,6 +87,7 @@ public class ApplicationController {
 		myStage.close();
 		myStage.setScene(aScene.init());
 		myStage.show();
+		createNavigationButtons(aScene);
 	}
 
 	public void startScene() {

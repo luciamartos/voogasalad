@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
  * @author tedmarchildon, hannah
  *
  */
-public class GameChoiceScene extends AbstractPlayerScene {
+public class GameChoiceScene extends AbstractNavigationPlayerScene {
 
 	public GameChoiceScene(double aWidth, double aHeight){
 		super(aWidth, aHeight);
@@ -28,4 +28,5 @@ public class GameChoiceScene extends AbstractPlayerScene {
 		//myOptions.bin
 		return myOptions;
 	}
+
 }

@@ -33,7 +33,7 @@ public class LoginScene extends AbstractPlayerScene {
 		return myScene;
 	}
 	
-	private VBox addNodes(){
+	private VBox addNodes() {
 		myOptions = new VBox(BOX_INSETS);
 		myLoginOptions = new HBox(BOX_INSETS);
 		myOptions.getChildren().add(createTextField("Enter Username", 0, 0, 500));
@@ -43,4 +43,10 @@ public class LoginScene extends AbstractPlayerScene {
 		myOptions.setAlignment(Pos.CENTER);
 		return myOptions;
 	}
+
+	@Override
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler) {
+		// DO NOTHING
+	}
+
 }

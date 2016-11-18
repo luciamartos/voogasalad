@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class GamePlayScene extends AbstractPlayerScene {
+public class GamePlayScene extends AbstractNavigationPlayerScene {
 	
 	private Pane myGamePlayCanvas;
 	private Button myMainMenuButton;

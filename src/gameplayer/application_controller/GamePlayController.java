@@ -33,7 +33,7 @@ public class GamePlayController {
 
 	private void initializeGameScene() {
 		SceneFactory buildGamePlayScreen = new SceneFactory();
-		myGamePlay = (GamePlayScene) buildGamePlayScreen.create(SceneIdentifier.GAMEPLAY, 1, 1);
+		myGamePlay = (GamePlayScene) buildGamePlayScreen.create(SceneIdentifier.GAMEPLAY, myStage.getWidth(), myStage.getHeight());
 		myGamePlay.addObserver(new GamePlayObserver());
 	}
 

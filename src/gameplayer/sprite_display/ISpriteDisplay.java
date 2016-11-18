@@ -7,7 +7,7 @@ public interface ISpriteDisplay {
 	//public void removeSpriteToDisplay(Sprite aSprite);
 	
 	public enum Shape {
-		RECTANGLE, CIRCLE, SQUARE, TRIANGLE, 
+		RECTANGLE, CIRCLE, TRIANGLE, 
 	}
 	
 }

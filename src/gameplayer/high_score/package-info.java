@@ -5,4 +5,4 @@
  * @author hannahfuchshuber
  *
  */
-package gameplayer.imageview;
+package gameplayer.high_score;

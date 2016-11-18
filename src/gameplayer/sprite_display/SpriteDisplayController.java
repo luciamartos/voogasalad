@@ -9,7 +9,7 @@ import javafx.scene.Node;
 public class SpriteDisplayController implements Iterable<Node>, ISpriteDisplay {
 	
 	private List<Node> mySprites;
-	private SpriteDisplay mySpriteDisplay;
+	private SpriteDisplayFactory mySpriteDisplay;
 	
 	public SpriteDisplayController() {
 		this.mySprites = new ArrayList<Node>();
@@ -41,13 +41,20 @@ public class SpriteDisplayController implements Iterable<Node>, ISpriteDisplay {
 
 
 	
-	/*public void addSpriteToDisplay(Sprite aSprite) {
-		mySprites.add(mySpriteDisplay.build(aSprite));
+	/*public void addSpriteToDisplay(List<Sprite> aSpriteList) {
+	 * for (int i = 0; i < aSpriteList.size(); i++) {
+			mySprites.add(mySpriteDisplay.buildSpriteDisplay(aSprite));
+		}
 	}*/
 	
 	/*public void removeSpriteFromDisplay(Sprite aSprite) {
-	 *	mySprites.remove(mySpriteDisplay.build(aSprite));
+	 *	mySprites.remove(mySpriteDisplay.buildSpriteDisplay(aSprite));
 	 }*/
+	
+	/* public void removeAllSprites() {
+	 * 	mySprites = new ArrayList<Node>();
+	 * }
+	 */
 
 
 }
