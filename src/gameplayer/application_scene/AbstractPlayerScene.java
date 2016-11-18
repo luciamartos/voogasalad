@@ -5,7 +5,7 @@ import java.util.Observable;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
@@ -47,6 +46,10 @@ public abstract class AbstractPlayerScene extends Observable implements IDisplay
 	
 	public void addButton(String text, EventHandler<? super MouseEvent> handler){
 		myOptions.getChildren().add(createButton(text, 0, 0, handler));
+	}
+	
+	public void addNode(Node node){
+		myOptions.getChildren().add(node);
 	}
 	
 	protected Button createButton(String amessage, int x, int y, EventHandler<? super MouseEvent> ahandler){

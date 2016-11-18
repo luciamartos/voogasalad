@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class AbstractNavigationPlayerScene extends AbstractPlayerScene {
+public abstract class AbstractNavigationPlayerScene extends AbstractPlayerScene {
 	
 	public AbstractNavigationPlayerScene(double aWidth, double aHeight) {
 		super(aWidth, aHeight);
