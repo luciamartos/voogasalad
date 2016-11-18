@@ -59,6 +59,13 @@ public class GamePlayScene extends AbstractPlayerScene {
 		return myCurrentKeyCode != null ? myCurrentKeyCode : null;
 	}
 	
+	public void addSprite(String aFilepath, int x, int y){
+		ImageView spriteRep = new ImageView(aFilepath);
+		spriteRep.setTranslateX(x);
+		spriteRep.setTranslateY(y);
+		myGamePlayCanvas.getChildren().add(spriteRep);
+	}
+	
 	//Send code to back end through controller
 	private void handleKeyInput(KeyCode key){
 		setChanged();
@@ -106,12 +113,5 @@ public class GamePlayScene extends AbstractPlayerScene {
 	private Button createMainMenuButton(){
 		myMainMenuButton = createButton("Main Menu", 0, 0, null);
 		return myMainMenuButton;
-	}
-	
-	private void addSprite(String aFilepath, int x, int y){
-		ImageView spriteRep = new ImageView(aFilepath);
-		spriteRep.setTranslateX(x);
-		spriteRep.setTranslateY(y);
-		myGamePlayCanvas.getChildren().add(spriteRep);
 	}
 }

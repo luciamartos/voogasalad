@@ -1,9 +1,14 @@
 package gameplayer.application_controller;
 
+import java.io.File;
+import gameplayer.application_scene.FileManager;
 import gameplayer.application_scene.GameChoiceScene;
 import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.LoginScene;
 import gameplayer.application_scene.MainMenuScene;
+import gameplayer.application_scene.PlayerOptions;
+import gameplayer.application_scene.PopUpManager;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -26,13 +31,13 @@ public class ApplicationController {
 		resetStage(login);
 		setLoginButtonHandlers(login);
 	}
-	
+
 	public void displayMainMenu(){
 		MainMenuScene mainMenu = new MainMenuScene();
 		resetStage(mainMenu);
 		setMainMenuButtonHandlers(mainMenu);
 	}
-	
+
 	private void setLoginButtonHandlers(LoginScene login){
 		login.addButton("Enter", e -> {
 			displayMainMenu();
@@ -53,7 +58,7 @@ public class ApplicationController {
 			displayLogin();
 		});
 	}
-	
+
 	private void displayGameChoice(){
 		GameChoiceScene gameChoice = new GameChoiceScene();
 		resetStage(gameChoice);
@@ -66,10 +71,21 @@ public class ApplicationController {
 			gamePlay.displayGame();
 		});
 		gameChoice.addButton("Load New Game", e -> {
-			// TODO: Implement file chooser
+			File chosenGame = new FileManager().show(myStage);
+			if(chosenGame != null){
+				//TODO: Send selected file to backend
+			}
+		});
+		gameChoice.addButton("Options", a -> {
+			PopUpManager popup = new PopUpManager();
+			PlayerOptions options = new PlayerOptions();
+			for(HBox box : options.addOptions()){
+				popup.addOption(box);
+			}
+			popup.show();
 		});
 	}
-	
+
 	private void resetStage(IDisplay ascene){
 		myStage.close();
 		myStage.setScene(ascene.init());
