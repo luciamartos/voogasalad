@@ -19,8 +19,7 @@ public class SpritePhysics {
 	private double initDownVelocity;
 	private double initUpVelocity;
 	private double initLeftVelocity;
-	private double initRightVelocity;
-		
+	private double initRightVelocity;		
 	
 	//all parameters are specified
 	public SpritePhysics(double verticalGravity, double horizontalGravity,  double downAcceleration, double upAcceleration, double leftAcceleration,
