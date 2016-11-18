@@ -20,15 +20,15 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class GamePlayScene extends AbstractPlayerScene {
+public class GamePlayScene extends AbstractNavigationPlayerScene {
 	
 	private Pane myGamePlayCanvas;
 	private Button myMainMenuButton;
 	private Button myRestartButton;
 	private KeyCode myCurrentKeyCode = null;
 	
-	public GamePlayScene(){
-		super();
+	public GamePlayScene(double aWidth, double aHeight){
+		super(aWidth, aHeight);
 	}
 	
 	/**

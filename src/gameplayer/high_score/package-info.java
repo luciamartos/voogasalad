@@ -5,4 +5,4 @@
  * @author hannahfuchshuber
  *
  */
-package gameplayer.ISprintDisplay;
+package gameplayer.high_score;

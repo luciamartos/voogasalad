@@ -3,6 +3,8 @@ package gameplayer.application_controller;
 import java.util.Observer;
 
 import gameplayer.application_scene.GamePlayScene;
+import gameplayer.application_scene.SceneFactory;
+import gameplayer.application_scene.SceneIdentifier;
 import javafx.stage.Stage;
 
 public class GamePlayController {
@@ -30,7 +32,8 @@ public class GamePlayController {
 	}
 
 	private void initializeGameScene() {
-		myGamePlay = new GamePlayScene();
+		SceneFactory buildGamePlayScreen = new SceneFactory();
+		myGamePlay = (GamePlayScene) buildGamePlayScreen.create(SceneIdentifier.GAMEPLAY, myStage.getWidth(), myStage.getHeight());
 		myGamePlay.addObserver(new GamePlayObserver());
 	}
 

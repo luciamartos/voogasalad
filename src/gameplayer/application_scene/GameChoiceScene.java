@@ -10,10 +10,10 @@ import javafx.scene.layout.VBox;
  * @author tedmarchildon, hannah
  *
  */
-public class GameChoiceScene extends AbstractPlayerScene {
+public class GameChoiceScene extends AbstractNavigationPlayerScene {
 
-	public GameChoiceScene(){
-		super();
+	public GameChoiceScene(double aWidth, double aHeight){
+		super(aWidth, aHeight);
 	}
 
 	@Override
@@ -25,6 +25,8 @@ public class GameChoiceScene extends AbstractPlayerScene {
 	private VBox addNodes() {
 		myOptions = new VBox(BOX_INSETS);
 		myOptions.setAlignment(Pos.CENTER);
+		//myOptions.bin
 		return myOptions;
 	}
+
 }

@@ -3,7 +3,6 @@ package gameplayer.application_scene;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,8 +18,8 @@ public class LoginScene extends AbstractPlayerScene {
 	private VBox myOptions;
 	private HBox myLoginOptions;
 	
-	public LoginScene() {
-		super();
+	public LoginScene(double aWidth, double aHeight) {
+		super(aWidth, aHeight);
 	}
 	
 	@Override
@@ -34,7 +33,7 @@ public class LoginScene extends AbstractPlayerScene {
 		return myScene;
 	}
 	
-	private VBox addNodes(){
+	private VBox addNodes() {
 		myOptions = new VBox(BOX_INSETS);
 		myLoginOptions = new HBox(BOX_INSETS);
 		myOptions.getChildren().add(createTextField("Enter Username", 0, 0, 500));
@@ -44,4 +43,10 @@ public class LoginScene extends AbstractPlayerScene {
 		myOptions.setAlignment(Pos.CENTER);
 		return myOptions;
 	}
+
+	@Override
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler) {
+		// DO NOTHING
+	}
+
 }
