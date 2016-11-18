@@ -1,5 +1,7 @@
 package game_engine;
 
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import game_data.Location;
@@ -26,15 +28,58 @@ public class UpdateStates {
 		
 		updateSprites();
 		checkCollisions();
+		checkWinOrLoss();
+	}
+
+	private void checkWinOrLoss() {
+		// TODO Auto-generated method stub
+		// need someway of getting from game data what the winning condition of the game is
+		
+		
 	}
 
 	private void checkCollisions() {
 		for(Sprite spriteOne:mySpriteList){
+			//REVISE THIS RECTANGLE THING
+			Rectangle2D r1 = new Rectangle2D.Double(spriteOne.getMyLocation().getXLocation(), spriteOne.getMyLocation().getYLocation(), spriteOne.getWidth(), spriteOne.getHeight());
+			Rectangle2D r2 = new Rectangle2D.Double(spriteOne.getMyLocation().getXLocation(), 0, spriteOne.getWidth(), spriteOne.getHeight());
 			for(Sprite spriteTwo:mySpriteList){
-				if(spriteOne!=spriteTwo){
-					
-				}
+					//check for collision (dont check a sprite with itself)
+					if(spriteOne!=spriteTwo && spriteOne.getImageView().getBoundsInLocal().interects(spriteTwo.getImageView().getBoundsInLocal())){
+						//find the side in which it collided
+					    findSideOfCollition(r1, r2, spriteTwo);
+					}
 			}
+		}
+	}
+
+	private void findSideOfCollition(Rectangle2D r1, Rectangle2D r2, Sprite spriteTwo) {
+		Point2D upperLeft = new Point2D.Double(spriteTwo.getMyLocation().getXLocation(), spriteTwo.getMyLocation().getYLocation());
+		Point2D upperRight = new Point2D.Double(r1.getX() + r1.getWidth(),
+		        r1.getY());
+		Point2D lowerLeft = new Point2D.Double(r1.getX(), r1.getY()
+		        + r1.getHeight());
+		Point2D lowerRight = new Point2D.Double(r1.getX() + r1.getWidth(),
+		        r1.getY() + r1.getHeight());
+
+		if (r2.contains(upperRight)){
+		    System.out.println("UpperRight hit");
+		    //Do stuff
+		}
+
+		if (r2.contains(lowerRight)) {
+		    System.out.println("lowerRight hit");
+		    // Do stuff
+		}
+
+		if (r2.contains(lowerLeft)) {
+		    System.out.println("LowerLeft hit");
+		    // Do stuff
+		}
+
+		if (r2.contains(upperLeft)) {
+		    System.out.println("UpperLeft hit");
+		    // Do stuff
 		}
 	}
 
@@ -45,6 +90,7 @@ public class UpdateStates {
 		
 	}
 
+	//TODO be revised. how is the new heading calculated!? and 
 	private void updateSpritePosition(Sprite sprite){
 		SpritePhysics spritePhysics = sprite.getSpritePhysics();
 		Location myCurrentLocation = sprite.getMyLocation();
@@ -52,11 +98,11 @@ public class UpdateStates {
 		double curYLoc = myCurrentLocation.getYLocation();
 		
 		//get initial x velocity component and acceleration 
-		double xVelocity = sprite.getMyVelocity()*Math.cos(sprite.getMyHeading());
+		double xVelocity = sprite.getMyVelocity()*Math.cos(myCurrentLocation.getMyHeading());
 		double xAcceleration =GameResources.DEFAULT_HORIZONTAL_GRAVITY.getDoubleResource();
 		
-		//get initial y velocity componenet and acceleration
-		double yVelocity = sprite.getMyVelocity()*Math.sin(sprite.getMyHeading());
+		//get initial y velocity component and acceleration
+		double yVelocity = sprite.getMyVelocity()*Math.sin(myCurrentLocation.getMyHeading());
 		double yAcceleration = GameResources.DEFAULT_VERTICAL_GRAVITY.getDoubleResource();
 	
 		
@@ -83,7 +129,7 @@ public class UpdateStates {
 		double myYLocation = curYLoc + yVelocity*timeElapsed + 0.5*yAcceleration*Math.pow(timeElapsed, 2);
 		
 		//update the location of the sprite
-		Location myNewLocation = new Location(myXLocation, myYLocation);
+		Location myNewLocation = new Location(myXLocation, myYLocation, myCurrentLocation.getMyHeading());
 		sprite.setMyLocation(myNewLocation);
 	}
 	
