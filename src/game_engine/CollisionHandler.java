@@ -3,6 +3,11 @@ package game_engine;
 import game_data.Sprite;
 import javafx.geometry.Side;
 
+/**
+ * 
+ * @author LuciaMartos
+ *
+ */
 public class CollisionHandler {
 	private IGameWideCollisionEffectsInterface myInterface;
 	// TODO: need SpriteType class that contains info

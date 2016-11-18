@@ -31,7 +31,6 @@ public class Location {
 	public double getYLocation(){
 		return myYLocation;
 	}
-	
 	public void setLocation(double myXLocation, double myYLocation){
 		this.myXLocation = myXLocation;
 		this.myYLocation = myYLocation;
