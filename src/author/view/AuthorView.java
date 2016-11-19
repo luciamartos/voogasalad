@@ -2,6 +2,7 @@ package author.view;
 
 import author.controller.IAuthorController;
 import author.view.pages.level_editor.LevelEditor;
+import author.view.pages.menu.MenuFactory;
 import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
 import game_data.Level;
@@ -10,7 +11,6 @@ import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Pane;
@@ -63,7 +63,7 @@ public class AuthorView {
 			addLevel(createdLevel);
 			System.out.println("Create new level");
 			//testing
-			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), BACKGROUND_IMAGE_PATH, 5));
+			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
