@@ -82,36 +82,6 @@ public class UpdateStates {
 		}
 	}
 
-
-	private Map<Sprite, Side> getListOfSpritesCollided(Sprite targetSprite){
-		Map<Sprite, Side> collisionSprites = new HashMap<Sprite, Side>();
-		
-		for(Sprite mySprite:mySpriteList){
-			if(mySprite != targetSprite && mySprite.getImageView().getBoundsInLocal().interects(targetSprite.getImageView().getBoundsInLocal())){
-//			    double x = Math.abs(mySprite.getMyLocation().getXLocation() - targetSprite.getMyLocation().getXLocation());
-//			    double y = Math.abs(mySprite.getMyLocation().getYLocation() - targetSprite.getMyLocation().getXLocation());
-				findSideOfCollition(mySprite, targetSprite);
-			}
-		}	
-		return collisionSprites;
-	}
-
-	private  Side findSideOfCollition(Sprite mySprite, Sprite targetSprite) {
-		if(mySprite.getMyLocation().getYLocation() <= targetSprite.getMyLocation().getYLocation()){
-			return Side.BOTTOM;
-		}
-		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation() + targetSprite.getHeight()){
-			return Side.TOP;
-		}
-		if(mySprite.getMyLocation().getXLocation() < targetSprite.getMyLocation().getXLocation()){
-			return Side.LEFT;
-		}
-		if(mySprite.getMyLocation().getXLocation() > targetSprite.getMyLocation().getXLocation()){
-			return Side.RIGHT;
-		}
-		
-	}
-
 	// not the best design in the world but works for the time being
 	private void checkForWin() {
 		Set<String> type = enginePlayerController.getMyLevel().getWinType();
