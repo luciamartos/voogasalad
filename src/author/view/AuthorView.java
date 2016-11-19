@@ -7,6 +7,8 @@ import author.view.util.TabPaneFacade;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
+import game_data.Location;
+import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -38,7 +40,7 @@ public class AuthorView {
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
-	public static final String BACKGROUND_IMAGE_PATH = "data/mario.jpg";
+	public static final String BACKGROUND_IMAGE_PATH = "data/MarioSMBW.png";
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
@@ -61,6 +63,8 @@ public class AuthorView {
 			Level createdLevel =new Level(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			addLevel(createdLevel);
 			System.out.println("Create new level");
+			//testing
+			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), BACKGROUND_IMAGE_PATH, 5));
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {
 			// TODO: Jordan(vooga) - Save button functionality
 			System.out.println("Save level");
