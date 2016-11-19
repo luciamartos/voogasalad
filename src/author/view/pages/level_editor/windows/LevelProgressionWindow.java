@@ -51,7 +51,7 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 //		container.prefWidthProperty().bind(progressionScroller.prefViewportHeightProperty());
 		
 		progressionScroller.setContent(container);
-		
+		super.getWindow().setMaxHeight(100);
 		super.getWindow().setMinHeight(100);
 		
 		super.getWindow().getChildren().add(tbb.getToolBar());
