@@ -1,23 +1,27 @@
 <game__data.Game>
+  <invalidationListeners class="set"/>
   <myLevels>
-    <author.model.game__observables.observable__level.ConcreteObservableLevel>
+    <game__data.Level>
+      <invalidationListeners class="set"/>
       <width>500</width>
-      <height>500</height>
-      <backgroundImageFilePath>Image</backgroundImageFilePath>
+      <height>8000</height>
+      <backgroundImageFilePath>path/backgroundImage.jpg</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
+          <invalidationListeners class="set"/>
           <myLocation>
-            <myHeading>0</myHeading>
-            <myXLocation>0</myXLocation>
-            <myYLocation>0</myYLocation>
+            <myHeading>0.0</myHeading>
+            <myXLocation>0.0</myXLocation>
+            <myYLocation>0.0</myYLocation>
           </myLocation>
           <myImagePath>path/spriteImage.jpg</myImagePath>
           <myVelocity>0</myVelocity>
           <myCharacteristics/>
+          <myHealth>0</myHealth>
+          <myIsAlive>true</myIsAlive>
         </game__data.sprites.Player>
       </mySprites>
       <myKeyCommands/>
-      <invalidationListeners class="set"/>
-    </author.model.game__observables.observable__level.ConcreteObservableLevel>
+    </game__data.Level>
   </myLevels>
 </game__data.Game>

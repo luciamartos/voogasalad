@@ -43,6 +43,9 @@ public abstract class AuthorModel implements IAuthorModel{
 	}
 	
 	public Level addLevel(int aWidth, int aHeight, String aBackgroundImageFilePath){
+		if (this.activeGame == null){
+			newGame();
+		}
 		this.activeLevel = new Level(aWidth, aHeight, aBackgroundImageFilePath);
 		this.activeGame.addNewLevel(this.activeLevel);
 		return this.activeLevel;
