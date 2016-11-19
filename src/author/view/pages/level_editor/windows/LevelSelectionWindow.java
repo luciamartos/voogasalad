@@ -47,8 +47,8 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 		
 		container.prefHeightProperty().bind(super.getWindow().heightProperty());
 		container.prefWidthProperty().bind(super.getWindow().widthProperty());
-		container.setPrefWidth(Double.MAX_VALUE);
-		container.setPrefHeight(Double.MAX_VALUE);
+//		container.setPrefWidth(Double.MAX_VALUE);
+//		container.setPrefHeight(Double.MAX_VALUE);
 		
 		levelScroller.setContent(container);
 
