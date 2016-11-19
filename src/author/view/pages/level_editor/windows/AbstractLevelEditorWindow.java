@@ -3,6 +3,8 @@ package author.view.pages.level_editor.windows;
 
 import author.controller.IAuthorController;
 import game_data.Level;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,11 +30,7 @@ public abstract class AbstractLevelEditorWindow {
 		initListener(this.authorController);
 	}
 
-	public <T extends Node> void addChildren(T... child) {
-		for(T node : child) {
-			myWindow.getChildren().add(node);
-		}
-	}
+	public abstract <T extends Node> void addChildren(T... child);
 
 	public Pane getWindow() {
 		return myWindow;
@@ -55,8 +53,12 @@ public abstract class AbstractLevelEditorWindow {
 	
 	protected abstract void createToolBar();
 	
-	protected ImageView getImageView(String path, Double width, Double height){
-		Image image = new Image(path, width, height, true, false);
-		return new ImageView(image);
+	protected ImageView getImageView(String path, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
+		
+		ImageView imageView = new ImageView(path);
+		imageView.setPreserveRatio(true);
+		imageView.fitHeightProperty().bind(height);
+		imageView.fitWidthProperty().bind(width);
+		return imageView;
 	}
 }

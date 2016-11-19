@@ -34,7 +34,8 @@ public class AuthorView {
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
-	public static final String BACKGROUND_IMAGE_PATH = "author/images/mymario.jpg";
+	public static final String SPRITE_IMAGE_PATH = "author/images/mymario.jpg";
+	public static final String BACKGROUND_IMAGE_PATH = "author/images/mario.jpg";
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
@@ -57,7 +58,7 @@ public class AuthorView {
 			addLevel(createdLevel);
 			System.out.println("Create new level");
 			//testing
-			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), BACKGROUND_IMAGE_PATH, 5));
+			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {
 			// TODO: Jordan(vooga) - Save button functionality
 			System.out.println("Save level");

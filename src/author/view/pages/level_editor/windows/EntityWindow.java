@@ -2,6 +2,7 @@ package author.view.pages.level_editor.windows;
 
 import author.controller.IAuthorController;
 import author.view.util.ToolBarBuilder;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -20,14 +21,21 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 	private VBox container = new VBox();
 	public EntityWindow(IAuthorController authorController) {
 		super(authorController);
-		addChildren(createScroller());
+		super.getWindow().getChildren().add(createScroller());
+	}
+	
+	@Override
+	public <T extends Node> void addChildren(T... child) {
+		for (T node : child) {
+			container.getChildren().add(node);
+		}
 	}
 
 	@Override
 	protected void createToolBar() {	
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Entity Selector"));
-		addChildren(tbb.getToolBar());
+		super.getWindow().getChildren().add(tbb.getToolBar());
 	}
 	
 	private ScrollPane createScroller(){
@@ -50,7 +58,7 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 		authorController.getModel().getGame().addListener((game) -> {
 			this.container.getChildren().clear();
 			authorController.getModel().getGame().getPresets().forEach((sprite) -> {
-				this.container.getChildren().add(getImageView(sprite.getMyImagePath(), 50.0, 50.0));
+				this.container.getChildren().add(getImageView(sprite.getMyImagePath(), super.getWindow().widthProperty(), super.getWindow().heightProperty()));
 			});
 		});
 	}
