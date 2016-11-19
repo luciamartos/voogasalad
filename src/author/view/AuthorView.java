@@ -40,7 +40,7 @@ public class AuthorView {
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
-	public static final String BACKGROUND_IMAGE_PATH = "data/MarioSMBW.png";
+	public static final String BACKGROUND_IMAGE_PATH = "author/images/mymario.jpg";
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
