@@ -1,6 +1,6 @@
 package author.model.presets;
 
-import author.model.game_observables.observable_sprite.ObservableSprite;
+import game_data.Sprite;
 
 /**
  * 
@@ -8,17 +8,17 @@ import author.model.game_observables.observable_sprite.ObservableSprite;
  *
  */
 public abstract class SpritePreset implements ISpritePreset{
-	private ObservableSprite sprite;
+	private Sprite sprite;
 	
-	public SpritePreset(ObservableSprite aObservableSprite) {
-		this.sprite = aObservableSprite;
+	public SpritePreset(Sprite aSprite) {
+		this.sprite = aSprite;
 	}
 	
 	/* (non-Javadoc)
 	 * @see author.model.presets.ISpritePreset#getSprite()
 	 */
 	@Override
-	public ObservableSprite getSprite() {
+	public Sprite getSprite() {
 		return this.sprite;
 	}
 

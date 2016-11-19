@@ -9,10 +9,10 @@ import java.util.List;
  * and other elements. A Game can be saved to a serialized XML
  * file to be loaded elsewhere.
  * 
- * @author Addison
+ * @author Addison, Cleveland Thompson
  *
  */
-public class Game {
+public class Game extends GameObject{
 	
 	List<Level> myLevels;
 	
@@ -31,7 +31,7 @@ public class Game {
 	    java.io.FileWriter fw;
 		try {
 			fw = new java.io.FileWriter(filePath + fileName + ".xml");
-		    fw.write(((new GameSaver()).serialize(this)));
+		    fw.write(((new XMLSaver()).serialize(this)));
 		    fw.close();
 		} catch (IOException e) {
 			System.out.println("Trouble printing XML to file");
@@ -40,6 +40,11 @@ public class Game {
 
 	public void addNewLevel(Level aLevel){
 		myLevels.add(aLevel);
+		this.notifyListeners();
+	}
+	
+	public List<Level> getLevels(){
+		return myLevels;
 	}
 
 }

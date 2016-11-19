@@ -5,7 +5,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -19,7 +18,7 @@ import javafx.scene.layout.VBox;
 public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 
 	private ScrollPane levelScroller;
-	private Pane container;
+	private VBox container;
 
 	public LevelSelectionWindow() {
 		super.createWindow();
@@ -37,12 +36,20 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 	protected void createToolBar() {
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Level Selection"));
-
+		
 		container = new VBox();
 		levelScroller = new ScrollPane();
+		levelScroller.setFitToHeight(true);
+		levelScroller.setFitToWidth(true);
+
 		levelScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 		levelScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
-		levelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		levelScroller.prefHeightProperty().bind(super.getWindow().heightProperty());
+		levelScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
+		
+//		container.prefHeightProperty().bind(levelScroller.prefViewportHeightProperty());
+//		container.prefWidthProperty().bind(levelScroller.prefViewportWidthProperty());
+		
 		levelScroller.setContent(container);
 
 		super.getWindow().getChildren().add(tbb.getToolBar());

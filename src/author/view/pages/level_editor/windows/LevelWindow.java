@@ -50,7 +50,6 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		tbb.addBurst(new Label("Level Window"));
 		tbb.addFiller();
 		tbb.addBurst(new ButtonFactory().createButton("Set Background", e -> {
-			// TODO: Jordan(vooga): allow user to specify a background image
 			setBackgroundImage();
 			System.out.println("Change background here");
 		}).getButton(), new ButtonFactory().createButton("Set Theme", e -> {
@@ -71,10 +70,6 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		myLevelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
 		myLevelScroller.setContent(myContainer);
 		
-		// TODO: Handle Widths better than this
-		myContainer.minWidthProperty().bind(myLevelScroller.widthProperty());
-		myContainer.minHeightProperty().bind(myLevelScroller.heightProperty());
-		
 		super.getWindow().getChildren().add(myLevelScroller);
 
 	}
@@ -89,10 +84,14 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		System.out.println(file.toURI().toString());
 		
 		Image image = new Image( file.toURI().toString() );
-		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.CENTER, new BackgroundSize(1, 1, true, true, false, false));
-		myContainer.setBackground(new Background(backIm));
+		BackgroundImage backIm = new BackgroundImage(
+				image, 
+				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+				BackgroundPosition.DEFAULT, 
+				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
 		
+		myContainer.setBackground(new Background(backIm));
+		myContainer.setMinSize(image.getWidth(), image.getHeight());
 	}
 
 }
