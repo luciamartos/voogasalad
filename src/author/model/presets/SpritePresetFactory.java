@@ -1,6 +1,6 @@
 package author.model.presets;
 
-import author.model.game_observables.observable_sprite.ObservableSprite;
+import game_data.Sprite;
 
 public class SpritePresetFactory {
 
@@ -8,7 +8,7 @@ public class SpritePresetFactory {
 		// TODO Nothing, On Purpose
 	}
 
-	public ISpritePreset create(ObservableSprite aObservableSprite){
+	public ISpritePreset create(Sprite aObservableSprite){
 		return new ConcreteSpritePreset(aObservableSprite);
 	}
 	

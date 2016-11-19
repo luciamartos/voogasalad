@@ -58,7 +58,7 @@ public class AuthorView {
 
 		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
 			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
-			this.authorController.getCurrentGame().newLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			this.authorController.getModel().addLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			
 			System.out.println("Create new level");
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {

@@ -22,8 +22,7 @@ public class SpriteBuilder {
 	}
 	
 	public Sprite createSpriteFromPreset(ISpritePreset spritePreset){
-		Location newLocation = new Location(spritePreset.getSprite().getMyLocation().getXLocation(), spritePreset.getSprite().getMyLocation().getYLocation(), 0);
-		return new Player(newLocation, spritePreset.getSprite().getMyImagePath(), 5);	
+		return spritePreset.getSprite().clone();	
 	}
 
 }
