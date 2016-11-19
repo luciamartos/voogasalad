@@ -8,12 +8,14 @@ import game_data.Location;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 class SpriteEditBox {
@@ -26,9 +28,11 @@ class SpriteEditBox {
 
 	private File myFile;
 	
+	private static final double CHAR_SIZE = 100;
+	
 	SpriteEditBox() {
-		myPane = new VBox();
-		myFileLoader = new FileLoader(FileType.PNG, FileType.GIF,FileType.JPG, FileType.JPEG);
+		myPane = new HBox();
+		myFileLoader = new FileLoader(FileType.GIF, FileType.PNG, FileType.JPG, FileType.JPEG);
 
 		myPane.getChildren().addAll(makeLocationFields(), makeImageSelect());	
 	}
@@ -78,24 +82,35 @@ class SpriteEditBox {
 	}
 
 	private Node makeLocationFields(){
-		Pane locationBox = new HBox();
+		Pane locationBox = new VBox();
 
+		Pane xBox = new HBox();
 		myXPositionField = new TextField();
-		myYPositionField = new TextField();
-		myHeadingField = new TextField();
+		xBox.getChildren().addAll(new Label("X: "), myXPositionField);
 		
+		Pane yBox = new HBox();
+		myYPositionField = new TextField();
+		yBox.getChildren().addAll(new Label("Y: "), myYPositionField);
+		
+		myHeadingField = new TextField();
+		Pane hBox = new HBox();
+		hBox.getChildren().addAll(new Label("Angle:"), myHeadingField);
+		
+		HBox.setHgrow(myXPositionField, Priority.ALWAYS);
+		HBox.setHgrow(myYPositionField, Priority.ALWAYS);
+		HBox.setHgrow(myHeadingField, Priority.ALWAYS);
+
+		
+		Pane coordinateBox = new VBox();
+		coordinateBox.getChildren().addAll(xBox, yBox, hBox);
+			
 		myXPositionField.textProperty().addListener( makeOnlyNumberProperty(myXPositionField) );
 		myYPositionField.textProperty().addListener( makeOnlyNumberProperty(myYPositionField) );
 		myHeadingField.textProperty().addListener( makeOnlyNumberProperty(myHeadingField) );
 		
 		locationBox.getChildren().addAll(
 				new Label("Location: "),
-				new Label("X: "),
-				myXPositionField,
-				new Label("Y: "),
-				myYPositionField,
-				new Label("Heading: "),
-				this.myHeadingField
+				coordinateBox
 				);
 
 		return locationBox;
@@ -104,10 +119,16 @@ class SpriteEditBox {
 	private Node makeImageSelect(){
 		Pane imageSelectBox = new HBox();
 		
-		Button selectButton = new Button("Select Image:");
 		ImageView imageView = new ImageView();
-		imageView.setFitWidth(100);
-		imageView.setFitHeight(100);
+		Button selectButton = new Button();
+		selectButton.setText("Select Image:");
+		selectButton.setContentDisplay(ContentDisplay.TOP);
+		selectButton.setGraphic(imageView);
+		
+		
+		imageView.setFitWidth(CHAR_SIZE);
+		imageView.setFitHeight(CHAR_SIZE);
+		
 		imageSelectBox.getChildren().addAll(selectButton, imageView);
 		
 		selectButton.setOnMouseClicked(e -> {
