@@ -49,9 +49,9 @@ class SpriteEditBox {
 	}
 
 	void setLocation(Location aLocation){
-		myXPositionField.setText(Integer.toString(aLocation.getXLocation()));
-		myYPositionField.setText(Integer.toString(aLocation.getYLocation()));
-		myHeadingField.setText(Integer.toString(aLocation.getMyHeading()));
+		myXPositionField.setText(Double.toString(aLocation.getXLocation()));
+		myYPositionField.setText(Double.toString(aLocation.getYLocation()));
+		myHeadingField.setText(Double.toString(aLocation.getMyHeading()));
 	}
 	
 	File getImageFile(){

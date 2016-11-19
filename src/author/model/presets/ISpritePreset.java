@@ -3,7 +3,7 @@
  */
 package author.model.presets;
 
-import author.model.game_observables.observable_sprite.ObservableSprite;
+import game_data.Sprite;
 
 /**
  * @author Cleveland Thompson V (ct168)
@@ -11,6 +11,6 @@ import author.model.game_observables.observable_sprite.ObservableSprite;
  */
 public interface ISpritePreset {
 
-	public ObservableSprite getSprite();
+	public Sprite getSprite();
 	
 }
