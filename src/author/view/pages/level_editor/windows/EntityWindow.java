@@ -1,9 +1,11 @@
 package author.view.pages.level_editor.windows;
 
 import author.view.util.ToolBarBuilder;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.TilePane;
 /**
  * This window contains all of the preset sprites. A user will drag and drop sprites from this window
  * onto the LevelWindow
@@ -13,9 +15,19 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
  */
 public class EntityWindow extends AbstractLevelEditorWindow {
 		
+	private ScrollPane entityScroller;
+	private TilePane container;
+	
 	public EntityWindow() {
 		super.createWindow();		
 		createToolBar();
+	}
+	
+	@Override
+	public <T extends Node> void addChildren(T... child) {
+		for (T node : child) {
+			container.getChildren().add(node);
+		}
 	}
 
 	@Override
@@ -23,12 +35,20 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Entity Selector"));
 		
-		ScrollPane entityScroller = new ScrollPane();
-		entityScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		entityScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
-		entityScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		container = new TilePane();
+		entityScroller = new ScrollPane();
 		
-		addChildren(tbb.getToolBar());
-		addChildren(entityScroller);
+		entityScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		entityScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		entityScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		entityScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
+		
+		container.prefWidthProperty().bind(super.getWindow().widthProperty());
+		container.prefHeightProperty().bind(super.getWindow().heightProperty());
+
+		entityScroller.setContent(container);
+		
+		super.getWindow().getChildren().add(tbb.getToolBar());
+		super.getWindow().getChildren().add(entityScroller);
 	}
 }

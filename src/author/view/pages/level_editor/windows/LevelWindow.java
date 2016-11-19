@@ -1,5 +1,6 @@
 package author.view.pages.level_editor.windows;
 
+import author.view.util.FileLoader;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import javafx.scene.Node;
@@ -54,10 +55,18 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			System.out.println("Change theme here");
 		}).getButton());
 
+		container = new Pane();
 		levelScroller = new ScrollPane();
-		levelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		levelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+
+		levelScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		levelScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		levelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		levelScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
+
+		container.prefWidthProperty().bind(super.getWindow().widthProperty());
+		container.prefHeightProperty().bind(super.getWindow().heightProperty());
+
+		levelScroller.setContent(container);
 
 		super.getWindow().getChildren().add(tbb.getToolBar());
 		super.getWindow().getChildren().add(levelScroller);
@@ -66,8 +75,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private void setBackgroundImage() {
 		Image image = new Image("author/images/mario.jpg");
 		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.CENTER, new BackgroundSize(1, 1, true, true, false, false));
-		super.getWindow().setBackground(new Background(backIm));
+				BackgroundPosition.CENTER, new BackgroundSize(super.getWindow().getPrefWidth(),
+						super.getWindow().getPrefHeight(), true, true, true, false));
+		container.setBackground(new Background(backIm));
 	}
 
 }
