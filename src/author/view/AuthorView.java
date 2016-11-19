@@ -7,6 +7,8 @@ import author.view.util.TabPaneFacade;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
+import game_data.Location;
+import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -38,13 +40,12 @@ public class AuthorView {
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
-	public static final String BACKGROUND_IMAGE_PATH = "data/mario.jpg";
+	public static final String BACKGROUND_IMAGE_PATH = "author/images/mymario.jpg";
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
 		myPane = new VBox();
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
-		myLevelEditor = new LevelEditor();
 		mySpritesPage = new SpritesPage();
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
 	}
@@ -59,9 +60,11 @@ public class AuthorView {
 
 		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
 			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
-			Level createdLevel = this.authorController.getModel().addLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
-			
+			Level createdLevel =new Level(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			addLevel(createdLevel);
 			System.out.println("Create new level");
+			//testing
+			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), BACKGROUND_IMAGE_PATH, 5));
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {
 			// TODO: Jordan(vooga) - Save button functionality
 			System.out.println("Save level");
@@ -88,11 +91,15 @@ public class AuthorView {
 		myTabPaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
 		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
 		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
-
+		
+		return myTabPaneFacade.getTabPane();
+	}
+	
+	private void addLevel(Level createdLevel){
+		this.authorController.getModel().getGame().addNewLevel(createdLevel);
+		this.myLevelEditor = new LevelEditor(this.authorController, createdLevel);
 		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
 		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
-
-		return myTabPaneFacade.getTabPane();
 	}
 
 	public Scene getScene() {
