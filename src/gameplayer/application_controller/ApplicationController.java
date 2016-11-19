@@ -75,15 +75,15 @@ public class ApplicationController {
 	}
 	
 	private void createNavigationButtons(IDisplay aMenu) {
+		aMenu.addNavigationButton("user-profile-button", e -> {
+			//TODO
+		}, ButtonDisplay.CSS);
 		aMenu.addNavigationButton("Main Menu", e -> {
 			displayMainMenu();
 		}, ButtonDisplay.TEXT);
 		aMenu.addNavigationButton("Sign Out", e -> {
 			displayLogin();
 		}, ButtonDisplay.TEXT);
-		aMenu.addNavigationButton("user-profile-button", e -> {
-			//TODO
-		}, ButtonDisplay.CSS);
 	}
 	
 	private void displayGameChoice(){

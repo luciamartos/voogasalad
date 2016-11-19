@@ -54,8 +54,7 @@ public class GUIGenerator implements IGUIGenerator {
 	@Override
 	public Button createButton(String aMessage, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler,
 			ButtonDisplay aDisplayType) {
-		myButtonBuilder.buildButton(aMessage, aXPos, aYPos, aHandler, aDisplayType);
-		return null;
+		return myButtonBuilder.buildButton(aMessage, aXPos, aYPos, aHandler, aDisplayType);
 	}
 
 }

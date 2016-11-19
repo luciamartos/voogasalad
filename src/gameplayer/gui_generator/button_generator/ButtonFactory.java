@@ -8,13 +8,16 @@ import javafx.scene.input.MouseEvent;
 public class ButtonFactory {
 	
 	public Button buildButton(String aMessage, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aDisplayType) {
+		IButton buttonClass = null;
 		if (aDisplayType.equals(ButtonDisplay.CSS)) {
-			return new CSSButton().createButton(aMessage, aXPos, aYPos, aHandler);
+			buttonClass = new CSSButton();
 		}
 		else if (aDisplayType.equals(ButtonDisplay.TEXT)) {
-			return new TextButton().createButton(aMessage, aXPos, aYPos, aHandler);
+			buttonClass = new TextButton();
+		} else if (aDisplayType.equals(ButtonDisplay.IMAGE)) {
+			buttonClass = new ImageButton();
 		}
-		return null;
+		return buttonClass.createButton(aMessage, aXPos, aYPos, aHandler);
 	}
 
 }

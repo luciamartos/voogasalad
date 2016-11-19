@@ -12,7 +12,7 @@ import javafx.scene.paint.Paint;
 public interface IGUIGenerator {
 	
 	public enum ButtonDisplay {
-		CSS, TEXT 
+		CSS, TEXT, IMAGE
 	}
 		
 	public Button createButton(String aMessage, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aDisplayType);
