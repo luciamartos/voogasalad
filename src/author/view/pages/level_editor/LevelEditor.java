@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
  * @author Jordan Frazier
  */
 public class LevelEditor {
-	BorderPane myPane;
+	private BorderPane myPane;
 
 	private AbstractLevelEditorWindow myLevelWindow;
 	private AbstractLevelEditorWindow myEntityWindow;
@@ -28,8 +28,8 @@ public class LevelEditor {
 		myPane = new BorderPane();
 		myPane.setCenter(buildLevelWindow());
 		myPane.setRight(buildEntityWindow());
-		myPane.setBottom(buildLevelProgressionWindow());
 		myPane.setLeft(buildLevelSelectionWindow());
+		myPane.setBottom(buildLevelProgressionWindow());
 	}
 
 	private Pane buildLevelWindow() {

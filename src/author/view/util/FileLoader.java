@@ -20,7 +20,7 @@ public class FileLoader {
 
 		private String myExtension;
 
-		private FileType(String aExtension){
+		private FileType(String aExtension) {
 			myExtension = aExtension;
 		}
 
@@ -41,19 +41,14 @@ public class FileLoader {
 		myFileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 	}
 
-	public FileLoader(FileType... aFileTypes ){
+	public FileLoader(FileType... aFileTypes) {
 		this();
 		myExtensions = Arrays.asList(aFileTypes);
-		myExtensions.forEach( 
-				fileType -> myFileChooser.getExtensionFilters().add(
-						new FileChooser.ExtensionFilter(
-								fileType.toString(), fileType.getExtension()
-								)
-						)
-				);
+		myExtensions.forEach(fileType -> myFileChooser.getExtensionFilters()
+				.add(new FileChooser.ExtensionFilter(fileType.toString(), fileType.getExtension())));
 	}
-	
-	public File loadImage(){
+
+	public File loadImage() {
 		return myFileChooser.showOpenDialog(new Stage());
 	}
 

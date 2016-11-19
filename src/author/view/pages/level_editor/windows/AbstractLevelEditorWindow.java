@@ -14,18 +14,20 @@ public abstract class AbstractLevelEditorWindow {
 
 	private Pane myWindow;
 
-	public <T extends Node> void addChildren(T... child) {
-		for(T node : child) {
-			myWindow.getChildren().add(node);
-		}
-	}
+//	public <T extends Node> void addChildren(T... child) {
+//		for(T node : child) {
+//			myWindow.getChildren().add(node);
+//		}
+//	}
+	public abstract <T extends Node> void addChildren(T... child);
 
 	public Pane getWindow() {
 		return myWindow;
 	}
 
 	protected Pane createWindow() {
-		return myWindow = new VBox();
+		myWindow = new VBox();
+		return myWindow;
 	}
 	
 	protected abstract void createToolBar();
