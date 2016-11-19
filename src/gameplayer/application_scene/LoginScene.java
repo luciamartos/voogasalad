@@ -24,7 +24,7 @@ public class LoginScene extends AbstractPlayerScene {
 	
 	@Override
 	public void addButton(String text, EventHandler<? super MouseEvent> handler){
-		myLoginOptions.getChildren().add(createButton(text, 0, 0, handler));
+		myLoginOptions.getChildren().add(myGUIGenerator.createButton(text, 0, 0, handler));
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class LoginScene extends AbstractPlayerScene {
 	private VBox addNodes() {
 		myOptions = new VBox(BOX_INSETS);
 		myLoginOptions = new HBox(BOX_INSETS);
-		myOptions.getChildren().add(createTextField("Enter Username", 0, 0, 500));
-		myOptions.getChildren().add(createTextField("Enter Password", 0, 0, 500));
+		myOptions.getChildren().add(myGUIGenerator.createTextField("Enter Username", 0, 0, 500));
+		myOptions.getChildren().add(myGUIGenerator.createTextField("Enter Password", 0, 0, 500));
 		myLoginOptions.setAlignment(Pos.CENTER);
 		myOptions.getChildren().add(myLoginOptions);
 		myOptions.setAlignment(Pos.CENTER);

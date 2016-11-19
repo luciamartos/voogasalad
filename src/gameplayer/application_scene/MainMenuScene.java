@@ -23,7 +23,7 @@ public class MainMenuScene extends AbstractNavigationPlayerScene {
 	
 	private VBox addNodes(){
 		myOptions = new VBox(BOX_INSETS);
-		myOptions.getChildren().addAll(createLabel("Main Menu", 0, 0));
+		myOptions.getChildren().addAll(myGUIGenerator.createLabel("Main Menu", 0, 0));
 		myOptions.setAlignment(Pos.CENTER);
 		return myOptions;
 	}

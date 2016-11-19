@@ -1,15 +1,13 @@
 package gameplayer.application_controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+
 import gameplayer.application_scene.FileManager;
-import gameplayer.application_scene.GameChoiceScene;
 import gameplayer.application_scene.IDisplay;
-import gameplayer.application_scene.LoginScene;
-import gameplayer.application_scene.MainMenuScene;
 import gameplayer.application_scene.PlayerOptions;
 import gameplayer.application_scene.PopUpManager;
 import javafx.scene.layout.HBox;
-import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.SceneFactory;
 import gameplayer.application_scene.SceneIdentifier;
 import javafx.stage.Stage;
@@ -34,13 +32,13 @@ public class ApplicationController {
 		mySceneBuilder = new SceneFactory();
 	}
 
-	public void displayLogin(){
+	public void displayLogin() {
 		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
 		resetStage(login);
 		setLoginButtonHandlers(login);
 	}
 
-	public void displayMainMenu(){
+	public void displayMainMenu() {
 		IDisplay mainMenu = mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
 		resetStage(mainMenu);
 		setMainMenuButtonHandlers(mainMenu);
@@ -89,7 +87,7 @@ public class ApplicationController {
 		});
 		gameChoice.addButton("Load New Game", e -> {
 			File chosenGame = new FileManager().show(myStage);
-			if(chosenGame != null){
+			if (chosenGame != null){
 				//TODO: Send selected file to backend
 			}
 		});
@@ -99,6 +97,7 @@ public class ApplicationController {
 			for(HBox box : options.addOptions()){
 				popup.addOption(box);
 			}
+			
 			popup.show();
 		});
 	}
@@ -110,7 +109,7 @@ public class ApplicationController {
 		createNavigationButtons(aScene);
 	}
 
-	public void startScene() {
+	public void startScene() throws FileNotFoundException {
 		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_WIDTH, SCENE_HEIGHT);
 		resetStage(login);
 		setLoginButtonHandlers(login);
