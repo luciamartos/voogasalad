@@ -9,8 +9,14 @@ import javafx.stage.Stage;
 
 public class FileLoader {
 
-	public enum FileType {
-		ALL(""), PNG("*.jpg"), GIF("*.gif"), JPG("*.jpg"), JPEG("*.jpeg"), TXT("*.txt"), XML("*.xml");
+	public enum FileType{
+		ALL(""),
+		PNG("*.jpg"),
+		GIF("*.gif"),
+		JPG("*.jpg"),
+		JPEG("*.jpeg"),
+		TXT("*.txt"),
+		XML("*.xml");
 
 		private String myExtension;
 

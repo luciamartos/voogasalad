@@ -6,6 +6,7 @@ import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
+import game_data.Level;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -58,7 +59,7 @@ public class AuthorView {
 
 		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
 			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
-			this.authorController.getCurrentGame().newLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			Level createdLevel = this.authorController.getModel().addLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			
 			System.out.println("Create new level");
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {

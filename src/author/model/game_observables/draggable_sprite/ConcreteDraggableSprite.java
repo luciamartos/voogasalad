@@ -1,6 +1,6 @@
 package author.model.game_observables.draggable_sprite;
 
-import author.model.game_observables.observable_sprite.ObservableSprite;
+import game_data.Sprite;
 /**
  * 
  * @author Jordan Frazier
@@ -8,7 +8,7 @@ import author.model.game_observables.observable_sprite.ObservableSprite;
  */
 public class ConcreteDraggableSprite extends DraggableSprite {
 
-	public ConcreteDraggableSprite(ObservableSprite sprite) {
+	public ConcreteDraggableSprite(Sprite sprite) {
 		super(sprite);
 	}
 

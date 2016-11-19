@@ -1,6 +1,6 @@
 package author.model.presets;
 
-import author.model.game_observables.observable_sprite.ObservableSprite;
+import game_data.Sprite;
 
 /**
  * 
@@ -9,7 +9,7 @@ import author.model.game_observables.observable_sprite.ObservableSprite;
  */
 class ConcreteSpritePreset extends SpritePreset{
 
-	public ConcreteSpritePreset(ObservableSprite aObservableSprite) {
+	public ConcreteSpritePreset(Sprite aObservableSprite) {
 		super(aObservableSprite);
 	}
 
