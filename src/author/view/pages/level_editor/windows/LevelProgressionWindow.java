@@ -1,6 +1,8 @@
 package author.view.pages.level_editor.windows;
 
+import author.controller.IAuthorController;
 import author.view.util.ToolBarBuilder;
+import game_data.Level;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,9 +19,8 @@ import javafx.scene.layout.VBox;
  */
 public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 
-	public LevelProgressionWindow() {
-		super.createWindow();
-		createToolBar();
+	public LevelProgressionWindow(IAuthorController authorController, Level aLevel) {
+		super(authorController, aLevel);
 	}
 
 	@Override
@@ -34,6 +35,15 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		
 		addChildren(tbb.getToolBar());
 		addChildren(entityScroller);
+	}
+
+	/* (non-Javadoc)
+	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
+	 */
+	@Override
+	protected void initListener(IAuthorController authorController, Level aLevel) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

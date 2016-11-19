@@ -1,7 +1,9 @@
 package author.view.pages.level_editor.windows;
 
+import author.controller.IAuthorController;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
+import game_data.Level;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -27,9 +29,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private ScrollPane levelScroller;
 	private Pane container;
 
-	public LevelWindow() {
-		super.createWindow();
-		createToolBar();
+	public LevelWindow(IAuthorController authorController, Level aLevel) {
+		super(authorController, aLevel);
 	}
 
 	@Override
@@ -68,6 +69,15 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.CENTER, new BackgroundSize(1, 1, true, true, false, false));
 		super.getWindow().setBackground(new Background(backIm));
+	}
+
+	/* (non-Javadoc)
+	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
+	 */
+	@Override
+	protected void initListener(IAuthorController authorController, Level aLevel) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

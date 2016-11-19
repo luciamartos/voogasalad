@@ -44,7 +44,6 @@ public class AuthorView {
 		this.authorController = authorController;
 		myPane = new VBox();
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
-		myLevelEditor = new LevelEditor();
 		mySpritesPage = new SpritesPage();
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
 	}
@@ -59,8 +58,8 @@ public class AuthorView {
 
 		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
 			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
-			Level createdLevel = this.authorController.getModel().addLevel(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
-			
+			Level createdLevel =new Level(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			addLevel(createdLevel);
 			System.out.println("Create new level");
 		}).getButton(), new ButtonFactory().createButton("Save", e -> {
 			// TODO: Jordan(vooga) - Save button functionality
@@ -88,11 +87,15 @@ public class AuthorView {
 		myTabPaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
 		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
 		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
-
+		
+		return myTabPaneFacade.getTabPane();
+	}
+	
+	private void addLevel(Level createdLevel){
+		this.authorController.getModel().getGame().addNewLevel(createdLevel);
+		this.myLevelEditor = new LevelEditor(this.authorController, createdLevel);
 		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
 		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
-
-		return myTabPaneFacade.getTabPane();
 	}
 
 	public Scene getScene() {
