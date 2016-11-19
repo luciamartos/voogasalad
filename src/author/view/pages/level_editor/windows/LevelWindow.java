@@ -34,8 +34,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private Pane myContainer;
 
 		
-	public LevelWindow(IAuthorController authorController, Level aLevel) {
-		super(authorController, aLevel);
+	public LevelWindow(IAuthorController authorController) {
+		super(authorController);
 		createLevelScroller();
 	}
 
@@ -100,7 +100,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
 	 */
 	@Override
-	protected void initListener(IAuthorController authorController, Level aLevel) {
+	protected void initListener(IAuthorController authorController) {
 		// TODO Auto-generated method stub
 		
 	}

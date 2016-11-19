@@ -12,12 +12,6 @@ import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -30,12 +24,12 @@ import javafx.scene.paint.Color;
 public class AuthorView {
 
 	Scene myScene;
-	Pane myPane;
+	Pane myPane = new VBox();
 	TabPaneFacade myTabPaneFacade;
 	IAuthorController authorController;
 	
 	private LevelEditor myLevelEditor;
-	private SpritesPage mySpritesPage;
+	private SpritesPage mySpritesPage = new SpritesPage();
 
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
@@ -44,9 +38,8 @@ public class AuthorView {
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
-		myPane = new VBox();
+		this.myLevelEditor = new LevelEditor(authorController);
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
-		mySpritesPage = new SpritesPage();
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
 	}
 
@@ -92,14 +85,14 @@ public class AuthorView {
 		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
 		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
 		
+		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
+		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
+		
 		return myTabPaneFacade.getTabPane();
 	}
 	
 	private void addLevel(Level createdLevel){
 		this.authorController.getModel().getGame().addNewLevel(createdLevel);
-		this.myLevelEditor = new LevelEditor(this.authorController, createdLevel);
-		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
-		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
 	}
 
 	public Scene getScene() {

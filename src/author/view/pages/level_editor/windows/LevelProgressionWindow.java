@@ -22,8 +22,8 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 	private ScrollPane progressionScroller;
 	private HBox container;
 	
-	public LevelProgressionWindow(IAuthorController authorController, Level aLevel) {
-		super(authorController, aLevel);
+	public LevelProgressionWindow(IAuthorController authorController) {
+		super(authorController);
 	}
 	
 	@Override
@@ -63,7 +63,7 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
 	 */
 	@Override
-	protected void initListener(IAuthorController authorController, Level aLevel) {
+	protected void initListener(IAuthorController authorController) {
 		// TODO Auto-generated method stub
 		
 	}
