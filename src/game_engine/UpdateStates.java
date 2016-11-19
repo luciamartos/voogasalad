@@ -26,6 +26,9 @@ import javafx.scene.input.KeyCode;
  * TODO give myLevel all the properties I want.
  * TODO sprite needs to give me to image view.
  * CLARIFY: does the x and y loc represent the middle or the left top corner or what?
+ * There are some things that I dont know if I should be getting from level class of the engine itself
+ * Losses should actually probably be integrated within characteristics so we dont check for collision repeatedly.
+ * Do we have to deal with if the sprite hits a block at multiple sides?
  * 
  * @author LuciaMartos
  *
@@ -47,7 +50,6 @@ public class UpdateStates {
 		this.myKeys = myKeys;
 		
 		generateDefaultKeyMap();
-		
 		executeCharacteristics();
 		runKeyCalls();
 		updateSpritePositions();
@@ -112,24 +114,30 @@ public class UpdateStates {
 
 	// not the best design in the world but works for the time being
 	private void checkForWin() {
-		String type = enginePlayerController.getMyLevel().getWinType();
-		if(type.equals("time")&& enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
+		Set<String> type = enginePlayerController.getMyLevel().getWinType();
+		if(type.contains("time")&& enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
 			System.out.print("YOU WIN");
 		}
 		
-		if(type.equals("score") && enginePlayerController.getMyLevel().getMainPlayerSprite().getPoints() > enginePlaterController.getMyLevel().getPointsToWin()){
+		if(type.contains("score") && enginePlayerController.getMyLevel().getMainPlayerSprite().getPoints() > enginePlaterController.getMyLevel().getPointsToWin()){
 			System.out.println("YOU WIN");
 		}
 		
-		if(type.equals("block") && enginePlayerController.getMyLevel().getWinningSprite().getBoundsInLocal().interects(enginePlayerController.getMyLevel().getMainPlayerSprite())){
+		if(type.contains("object") && enginePlayerController.getMyLevel().getWinningSprite().getBoundsInLocal().interects(enginePlayerController.getMyLevel().getMainPlayerSprite())){
 			System.out.println("YOU WIN");
 		}
 	}
 	
 	private void checkForLoss() {
-		String type = enginePlayerController.getMyLevel().getLossType();
-		if(type.equals("time") && enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
-		
+		Set<String> type = enginePlayerController.getMyLevel().getLossType();
+		Sprite mainPlayer = enginePlayerController.getMainPlayer();
+		if(type.contains("object")){
+			List<Sprite> deathProvokingObj = enginePlayerController.getMyOjbectSpriteList();
+			for(Sprite myObj : deathProvokingObj){
+				if(myObj.getImageView().getBoundsInLocal().interects(mainPlayer.getImageView().getBoundsInLocal())){
+					System.out.println("DEATH");
+				}
+			}
 		}
 	}
 
