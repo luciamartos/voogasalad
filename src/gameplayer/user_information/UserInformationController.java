@@ -8,23 +8,25 @@ public class UserInformationController implements IViewableUserInformation {
 	private String myCurrentPassword;
 	private Map<String, String> myUserInformation;
 	
-	public UserInformationController(String aUserName, String aPassword) {
+	public UserInformationController() {
 		//deserializeTheXmlAndMakeMap();
-		myCurrentUser = aUserName;
-		myCurrentPassword = aPassword;
 		//myUserInformation = new UserInformation(XStream); 
 	}
 	
-	public void isValid() {
+	public void isValid(String aUserName, String aPassword) {
 		//if (!myUserInformation.getUserNames().contains(myCurrentUser)) {
 			//throw new UserIDException("XYZ is not a valid username");
-		//} 
+		//} else {
+		// myCurrentUser = aUserName;
+		// myCurrentPassword = aPassword;
+	//}
 	}
 	
-	public void saveToXML() {
+	public void saveToXML(String aUserName, String aPassword) {
 		//isValid("XYZ already exists");
 		//save to XML
 	}
+
 
 
 }

@@ -3,8 +3,11 @@ package gameplayer.application_controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import gameplayer.application_scene.AbstractNavigationPlayerScene;
 import gameplayer.application_scene.FileManager;
 import gameplayer.application_scene.IDisplay;
+import gameplayer.application_scene.LoginScene;
+import gameplayer.application_scene.MainMenuScene;
 import gameplayer.application_scene.PlayerOptions;
 import gameplayer.application_scene.PopUpManager;
 import javafx.scene.layout.HBox;
@@ -27,29 +30,32 @@ public class ApplicationController {
 	private Stage myStage;
 	private SceneFactory mySceneBuilder;
 
-	public ApplicationController(Stage astage){
-		myStage = astage;
+	public ApplicationController(Stage aStage){
+		myStage = aStage;
 		mySceneBuilder = new SceneFactory();
 	}
 
 	public void displayLogin() {
-		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
+		LoginScene login = (LoginScene) mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
 		resetStage(login);
-		setLoginButtonHandlers(login);
+		setLoginButtonHandlers((LoginScene) login);
 	}
 
 	public void displayMainMenu() {
-		IDisplay mainMenu = mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
+		MainMenuScene mainMenu = (MainMenuScene) mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
 		resetStage(mainMenu);
 		setMainMenuButtonHandlers(mainMenu);
 	}
 	
-	private void setLoginButtonHandlers(IDisplay login){
+	private void setLoginButtonHandlers(LoginScene login){
 		login.addButton("Enter", e -> {
 			displayMainMenu();
+			login.checkSignInValidity();
 		});
 		login.addButton("Sign Up", e -> {
 			//TODO: 
+			displayMainMenu();
+			login.signUpNewUser();
 		});
 	}
 
@@ -112,6 +118,6 @@ public class ApplicationController {
 	public void startScene() throws FileNotFoundException {
 		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_WIDTH, SCENE_HEIGHT);
 		resetStage(login);
-		setLoginButtonHandlers(login);
+		setLoginButtonHandlers((LoginScene) login);
 	}
 }

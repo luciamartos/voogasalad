@@ -2,8 +2,8 @@ package gameplayer.user_information;
 
 public interface IViewableUserInformation {
 	
-	public void isValid();
+	public void isValid(String aUsername, String aPassword);
 	
-	public void saveToXML();
+	public void saveToXML(String aUsername, String aPassword);
 
 }
