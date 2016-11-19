@@ -1,5 +1,9 @@
 package author.view.pages.level_editor.windows;
 
+import java.io.File;
+
+import author.view.util.FileLoader;
+import author.view.util.FileLoader.FileType;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import javafx.scene.Node;
@@ -24,18 +28,19 @@ import javafx.scene.layout.Pane;
  */
 public class LevelWindow extends AbstractLevelEditorWindow {
 
-	private ScrollPane levelScroller;
-	private Pane container;
+	private ScrollPane myLevelScroller;
+	private Pane myContainer;
 
 	public LevelWindow() {
 		super.createWindow();
 		createToolBar();
+		createLevelScroller();
 	}
 
 	@Override
 	public <T extends Node> void addChildren(T... child) {
 		for (T node : child) {
-			container.getChildren().add(node);
+			myContainer.getChildren().add(node);
 		}
 	}
 
@@ -54,20 +59,40 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			System.out.println("Change theme here");
 		}).getButton());
 
-		levelScroller = new ScrollPane();
-		levelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		levelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		levelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
-
 		super.getWindow().getChildren().add(tbb.getToolBar());
-		super.getWindow().getChildren().add(levelScroller);
 	}
 
+	private void createLevelScroller(){
+		myLevelScroller = new ScrollPane();
+		myContainer = new Pane();
+		
+		myLevelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		myLevelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		myLevelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		myLevelScroller.setContent(myContainer);
+		
+		// TODO: Handle Widths better than this
+		myContainer.minWidthProperty().bind(myLevelScroller.widthProperty());
+		myContainer.minHeightProperty().bind(myLevelScroller.heightProperty());
+		
+		super.getWindow().getChildren().add(myLevelScroller);
+
+	}
+	
 	private void setBackgroundImage() {
-		Image image = new Image("author/images/mario.jpg");
+		File file = new FileLoader(
+				FileType.GIF, 
+				FileType.JPEG, 
+				FileType.PNG,
+				FileType.JPG ).loadImage();
+		
+		System.out.println(file.toURI().toString());
+		
+		Image image = new Image( file.toURI().toString() );
 		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.CENTER, new BackgroundSize(1, 1, true, true, false, false));
-		super.getWindow().setBackground(new Background(backIm));
+		myContainer.setBackground(new Background(backIm));
+		
 	}
 
 }
