@@ -2,7 +2,11 @@ package game_data;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A Game has a List of Levels. Each Level may contain Sprites
@@ -15,6 +19,7 @@ import java.util.List;
 public class Game extends GameObject{
 	
 	List<Level> myLevels;
+	Set<Sprite> spritePresets = new HashSet<>();
 	
 	public Game(){
 		myLevels = new ArrayList<Level>();
@@ -45,6 +50,15 @@ public class Game extends GameObject{
 	
 	public List<Level> getLevels(){
 		return myLevels;
+	}
+	
+	public void addPreset(Sprite aPresetSprite){
+		this.spritePresets.add(aPresetSprite);
+		this.notifyListeners();
+	}
+	
+	public Set<Sprite> getPresets(){
+		return Collections.unmodifiableSet(this.spritePresets);
 	}
 
 }
