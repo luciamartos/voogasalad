@@ -4,6 +4,7 @@ import author.view.util.FileLoader;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -67,8 +68,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 		container.setPrefHeight(10000);
 		container.setPrefWidth(10000);
-		container.setMinWidth(300);
-		container.setMinHeight(300);
+//		container.setMinWidth(super.getWindow().heightProperty().doubleValue());
+//		container.setMinHeight(super.getWindow().getHeight());
 		
 		levelScroller.setContent(container);
 
@@ -78,9 +79,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 	private void setBackgroundImage() {
 		Image image = new Image("author/images/mario.jpg");
-		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.CENTER, new BackgroundSize(container.getMinWidth(),
-						container.getMinHeight(), false, false, false, false));
+		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT, new BackgroundSize(levelScroller.getPrefViewportWidth(),
+						levelScroller.getPrefViewportHeight(), false, false, false, false));
 		container.setBackground(new Background(backIm));
 	}
 
