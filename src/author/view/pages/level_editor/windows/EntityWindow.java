@@ -2,6 +2,7 @@ package author.view.pages.level_editor.windows;
 
 import author.view.util.ToolBarBuilder;
 import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -37,14 +38,16 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 		
 		container = new TilePane();
 		entityScroller = new ScrollPane();
+		entityScroller.setFitToHeight(true);
+		entityScroller.setFitToWidth(true);
 		
 		entityScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		entityScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		entityScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
-		entityScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
-		
-		container.prefWidthProperty().bind(super.getWindow().widthProperty());
-		container.prefHeightProperty().bind(super.getWindow().heightProperty());
+		entityScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
+		entityScroller.prefHeightProperty().bind(super.getWindow().heightProperty());
+		entityScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
+
+//		container.prefWidthProperty().bind(super.getWindow().widthProperty());
+//		container.prefHeightProperty().bind(super.getWindow().heightProperty());
 
 		entityScroller.setContent(container);
 		

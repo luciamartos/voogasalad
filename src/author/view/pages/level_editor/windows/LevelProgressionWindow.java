@@ -39,15 +39,16 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		
 		container = new HBox();
 		progressionScroller = new ScrollPane();
-
+		progressionScroller.setFitToHeight(true);
+		progressionScroller.setFitToWidth(true);
 		
 		progressionScroller.setVbarPolicy(ScrollBarPolicy.NEVER);
 		progressionScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-		progressionScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
-		progressionScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
+		progressionScroller.prefHeightProperty().bind(super.getWindow().heightProperty());
+		progressionScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
 
-		container.prefHeightProperty().bind(super.getWindow().heightProperty());
-		container.prefWidthProperty().bind(super.getWindow().widthProperty());
+//		container.prefHeightProperty().bind(progressionScroller.prefViewportHeightProperty());
+//		container.prefWidthProperty().bind(progressionScroller.prefViewportHeightProperty());
 		
 		progressionScroller.setContent(container);
 		

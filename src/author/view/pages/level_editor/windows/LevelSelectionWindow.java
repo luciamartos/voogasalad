@@ -39,16 +39,16 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 		
 		container = new VBox();
 		levelScroller = new ScrollPane();
-		
+		levelScroller.setFitToHeight(true);
+		levelScroller.setFitToWidth(true);
+
 		levelScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 		levelScroller.setHbarPolicy(ScrollBarPolicy.NEVER);
-		levelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
-		levelScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
+		levelScroller.prefHeightProperty().bind(super.getWindow().heightProperty());
+		levelScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
 		
-		container.prefHeightProperty().bind(super.getWindow().heightProperty());
-		container.prefWidthProperty().bind(super.getWindow().widthProperty());
-//		container.setPrefWidth(Double.MAX_VALUE);
-//		container.setPrefHeight(Double.MAX_VALUE);
+//		container.prefHeightProperty().bind(levelScroller.prefViewportHeightProperty());
+//		container.prefWidthProperty().bind(levelScroller.prefViewportWidthProperty());
 		
 		levelScroller.setContent(container);
 

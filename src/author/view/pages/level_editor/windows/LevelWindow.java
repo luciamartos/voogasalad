@@ -57,15 +57,19 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 		container = new Pane();
 		levelScroller = new ScrollPane();
+		levelScroller.setFitToHeight(false);
+		levelScroller.setFitToWidth(false);
 
 		levelScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 		levelScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		levelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
 		levelScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
 
-		container.prefWidthProperty().bind(super.getWindow().widthProperty());
-		container.prefHeightProperty().bind(super.getWindow().heightProperty());
-
+		container.setPrefHeight(10000);
+		container.setPrefWidth(10000);
+		container.setMinWidth(300);
+		container.setMinHeight(300);
+		
 		levelScroller.setContent(container);
 
 		super.getWindow().getChildren().add(tbb.getToolBar());
@@ -75,8 +79,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private void setBackgroundImage() {
 		Image image = new Image("author/images/mario.jpg");
 		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.CENTER, new BackgroundSize(super.getWindow().getPrefWidth(),
-						super.getWindow().getPrefHeight(), true, true, true, false));
+				BackgroundPosition.CENTER, new BackgroundSize(container.getMinWidth(),
+						container.getMinHeight(), false, false, false, false));
 		container.setBackground(new Background(backIm));
 	}
 
