@@ -2,22 +2,18 @@ package author.view;
 
 import author.controller.IAuthorController;
 import author.view.pages.level_editor.LevelEditor;
+import author.view.pages.menu.MenuFactory;
 import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
-import author.view.util.ToolBarBuilder;
-import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
 import game_data.Location;
 import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -33,7 +29,7 @@ public class AuthorView {
 	Pane myPane;
 	TabPaneFacade myTabPaneFacade;
 	IAuthorController authorController;
-	
+
 	private LevelEditor myLevelEditor;
 	private SpritesPage mySpritesPage;
 
@@ -54,33 +50,32 @@ public class AuthorView {
 	 * Returns Toolbar built for primary AuthorScene
 	 */
 	private Node buildToolBar() {
-		ToolBarBuilder toolBarBuilder = new ToolBarBuilder();
 
-		toolBarBuilder.getToolBar().prefWidthProperty().bind(myScene.widthProperty());
+		MenuBar menuBar = new MenuBar();
+		Menu menuNew = new Menu("New");
+		Menu menuSave = new Menu("Save");
+		Menu menuLoad = new Menu("Load");
+		menuBar.getMenus().addAll(menuNew, menuSave, menuLoad);
 
-		toolBarBuilder.addBurst(new ButtonFactory().createButton("New", e -> {
-			// TODO: Still temporary. Need to have user define size, image, etc. and add to gui
+		menuNew.getItems().addAll(new MenuFactory().createItem("New Game", e -> {
+			// TODO: Jordan(vooga) - create new game
+		}).getItem(), new MenuFactory().createItem("New Level", e -> {
 			Level createdLevel =new Level(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			addLevel(createdLevel);
 			System.out.println("Create new level");
 			//testing
 			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), BACKGROUND_IMAGE_PATH, 5));
-		}).getButton(), new ButtonFactory().createButton("Save", e -> {
-			// TODO: Jordan(vooga) - Save button functionality
-			System.out.println("Save level");
+		}).getItem());
 
-		}).getButton(), new ButtonFactory().createButton("Load", e -> {
-			// TODO: Jordan(vooga) - Load button functionality
-			System.out.println("Load level");
-		}).getButton());
+		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
+			// Save game
+		}).getItem());
 		
-		toolBarBuilder.addFiller();
-		toolBarBuilder.addBurst( new ButtonFactory().createButton("Save and Close", e -> {
-			// TODO: Jordan(vooga) - Save and close button functionality 
-			System.out.println("Save and close level");
-		}).getButton());
+		menuLoad.getItems().add(new MenuFactory().createItem("Load Game",  e -> {
+			// Load game
+		}).getItem());
 
-		return toolBarBuilder.getToolBar();
+		return menuBar;
 	}
 
 	/**
