@@ -1,5 +1,8 @@
 package game_data.characteristics;
-
+/**
+ * @author austingartside
+ *
+ */
 public class Health implements Characteristic{
 
 	private int myHealth;
