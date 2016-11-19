@@ -11,6 +11,10 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }
+
+#user-profile-button {
+    -fx-background-image: url("blank_profile_page.jpeg");
+}
  
 .button {
     -fx-background-color: #FFC3E1;

@@ -5,4 +5,4 @@
  * @author hannahfuchshuber
  *
  */
-package gameplayer.GUIGenerator;
+package gameplayer.gui_generator;

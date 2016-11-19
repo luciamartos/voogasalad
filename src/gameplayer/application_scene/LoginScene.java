@@ -1,7 +1,6 @@
 package gameplayer.application_scene;
 
-import gameplayer.user_information.IViewableUserInformation;
-import gameplayer.user_information.UserInformationController;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,16 +21,14 @@ public class LoginScene extends AbstractPlayerScene {
 	private HBox myLoginOptions;
 	private TextField myUserName;
 	private TextField myPassword;
-	private IViewableUserInformation myUserInformation;
 	
 	public LoginScene(double aWidth, double aHeight) {
 		super(aWidth, aHeight);
-		myUserInformation = new UserInformationController();
 	}
 	
 	@Override
-	public void addButton(String text, EventHandler<? super MouseEvent> handler){
-		myLoginOptions.getChildren().add(myGUIGenerator.createButton(text, 0, 0, handler));
+	public void addButton(String text, EventHandler<? super MouseEvent> handler, ButtonDisplay aButtonType){
+		myLoginOptions.getChildren().add(myGUIGenerator.createButton(text, 0, 0, handler, aButtonType));
 	}
 
 	@Override
@@ -53,17 +50,18 @@ public class LoginScene extends AbstractPlayerScene {
 		return myOptions;
 	}
 	
-	public void checkSignInValidity() {
-		myUserInformation.isValid(myUserName.getText(), myPassword.getText());
+	public String getUserName() {
+		return myUserName.getText();
 	}
 	
-	public void signUpNewUser() {
-		myUserInformation.saveToXML(myUserName.getText(), myPassword.getText());
+	public String getPassword() {
+		return myPassword.getText();
 	}
 
 	@Override
-	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler) {
-		//do nothing
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType) {
+		// do nothing
+		
 	}
 
 }

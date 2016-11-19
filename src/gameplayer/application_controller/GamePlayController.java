@@ -3,6 +3,7 @@ package gameplayer.application_controller;
 import java.util.Observer;
 
 import gameplayer.application_scene.GamePlayScene;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import gameplayer.heads_up_display.HeadsUpDisplay;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -49,13 +50,13 @@ public class GamePlayController {
 		myHeadsUpDisplay.addButton("Main Menu", e -> {
 			ApplicationController appControl = new ApplicationController(myStage);
 			appControl.displayMainMenu();
-		});
+		}, ButtonDisplay.TEXT);
 		myHeadsUpDisplay.addButton("Restart", e -> {
 			displayGame();
-		});
+		}, ButtonDisplay.TEXT);
 		myHeadsUpDisplay.addButton("Change to Red", e -> {
 			myGamePlay.makeRed();
-		});
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void resetStage(){

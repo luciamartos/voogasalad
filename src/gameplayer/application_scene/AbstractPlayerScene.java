@@ -3,24 +3,16 @@ package gameplayer.application_scene;
 import java.io.File;
 import java.util.Observable;
 
-import gameplayer.GUIGenerator.GUIGenerator;
-import gameplayer.GUIGenerator.IGUIGenerator;
+import gameplayer.gui_generator.GUIGenerator;
+import gameplayer.gui_generator.IGUIGenerator;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 
 /**
  * Representation of generic functionality each scene might need
@@ -48,8 +40,8 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 	    myGUIGenerator = new GUIGenerator();
 	}
 	
-	public void addButton(String text, EventHandler<? super MouseEvent> handler){
-		myOptions.getChildren().add(myGUIGenerator.createButton(text, 0, 0, handler));
+	public void addButton(String text, EventHandler<? super MouseEvent> handler, ButtonDisplay aButtonDisplayType){
+		myOptions.getChildren().add(myGUIGenerator.createButton(text, 0, 0, handler, aButtonDisplayType));
 	}
 	
 	public void addNode(Node node){

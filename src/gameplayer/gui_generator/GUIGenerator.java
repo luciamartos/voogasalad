@@ -1,5 +1,6 @@
-package gameplayer.GUIGenerator;
+package gameplayer.gui_generator;
 
+import gameplayer.gui_generator.button_generator.ButtonFactory;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -14,17 +15,12 @@ import javafx.scene.paint.Paint;
 
 public class GUIGenerator implements IGUIGenerator {
 	
+	private ButtonFactory myButtonBuilder;
+	
 	public GUIGenerator() {
-		//nothing
+		myButtonBuilder = new ButtonFactory();
 	}
 	
-	public Button createButton(String amessage, int x, int y, EventHandler<? super MouseEvent> ahandler){
-		Button newButton = new Button(amessage);
-		newButton.setOnMouseClicked(ahandler);
-		newButton.setTranslateX(x);
-		newButton.setTranslateY(y);
-		return newButton;
-	}
 	
 	public TextField createTextField(String aplaceholder, int x, int y, int width){
 		TextField newTextField = new TextField(aplaceholder);
@@ -52,6 +48,14 @@ public class GUIGenerator implements IGUIGenerator {
 	
 	public void setBackground(Pane avalue, Paint fill){
 		avalue.setBackground(new Background(new BackgroundFill(fill, CornerRadii.EMPTY, Insets.EMPTY)));
+	}
+
+
+	@Override
+	public Button createButton(String aMessage, int aXPos, int aYPos, EventHandler<? super MouseEvent> aHandler,
+			ButtonDisplay aDisplayType) {
+		myButtonBuilder.buildButton(aMessage, aXPos, aYPos, aHandler, aDisplayType);
+		return null;
 	}
 
 }

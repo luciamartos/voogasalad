@@ -1,7 +1,8 @@
 package gameplayer.heads_up_display;
 
-import gameplayer.GUIGenerator.GUIGenerator;
-import gameplayer.GUIGenerator.IGUIGenerator;
+import gameplayer.gui_generator.GUIGenerator;
+import gameplayer.gui_generator.IGUIGenerator;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -25,8 +26,8 @@ public class HeadsUpDisplay {
 		myRoot = new BorderPane();
 	}
 	
-	public void addButton(String aText, EventHandler<? super MouseEvent> aHandler) {
-		myTopMenu.getChildren().add(myGUIGenerator.createButton(aText, 0, 0, aHandler));
+	public void addButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aButtonDisplayType) {
+		myTopMenu.getChildren().add(myGUIGenerator.createButton(aText, 0, 0, aHandler, aButtonDisplayType));
 	}
 
 	private Node createTop() {

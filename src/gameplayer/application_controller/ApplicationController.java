@@ -13,6 +13,7 @@ import gameplayer.application_scene.PopUpManager;
 import javafx.scene.layout.HBox;
 import gameplayer.application_scene.SceneFactory;
 import gameplayer.application_scene.SceneIdentifier;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.stage.Stage;
 
 /**
@@ -29,10 +30,12 @@ public class ApplicationController {
 
 	private Stage myStage;
 	private SceneFactory mySceneBuilder;
+	private PlayerInformationController myInformationController;
 
 	public ApplicationController(Stage aStage){
 		myStage = aStage;
 		mySceneBuilder = new SceneFactory();
+		myInformationController = new PlayerInformationController();
 	}
 
 	public void displayLogin() {
@@ -50,34 +53,37 @@ public class ApplicationController {
 	private void setLoginButtonHandlers(LoginScene login){
 		login.addButton("Enter", e -> {
 			displayMainMenu();
-			login.checkSignInValidity();
-		});
+			myInformationController.userSignIn(login.getUserName(), login.getPassword());
+		}, ButtonDisplay.TEXT);
 		login.addButton("Sign Up", e -> {
 			//TODO: 
 			displayMainMenu();
-			login.signUpNewUser();
-		});
+			myInformationController.userSignUp(login.getUserName(), login.getPassword());
+		}, ButtonDisplay.TEXT);
 	}
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
 		mainMenu.addButton("Click To Play", e -> {
 			displayGameChoice();
-		});
+		}, ButtonDisplay.TEXT);
 		mainMenu.addButton("Click To Author", e -> {
 			//TODO: implement authoring environment
-		});
+		}, ButtonDisplay.TEXT);
 		mainMenu.addButton("Sign Out", e -> {
 			displayLogin();
-		});
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void createNavigationButtons(IDisplay aMenu) {
 		aMenu.addNavigationButton("Main Menu", e -> {
 			displayMainMenu();
-		});
+		}, ButtonDisplay.TEXT);
 		aMenu.addNavigationButton("Sign Out", e -> {
 			displayLogin();
-		});
+		}, ButtonDisplay.TEXT);
+		aMenu.addNavigationButton("user-profile-button", e -> {
+			//TODO
+		}, ButtonDisplay.CSS);
 	}
 	
 	private void displayGameChoice(){
@@ -90,13 +96,13 @@ public class ApplicationController {
 		gameChoice.addButton("Choose Game", e -> {
 			GamePlayController gamePlay = new GamePlayController(myStage);
 			gamePlay.displayGame();
-		});
+		}, ButtonDisplay.TEXT);
 		gameChoice.addButton("Load New Game", e -> {
 			File chosenGame = new FileManager().show(myStage);
 			if (chosenGame != null){
 				//TODO: Send selected file to backend
 			}
-		});
+		}, ButtonDisplay.TEXT);
 		gameChoice.addButton("Options", a -> {
 			PopUpManager popup = new PopUpManager();
 			PlayerOptions options = new PlayerOptions();
@@ -105,7 +111,7 @@ public class ApplicationController {
 			}
 			
 			popup.show();
-		});
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void resetStage(IDisplay aScene){

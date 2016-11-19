@@ -1,7 +1,9 @@
 package gameplayer.application_scene;
 
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
@@ -12,8 +14,8 @@ public abstract class AbstractNavigationPlayerScene extends AbstractPlayerScene 
 		addNavigation();
 	}
 	
-	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler) {
-		myNavigation.getChildren().add(myGUIGenerator.createButton(aText, 0, 0, aHandler));
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType) {
+		myNavigation.getChildren().add(myGUIGenerator.createButton(aText, 0, 0, aHandler, aType));
 	}
 	
 	private void addNavigation() {
