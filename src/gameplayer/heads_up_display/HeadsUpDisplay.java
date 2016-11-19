@@ -56,31 +56,12 @@ public class HeadsUpDisplay {
 		return bottomMenu;
 	}
 	
-	/*
-	private Button createRestartButton(){
-		myRestartButton = createButton("Restart", 0, 0, null);
-		return myRestartButton;
-	}
-	
-	private Button createMainMenuButton(){
-		myMainMenuButton = createButton("Main Menu", 0, 0, null);
-		return myMainMenuButton;
-	}
-
-	private Button createChangeToRed() {
-		myChangeToRedButton = createButton("Change To Red", 0, 0, null);
-		return myChangeToRedButton;
-	}
-	*/
-	
 	public Pane init() {
 		myRoot.setRight(createRight());
 		myRoot.setLeft(createLeft());
 		myRoot.setBottom(createBottom());
 		myRoot.setTop(createTop());
 		myRoot.setBackground(Background.EMPTY);
-		//myRoot.getScene().setFill(Color.TRANSPARENT);
-		//myRoot.getScene().getRoot().setStyle("-fx-background-color: transparent !important;");
 		return myRoot;
 	}
 

@@ -3,13 +3,9 @@ package gameplayer.application_scene;
 
 import java.util.Observable;
 
-import gameplayer.GUIGenerator.GUIGenerator;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 /**
  * Concrete representation of the scene where games are played

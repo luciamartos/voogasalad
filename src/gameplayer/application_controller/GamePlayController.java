@@ -3,8 +3,6 @@ package gameplayer.application_controller;
 import java.util.Observer;
 
 import gameplayer.application_scene.GamePlayScene;
-import gameplayer.application_scene.SceneFactory;
-import gameplayer.application_scene.SceneIdentifier;
 import gameplayer.heads_up_display.HeadsUpDisplay;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -40,7 +38,6 @@ public class GamePlayController {
 	}
 
 	private void initializeGameScene() {
-		SceneFactory buildGamePlayScreen = new SceneFactory();
 		myGamePlay = new GamePlayScene(myScene, myStage.getWidth(), myStage.getHeight());
 		myGamePlay.addObserver(new GamePlayObserver());
 		myStack.getChildren().add(myGamePlay.init());
