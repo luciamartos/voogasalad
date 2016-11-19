@@ -12,6 +12,9 @@ import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
 import game_engine.actions.Action;
+import game_engine.actions.Jump;
+import game_engine.actions.MoveLeft;
+import game_engine.actions.MoveRight;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
 
@@ -19,6 +22,11 @@ import javafx.scene.input.KeyCode;
  * TODO make sure that player doesnt run into walls or thigns 
  * NOTE: doing the runKeyCalls and then updating sprite posistions separately might lead to an issue with glitches
  * CHECK: CALCULATING HEARDING FROM THE VERTICAL (NOON) CHECK CORRECT CALC FOR VEL
+ * QUESTION who is going to keep track of the time of the game? how are we going to provoke a win? through interface?
+ * TODO give myLevel all the properties I want.
+ * TODO sprite needs to give me to image view.
+ * CLARIFY: does the x and y loc represent the middle or the left top corner or what?
+ * 
  * @author LuciaMartos
  *
  */
@@ -38,13 +46,23 @@ public class UpdateStates {
 		this.timeElapsed = timeElapsed;
 		this.myKeys = myKeys;
 		
+		generateDefaultKeyMap();
+		
 		executeCharacteristics();
 		runKeyCalls();
 		updateSpritePositions();
-		checkWinOrLoss();
+		checkForWin();
+		checkForLoss();
 	}
 
-	
+	//keys will only control the main player rn
+	private void generateDefaultKeyMap() {
+		myKeyMap.put(KeyCode.RIGHT, new MoveRight(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getResource()));
+		myKeyMap.put(KeyCode.LEFT, new MoveLeft(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getResource()));
+		myKeyMap.put(KeyCode.UP, new Jump(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.JUMP_SPEED.getResource()));		
+	}
+
+
 	private void runKeyCalls() {
 		for(KeyCode myKey: myKeys){
 			if(myKeyMap.containsKey(myKey)){
@@ -52,7 +70,6 @@ public class UpdateStates {
 			}
 		}	
 	}
-
 
 	private void executeCharacteristics() {
 		for(Sprite mySprite:mySpriteList){
@@ -77,7 +94,6 @@ public class UpdateStates {
 		return collisionSprites;
 	}
 
-	//CLARIFY: does the x and y loc represent the middle or the left top corner or what?
 	private  Side findSideOfCollition(Sprite mySprite, Sprite targetSprite) {
 		if(mySprite.getMyLocation().getYLocation() <= targetSprite.getMyLocation().getYLocation()){
 			return Side.BOTTOM;
@@ -94,10 +110,27 @@ public class UpdateStates {
 		
 	}
 
-	private void checkWinOrLoss() {
-		// TODO Auto-generated method stub
-		// need someway of getting from game data what the winning condition of the game is
+	// not the best design in the world but works for the time being
+	private void checkForWin() {
+		String type = enginePlayerController.getMyLevel().getWinType();
+		if(type.equals("time")&& enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
+			System.out.print("YOU WIN");
+		}
 		
+		if(type.equals("score") && enginePlayerController.getMyLevel().getMainPlayerSprite().getPoints() > enginePlaterController.getMyLevel().getPointsToWin()){
+			System.out.println("YOU WIN");
+		}
+		
+		if(type.equals("block") && enginePlayerController.getMyLevel().getWinningSprite().getBoundsInLocal().interects(enginePlayerController.getMyLevel().getMainPlayerSprite())){
+			System.out.println("YOU WIN");
+		}
+	}
+	
+	private void checkForLoss() {
+		String type = enginePlayerController.getMyLevel().getLossType();
+		if(type.equals("time") && enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
+		
+		}
 	}
 
 	private void updateSpritePositions() {
@@ -106,7 +139,6 @@ public class UpdateStates {
 		}	
 	}
 
-	//TODO CALCULATING HEARDING FROM THE VERTICAL (NOON) CHECK CORRECT CALC FOR VEL
 	private void updateSpritePosition(Sprite sprite){
 		SpritePhysics spritePhysics = sprite.getSpritePhysics();
 		Location myCurrentLocation = sprite.getMyLocation();
