@@ -1,11 +1,13 @@
 package author.view.pages.level_editor;
 
+import author.controller.IAuthorController;
 import author.view.pages.level_editor.windows.AbstractLevelEditorWindow;
 import author.view.pages.level_editor.windows.EntityWindow;
 import author.view.pages.level_editor.windows.LevelProgressionWindow;
 import author.view.pages.level_editor.windows.LevelSelectionWindow;
 import author.view.pages.level_editor.windows.LevelWindow;
 import author.view.pages.level_editor.windows.LevelWindowFactory;
+import game_data.Level;
 import javafx.application.Platform;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -23,8 +25,12 @@ public class LevelEditor {
 	private AbstractLevelEditorWindow myEntityWindow;
 	private AbstractLevelEditorWindow mySelectionWindow;
 	private AbstractLevelEditorWindow myProgressionWindow;
+	private IAuthorController authorController;
+	private Level level;
 
-	public LevelEditor() {
+	public LevelEditor(IAuthorController authorController, Level aLevel) {
+		this.authorController = authorController;
+		this.level = aLevel;
 		myPane = new BorderPane();
 		myPane.setCenter(buildLevelWindow());
 		myPane.setRight(buildEntityWindow());
