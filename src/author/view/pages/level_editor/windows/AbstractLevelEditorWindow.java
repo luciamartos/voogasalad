@@ -26,23 +26,22 @@ public abstract class AbstractLevelEditorWindow {
 		initListener(this.authorController, this.level);
 	}
 
-//	public <T extends Node> void addChildren(T... child) {
-//		for(T node : child) {
-//			myWindow.getChildren().add(node);
-//		}
-//	}
-	public abstract <T extends Node> void addChildren(T... child);
+	public <T extends Node> void addChildren(T... child) {
+		for(T node : child) {
+			myWindow.getChildren().add(node);
+		}
+	}
 
 	public Pane getWindow() {
 		return myWindow;
 	}
 	
-	protected abstract void initListener(IAuthorController authorController, Level aLevel);
-
 	protected Pane createWindow() {
 		myWindow = new VBox();
 		return myWindow;
 	}
+	
+	protected abstract void initListener(IAuthorController authorController, Level aLevel);
 	
 	protected abstract void createToolBar();
 }

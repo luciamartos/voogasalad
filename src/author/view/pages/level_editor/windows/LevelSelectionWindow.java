@@ -27,13 +27,6 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 	}
 
 	@Override
-	public <T extends Node> void addChildren(T... child) {
-		for (T node : child) {
-			container.getChildren().add(node);
-		}
-	}
-
-	@Override
 	protected void createToolBar() {
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Level Selection"));
@@ -62,7 +55,11 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 	 */
 	@Override
 	protected void initListener(IAuthorController authorController, Level aLevel) {
-		// TODO Auto-generated method stub
-		
+		authorController.getModel().getGame().addListener((game) -> {
+			this.container.getChildren().clear();
+			authorController.getModel().getGame().getLevels().forEach((level) ->{
+				this.container.getChildren().add(new Label(level.toString()));
+			});
+		});
 	}
 }
