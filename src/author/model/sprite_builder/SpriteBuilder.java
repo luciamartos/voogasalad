@@ -4,9 +4,7 @@
 package author.model.sprite_builder;
 
 import author.model.presets.ISpritePreset;
-import game_data.Location;
 import game_data.Sprite;
-import game_data.sprites.Player;
 
 /**
  * @author Cleveland Thompson V (ct168)
