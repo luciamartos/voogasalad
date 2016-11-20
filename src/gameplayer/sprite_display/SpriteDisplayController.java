@@ -47,9 +47,6 @@ public class SpriteDisplayController implements Iterable<Node>, ISpriteDisplay {
 		}
 	}*/
 	
-	/*public void removeSpriteFromDisplay(Sprite aSprite) {
-	 *	mySprites.remove(mySpriteDisplay.buildSpriteDisplay(aSprite));
-	 }*/
 	
 	/* public void removeAllSprites() {
 	 * 	mySprites = new ArrayList<Node>();
