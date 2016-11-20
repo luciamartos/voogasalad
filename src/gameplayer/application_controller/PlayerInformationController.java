@@ -11,18 +11,23 @@ public class PlayerInformationController {
 	private IViewableGameDisplayInformation myGameDisplayInformation;
 	
 	public PlayerInformationController() {
-		myUserInformation = (IViewableUserInformation) new UserInformationController();
-		myGameDisplayInformation = (IViewableGameDisplayInformation) new GameDisplayInformation();
+		myUserInformation = new UserInformationController();
+		myGameDisplayInformation = new GameDisplayInformation();
 	}
 	
-	
-	public void userSignIn(String aUsername, String aPassword){
-		myUserInformation.isValid(aUsername, aPassword);
-	}
-	
-	
-	public void userSignUp(String aUsername, String aPassword) {
-		myUserInformation.saveToXML(aUsername, aPassword);
+	public void userSignIn(String aUsername, String aPassword) throws Exception{
+		try {
+			myUserInformation.signIn(aUsername, aPassword);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
+	public void userSignUp(String aUsername, String aPassword) throws Exception {
+		try {
+			myUserInformation.signUp(aUsername, aPassword);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 }
