@@ -23,11 +23,11 @@ public class UpdatePositionsSprites {
 		double curYLoc = myCurrentLocation.getYLocation();
 		
 		//get initial x velocity component and acceleration 
-		double xVelocity = sprite.getMyVelocity()*Math.cos(sprite.getMyHeading());
+		double xVelocity = sprite.getMyVelocity()*Math.cos(sprite.getMyLocation().getMyHeading());
 		double xAcceleration =GameResources.DEFAULT_HORIZONTAL_GRAVITY.getDoubleResource();
 		
 		//get initial y velocity componenet and acceleration
-		double yVelocity = sprite.getMyVelocity()*Math.sin(sprite.getMyHeading());
+		double yVelocity = sprite.getMyVelocity()*Math.sin(sprite.getMyLocation().getMyHeading());
 		double yAcceleration = GameResources.DEFAULT_VERTICAL_GRAVITY.getDoubleResource();
 	
 		
@@ -54,7 +54,7 @@ public class UpdatePositionsSprites {
 		double myYLocation = curYLoc + yVelocity*timeElapsed + 0.5*yAcceleration*Math.pow(timeElapsed, 2);
 		
 		//update the location of the sprite
-		Location myNewLocation = new Location(myXLocation, myYLocation);
+		Location myNewLocation = new Location(myXLocation, myYLocation, sprite.getMyLocation().getMyHeading());
 		sprite.setMyLocation(myNewLocation);
 	}
 }
