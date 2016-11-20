@@ -1,6 +1,9 @@
 package game_data.characteristics;
 
+import java.util.Map;
+
 import game_data.Sprite;
+import javafx.geometry.Side;
 
 public class VerticalBoundedPacer extends BoundedPacer implements Characteristic{
 
@@ -18,10 +21,11 @@ public class VerticalBoundedPacer extends BoundedPacer implements Characteristic
 	public Characteristic copy() {
 		return new VerticalBoundedPacer(this.getSpeed(), this.getLowerBound(), this.getUpperBound());
 	}
-
+	
 	@Override
-	public void execute() {
+	public void execute(Map<Sprite, Side> myCollisionMap) {
 		// TODO Auto-generated method stub
+		
 	}
 
 }

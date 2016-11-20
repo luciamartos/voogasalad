@@ -1,5 +1,10 @@
 package game_data.characteristics;
 
+import java.util.Map;
+
+import game_data.Sprite;
+import javafx.geometry.Side;
+
 public class LosableByTime extends Losable implements Characteristic{
 
 	private double myTime;
@@ -17,16 +22,17 @@ public class LosableByTime extends Losable implements Characteristic{
 	}
 	
 	@Override
-	public boolean toAct() {
-		//check time in here?
-		//time-=timestep?
-		return true;
+	public Characteristic copy() {
+		return new LosableByTime(myTime);
 	}
 
 	@Override
-	public Characteristic copy() {
-		// TODO Auto-generated method stub
-		return null;
+	public void execute(Map<Sprite, Side> myCollisionMap) {
+		//TODO: make and execute action
+		for(Sprite collidedSprite:myCollisionMap.keySet()){
+			//myAction = new ProjectilePowerUp();
+			//myAction.act();
+		}
 	}
 
 }
