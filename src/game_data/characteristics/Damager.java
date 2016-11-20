@@ -1,5 +1,9 @@
 package game_data.characteristics;
 
+/**
+ * @author austingartside
+ *
+ */
 public class Damager implements Characteristic{
 	
 	private int myDamageToGive;
