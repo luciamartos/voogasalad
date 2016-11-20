@@ -19,4 +19,9 @@ public class VerticalBoundedPacer extends BoundedPacer implements Characteristic
 		return new VerticalBoundedPacer(this.getSpeed(), this.getLowerBound(), this.getUpperBound());
 	}
 
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+	}
+
 }
