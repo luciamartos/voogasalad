@@ -13,6 +13,7 @@ public class UserProfilePage extends AbstractNavigationPlayerScene {
 	@Override
 	public Scene init(){
 		myRoot.setCenter(addNodes());
+		System.out.println(myScene);
 		return myScene;
 	}
 

@@ -61,7 +61,6 @@ public class LoginScene extends AbstractPlayerScene {
 	@Override
 	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType) {
 		// do nothing
-		
 	}
 
 }
