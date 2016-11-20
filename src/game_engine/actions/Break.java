@@ -15,6 +15,7 @@ public class Break implements Action {
 
 	@Override
 	public void act() {
+		//remove the bouncing characteristic and make a "solid" thing
 		myPlayerSprite.setMyVelocity(-myPlayerSprite.getMyVelocity());		
 		myLevel.removeSprite(myBrokenSprite);
 	}

@@ -22,6 +22,7 @@ public class Launcher {
 		myCurrentTime = 0;
 	}
 	
+	
 	public boolean toAct() {
 		myCurrentTime++;
 		myCurrentTime %= myTimeInterval;
