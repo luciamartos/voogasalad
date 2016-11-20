@@ -11,6 +11,7 @@ import java.util.Set;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
+import game_data.sprites.WinningObject;
 import game_engine.actions.Action;
 import game_engine.actions.Jump;
 import game_engine.actions.MoveLeft;
@@ -24,7 +25,6 @@ import javafx.scene.input.KeyCode;
  * CHECK: CALCULATING HEARDING FROM THE VERTICAL (NOON) CHECK CORRECT CALC FOR VEL
  * QUESTION who is going to keep track of the time of the game? how are we going to provoke a win? through interface?
  * TODO give myLevel all the properties I want.
- * TODO sprite needs to give me to image view.
  * CLARIFY: does the x and y loc represent the middle or the left top corner or what?
  * There are some things that I dont know if I should be getting from level class of the engine itself
  * Losses should actually probably be integrated within characteristics so we dont check for collision repeatedly.
@@ -53,15 +53,15 @@ public class UpdateStates {
 		executeCharacteristics();
 		runKeyCalls();
 		updateSpritePositions();
-		checkForWin();
-		checkForLoss();
+		//checkForWin();
+		//checkForLoss();
 	}
 
 	//keys will only control the main player rn
 	private void generateDefaultKeyMap() {
-		myKeyMap.put(KeyCode.RIGHT, new MoveRight(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getResource()));
-		myKeyMap.put(KeyCode.LEFT, new MoveLeft(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getResource()));
-		myKeyMap.put(KeyCode.UP, new Jump(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.JUMP_SPEED.getResource()));		
+		myKeyMap.put(KeyCode.RIGHT, new MoveRight(enginePlayerController.getMyLevel().getMainPlayer(), Double.parseDouble(GameResources.MOVE_RIGHT_SPEED.getResource())));
+		myKeyMap.put(KeyCode.LEFT, new MoveLeft(enginePlayerController.getMyLevel().getMainPlayer(), Double.parseDouble(GameResources.MOVE_LEFT_SPEED.getResource())));
+		myKeyMap.put(KeyCode.UP, new Jump(enginePlayerController.getMyLevel().getMainPlayer(), Double.parseDouble(GameResources.JUMP_SPEED.getResource())));		
 	}
 
 
@@ -83,7 +83,12 @@ public class UpdateStates {
 	}
 
 	// not the best design in the world but works for the time being
-	private void checkForWin() {
+	
+	/**
+	 * Checking for win should just happen naturally while checking collisions (i.e. once something collides
+	 * with winning object)
+	 */
+	/*private void checkForWin() {
 		Set<String> type = enginePlayerController.getMyLevel().getWinType();
 		if(type.contains("time")&& enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
 			System.out.print("YOU WIN");
@@ -96,20 +101,30 @@ public class UpdateStates {
 		if(type.contains("object") && enginePlayerController.getMyLevel().getWinningSprite().getBoundsInLocal().interects(enginePlayerController.getMyLevel().getMainPlayerSprite())){
 			System.out.println("YOU WIN");
 		}
-	}
+	}*/
 	
-	private void checkForLoss() {
+	/*private void checkForWin(Sprite aSprite){
+		if(aSprite instanceof WinningObject){
+			System.out.println("Do win action???");
+			//Do somethin?
+		}
+	}*/
+	
+	/**
+	 * Checking for loss also should happen naturally (or just have to check if the players health characteristic has health<0)
+	 */
+	/*private void checkForLoss() {
 		Set<String> type = enginePlayerController.getMyLevel().getLossType();
 		Sprite mainPlayer = enginePlayerController.getMainPlayer();
 		if(type.contains("object")){
-			List<Sprite> deathProvokingObj = enginePlayerController.getMyOjbectSpriteList();
+			List<Sprite> deathProvokingObj = enginePlayerController.getMyObjectSpriteList();
 			for(Sprite myObj : deathProvokingObj){
-				if(myObj.getImageView().getBoundsInLocal().interects(mainPlayer.getImageView().getBoundsInLocal())){
+				if(enginePlayerController.getImageView(myObj).getBoundsInLocal().intersects(enginePlayerController.getImageView(mainPlayer).getBoundsInLocal())){
 					System.out.println("DEATH");
 				}
 			}
 		}
-	}
+	}*/
 
 	private void updateSpritePositions() {
 		for(Sprite sprite:mySpriteList){

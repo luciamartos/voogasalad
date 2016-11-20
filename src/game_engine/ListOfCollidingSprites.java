@@ -12,11 +12,12 @@ public class ListOfCollidingSprites {
 	private Sprite targetSprite;
 	private List<Sprite> spriteList;
 	private Map<Sprite, Side> collisionSprites;
+	private EnginePlayerController myEnginePlayerController;
 
-	public ListOfCollidingSprites(Sprite targetSprite, List<Sprite> spriteList) {
+	public ListOfCollidingSprites(Sprite targetSprite, List<Sprite> spriteList, EnginePlayerController engineController) {
 		this.targetSprite =targetSprite;
 		this.spriteList = spriteList;
-		
+		myEnginePlayerController = engineController;
 		getListOfSpritesCollided();
 	}
 	
@@ -24,7 +25,7 @@ public class ListOfCollidingSprites {
 		collisionSprites = new HashMap<Sprite, Side>();
 		
 		for(Sprite mySprite:spriteList){
-			if(mySprite != targetSprite && mySprite.getImageView().getBoundsInLocal().interects(targetSprite.getImageView().getBoundsInLocal())){
+			if(mySprite != targetSprite && myEnginePlayerController.getImageView(mySprite).getBoundsInLocal().intersects(myEnginePlayerController.getImageView(targetSprite).getBoundsInLocal())){
 				collisionSprites.put(mySprite, findSideOfCollission(mySprite, targetSprite));
 			}
 		}	
@@ -35,7 +36,7 @@ public class ListOfCollidingSprites {
 		if(mySprite.getMyLocation().getYLocation() <= targetSprite.getMyLocation().getYLocation()){
 			return Side.BOTTOM;
 		}
-		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation() + targetSprite.getHeight()){
+		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation() + targetSprite.getMyHeight()){
 			return Side.TOP;
 		}
 		if(mySprite.getMyLocation().getXLocation() < targetSprite.getMyLocation().getXLocation()){
@@ -44,6 +45,7 @@ public class ListOfCollidingSprites {
 		if(mySprite.getMyLocation().getXLocation() > targetSprite.getMyLocation().getXLocation()){
 			return Side.RIGHT;
 		}
+		return null;
 		
 	}
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import game_data.sprites.Player;
 import javafx.scene.input.KeyCode;
 
 /**
@@ -15,12 +16,13 @@ import javafx.scene.input.KeyCode;
  * active on that Level as well as a background image and
  * Level specific KeyCommands
  * 
- * @author Addison
+ * @author Addison and Austin
  */
 public class Level {
 	
 	private int width, height;
 	private String backgroundImageFilePath;
+	private Player myPlayerSprite;
 	Set<Sprite> mySprites;
 	Map<KeyCode, KeyCommand> myKeyCommands;
 	
@@ -30,6 +32,14 @@ public class Level {
 		this.backgroundImageFilePath = backgroundImageFilePath;
 		mySprites = new HashSet<Sprite>();
 		myKeyCommands = new HashMap<KeyCode, KeyCommand>();
+	}
+	
+	public Player getMainPlayer(){
+		return myPlayerSprite;
+	}
+	
+	public void setPlayerSprite(Player aPlayer){
+		myPlayerSprite = aPlayer;
 	}
 	
 	public int getWidth() {

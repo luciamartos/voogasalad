@@ -19,7 +19,7 @@ public abstract class Sprite {
 	private double myVelocity;
 	private CollisionHandler myCollisionHandler;
 	private Set<Characteristic> myCharacteristics;
-	
+
 	public Sprite(Location aLocation, String aImagePath){
 		myLocation = aLocation;
 		myImagePath = aImagePath;
@@ -83,7 +83,6 @@ public abstract class Sprite {
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
 	}
-
 	public SpritePhysics getSpritePhysics() {
 		// TODO Auto-generated method stub
 		return null;
