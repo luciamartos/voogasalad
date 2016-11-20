@@ -11,8 +11,8 @@ public class ScoreUpdateObject extends Sprite{
 	
 	private int myScoreToAdd;
 
-	public ScoreUpdateObject(Location aLocation, String aImagePath, int scoreToAdd) {
-		super(aLocation, aImagePath);
+	public ScoreUpdateObject(Location aLocation, int aWidth, int aHeight, String aName, String aImagePath, int scoreToAdd) {
+		super(aLocation, aWidth, aHeight, aName, aImagePath);
 		myScoreToAdd = scoreToAdd;
 	}
 	

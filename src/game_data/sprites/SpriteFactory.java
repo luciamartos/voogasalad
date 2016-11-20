@@ -12,7 +12,7 @@ abstract interface SpriteBuilder{
 	 * @param aFilePath
 	 * @return new instance of sprite
 	 */
-	Sprite buildSprite(Location aLocation, String aFilePath);
+	Sprite buildSprite(Location aLocation, String aImagePath);
 }
 
 /**
@@ -21,7 +21,7 @@ abstract interface SpriteBuilder{
  * @author George Bernard
  */
 public enum SpriteFactory implements SpriteBuilder {
-	PLAYER(		(loc, path) -> { return new Player(loc, path);}),
+	//PLAYER(		(loc, path) -> { return new Player(loc, path);}),
 	ENEMY(		(loc, path) -> { return null;} ),
 	TERRAIN(	(loc, path) -> { return null;} ),
 	ITEM(		(loc, path) -> { return null;} ),

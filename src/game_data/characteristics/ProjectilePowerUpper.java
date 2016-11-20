@@ -11,14 +11,15 @@ import javafx.geometry.Side;
  */
 public class ProjectilePowerUpper extends PowerUpper implements Characteristic{
 
-	public ProjectilePowerUpper(){
+	public ProjectilePowerUpper(Sprite aSprite){
+		super(aSprite);
 		//nothing? unless we want to have different projectile types
 		//make your character a launcher
 	}
 	
 	@Override
 	public Characteristic copy() {
-		return new ProjectilePowerUpper();
+		return new ProjectilePowerUpper(mySprite);
 	}
 
 	@Override
