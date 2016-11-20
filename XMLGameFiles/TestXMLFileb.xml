@@ -7,23 +7,31 @@
       <mySprites>
         <game__data.sprites.Player>
           <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>0.0</myXLocation>
-            <myYLocation>0.0</myYLocation>
-          </myLocation>
-          <myImagePath>path/spriteImage.jpg</myImagePath>
-          <myVelocity>0</myVelocity>
-          <myCharacteristics/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Character>
-          <myLocation>
             <myHeading>90.0</myHeading>
             <myXLocation>100.0</myXLocation>
             <myYLocation>100.0</myYLocation>
           </myLocation>
+          <myWidth>100</myWidth>
+          <myHeight>100</myHeight>
+          <myName>Addison</myName>
           <myImagePath>path/spriteImage.jpg</myImagePath>
-          <myVelocity>0</myVelocity>
-        </game__data.sprites.Character>
+          <myVelocity>0.0</myVelocity>
+          <myCollisionHandler/>
+          <myCharacteristics/>
+          <myStates/>
+        </game__data.sprites.Player>
+        <game__data.sprites.Player>
+          <myLocation>
+            <myHeading>0.0</myHeading>
+            <myXLocation>0.0</myXLocation>
+            <myYLocation>0.0</myYLocation>
+          </myLocation>
+          <myWidth>0</myWidth>
+          <myHeight>0</myHeight>
+          <myImagePath>path/spriteImage.jpg</myImagePath>
+          <myVelocity>0.0</myVelocity>
+          <myCharacteristics/>
+        </game__data.sprites.Player>
       </mySprites>
       <myKeyCommands/>
     </game__data.Level>

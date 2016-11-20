@@ -8,7 +8,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
- * Saves an Object using XStream serialization
+ * Saves and loads an Object using XStream serialization to/from a file
  * 
  * @author Addison
  */
@@ -20,18 +20,28 @@ public class XMLTranslator {
 	 * 
 	 * @param o
 	 * @return String of XML representation of serialized Object
-	 * @author Addison
 	 */
 	public String serialize(Object o){
 		XStream mySerializer = new XStream(new DomDriver());
 		return mySerializer.toXML(o);
 	}
 
+	/**
+	 * @param o - Object to serialize
+	 * @param aFilePath - folder where file should be saved
+	 * @param aFileName - name of file (not including .xml)
+	 * @return the file to which o was saved
+	 */
 	public File saveToFile(Object o, String aFilePath, String aFileName){
 		File aFile = new File(aFilePath + aFileName + ".xml");
 		return saveToFile(o, aFile);
 	}
 
+	/**
+	 * @param o - Object to serialize
+	 * @param aFile - file to save
+	 * @return the file to which o was saved
+	 */
 	public File saveToFile(Object o, File aFile){
 		try {
 			FileWriter fw = new FileWriter(aFile);
@@ -43,16 +53,38 @@ public class XMLTranslator {
 		return aFile;
 	}
 
+	/**
+	 * @param aFile - to deserialize
+	 * @return Object representation of what is stored in .xml file
+	 */
 	public Object deserialize(File aFile){
 		XStream mySerializer = new XStream(new DomDriver());
 		return mySerializer.fromXML(aFile);
 	}
+	
+	/**
+	 * @param aXMLString - to deserialize
+	 * @return Object representation of XMLString
+	 */
+	public Object deserialize(String aXMLString){
+		XStream mySerializer = new XStream(new DomDriver());
+		return mySerializer.fromXML(aXMLString);
+	}
 
-	public Object loadFromFile(Object o, String aFilePath, String aFileName){
+	/**
+	 * @param aFilePath - where to look for file
+	 * @param aFileName - name of file to look for
+	 * @return Object representation of XMLString
+	 */
+	public Object loadFromFile(String aFilePath, String aFileName){
 		File aFile = new File(aFilePath + aFileName + ".xml");
 		return deserialize(aFile);
 	}
 
+	/**
+	 * @param aFile - file from which to load
+	 * @return Object representation of XMLString
+	 */
 	public Object loadFromFile(File aFile){
 		return deserialize(aFile);
 	}
