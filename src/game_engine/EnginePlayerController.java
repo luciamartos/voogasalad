@@ -29,7 +29,7 @@ public class EnginePlayerController {
 		mySpriteHealthList=null;
 		mySpriteIsAliveList=null;
 	}
-	public EnginePlayerController(Level aLevel) {
+	public EnginePlayerController(Level aLevel){
 		myLevel=aLevel;
 		mySpriteList=myLevel.getMySpriteList();
 		myBackgroundImageFilePath=myLevel.getBackgroundImageFilePath();
