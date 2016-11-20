@@ -2,6 +2,8 @@ package gameplayer.application_controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import gameplayer.application_scene.ErrorAlert;
 import gameplayer.application_scene.FileController;
 import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.LoginScene;
@@ -50,13 +52,22 @@ public class ApplicationController {
 	
 	private void setLoginButtonHandlers(LoginScene login){
 		login.addButton("Enter", e -> {
-			displayMainMenu();
-			myInformationController.userSignIn(login.getUserName(), login.getPassword());
+			try {
+				myInformationController.userSignIn(login.getUserName(), login.getPassword());
+				displayMainMenu();
+			} catch (Exception x) {
+				ErrorAlert error = new ErrorAlert();
+				error.show(x);
+			}
 		}, ButtonDisplay.TEXT);
 		login.addButton("Sign Up", e -> {
-			//TODO: 
-			displayMainMenu();
-			myInformationController.userSignUp(login.getUserName(), login.getPassword());
+			try {
+				myInformationController.userSignUp(login.getUserName(), login.getPassword());
+				displayMainMenu();
+			} catch (Exception x) {
+				ErrorAlert error = new ErrorAlert();
+				error.show(x);
+			}
 		}, ButtonDisplay.TEXT);
 	}
 
@@ -66,9 +77,6 @@ public class ApplicationController {
 		}, ButtonDisplay.TEXT);
 		mainMenu.addButton("Click To Author", e -> {
 			//TODO: implement authoring environment
-		}, ButtonDisplay.TEXT);
-		mainMenu.addButton("Sign Out", e -> {
-			displayLogin();
 		}, ButtonDisplay.TEXT);
 	}
 	
@@ -119,7 +127,6 @@ public class ApplicationController {
 			for(HBox box : options.addOptions()){
 				popup.addOption(box);
 			}
-			
 			popup.show();
 		}, ButtonDisplay.TEXT);
 	}
