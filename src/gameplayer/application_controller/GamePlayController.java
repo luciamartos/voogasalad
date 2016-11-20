@@ -18,7 +18,7 @@ public class GamePlayController {
         public void update(java.util.Observable o, Object arg) {
         	//TODO: Send to game engine for processing
             System.out.println(myGamePlay.getLastKeyPressed());
-        } 
+        }
 	}
 	
 	public GamePlayController(Stage astage){

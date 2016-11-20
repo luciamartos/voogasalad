@@ -76,7 +76,7 @@ public class GamePlayScene extends AbstractNavigationPlayerScene {
 
 	private Node createTop() {
 		HBox topMenu = new HBox(8);
-		topMenu.getChildren().addAll(createRestartButton(), createMainMenuButton());
+//		topMenu.getChildren().addAll(createRestartButton(), createMainMenuButton());
 		topMenu.getChildren().add(createButton("Change to red", 0, 0, e -> {
 			setBackground(myGamePlayCanvas, Color.RED);
 		}));
@@ -105,13 +105,13 @@ public class GamePlayScene extends AbstractNavigationPlayerScene {
 		return bottomMenu;
 	}
 	
-	private Button createRestartButton(){
-		myRestartButton = createButton("Restart", 0, 0, null);
-		return myRestartButton;
-	}
-	
-	private Button createMainMenuButton(){
-		myMainMenuButton = createButton("Main Menu", 0, 0, null);
-		return myMainMenuButton;
-	}
+//	private Button createRestartButton(){
+//		myRestartButton = createButton("Restart", 0, 0, null);
+//		return myRestartButton;
+//	}
+//	
+//	private Button createMainMenuButton(){
+//		myMainMenuButton = createButton("Main Menu", 0, 0, null);
+//		return myMainMenuButton;
+//	}
 }
