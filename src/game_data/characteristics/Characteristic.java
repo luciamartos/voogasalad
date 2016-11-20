@@ -1,6 +1,8 @@
 package game_data.characteristics;
 
+import java.util.HashMap;
 import java.util.Map;
+
 import game_data.Sprite;
 import javafx.geometry.Side;
 

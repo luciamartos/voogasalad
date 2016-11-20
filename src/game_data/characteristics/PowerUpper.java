@@ -1,19 +1,19 @@
 package game_data.characteristics;
 
+import game_data.Sprite;
+
 /**
  * @author austingartside
  *
  */
 public abstract class PowerUpper implements Characteristic{
 	
-	public PowerUpper(){
+	protected Sprite mySprite;
+	
+	public PowerUpper(Sprite aSprite){
+		mySprite = aSprite;
 		//do nothing?
 	}
 	
-	@Override
-	public boolean toAct(){
-		//act upon collision
-		return false;
-	}
 
 }

@@ -21,7 +21,7 @@ public class Health implements State{
 		return new Health(myHealth, myName);
 	}
 	
-	private void kill(){
+	public void kill(){
 		isAlive = false;
 	}
 

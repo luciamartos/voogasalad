@@ -1,6 +1,7 @@
 package game_data.characteristics;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import game_data.Sprite;
 import game_engine.actions.Action;
@@ -25,14 +26,10 @@ public class Bouncer implements Characteristic{
 	public double getBounceSpeed(){
 		return myBounceSpeed;
 	}
-
-	@Override
-	public boolean toAct() {
-		//return isCollision()
-		return false;
-	}
 	
-	public void execute(HashMap<Sprite, Side> myCollisionMap){
+	
+	@Override
+	public void execute(Map<Sprite, Side> myCollisionMap){
 		for(Sprite collidedSprite:myCollisionMap.keySet()){
 			//is going to need to have arguments after implemented
 			myAction = new Bounce();

@@ -135,7 +135,8 @@ public class UpdateStates {
 	}
 
 	private void updateSpritePosition(Sprite sprite){
-		SpritePhysics spritePhysics = sprite.getSpritePhysics();
+		SpritePhysics spritePhysics = sprite.getPhysicsState().getPhysics();
+		
 		Location myCurrentLocation = sprite.getMyLocation();
 		double curXLoc = myCurrentLocation.getXLocation();
 		double curYLoc = myCurrentLocation.getYLocation();

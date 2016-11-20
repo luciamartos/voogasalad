@@ -9,6 +9,7 @@
 package game_data.characteristics;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import game_data.Sprite;
 import game_engine.actions.Action;
@@ -44,11 +45,7 @@ public class Breakable implements Characteristic{
 	}
 	
 	@Override
-	public boolean toAct() {
-		return breakable();
-	}
-	
-	public void execute(HashMap<Sprite, Side> myCollisionMap){
+	public void execute(Map<Sprite, Side> myCollisionMap){
 		for(Sprite collidedSprite:myCollisionMap.keySet()){
 			if(breaksAtDirection(myCollisionMap.get(collidedSprite))){
 				myAction = new Break(mySprite, collidedSprite);
@@ -83,5 +80,6 @@ public class Breakable implements Characteristic{
 	public Characteristic copy() {
 		return new Breakable(breakableNorth, breakableSouth, breakableEast, breakableWest, myDurability, mySprite);
 	}
+
 
 }

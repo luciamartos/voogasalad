@@ -8,31 +8,42 @@
 
 package game_data.characteristics;
 
-import game_data.*;
+import java.util.Map;
 
-public class Launcher {
+import game_data.*;
+import javafx.geometry.Side;
+
+public class Launcher implements Characteristic{
 	
-	private Sprite myLaunched;
+	private Sprite mySprite;
 	private int myTimeInterval;
 	private int myCurrentTime;
 	
-	public Launcher(Sprite launched, int timeInterval) {
-		myLaunched = launched;
+	public Launcher(Sprite sprite, int timeInterval) {
+		mySprite = sprite;
 		myTimeInterval = timeInterval;
 		myCurrentTime = 0;
 	}
 	
-	
-	public boolean toAct() {
+	public Sprite getLaunched() {
+		return mySprite;	
+	}
+
+
+	@Override
+	public void execute(Map<Sprite, Side> myCollisionMap) {
 		myCurrentTime++;
 		myCurrentTime %= myTimeInterval;
-		return myCurrentTime == 0;
+		if(myCurrentTime == 0){
+			//TODO need to make action
+			//Action myAction = new Launch(mySprite, collidedSprite);
+			//myAction.act();
+		}
 	}
-	
-	public Sprite getLaunched() {
-		
-		return myLaunched;
-		
+
+	@Override
+	public Characteristic copy() {
+		return new Launcher(mySprite, myTimeInterval);
 	}
 	
 
