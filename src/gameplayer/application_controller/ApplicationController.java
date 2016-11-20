@@ -3,7 +3,6 @@ package gameplayer.application_controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import gameplayer.application_scene.AbstractNavigationPlayerScene;
 import gameplayer.application_scene.FileManager;
 import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.LoginScene;
@@ -76,13 +75,25 @@ public class ApplicationController {
 	
 	private void createNavigationButtons(IDisplay aMenu) {
 		aMenu.addNavigationButton("user-profile-button", e -> {
-			//TODO
+			displayUserProfile();
 		}, ButtonDisplay.CSS);
 		aMenu.addNavigationButton("Main Menu", e -> {
 			displayMainMenu();
 		}, ButtonDisplay.TEXT);
 		aMenu.addNavigationButton("Sign Out", e -> {
 			displayLogin();
+		}, ButtonDisplay.TEXT);
+	}
+	
+	private void displayUserProfile() {
+		IDisplay userProfile = mySceneBuilder.create(SceneIdentifier.USERPROFILE, myStage.getWidth(), myStage.getHeight());
+		resetStage(userProfile);
+		setUserProfileButtonHandlers(userProfile);
+	}
+	
+	private void setUserProfileButtonHandlers(IDisplay userProfile) {
+		userProfile.addButton("HI!", e -> {
+			//do nothing
 		}, ButtonDisplay.TEXT);
 	}
 	

@@ -32,7 +32,7 @@
 
 #user-profile-button {
     -fx-background-image: url('blank_profile_page.jpeg');
-    -fx-background-size: 20px;
+    -fx-background-size: 40px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: transparent;
