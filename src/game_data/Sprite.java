@@ -41,6 +41,8 @@ public abstract class Sprite {
 	public abstract Sprite clone();
 	
 	public Set<Characteristic> copyCharacteristics(Set<Characteristic> origCharacteristics){
+		if (origCharacteristics == null)
+			return null;
 		Set<Characteristic> characteristicCopies = new HashSet<Characteristic>();
 		for(Characteristic c: origCharacteristics){
 			characteristicCopies.add(c.copy());

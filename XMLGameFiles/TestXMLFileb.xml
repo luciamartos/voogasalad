@@ -15,6 +15,15 @@
           <myVelocity>0</myVelocity>
           <myCharacteristics/>
         </game__data.sprites.Player>
+        <game__data.sprites.Character>
+          <myLocation>
+            <myHeading>90.0</myHeading>
+            <myXLocation>100.0</myXLocation>
+            <myYLocation>100.0</myYLocation>
+          </myLocation>
+          <myImagePath>path/spriteImage.jpg</myImagePath>
+          <myVelocity>0</myVelocity>
+        </game__data.sprites.Character>
       </mySprites>
       <myKeyCommands/>
     </game__data.Level>
