@@ -36,7 +36,7 @@ public class ListOfCollidingSprites {
 		if(mySprite.getMyLocation().getYLocation() <= targetSprite.getMyLocation().getYLocation()){
 			return Side.BOTTOM;
 		}
-		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation() + targetSprite.getMyHeight()){
+		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation()){
 			return Side.TOP;
 		}
 		if(mySprite.getMyLocation().getXLocation() < targetSprite.getMyLocation().getXLocation()){
