@@ -25,7 +25,6 @@ import javafx.scene.input.KeyCode;
  * CHECK: CALCULATING HEARDING FROM THE VERTICAL (NOON) CHECK CORRECT CALC FOR VEL
  * QUESTION who is going to keep track of the time of the game? how are we going to provoke a win? through interface?
  * TODO give myLevel all the properties I want.
- * TODO sprite needs to give me to image view.
  * CLARIFY: does the x and y loc represent the middle or the left top corner or what?
  * There are some things that I dont know if I should be getting from level class of the engine itself
  * Losses should actually probably be integrated within characteristics so we dont check for collision repeatedly.
