@@ -1,5 +1,6 @@
 package gameplayer.user_information;
 
+import java.util.HashMap;
 import java.util.Map;
 import gameplayer.exceptions.IncorrectPasswordException;
 import gameplayer.exceptions.UsernameNotFoundException;
@@ -14,7 +15,7 @@ public class UserInformationController implements IViewableUserInformation {
 	public UserInformationController() {
 		//deserializeTheXmlAndMakeMap();
 		//myUserInformation = new UserInformation(XStream); 
-//		myUserInformation = new HashMap<String, String>();
+		myUserInformation = new HashMap<String, String>();
 //		myUserInformation.put("Teddy", "123");
 	}
 
@@ -53,8 +54,10 @@ public class UserInformationController implements IViewableUserInformation {
 	private boolean isValidToSignUp(String aUserName) throws Exception {
 		if(myUserInformation.containsKey(aUserName)){
 			throw new UsernameNotUniqueException(aUserName + " has already been taken");
+		} else {
+			return true;
 		}
-		return true;
+		
 	}
 
 	private void saveToXML(String aUserName, String aPassword) throws Exception {
