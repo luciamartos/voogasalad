@@ -23,7 +23,8 @@ public class Level extends GameObject{
 	Set<Sprite> mySprites;
 	Map<KeyCode, KeyCommand> myKeyCommands;
 	
-	public Level(int width, int height, String backgroundImageFilePath){
+	public Level(String aName, int width, int height, String backgroundImageFilePath){
+		setName(aName);
 		this.width = width;
 		this.height = height;
 		this.backgroundImageFilePath = backgroundImageFilePath;
@@ -60,6 +61,7 @@ public class Level extends GameObject{
 	
 	public void addNewSprite(Sprite  aSprite){
 		mySprites.add(aSprite);
+		this.notifyListeners();
 	}
 	
 	public void setKeyCommand(KeyCode aKeyCode, KeyCommand aKeyCommand){

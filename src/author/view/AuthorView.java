@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 /**
  * AuthorView handles the JavaFX GUI.
  * 
- * @author George Bernard
+ * @author George Bernard, Cleveland Thompson
  */
 public class AuthorView {
 
@@ -59,11 +59,12 @@ public class AuthorView {
 		menuNew.getItems().addAll(new MenuFactory().createItem("New Game", e -> {
 			// TODO: Jordan(vooga) - create new game
 		}).getItem(), new MenuFactory().createItem("New Level", e -> {
-			Level createdLevel =new Level(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			Level createdLevel =new Level("Level 1", WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			addLevel(createdLevel);
 			System.out.println("Create new level");
 			//testing
 			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
+			createdLevel.addNewSprite(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
@@ -94,6 +95,7 @@ public class AuthorView {
 	
 	private void addLevel(Level createdLevel){
 		this.authorController.getModel().getGame().addNewLevel(createdLevel);
+		this.myLevelEditor.getMyLevelWindow().SetLevel(createdLevel);
 	}
 
 	public Scene getScene() {

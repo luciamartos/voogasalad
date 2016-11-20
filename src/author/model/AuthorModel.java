@@ -28,7 +28,7 @@ public abstract class AuthorModel implements IAuthorModel{
 	
 	
 	public Level addLevel(int aWidth, int aHeight, String aBackgroundImageFilePath){
-		this.activeLevel = new Level(aWidth, aHeight, aBackgroundImageFilePath);
+		this.activeLevel = new Level("Level 1", aWidth, aHeight, aBackgroundImageFilePath);
 		this.activeGame.addNewLevel(this.activeLevel);
 		return this.activeLevel;
 	}
@@ -42,7 +42,7 @@ public abstract class AuthorModel implements IAuthorModel{
 	
 	@Override
 	public void newGame(){
-		this.activeGame = new Game();
+		this.activeGame = new Game("Mario");
 	}
 	
 	@Override

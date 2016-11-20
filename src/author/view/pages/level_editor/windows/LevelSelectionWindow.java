@@ -65,7 +65,7 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 		authorController.getModel().getGame().addListener((game) -> {
 			this.container.getChildren().clear();
 			authorController.getModel().getGame().getLevels().forEach((level) ->{
-				this.container.getChildren().add(new Label(level.toString()));
+				this.container.getChildren().add(new Label(level.getName()));
 			});
 		});
 	}

@@ -40,6 +40,7 @@ public abstract class DraggableSprite {
 			// TODO: Jordan(vooga) - drag - Do not remove from pane. Clone and add to level editor pane. 
 			// Update the coordinates of the ObservableSprite with the imageview's position
 			// TODO: Jordan(vooga) - change int to double for sprite location when merged
+			System.out.println("XMove: " +myImageView.getTranslateX());
 			mySprite.getMyLocation().setLocation((int)myImageView.getTranslateX(), (int)myImageView.getTranslateY());
 			e.consume();
 		});
