@@ -3,14 +3,19 @@ package gameplayer.application_controller;
 import java.util.Observer;
 
 import gameplayer.application_scene.GamePlayScene;
-import gameplayer.application_scene.SceneFactory;
-import gameplayer.application_scene.SceneIdentifier;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
+import gameplayer.heads_up_display.HeadsUpDisplay;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GamePlayController {
 	
 	private Stage myStage;
 	private GamePlayScene myGamePlay;
+	private HeadsUpDisplay myHeadsUpDisplay;
+	private StackPane myStack;
+	private Scene myScene;
 	
 	private class GamePlayObserver implements Observer {
 
@@ -23,6 +28,8 @@ public class GamePlayController {
 	
 	public GamePlayController(Stage astage){
 		myStage = astage;
+		myStack = new StackPane();
+		myScene = new Scene(myStack, myStage.getWidth(), myStage.getHeight());
 	}
 	
 	public void displayGame(){
@@ -32,24 +39,29 @@ public class GamePlayController {
 	}
 
 	private void initializeGameScene() {
-		SceneFactory buildGamePlayScreen = new SceneFactory();
-		myGamePlay = (GamePlayScene) buildGamePlayScreen.create(SceneIdentifier.GAMEPLAY, myStage.getWidth(), myStage.getHeight());
+		myGamePlay = new GamePlayScene(myScene, myStage.getWidth(), myStage.getHeight());
 		myGamePlay.addObserver(new GamePlayObserver());
+		myStack.getChildren().add(myGamePlay.init());
+		myHeadsUpDisplay = new HeadsUpDisplay(myScene, myStage.getWidth(), myStage.getHeight());
+		myStack.getChildren().add(myHeadsUpDisplay.init());
 	}
 
 	private void setButtonHandlers() {
-		myGamePlay.setOnMain(e -> {
+		myHeadsUpDisplay.addButton("Main Menu", e -> {
 			ApplicationController appControl = new ApplicationController(myStage);
 			appControl.displayMainMenu();
-		});
-		myGamePlay.setOnRestart(e -> {
+		}, ButtonDisplay.TEXT);
+		myHeadsUpDisplay.addButton("Restart", e -> {
 			displayGame();
-		});
+		}, ButtonDisplay.TEXT);
+		myHeadsUpDisplay.addButton("Change to Red", e -> {
+			myGamePlay.makeRed();
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void resetStage(){
 		myStage.close();
-		myStage.setScene(myGamePlay.init());
+		myStage.setScene(myScene);
 		myStage.show();
 	}
 }

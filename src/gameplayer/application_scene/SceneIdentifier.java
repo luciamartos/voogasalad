@@ -5,5 +5,6 @@ public enum SceneIdentifier {
 	MAINMENU, 
 	GAMECHOICE, 
 	GAMEPLAY,
-	STARTSCREEN
+	STARTSCREEN,
+	USERPROFILE
 }

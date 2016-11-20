@@ -5,4 +5,4 @@
  * @author hannahfuchshuber
  *
  */
-package gameplayer.button;
+package gameplayer.game_display_information;

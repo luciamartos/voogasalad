@@ -1,17 +1,12 @@
 package gameplayer.application_scene;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 
-/**
- * Concrete representation of the introduction scene
- * 
- * @author tedmarchildon, hannah
- *
- */
-public class MainMenuScene extends AbstractNavigationPlayerScene {
+public class UserProfilePage extends AbstractNavigationPlayerScene {
 
-	public MainMenuScene(double aWidth, double aHeight) {
+	public UserProfilePage(double aWidth, double aHeight) {
 		super(aWidth, aHeight);
 	}
 
@@ -20,11 +15,12 @@ public class MainMenuScene extends AbstractNavigationPlayerScene {
 		myRoot.setCenter(addNodes());
 		return myScene;
 	}
-	
-	private VBox addNodes(){
+
+	private VBox addNodes() {
 		myOptions = new VBox(BOX_INSETS);
-		myOptions.getChildren().addAll(myGUIGenerator.createLabel("Main Menu", 0, 0));
 		myOptions.setAlignment(Pos.CENTER);
+		//myOptions.bin
 		return myOptions;
 	}
+
 }

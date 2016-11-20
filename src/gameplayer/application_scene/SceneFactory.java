@@ -1,19 +1,17 @@
 package gameplayer.application_scene;
 
+
 public class SceneFactory {
 
-	public IDisplay create(SceneIdentifier aIdentifier, double aWidth, double aHeight){
+	public IDisplay create(SceneIdentifier aIdentifier, double aWidth, double aHeight) {
 		if(aIdentifier.equals(SceneIdentifier.LOGIN)){
 			return new LoginScene(aWidth, aHeight);
 		} else if(aIdentifier.equals(SceneIdentifier.MAINMENU)) {
 			return new MainMenuScene(aWidth, aHeight);
 		} else if(aIdentifier.equals(SceneIdentifier.GAMECHOICE)) {
 			return new GameChoiceScene(aWidth, aHeight);
-		} else if(aIdentifier.equals(SceneIdentifier.GAMEPLAY)){
-			return new GamePlayScene(aWidth, aHeight);
-		} else {
-			return null;
-		}
+		} 
+		return null;
 	}
 	
 }

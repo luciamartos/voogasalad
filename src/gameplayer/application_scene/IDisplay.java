@@ -1,7 +1,9 @@
 package gameplayer.application_scene;
 
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -17,8 +19,8 @@ public interface IDisplay {
 	
 	public Scene init();
 	
-	public void addButton(String aLabel, EventHandler<? super MouseEvent> aHandler);
+	public void addButton(String aLabel, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType);
 	
-	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler);
+	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType);
 	
 }
