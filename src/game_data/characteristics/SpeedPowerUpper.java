@@ -16,7 +16,8 @@ public class SpeedPowerUpper extends PowerUpper implements Characteristic{
 	private double mySpeedBoost;
 	private double myTimeInEffect;
 	
-	public SpeedPowerUpper(double speedBoost, double timeInEffect){
+	public SpeedPowerUpper(double speedBoost, double timeInEffect, Sprite aSprite){
+		super(aSprite);
 		mySpeedBoost = speedBoost;
 		myTimeInEffect = timeInEffect;
 	}
@@ -27,7 +28,7 @@ public class SpeedPowerUpper extends PowerUpper implements Characteristic{
 
 	@Override
 	public Characteristic copy() {
-		return new SpeedPowerUpper(mySpeedBoost, myTimeInEffect);
+		return new SpeedPowerUpper(mySpeedBoost, myTimeInEffect, this.getSprite());
 	}
 
 	@Override

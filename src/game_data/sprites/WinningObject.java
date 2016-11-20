@@ -8,8 +8,8 @@ import game_data.Sprite;
  */
 public class WinningObject extends Sprite{
 
-	public WinningObject(Location aLocation, String aImagePath) {
-		super(aLocation, aImagePath);
+	public WinningObject(Location aLocation, int aWidth, int aHeight, String aName, String aImagePath) {
+		super(aLocation, aWidth, aHeight, aName, aImagePath);
 		// TODO Auto-generated constructor stub
 	}
 	

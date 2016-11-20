@@ -1,6 +1,9 @@
 package game_data.characteristics;
 
+import java.util.Map;
+
 import game_data.Sprite;
+import javafx.geometry.Side;
 
 public class CollisionPacer extends Pacer implements Characteristic{
 
@@ -17,6 +20,12 @@ public class CollisionPacer extends Pacer implements Characteristic{
 	@Override
 	public Characteristic copy() {
 		return new CollisionPacer(this.getSpeed());
+	}
+
+	@Override
+	public void execute(Map<Sprite, Side> myCollisionMap) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

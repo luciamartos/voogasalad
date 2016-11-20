@@ -12,7 +12,10 @@ public abstract class PowerUpper implements Characteristic{
 	
 	public PowerUpper(Sprite aSprite){
 		mySprite = aSprite;
-		//do nothing?
+	}
+	
+	public Sprite getSprite(){
+		return mySprite;
 	}
 	
 
