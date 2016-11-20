@@ -102,9 +102,9 @@ public class UpdateStates {
 		Set<String> type = enginePlayerController.getMyLevel().getLossType();
 		Sprite mainPlayer = enginePlayerController.getMainPlayer();
 		if(type.contains("object")){
-			List<Sprite> deathProvokingObj = enginePlayerController.getMyOjbectSpriteList();
+			List<Sprite> deathProvokingObj = enginePlayerController.getMyObjectSpriteList();
 			for(Sprite myObj : deathProvokingObj){
-				if(myObj.getImageView().getBoundsInLocal().interects(mainPlayer.getImageView().getBoundsInLocal())){
+				if(enginePlayerController.getImageView(myObj).getBoundsInLocal().intersects(enginePlayerController.getImageView(mainPlayer).getBoundsInLocal())){
 					System.out.println("DEATH");
 				}
 			}
