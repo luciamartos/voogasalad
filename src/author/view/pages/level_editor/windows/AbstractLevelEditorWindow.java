@@ -29,8 +29,12 @@ public abstract class AbstractLevelEditorWindow {
 		createToolBar();
 		initListener(this.authorController);
 	}
-
+	
 	public abstract <T extends Node> void addChildren(T... child);
+	
+	protected abstract void initListener(IAuthorController authorController);
+	
+	protected abstract void createToolBar();
 
 	public Pane getWindow() {
 		return myWindow;
@@ -41,7 +45,7 @@ public abstract class AbstractLevelEditorWindow {
 		return myWindow;
 	}
 	
-	public void SetLevel(Level aLevel){
+	public void setLevel(Level aLevel){
 		this.level = aLevel;
 	}
 	
@@ -49,12 +53,7 @@ public abstract class AbstractLevelEditorWindow {
 		return this.level;
 	}
 	
-	protected abstract void initListener(IAuthorController authorController);
-	
-	protected abstract void createToolBar();
-	
 	protected ImageView getImageView(String path, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
-		
 		ImageView imageView = new ImageView(path);
 		imageView.setPreserveRatio(true);
 		imageView.fitHeightProperty().bind(height);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import author.controller.IAuthorController;
+import author.model.game_observables.draggable_sprite.ConcreteDraggableSprite;
 import author.model.game_observables.draggable_sprite.ConcreteMovableSprite;
 import author.model.game_observables.draggable_sprite.DraggableSprite;
 import author.view.util.FileLoader;
@@ -42,10 +43,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private ScrollPane myLevelScroller;
 	private Pane myContainer;
 	private IAuthorController myController;
-	private List<DraggableSprite> spriteList = new ArrayList<>();
 
-	public LevelWindow(IAuthorController authorController, Level aLevel) {
-		super(authorController, aLevel);
+	public LevelWindow(IAuthorController authorController) {
+		super(authorController);
 		myController = authorController;
 		createLevelScroller();
 	}
@@ -53,7 +53,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	@Override
 	public <T extends Node> void addChildren(T... child) {
 		for (T node : child) {
-			container.getChildren().add(node);
+			myContainer.getChildren().add(node);
 		}
 	}
 
@@ -145,13 +145,13 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
 		
-		container.setBackground(new Background(backIm));
-		container.setMinSize(image.getWidth(), image.getHeight());
+		myContainer.setBackground(new Background(backIm));
+		myContainer.setMinSize(image.getWidth(), image.getHeight());
 	}
 	
 	@Override
-	public void SetLevel(Level aLevel){
-		super.SetLevel(aLevel);
+	public void setLevel(Level aLevel){
+		super.setLevel(aLevel);
 		updatePane();
 		getLevel().addListener((level) -> {
 			updatePane();
@@ -161,10 +161,10 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	}
 	
 	private void updatePane(){
-		this.container.getChildren().clear();
+		myContainer.getChildren().clear();
 		getLevel().getMySpriteList().forEach((sprite) -> {
-			DraggableSprite draggableSprite = new ConcreteDraggableSprite(sprite);
-			this.container.getChildren().add(draggableSprite.getImageView());
+			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
+			myContainer.getChildren().add(draggableSprite.getImageView());
 		});
 	}
 	

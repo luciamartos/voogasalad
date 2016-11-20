@@ -95,7 +95,7 @@ public class AuthorView {
 	
 	private void addLevel(Level createdLevel){
 		this.authorController.getModel().getGame().addNewLevel(createdLevel);
-		this.myLevelEditor.getMyLevelWindow().SetLevel(createdLevel);
+		this.myLevelEditor.getMyLevelWindow().setLevel(createdLevel);
 	}
 
 	public Scene getScene() {

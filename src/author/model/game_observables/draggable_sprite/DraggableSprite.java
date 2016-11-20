@@ -69,6 +69,7 @@ public abstract class DraggableSprite {
 			db.setContent(content);
 			db.setDragView(new Image(mySprite.getMyImagePath(), DRAG_IMAGE_WIDTH, DRAG_IMAGE_HEIGHT, false, false));
 			event.consume();
+		});
 
 		myImageView.setOnDragDone(e -> {
 			// TODO: Jordan(vooga) - drag - Do not remove from pane. Clone and add to level editor pane. 
@@ -86,5 +87,10 @@ public abstract class DraggableSprite {
 
 	public ImageView getImageView() {
 		return myImageView;
+	}
+	
+	public void setImageView(ImageView imageView) {
+		this.myImageView = imageView;
+		makeDraggable();
 	}
 }

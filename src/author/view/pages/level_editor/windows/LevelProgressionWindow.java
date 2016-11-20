@@ -50,8 +50,8 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		progressionScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
 
 		progressionScroller.setContent(container);
-		super.getWindow().setMaxHeight(100);
-		super.getWindow().setMinHeight(100);
+		super.getWindow().setMaxHeight(150);
+		super.getWindow().setMinHeight(150);
 		
 		super.getWindow().getChildren().add(tbb.getToolBar());
 		super.getWindow().getChildren().add(progressionScroller);
@@ -65,7 +65,7 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		authorController.getModel().getGame().addListener((game) -> {
 			this.container.getChildren().clear();
 			authorController.getModel().getGame().getLevels().forEach((level) -> {
-				ImageView imageView = getImageView(level.getBackgroundImageFilePath(), progressionScroller.widthProperty(), progressionScroller.heightProperty());
+				ImageView imageView = getImageView(level.getBackgroundImageFilePath(), progressionScroller.prefWidthProperty(), progressionScroller.prefHeightProperty());
 				this.container.getChildren().add(imageView);
 			});
 		});		
