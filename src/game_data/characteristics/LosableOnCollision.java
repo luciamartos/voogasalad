@@ -1,16 +1,25 @@
 package game_data.characteristics;
 
-public class LosableOnCollision extends Losable implements Characteristic{
+import java.util.Map;
 
-	@Override
-	public boolean toAct() {
-		//if collision return true, want to subtract health and see if that is less than 0?
-		return false;
-	}
+import game_data.Sprite;
+import javafx.geometry.Side;
+
+public class LosableOnCollision extends Losable implements Characteristic{
 
 	@Override
 	public Characteristic copy() {
 		return new LosableOnCollision();
+	}
+
+	@Override
+	public void execute(Map<Sprite, Side> myCollisionMap) {
+		//TODO: make and execute action
+		for(Sprite collidedSprite:myCollisionMap.keySet()){
+			//myAction = new Losable();
+			//myAction.act();
+		}
+		
 	}
 	
 

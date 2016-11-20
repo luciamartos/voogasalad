@@ -1,6 +1,9 @@
 package game_data.characteristics;
 
+import java.util.Map;
+
 import game_data.Sprite;
+import javafx.geometry.Side;
 
 public class PacerAlternative implements Characteristic{
 
@@ -40,16 +43,19 @@ public class PacerAlternative implements Characteristic{
 		double currentXLocation = mySprite.getMyLocation().getXLocation();
 		return currentXLocation<=originalYPosition || currentXLocation>= (originalXPosition+myDistance);			
 	}
-	
-	@Override
-	public boolean toAct() {
-		return true;
-	}
-	
 
 	@Override
 	public Characteristic copy() {
 		return new PacerAlternative(myType, myDistance, mySprite.clone());
+	}
+
+	@Override
+	public void execute(Map<Sprite, Side> myCollisionMap) {
+		//TODO: make and execute action
+		for(Sprite collidedSprite:myCollisionMap.keySet()){
+			//myAction = new ProjectilePowerUp();
+			//myAction.act();
+		}
 	}
 
 }
