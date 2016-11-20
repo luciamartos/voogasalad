@@ -19,17 +19,13 @@ public abstract class Sprite {
 	private double myVelocity;
 	private CollisionHandler myCollisionHandler;
 	private Set<Characteristic> myCharacteristics;
-	private double myWidth;
-	private double myHeight;
-	
-	public Sprite(Location aLocation, String aImagePath, double width, double height){
+
+	public Sprite(Location aLocation, String aImagePath){
 		myLocation = aLocation;
 		myImagePath = aImagePath;
 		myVelocity = 0;
 		myCollisionHandler = null;
 		myCharacteristics = new HashSet<Characteristic>();
-		myWidth = width;
-		myHeight = height;
 	}
 	
 	//for copying sprites
@@ -90,20 +86,5 @@ public abstract class Sprite {
 	public SpritePhysics getSpritePhysics() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	public double getMyWidth() {
-		return myWidth;
-	}
-
-	public void setMyWidth(double myWidth) {
-		this.myWidth = myWidth;
-	}
-
-	public double getMyHeight() {
-		return myHeight;
-	}
-
-	public void setMyHeight(double myHeight) {
-		this.myHeight = myHeight;
 	}
 }

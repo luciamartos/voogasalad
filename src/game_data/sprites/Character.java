@@ -6,8 +6,8 @@ import game_data.Sprite;
 public class Character extends Sprite {
 	private int myHealth;
 	private boolean myIsAlive;
-	public Character(Location aLocation, String aImagePath, int aHealth, double width, double height) {
-		super(aLocation, aImagePath, width, height);
+	public Character(Location aLocation, String aImagePath, int aHealth) {
+		super(aLocation, aImagePath);
 		myIsAlive=true;
 	}
 
