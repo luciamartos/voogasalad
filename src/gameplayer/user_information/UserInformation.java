@@ -1,35 +1,48 @@
 package gameplayer.user_information;
 
-import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
-import com.thoughtworks.xstream.XStream;
+import game_data.XMLSaver;
 
-public class UserInformation implements Serializable {
+public class UserInformation implements IViewableUserInformation {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private String myCurrentUser;
+	private String myCurrentPassword;
+	private Map<String, String> myUserInformation;
+	private XMLSaver myXMLSaver;
 	
-	private Map<String, String> myInformation; 
-
-	public UserInformation(XStream aSerializer) {
-		UserInformation information = (UserInformation) aSerializer.fromXML("");
-		//init(information.map);
+	public UserInformation() {
+		//deserializeTheXmlAndMakeMap();
+		myUserInformation = new HashMap<String, String>();
+		myXMLSaver = new XMLSaver();
 	}
 	
-	private void init(Map<String, String> aMap) {
-		myInformation = aMap;
+	public void isValid(String aUserName, String aPassword) {
+		//if (!myUserInformation.getUserNames().contains(myCurrentUser)) {
+			//throw new UserIDException("XYZ is not a valid username");
+		//} else {
+		// myCurrentUser = aUserName;
+		// myCurrentPassword = aPassword;
+	//}
+	}
+	
+	public void saveToXML(String aUserName, String aPassword) {
+		//isValid("XYZ already exists");
+		//save to XML
+		myXMLSaver.serialize(myUserInformation);
+		
 	}
 	
 	public Collection<String> getUserNames() {
-		return myInformation.keySet();
+		return myUserInformation.keySet();
 	}
 	
 	public String getPassword(String aUserName) {
-		return myInformation.get(aUserName);
+		return myUserInformation.get(aUserName);
 	}
+
+
 
 }

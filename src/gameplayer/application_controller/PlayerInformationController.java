@@ -3,7 +3,7 @@ package gameplayer.application_controller;
 import gameplayer.game_display_information.GameDisplayInformation;
 import gameplayer.game_display_information.IViewableGameDisplayInformation;
 import gameplayer.user_information.IViewableUserInformation;
-import gameplayer.user_information.UserInformationController;
+import gameplayer.user_information.UserInformation;
 
 public class PlayerInformationController {
 	
@@ -11,7 +11,7 @@ public class PlayerInformationController {
 	private IViewableGameDisplayInformation myGameDisplayInformation;
 	
 	public PlayerInformationController() {
-		myUserInformation = (IViewableUserInformation) new UserInformationController();
+		myUserInformation = (IViewableUserInformation) new UserInformation();
 		myGameDisplayInformation = (IViewableGameDisplayInformation) new GameDisplayInformation();
 	}
 	

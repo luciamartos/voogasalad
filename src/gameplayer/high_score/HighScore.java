@@ -12,9 +12,9 @@ public class HighScore implements Serializable {
 	private String myCurrentUser;
 	private Map<String, String> myHighScoresPerGame;
 	
-	public HighScore(XStream aSerializer, String aUserName) {
+	public HighScore(String aUserName) {
 		myCurrentUser = aUserName;
-		HighScore information = (HighScore) aSerializer.fromXML("");
+		//HighScore information = (HighScore) aSerializer.fromXML("");
 		//init(information.map);
 	}
 	
