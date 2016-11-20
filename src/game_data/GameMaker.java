@@ -1,5 +1,7 @@
 package game_data;
 
+import game_data.characteristics.Characteristic;
+
 public class GameMaker {
 
 	private Game myActiveGame;

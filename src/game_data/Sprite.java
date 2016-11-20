@@ -3,6 +3,9 @@ package game_data;
 import java.util.HashSet;
 import java.util.Set;
 
+import game_data.characteristics.Characteristic;
+import game_engine.SpritePhysics;
+
 /**
  * Represents any viewable object in a Level including
  * characters, items, terrains, projectiles, etc.
@@ -13,7 +16,7 @@ public abstract class Sprite {
 	
 	private Location myLocation;
 	private String myImagePath;
-	private int myVelocity;
+	private double myVelocity;
 	private CollisionHandler myCollisionHandler;
 	private Set<Characteristic> myCharacteristics;
 	
@@ -64,10 +67,10 @@ public abstract class Sprite {
 	public void setMyLocation(Location myLocation) {
 		this.myLocation = myLocation;
 	}
-	public int getMyVelocity() {
+	public double getMyVelocity() {
 		return myVelocity;
 	}
-	public void setMyVelocity(int myVelocity) {
+	public void setMyVelocity(double myVelocity) {
 		this.myVelocity = myVelocity;
 	}
 	public String getMyImagePath() {
@@ -81,5 +84,10 @@ public abstract class Sprite {
 	}
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
+	}
+
+	public SpritePhysics getSpritePhysics() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
