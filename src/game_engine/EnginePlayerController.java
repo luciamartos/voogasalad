@@ -34,7 +34,7 @@ public class EnginePlayerController {
 		mySpriteIsAliveList=null;
 		mySpriteImages = new HashMap<Sprite, ImageView>();
 	}
-	public EnginePlayerController(Level aLevel) {
+	public EnginePlayerController(Level aLevel){
 		myLevel=aLevel;
 		mySpriteList=myLevel.getMySpriteList();
 		myBackgroundImageFilePath=myLevel.getBackgroundImageFilePath();
