@@ -9,8 +9,8 @@ import game_data.Sprite;
  */
 public class Item extends Sprite{
 
-	public Item(Location aLocation, String aImagePath) {
-		super(aLocation, aImagePath);
+	public Item(Location aLocation, String aImagePath, double width, double height) {
+		super(aLocation, aImagePath, width, height);
 	}
 	
 	public Item(Item aItem){

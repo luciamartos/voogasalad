@@ -11,6 +11,7 @@ import java.util.Set;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
+import game_data.sprites.WinningObject;
 import game_engine.actions.Action;
 import game_engine.actions.Jump;
 import game_engine.actions.MoveLeft;
@@ -53,15 +54,15 @@ public class UpdateStates {
 		executeCharacteristics();
 		runKeyCalls();
 		updateSpritePositions();
-		checkForWin();
-		checkForLoss();
+		//checkForWin();
+		//checkForLoss();
 	}
 
 	//keys will only control the main player rn
 	private void generateDefaultKeyMap() {
-		myKeyMap.put(KeyCode.RIGHT, new MoveRight(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getResource()));
-		myKeyMap.put(KeyCode.LEFT, new MoveLeft(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getResource()));
-		myKeyMap.put(KeyCode.UP, new Jump(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.JUMP_SPEED.getResource()));		
+		myKeyMap.put(KeyCode.RIGHT, new MoveRight(enginePlayerController.getMyLevel().getMainPlayer(), Double.parseDouble(GameResources.MOVE_RIGHT_SPEED.getResource())));
+		myKeyMap.put(KeyCode.LEFT, new MoveLeft(enginePlayerController.getMyLevel().getMainPlayer(), Double.parseDouble(GameResources.MOVE_LEFT_SPEED.getResource())));
+		myKeyMap.put(KeyCode.UP, new Jump(enginePlayerController.getMyLevel().getMainPlayer(), Double.parseDouble(GameResources.JUMP_SPEED.getResource())));		
 	}
 
 
@@ -83,7 +84,12 @@ public class UpdateStates {
 	}
 
 	// not the best design in the world but works for the time being
-	private void checkForWin() {
+	
+	/**
+	 * Checking for win should just happen naturally while checking collisions (i.e. once something collides
+	 * with winning object)
+	 */
+	/*private void checkForWin() {
 		Set<String> type = enginePlayerController.getMyLevel().getWinType();
 		if(type.contains("time")&& enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
 			System.out.print("YOU WIN");
@@ -96,9 +102,19 @@ public class UpdateStates {
 		if(type.contains("object") && enginePlayerController.getMyLevel().getWinningSprite().getBoundsInLocal().interects(enginePlayerController.getMyLevel().getMainPlayerSprite())){
 			System.out.println("YOU WIN");
 		}
-	}
+	}*/
 	
-	private void checkForLoss() {
+	/*private void checkForWin(Sprite aSprite){
+		if(aSprite instanceof WinningObject){
+			System.out.println("Do win action???");
+			//Do somethin?
+		}
+	}*/
+	
+	/**
+	 * Checking for loss also should happen naturally (or just have to check if the players health characteristic has health<0)
+	 */
+	/*private void checkForLoss() {
 		Set<String> type = enginePlayerController.getMyLevel().getLossType();
 		Sprite mainPlayer = enginePlayerController.getMainPlayer();
 		if(type.contains("object")){
@@ -109,7 +125,7 @@ public class UpdateStates {
 				}
 			}
 		}
-	}
+	}*/
 
 	private void updateSpritePositions() {
 		for(Sprite sprite:mySpriteList){

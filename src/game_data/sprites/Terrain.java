@@ -8,8 +8,8 @@ import game_data.Sprite;
  */
 public class Terrain extends Sprite{
 
-	public Terrain(Location aLocation, String aImagePath) {
-		super(aLocation, aImagePath);
+	public Terrain(Location aLocation, String aImagePath, double width, double height) {
+		super(aLocation, aImagePath, width, height);
 	}
 	
 	public Terrain(Terrain aTerrain){
