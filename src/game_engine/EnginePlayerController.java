@@ -1,10 +1,13 @@
 package game_engine;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import game_data.Sprite;
 import game_data.Level;
 import game_data.Location;
 import game_data.sprites.Character;
+import javafx.scene.image.ImageView;
 public class EnginePlayerController {
 	private Level myLevel;
 	private int myWidth, myHeight;
@@ -16,6 +19,7 @@ public class EnginePlayerController {
 	private List<String> mySpriteImagePathList;
 	private List<Integer> mySpriteHealthList;
 	private List<Boolean> mySpriteIsAliveList;
+	private Map<Sprite, ImageView> mySpriteImages;
 	public EnginePlayerController(){
 		myLevel=null;
 		mySpriteList=null;
@@ -28,6 +32,7 @@ public class EnginePlayerController {
 		mySpriteImagePathList=null;
 		mySpriteHealthList=null;
 		mySpriteIsAliveList=null;
+		mySpriteImages = new HashMap<Sprite, ImageView>();
 	}
 	public EnginePlayerController(Level aLevel) {
 		myLevel=aLevel;
@@ -95,4 +100,10 @@ public class EnginePlayerController {
 	public List<Boolean> getMySpriteIsAliveList() {
 		return mySpriteIsAliveList;
 	} 
+	public void addImageView(Sprite aSprite, ImageView aImageView){
+		mySpriteImages.put(aSprite, aImageView);
+	}
+	public ImageView getImageView(Sprite aSprite){
+		return mySpriteImages.get(aSprite);
+	}
 }
