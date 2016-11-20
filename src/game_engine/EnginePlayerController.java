@@ -8,6 +8,8 @@ import game_data.Level;
 import game_data.Location;
 import game_data.sprites.Character;
 import javafx.scene.image.ImageView;
+import states.Health;
+import states.State;
 public class EnginePlayerController {
 	private Level myLevel;
 	private int myWidth, myHeight;
@@ -58,8 +60,12 @@ public class EnginePlayerController {
 			mySpriteYCoordinateList.set(i, location.getYLocation());
 			mySpriteHeadingList.set(i, location.getMyHeading());
 			if(sprite instanceof Character){
-				mySpriteHealthList.set(i, ((Character) sprite).getMyHealth());
-				mySpriteIsAliveList.set(i, ((Character) sprite).isAlive());
+				for(State myState:((Character) sprite).getStates()){
+					if(myState instanceof Health){
+						mySpriteHealthList.set(i, ((Health) myState).getMyHealth());
+						mySpriteIsAliveList.set(i, ((Health) sprite).isAlive());
+					}
+				}
 			}
 			else{
 				mySpriteHealthList.set(i, null);

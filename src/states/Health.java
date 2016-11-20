@@ -3,13 +3,11 @@ package states;
 public class Health implements State{
 
 	private int myHealth;
-	private String myName;
 	private boolean isAlive;
 	
-	public Health(int health, String name){
+	public Health(int health){
 		myHealth = health;
 		isAlive = true;
-		myName = name;
 	}
 	
 	public boolean isAlive(){
@@ -18,7 +16,7 @@ public class Health implements State{
 	
 	@Override
 	public State copy() {
-		return new Health(myHealth, myName);
+		return new Health(myHealth);
 	}
 	
 	public void kill(){
@@ -26,8 +24,13 @@ public class Health implements State{
 	}
 
 	@Override
-	public void updateState() {
-		myHealth--;
+	public void updateState(int pain) {
+		myHealth-=pain;
 	}
+	
+	public int getMyHealth() {
+		return myHealth;
+	}
+
 	
 }
