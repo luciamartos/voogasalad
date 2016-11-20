@@ -53,8 +53,6 @@ public class UpdateStates {
 		executeCharacteristics();
 		runKeyCalls();
 		updateSpritePositions();
-		//checkForWin();
-		//checkForLoss();
 	}
 
 	//keys will only control the main player rn
@@ -75,9 +73,13 @@ public class UpdateStates {
 
 	private void executeCharacteristics() {
 		for(Sprite mySprite:mySpriteList){
+			
+			ListOfCollidingSprites collidingSprites = new ListOfCollidingSprites(mySprite, mySpriteList, enginePlayerController);
+			Map<Sprite, Side> myCollisionMap = collidingSprites.getCollisionSpriteMap();
+			
 			Set<Characteristic> characteristics = mySprite.getCharacteristics();
-			for(Characteristic myCharacteristic:characteristics){
-				myCharacteristic.toAct();
+			for(Characteristic myCharacteristic:characteristics){	
+				myCharacteristic.execute(myCollisionMap);
 			}
 		}
 	}
