@@ -53,7 +53,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	@Override
 	public <T extends Node> void addChildren(T... child) {
 		for (T node : child) {
-			myContainer.getChildren().add(node);
+			container.getChildren().add(node);
 		}
 	}
 
@@ -91,7 +91,6 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		myLevelScroller.setContent(myContainer);
 
 		super.getWindow().getChildren().add(myLevelScroller);
-
 	}
 
 	private void acceptDraggableSprites() {
@@ -145,10 +144,30 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
-
-		myContainer.setBackground(new Background(backIm));
-		myContainer.setMinSize(image.getWidth(), image.getHeight());
+		
+		container.setBackground(new Background(backIm));
+		container.setMinSize(image.getWidth(), image.getHeight());
 	}
+	
+	@Override
+	public void SetLevel(Level aLevel){
+		super.SetLevel(aLevel);
+		updatePane();
+		getLevel().addListener((level) -> {
+			updatePane();
+			System.out.println("Updated");
+		});
+		
+	}
+	
+	private void updatePane(){
+		this.container.getChildren().clear();
+		getLevel().getMySpriteList().forEach((sprite) -> {
+			DraggableSprite draggableSprite = new ConcreteDraggableSprite(sprite);
+			this.container.getChildren().add(draggableSprite.getImageView());
+		});
+	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -157,9 +176,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	 * initListener(author.controller.IAuthorController, game_data.Level)
 	 */
 	@Override
-	protected void initListener(IAuthorController authorController, Level aLevel) {
-		// TODO Auto-generated method stub
-
+	protected void initListener(IAuthorController authorController) {
+			
 	}
 
 }

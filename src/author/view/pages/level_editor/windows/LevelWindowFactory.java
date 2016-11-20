@@ -4,7 +4,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import author.controller.IAuthorController;
-import game_data.Level;
 import javafx.application.Platform;
 
 public class LevelWindowFactory {
@@ -15,9 +14,9 @@ public class LevelWindowFactory {
 
 	}
 
-	public AbstractLevelEditorWindow create(String name, IAuthorController authorController, Level level) {
-		Class c = null;
-		Constructor constructor = null;
+	public AbstractLevelEditorWindow create(String name, IAuthorController authorController) {
+		Class<?> c = null;
+		Constructor<?> constructor = null;
  		try {
 			c = Class.forName(WINDOWS_PATH + name);
 			constructor = c.getConstructors()[0];
@@ -27,7 +26,7 @@ public class LevelWindowFactory {
 		}
 		AbstractLevelEditorWindow window = null;
 		try {
-			window = (AbstractLevelEditorWindow) constructor.newInstance(new Object[] {authorController, level});
+			window = (AbstractLevelEditorWindow) constructor.newInstance(new Object[] {authorController});
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 			Platform.exit();

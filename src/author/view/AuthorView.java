@@ -11,7 +11,6 @@ import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Pane;
@@ -21,28 +20,28 @@ import javafx.scene.paint.Color;
 /**
  * AuthorView handles the JavaFX GUI.
  * 
- * @author George Bernard
+ * @author George Bernard, Cleveland Thompson
  */
 public class AuthorView {
 
 	Scene myScene;
-	Pane myPane;
+	Pane myPane = new VBox();
 	TabPaneFacade myTabPaneFacade;
 	IAuthorController authorController;
 
 	private LevelEditor myLevelEditor;
-	private SpritesPage mySpritesPage;
+	private SpritesPage mySpritesPage = new SpritesPage();
 
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
-	public static final String BACKGROUND_IMAGE_PATH = "author/images/mymario.jpg";
+	public static final String SPRITE_IMAGE_PATH = "author/images/mymario.jpg";
+	public static final String BACKGROUND_IMAGE_PATH = "author/images/mario.jpg";
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
-		myPane = new VBox();
+		this.myLevelEditor = new LevelEditor(authorController);
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
-		mySpritesPage = new SpritesPage();
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
 	}
 
@@ -60,11 +59,12 @@ public class AuthorView {
 		menuNew.getItems().addAll(new MenuFactory().createItem("New Game", e -> {
 			// TODO: Jordan(vooga) - create new game
 		}).getItem(), new MenuFactory().createItem("New Level", e -> {
-			Level createdLevel =new Level(WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			Level createdLevel =new Level("Level 1", WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			addLevel(createdLevel);
 			System.out.println("Create new level");
 			//testing
-			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), BACKGROUND_IMAGE_PATH, 5));
+			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
+			createdLevel.addNewSprite(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
@@ -87,14 +87,15 @@ public class AuthorView {
 		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
 		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
 		
+		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
+		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
+		
 		return myTabPaneFacade.getTabPane();
 	}
 	
 	private void addLevel(Level createdLevel){
 		this.authorController.getModel().getGame().addNewLevel(createdLevel);
-		this.myLevelEditor = new LevelEditor(this.authorController, createdLevel);
-		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
-		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
+		this.myLevelEditor.getMyLevelWindow().SetLevel(createdLevel);
 	}
 
 	public Scene getScene() {
