@@ -2,95 +2,121 @@ package game_engine;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import game_data.Location;
 import game_data.Sprite;
+import game_data.characteristics.Characteristic;
+import game_engine.actions.Action;
+import game_engine.actions.Jump;
+import game_engine.actions.MoveLeft;
+import game_engine.actions.MoveRight;
+import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
 
 /**
+ * TODO make sure that player doesnt run into walls or thigns 
+ * NOTE: doing the runKeyCalls and then updating sprite posistions separately might lead to an issue with glitches
+ * CHECK: CALCULATING HEARDING FROM THE VERTICAL (NOON) CHECK CORRECT CALC FOR VEL
+ * QUESTION who is going to keep track of the time of the game? how are we going to provoke a win? through interface?
+ * TODO give myLevel all the properties I want.
+ * TODO sprite needs to give me to image view.
+ * CLARIFY: does the x and y loc represent the middle or the left top corner or what?
+ * There are some things that I dont know if I should be getting from level class of the engine itself
+ * Losses should actually probably be integrated within characteristics so we dont check for collision repeatedly.
+ * Do we have to deal with if the sprite hits a block at multiple sides?
  * 
  * @author LuciaMartos
  *
  */
+
 public class UpdateStates {
 
 	private EnginePlayerController enginePlayerController;
 	private List<Sprite> mySpriteList;
 	private double timeElapsed;
 	private KeyCode myKey;
+	private Map<KeyCode, Action> myKeyMap;
+	private Set<KeyCode> myKeys;
 	
-	public UpdateStates(EnginePlayerController enginePlayerController, double timeElapsed, KeyCode myKey) {
+	public UpdateStates(EnginePlayerController enginePlayerController, double timeElapsed, Set<KeyCode> myKeys) {
 		this.enginePlayerController = enginePlayerController;
 		this.mySpriteList = enginePlayerController.getMySpriteList();
 		this.timeElapsed = timeElapsed;
-		this.myKey = myKey;
+		this.myKeys = myKeys;
 		
-		updateSprites();
-		checkCollisions();
-		checkWinOrLoss();
+		generateDefaultKeyMap();
+		executeCharacteristics();
+		runKeyCalls();
+		updateSpritePositions();
+		checkForWin();
+		checkForLoss();
 	}
 
-	private void checkWinOrLoss() {
-		// TODO Auto-generated method stub
-		// need someway of getting from game data what the winning condition of the game is
-		
-		
+	//keys will only control the main player rn
+	private void generateDefaultKeyMap() {
+		myKeyMap.put(KeyCode.RIGHT, new MoveRight(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getResource()));
+		myKeyMap.put(KeyCode.LEFT, new MoveLeft(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getResource()));
+		myKeyMap.put(KeyCode.UP, new Jump(enginePlayerController.getMyLevel().getMainPlayer(), GameResources.JUMP_SPEED.getResource()));		
 	}
 
-	private void checkCollisions() {
-		for(Sprite spriteOne:mySpriteList){
-			//REVISE THIS RECTANGLE THING
-			Rectangle2D r1 = new Rectangle2D.Double(spriteOne.getMyLocation().getXLocation(), spriteOne.getMyLocation().getYLocation(), spriteOne.getWidth(), spriteOne.getHeight());
-			Rectangle2D r2 = new Rectangle2D.Double(spriteOne.getMyLocation().getXLocation(), 0, spriteOne.getWidth(), spriteOne.getHeight());
-			for(Sprite spriteTwo:mySpriteList){
-					//check for collision (dont check a sprite with itself)
-					if(spriteOne!=spriteTwo && spriteOne.getImageView().getBoundsInLocal().interects(spriteTwo.getImageView().getBoundsInLocal())){
-						//find the side in which it collided
-					    findSideOfCollition(r1, r2, spriteTwo);
-					}
+
+	private void runKeyCalls() {
+		for(KeyCode myKey: myKeys){
+			if(myKeyMap.containsKey(myKey)){
+				myKeyMap.get(myKey).act();
+			}
+		}	
+	}
+
+	private void executeCharacteristics() {
+		for(Sprite mySprite:mySpriteList){
+			Set<Characteristic> characteristics = mySprite.getCharacteristics();
+			for(Characteristic myCharacteristic:characteristics){
+				myCharacteristic.toAct();
 			}
 		}
 	}
 
-	private void findSideOfCollition(Rectangle2D r1, Rectangle2D r2, Sprite spriteTwo) {
-		Point2D upperLeft = new Point2D.Double(spriteTwo.getMyLocation().getXLocation(), spriteTwo.getMyLocation().getYLocation());
-		Point2D upperRight = new Point2D.Double(r1.getX() + r1.getWidth(),
-		        r1.getY());
-		Point2D lowerLeft = new Point2D.Double(r1.getX(), r1.getY()
-		        + r1.getHeight());
-		Point2D lowerRight = new Point2D.Double(r1.getX() + r1.getWidth(),
-		        r1.getY() + r1.getHeight());
-
-		if (r2.contains(upperRight)){
-		    System.out.println("UpperRight hit");
-		    //Do stuff
-		}
-
-		if (r2.contains(lowerRight)) {
-		    System.out.println("lowerRight hit");
-		    // Do stuff
-		}
-
-		if (r2.contains(lowerLeft)) {
-		    System.out.println("LowerLeft hit");
-		    // Do stuff
-		}
-
-		if (r2.contains(upperLeft)) {
-		    System.out.println("UpperLeft hit");
-		    // Do stuff
-		}
-	}
-
-	private void updateSprites() {
-		for(Sprite sprite:mySpriteList){
-			updateSpritePosition(sprite);
+	// not the best design in the world but works for the time being
+	private void checkForWin() {
+		Set<String> type = enginePlayerController.getMyLevel().getWinType();
+		if(type.contains("time")&& enginePlayerController.getMyLevel().getTime() > enginePlayerController.getMyLevel().getTimeToWin()){
+			System.out.print("YOU WIN");
 		}
 		
+		if(type.contains("score") && enginePlayerController.getMyLevel().getMainPlayerSprite().getPoints() > enginePlaterController.getMyLevel().getPointsToWin()){
+			System.out.println("YOU WIN");
+		}
+		
+		if(type.contains("object") && enginePlayerController.getMyLevel().getWinningSprite().getBoundsInLocal().interects(enginePlayerController.getMyLevel().getMainPlayerSprite())){
+			System.out.println("YOU WIN");
+		}
+	}
+	
+	private void checkForLoss() {
+		Set<String> type = enginePlayerController.getMyLevel().getLossType();
+		Sprite mainPlayer = enginePlayerController.getMainPlayer();
+		if(type.contains("object")){
+			List<Sprite> deathProvokingObj = enginePlayerController.getMyOjbectSpriteList();
+			for(Sprite myObj : deathProvokingObj){
+				if(myObj.getImageView().getBoundsInLocal().interects(mainPlayer.getImageView().getBoundsInLocal())){
+					System.out.println("DEATH");
+				}
+			}
+		}
 	}
 
-	//TODO be revised. how is the new heading calculated!? and 
+	private void updateSpritePositions() {
+		for(Sprite sprite:mySpriteList){
+			updateSpritePosition(sprite);
+		}	
+	}
+
 	private void updateSpritePosition(Sprite sprite){
 		SpritePhysics spritePhysics = sprite.getSpritePhysics();
 		Location myCurrentLocation = sprite.getMyLocation();
@@ -99,36 +125,20 @@ public class UpdateStates {
 		
 		//get initial x velocity component and acceleration 
 		double xVelocity = sprite.getMyVelocity()*Math.cos(myCurrentLocation.getMyHeading());
-		double xAcceleration =GameResources.DEFAULT_HORIZONTAL_GRAVITY.getDoubleResource();
+		double newXVelocity = xVelocity + spritePhysics.getVerticalGravity()*timeElapsed;
 		
 		//get initial y velocity component and acceleration
-		double yVelocity = sprite.getMyVelocity()*Math.sin(myCurrentLocation.getMyHeading());
-		double yAcceleration = GameResources.DEFAULT_VERTICAL_GRAVITY.getDoubleResource();
-	
+		double yVelocity = sprite.getMyVelocity()*Math.sin(myCurrentLocation.getMyHeading()*timeElapsed);
+		double newYVelocity = yVelocity + spritePhysics.getHorizontalGravity();	
 		
-		// if a key is pressed add its corresponding acceleration and velocity
-		if(KeyCode.RIGHT == myKey){
-			xVelocity = xVelocity + spritePhysics.getInitRightVelocity();
-			xAcceleration = xAcceleration + spritePhysics.getRightAcceleration();
-		}
-		if(KeyCode.LEFT == myKey){
-			xVelocity = xVelocity + spritePhysics.getInitLeftVelocity();
-			xAcceleration = xAcceleration + spritePhysics.getLeftAcceleration();
-		}
-		if(KeyCode.UP == myKey){
-			yVelocity = yVelocity + spritePhysics.getInitUpVelocity();
-			yAcceleration = yAcceleration + spritePhysics.getUpAcceleration();
-		}
-		if(KeyCode.DOWN == myKey){
-			yVelocity = yVelocity + spritePhysics.getInitDownVelocity();
-			yAcceleration = yAcceleration + spritePhysics.getDownAcceleration();
-		}
+		sprite.setMyVelocity(Math.sqrt(Math.pow(newXVelocity, 2) + Math.pow(newYVelocity, 2)));
 		
 		// calculate the new x and y locations
-		double myXLocation = curXLoc + xVelocity*timeElapsed + 0.5*xAcceleration*Math.pow(timeElapsed,2);
-		double myYLocation = curYLoc + yVelocity*timeElapsed + 0.5*yAcceleration*Math.pow(timeElapsed, 2);
+		double myXLocation = curXLoc + newXVelocity*timeElapsed;
+		double myYLocation = curYLoc + newYVelocity*timeElapsed;
 		
-		//update the location of the sprite
+		// update the location of the sprite
+//		Location myNewLocation = new Location(myXLocation, myYLocation, Math.asin(newXVelocity/newYVelocity));
 		Location myNewLocation = new Location(myXLocation, myYLocation, myCurrentLocation.getMyHeading());
 		sprite.setMyLocation(myNewLocation);
 	}
