@@ -15,6 +15,10 @@ public class Health implements Characteristic{
 		return myHealth;
 	}
 	
+	public void setHealth(int newHealth){
+		myHealth=newHealth;
+	}
+	
 	@Override
 	public boolean toAct() {
 		//act upon collision? (should be the only way to lose health)
