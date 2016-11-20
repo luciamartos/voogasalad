@@ -7,14 +7,13 @@ package game_data.characteristics;
 public class Winnable implements Characteristic{
 
 	@Override
-	public boolean toAct() {
-		//if collision return true
-		return true;
+	public Characteristic copy() {
+		return new Winnable();
 	}
 
 	@Override
-	public Characteristic copy() {
-		return new Winnable();
+	public void execute() {
+		// TODO Auto-generated method stub
 	}
 
 }

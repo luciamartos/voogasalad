@@ -9,8 +9,8 @@ public interface Characteristic {
 	 * 
 	 * @author Austin Gartside
 	 */
-	public boolean toAct();
-	
+	//public boolean toAct();
+	public void execute();
 	public Characteristic copy();
 
 }
