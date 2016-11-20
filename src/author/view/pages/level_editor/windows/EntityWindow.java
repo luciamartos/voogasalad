@@ -1,11 +1,13 @@
 package author.view.pages.level_editor.windows;
 
 import author.controller.IAuthorController;
+import author.model.game_observables.draggable_sprite.ConcreteDraggableSprite;
+import author.model.game_observables.draggable_sprite.DraggableSprite;
 import author.view.util.ToolBarBuilder;
+import game_data.Level;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import game_data.Level;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -19,8 +21,8 @@ import javafx.scene.layout.VBox;
 public class EntityWindow extends AbstractLevelEditorWindow {
 		
 	private ScrollPane entityScroller;
-	
 	private VBox entityList = new VBox();
+	
 	public EntityWindow(IAuthorController authorController, Level aLevel) {
 		super(authorController, aLevel);
 		addChildren(createScroller());
@@ -53,8 +55,8 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 		authorController.getModel().getGame().addListener((game) -> {
 			this.entityList.getChildren().clear();
 			authorController.getModel().getGame().getPresets().forEach((sprite) -> {
-				Image image = new Image(sprite.getMyImagePath(), 50, 50, true, false);
-				this.entityList.getChildren().add(new ImageView(image));
+				DraggableSprite spr = new ConcreteDraggableSprite(sprite);
+				this.entityList.getChildren().add(spr.getImageView());
 			});
 		});
 	}
