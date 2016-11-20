@@ -15,6 +15,7 @@ import javafx.beans.Observable;
  */
 abstract class GameObject implements Observable{
 	private Collection<InvalidationListener> invalidationListeners = new HashSet<>();
+	private String name;
 
 	/* (non-Javadoc)
 	 * @see javafx.beans.Observable#addListener(javafx.beans.InvalidationListener)
@@ -34,6 +35,15 @@ abstract class GameObject implements Observable{
 	
 	protected void notifyListeners(){
 		this.invalidationListeners.forEach((listener) -> listener.invalidated(this));
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String aName){
+		this.name = aName;
+		notifyListeners();
 	}
 
 }

@@ -23,9 +23,8 @@ public class LevelEditor {
 	private IAuthorController authorController;
 	private Level level;
 
-	public LevelEditor(IAuthorController authorController, Level aLevel) {
+	public LevelEditor(IAuthorController authorController) {
 		this.authorController = authorController;
-		this.level = aLevel;
 		myPane = new BorderPane();
 		myPane.setCenter(buildLevelWindow());
 		myPane.setRight(buildEntityWindow());
@@ -34,22 +33,22 @@ public class LevelEditor {
 	}
 
 	private Pane buildLevelWindow() {
-		myLevelWindow = new LevelWindowFactory().create("LevelWindow", this.authorController, this.level);
+		myLevelWindow = new LevelWindowFactory().create("LevelWindow", this.authorController);
 		return myLevelWindow.getWindow();
 	}
 
 	private Pane buildEntityWindow() {
-		myEntityWindow = new LevelWindowFactory().create("EntityWindow", this.authorController, this.level);
+		myEntityWindow = new LevelWindowFactory().create("EntityWindow", this.authorController);
 		return myEntityWindow.getWindow();
 	}
 
 	private Pane buildLevelProgressionWindow() {
-		myProgressionWindow = new LevelWindowFactory().create("LevelProgressionWindow", this.authorController, this.level);
+		myProgressionWindow = new LevelWindowFactory().create("LevelProgressionWindow", this.authorController);
 		return myProgressionWindow.getWindow();
 	}
 
 	private Pane buildLevelSelectionWindow() {
-		mySelectionWindow = new LevelWindowFactory().create("LevelSelectionWindow", this.authorController, this.level);
+		mySelectionWindow = new LevelWindowFactory().create("LevelSelectionWindow", this.authorController);
 		return mySelectionWindow.getWindow();
 	}
 

@@ -5,14 +5,18 @@ import java.io.File;
 import author.view.util.FileLoader;
 import author.view.util.FileLoader.FileType;
 import author.controller.IAuthorController;
+import author.model.game_observables.draggable_sprite.ConcreteDraggableSprite;
+import author.model.game_observables.draggable_sprite.DraggableSprite;
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -31,18 +35,18 @@ import javafx.scene.layout.Pane;
 public class LevelWindow extends AbstractLevelEditorWindow {
 
 	private ScrollPane myLevelScroller;
-	private Pane myContainer;
+	private Pane container;
 
 		
-	public LevelWindow(IAuthorController authorController, Level aLevel) {
-		super(authorController, aLevel);
+	public LevelWindow(IAuthorController authorController) {
+		super(authorController);
 		createLevelScroller();
 	}
 
 	@Override
 	public <T extends Node> void addChildren(T... child) {
 		for (T node : child) {
-			myContainer.getChildren().add(node);
+			container.getChildren().add(node);
 		}
 	}
 
@@ -65,15 +69,14 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 	private void createLevelScroller(){
 		myLevelScroller = new ScrollPane();
-		myContainer = new Pane();
+		container = new Pane();
 		
 		myLevelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		myLevelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		myLevelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
-		myLevelScroller.setContent(myContainer);
+		myLevelScroller.setContent(container);
 		
 		super.getWindow().getChildren().add(myLevelScroller);
-
 	}
 	
 	private void setBackgroundImage() {
@@ -92,17 +95,36 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 				BackgroundPosition.DEFAULT, 
 				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
 		
-		myContainer.setBackground(new Background(backIm));
-		myContainer.setMinSize(image.getWidth(), image.getHeight());
+		container.setBackground(new Background(backIm));
+		container.setMinSize(image.getWidth(), image.getHeight());
 	}
+	
+	@Override
+	public void SetLevel(Level aLevel){
+		super.SetLevel(aLevel);
+		updatePane();
+		getLevel().addListener((level) -> {
+			updatePane();
+			System.out.println("Updated");
+		});
+		
+	}
+	
+	private void updatePane(){
+		this.container.getChildren().clear();
+		getLevel().getMySpriteList().forEach((sprite) -> {
+			DraggableSprite draggableSprite = new ConcreteDraggableSprite(sprite);
+			this.container.getChildren().add(draggableSprite.getImageView());
+		});
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
 	 */
 	@Override
-	protected void initListener(IAuthorController authorController, Level aLevel) {
-		// TODO Auto-generated method stub
-		
+	protected void initListener(IAuthorController authorController) {
+			
 	}
 
 }

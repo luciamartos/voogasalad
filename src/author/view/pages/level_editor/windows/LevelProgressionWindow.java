@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 /**
@@ -22,8 +23,8 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 	private ScrollPane progressionScroller;
 	private HBox container;
 	
-	public LevelProgressionWindow(IAuthorController authorController, Level aLevel) {
-		super(authorController, aLevel);
+	public LevelProgressionWindow(IAuthorController authorController) {
+		super(authorController);
 	}
 	
 	@Override
@@ -48,9 +49,6 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		progressionScroller.prefHeightProperty().bind(super.getWindow().heightProperty());
 		progressionScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
 
-//		container.prefHeightProperty().bind(progressionScroller.prefViewportHeightProperty());
-//		container.prefWidthProperty().bind(progressionScroller.prefViewportHeightProperty());
-		
 		progressionScroller.setContent(container);
 		super.getWindow().setMaxHeight(100);
 		super.getWindow().setMinHeight(100);
@@ -63,9 +61,14 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
 	 */
 	@Override
-	protected void initListener(IAuthorController authorController, Level aLevel) {
-		// TODO Auto-generated method stub
-		
+	protected void initListener(IAuthorController authorController) {
+		authorController.getModel().getGame().addListener((game) -> {
+			this.container.getChildren().clear();
+			authorController.getModel().getGame().getLevels().forEach((level) -> {
+				ImageView imageView = getImageView(level.getBackgroundImageFilePath(), progressionScroller.widthProperty(), progressionScroller.heightProperty());
+				this.container.getChildren().add(imageView);
+			});
+		});		
 	}
 
 }
