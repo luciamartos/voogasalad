@@ -3,11 +3,11 @@
 */
 
 
-#pane{
+#pane {
     -fx-background-image: url("hawaiian_shirt_background3.png");
-    -fx-background-repeat: stretch;   
+    -fx-background-repeat: contain;   
     -fx-background-width: 100%;
-    -fx-background-height:100%;
+    -fx-background-height: 100%;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }
@@ -22,25 +22,20 @@
     -fx-text-fill: #424242;
 }
 
-#go-button {
-    -fx-background-image: url('play.png');
-    -fx-background-size: 20px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-background-color: transparent;
+.text-field {
+    -fx-background-color: #EE8EBE , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
 }
+
+.text-field:focused {
+    -fx-background-color: #EE8EBE , #EE8EBE , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
 
 #user-profile-button {
     -fx-background-image: url('blank_profile_page.jpeg');
     -fx-background-size: 40px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-background-color: transparent;
-}
-
-#stop-button {
-    -fx-background-image: url('stop.png');
-    -fx-background-size: 20px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: transparent;

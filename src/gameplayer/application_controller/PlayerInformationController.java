@@ -11,7 +11,8 @@ public class PlayerInformationController {
 	private IViewableGameDisplayInformation myGameDisplayInformation;
 	
 	public PlayerInformationController() {
-		myUserInformation = new UserInformationController();
+		myUserInformation = (IViewableUserInformation) new UserInformationController();
+		myGameDisplayInformation = (IViewableGameDisplayInformation) new GameDisplayInformation();
 		myGameDisplayInformation = new GameDisplayInformation();
 	}
 	

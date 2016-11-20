@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
  */
 public abstract class AbstractPlayerScene  extends Observable implements IDisplay {
 	
-	private static final String STYLESHEET = "GUI/style.css";
+	private static final String STYLESHEET = "data/gui/style.css";
 	private static final String FILE = "file:";
 	
 	protected Scene myScene;

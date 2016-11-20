@@ -2,6 +2,8 @@ package gameplayer.application_controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
 import gameplayer.application_scene.ErrorAlert;
 import gameplayer.application_scene.FileController;
@@ -25,17 +27,22 @@ import javafx.stage.Stage;
 
 public class ApplicationController {
 	
+	private static final String FILE = "gameplayerlabels.";
+	private static final String BUTTONLABEL = "ButtonLabels"; 
+	
 	public static final int SCENE_WIDTH = 1000;
 	public static final int SCENE_HEIGHT = 1000;
 
 	private Stage myStage;
 	private SceneFactory mySceneBuilder;
 	private PlayerInformationController myInformationController;
+	private ResourceBundle myButtonLabels; 
 
-	public ApplicationController(Stage aStage){
+	public ApplicationController(Stage aStage) {
 		myStage = aStage;
 		mySceneBuilder = new SceneFactory();
 		myInformationController = new PlayerInformationController();
+		myButtonLabels = PropertyResourceBundle.getBundle(FILE + BUTTONLABEL);
 	}
 
 	public void displayLogin() {
@@ -51,7 +58,7 @@ public class ApplicationController {
 	}
 	
 	private void setLoginButtonHandlers(LoginScene login){
-		login.addButton("Enter", e -> {
+		login.addButton(myButtonLabels.getString("Enter"), e -> {
 			try {
 				myInformationController.userSignIn(login.getUserName(), login.getPassword());
 				displayMainMenu();
@@ -60,7 +67,7 @@ public class ApplicationController {
 				error.show(x);
 			}
 		}, ButtonDisplay.TEXT);
-		login.addButton("Sign Up", e -> {
+		login.addButton(myButtonLabels.getString("SignUp"), e -> {
 			try {
 				myInformationController.userSignUp(login.getUserName(), login.getPassword());
 				displayMainMenu();
@@ -72,22 +79,22 @@ public class ApplicationController {
 	}
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
-		mainMenu.addButton("Click To Play", e -> {
+		mainMenu.addButton(myButtonLabels.getString("Play"), e -> {
 			displayGameChoice();
 		}, ButtonDisplay.TEXT);
-		mainMenu.addButton("Click To Author", e -> {
+		mainMenu.addButton(myButtonLabels.getString("Author"), e -> {
 			//TODO: implement authoring environment
 		}, ButtonDisplay.TEXT);
 	}
 	
 	private void createNavigationButtons(IDisplay aMenu) {
-		aMenu.addNavigationButton("user-profile-button", e -> {
+		aMenu.addNavigationButton(myButtonLabels.getString("Profile"), e -> {
 			displayUserProfile();
 		}, ButtonDisplay.CSS);
-		aMenu.addNavigationButton("Main Menu", e -> {
+		aMenu.addNavigationButton(myButtonLabels.getString("MainMenu"), e -> {
 			displayMainMenu();
 		}, ButtonDisplay.TEXT);
-		aMenu.addNavigationButton("Sign Out", e -> {
+		aMenu.addNavigationButton(myButtonLabels.getString("SignOut"), e -> {
 			displayLogin();
 		}, ButtonDisplay.TEXT);
 	}
@@ -111,17 +118,17 @@ public class ApplicationController {
 	}
 
 	private void setGameChoiceButtonHandlers(IDisplay gameChoice) {
-		gameChoice.addButton("Choose Game", e -> {
+		gameChoice.addButton(myButtonLabels.getString("ChooseGame"), e -> {
 			GamePlayController gamePlay = new GamePlayController(myStage);
 			gamePlay.displayGame();
 		}, ButtonDisplay.TEXT);
-		gameChoice.addButton("Load New Game", e -> {
+		gameChoice.addButton(myButtonLabels.getString("Load"), e -> {
 			File chosenGame = new FileController().show(myStage);
 			if(chosenGame != null){
 				//TODO: Send selected file to backend
 			}
 		}, ButtonDisplay.TEXT);
-		gameChoice.addButton("Options", a -> {
+		gameChoice.addButton(myButtonLabels.getString("Options"), a -> {
 			PopUpController popup = new PopUpController();
 			PlayerOptions options = new PlayerOptions();
 			for(HBox box : options.addOptions()){
