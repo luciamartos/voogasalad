@@ -57,6 +57,46 @@ public class GamePlayScene extends Observable {
 		clearChanged();
 	}
 
+//	private Node createTop() {
+//		HBox topMenu = new HBox(8);
+////		topMenu.getChildren().addAll(createRestartButton(), createMainMenuButton());
+//		topMenu.getChildren().add(createButton("Change to red", 0, 0, e -> {
+//			setBackground(myGamePlayCanvas, Color.RED);
+//		}));
+//		topMenu.setAlignment(Pos.CENTER);
+//		return topMenu;
+//	}
+//	
+//	private Node createLeft(){
+//		VBox leftMenu = new VBox();
+//		leftMenu.getChildren().add(createLabel("Left", 0, 0));
+//		leftMenu.setAlignment(Pos.CENTER);
+//		return leftMenu;
+//	}
+//	
+//	private Node createRight(){
+//		VBox rightMenu = new VBox();
+//		rightMenu.getChildren().add(createLabel("Right", 0, 0));
+//		rightMenu.setAlignment(Pos.CENTER);
+//		return rightMenu;
+//	}
+//	
+//	private Node createBottom(){
+//		HBox bottomMenu = new HBox();
+//		bottomMenu.getChildren().add(createLabel("Bottom", 0, 0));
+//		bottomMenu.setAlignment(Pos.CENTER);
+//		return bottomMenu;
+//	}
+	
+//	private Button createRestartButton(){
+//		myRestartButton = createButton("Restart", 0, 0, null);
+//		return myRestartButton;
+//	}
+//	
+//	private Button createMainMenuButton(){
+//		myMainMenuButton = createButton("Main Menu", 0, 0, null);
+//		return myMainMenuButton;
+//	}
 	public void makeRed() {
 		myGamePlayCanvas.setStyle("-fx-background-color: red;");
 	}

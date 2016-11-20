@@ -2,13 +2,12 @@ package gameplayer.application_controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-
-import gameplayer.application_scene.FileManager;
+import gameplayer.application_scene.FileController;
 import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.LoginScene;
 import gameplayer.application_scene.MainMenuScene;
 import gameplayer.application_scene.PlayerOptions;
-import gameplayer.application_scene.PopUpManager;
+import gameplayer.application_scene.PopUpController;
 import javafx.scene.layout.HBox;
 import gameplayer.application_scene.SceneFactory;
 import gameplayer.application_scene.SceneIdentifier;
@@ -109,13 +108,13 @@ public class ApplicationController {
 			gamePlay.displayGame();
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton("Load New Game", e -> {
-			File chosenGame = new FileManager().show(myStage);
-			if (chosenGame != null){
+			File chosenGame = new FileController().show(myStage);
+			if(chosenGame != null){
 				//TODO: Send selected file to backend
 			}
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton("Options", a -> {
-			PopUpManager popup = new PopUpManager();
+			PopUpController popup = new PopUpController();
 			PlayerOptions options = new PlayerOptions();
 			for(HBox box : options.addOptions()){
 				popup.addOption(box);
