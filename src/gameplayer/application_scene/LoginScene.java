@@ -62,5 +62,4 @@ public class LoginScene extends AbstractPlayerScene {
 	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType) {
 		// do nothing
 	}
-
 }

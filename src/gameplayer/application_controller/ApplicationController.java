@@ -5,12 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import gameplayer.application_scene.ErrorAlert;
+import gameplayer.application_scene.FileController;
 import gameplayer.application_scene.IDisplay;
 import gameplayer.application_scene.LoginScene;
 import gameplayer.application_scene.MainMenuScene;
 import gameplayer.application_scene.PlayerOptions;
 import gameplayer.application_scene.PopUpController;
-import gameplayer.application_scene.FileController;
 import javafx.scene.layout.HBox;
 import gameplayer.application_scene.SceneFactory;
 import gameplayer.application_scene.SceneIdentifier;
@@ -58,13 +59,22 @@ public class ApplicationController {
 	
 	private void setLoginButtonHandlers(LoginScene login){
 		login.addButton(myButtonLabels.getString("Enter"), e -> {
-			displayMainMenu();
-			myInformationController.userSignIn(login.getUserName(), login.getPassword());
+			try {
+				myInformationController.userSignIn(login.getUserName(), login.getPassword());
+				displayMainMenu();
+			} catch (Exception x) {
+				ErrorAlert error = new ErrorAlert();
+				error.show(x);
+			}
 		}, ButtonDisplay.TEXT);
 		login.addButton(myButtonLabels.getString("SignUp"), e -> {
-			//TODO: 
-			displayMainMenu();
-			myInformationController.userSignUp(login.getUserName(), login.getPassword());
+			try {
+				myInformationController.userSignUp(login.getUserName(), login.getPassword());
+				displayMainMenu();
+			} catch (Exception x) {
+				ErrorAlert error = new ErrorAlert();
+				error.show(x);
+			}
 		}, ButtonDisplay.TEXT);
 	}
 
@@ -124,7 +134,6 @@ public class ApplicationController {
 			for(HBox box : options.addOptions()){
 				popup.addOption(box);
 			}
-			
 			popup.show();
 		}, ButtonDisplay.TEXT);
 	}
