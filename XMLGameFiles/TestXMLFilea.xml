@@ -11,9 +11,14 @@
             <myXLocation>0.0</myXLocation>
             <myYLocation>0.0</myYLocation>
           </myLocation>
+          <myWidth>100</myWidth>
+          <myHeight>100</myHeight>
+          <myName>Addison</myName>
           <myImagePath>path/spriteImage.jpg</myImagePath>
-          <myVelocity>0</myVelocity>
+          <myVelocity>0.0</myVelocity>
+          <myCollisionHandler/>
           <myCharacteristics/>
+          <myStates/>
         </game__data.sprites.Player>
       </mySprites>
       <myKeyCommands/>
