@@ -1,13 +1,17 @@
 package gameplayer.application_controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import gameplayer.application_scene.FileController;
 import gameplayer.application_scene.IDisplay;
+import gameplayer.application_scene.LoginScene;
+import gameplayer.application_scene.MainMenuScene;
 import gameplayer.application_scene.PlayerOptions;
 import gameplayer.application_scene.PopUpController;
 import javafx.scene.layout.HBox;
 import gameplayer.application_scene.SceneFactory;
 import gameplayer.application_scene.SceneIdentifier;
+import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.stage.Stage;
 
 /**
@@ -24,49 +28,72 @@ public class ApplicationController {
 
 	private Stage myStage;
 	private SceneFactory mySceneBuilder;
+	private PlayerInformationController myInformationController;
 
-	public ApplicationController(Stage astage){
-		myStage = astage;
+	public ApplicationController(Stage aStage){
+		myStage = aStage;
 		mySceneBuilder = new SceneFactory();
+		myInformationController = new PlayerInformationController();
 	}
 
-	public void displayLogin(){
-		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
+	public void displayLogin() {
+		LoginScene login = (LoginScene) mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
 		resetStage(login);
-		setLoginButtonHandlers(login);
+		setLoginButtonHandlers((LoginScene) login);
 	}
 
-	public void displayMainMenu(){
-		IDisplay mainMenu = mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
+	public void displayMainMenu() {
+		MainMenuScene mainMenu = (MainMenuScene) mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
 		resetStage(mainMenu);
 		setMainMenuButtonHandlers(mainMenu);
 	}
 	
-	private void setLoginButtonHandlers(IDisplay login){
+	private void setLoginButtonHandlers(LoginScene login){
 		login.addButton("Enter", e -> {
 			displayMainMenu();
-		});
+			myInformationController.userSignIn(login.getUserName(), login.getPassword());
+		}, ButtonDisplay.TEXT);
 		login.addButton("Sign Up", e -> {
 			//TODO: 
-		});
+			displayMainMenu();
+			myInformationController.userSignUp(login.getUserName(), login.getPassword());
+		}, ButtonDisplay.TEXT);
 	}
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
 		mainMenu.addButton("Click To Play", e -> {
 			displayGameChoice();
-		});
+		}, ButtonDisplay.TEXT);
 		mainMenu.addButton("Click To Author", e -> {
 			//TODO: implement authoring environment
-		});
+		}, ButtonDisplay.TEXT);
+		mainMenu.addButton("Sign Out", e -> {
+			displayLogin();
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void createNavigationButtons(IDisplay aMenu) {
+		aMenu.addNavigationButton("user-profile-button", e -> {
+			displayUserProfile();
+		}, ButtonDisplay.CSS);
 		aMenu.addNavigationButton("Main Menu", e -> {
 			displayMainMenu();
-		});
+		}, ButtonDisplay.TEXT);
 		aMenu.addNavigationButton("Sign Out", e -> {
 			displayLogin();
-		});
+		}, ButtonDisplay.TEXT);
+	}
+	
+	private void displayUserProfile() {
+		IDisplay userProfile = mySceneBuilder.create(SceneIdentifier.USERPROFILE, myStage.getWidth(), myStage.getHeight());
+		resetStage(userProfile);
+		setUserProfileButtonHandlers(userProfile);
+	}
+	
+	private void setUserProfileButtonHandlers(IDisplay userProfile) {
+		userProfile.addButton("HI!", e -> {
+			//do nothing
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void displayGameChoice(){
@@ -79,21 +106,22 @@ public class ApplicationController {
 		gameChoice.addButton("Choose Game", e -> {
 			GamePlayController gamePlay = new GamePlayController(myStage);
 			gamePlay.displayGame();
-		});
+		}, ButtonDisplay.TEXT);
 		gameChoice.addButton("Load New Game", e -> {
 			File chosenGame = new FileController().show(myStage);
 			if(chosenGame != null){
 				//TODO: Send selected file to backend
 			}
-		});
+		}, ButtonDisplay.TEXT);
 		gameChoice.addButton("Options", a -> {
 			PopUpController popup = new PopUpController();
 			PlayerOptions options = new PlayerOptions();
 			for(HBox box : options.addOptions()){
 				popup.addOption(box);
 			}
+			
 			popup.show();
-		});
+		}, ButtonDisplay.TEXT);
 	}
 	
 	private void resetStage(IDisplay aScene){
@@ -103,9 +131,9 @@ public class ApplicationController {
 		createNavigationButtons(aScene);
 	}
 
-	public void startScene() {
+	public void startScene() throws FileNotFoundException {
 		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_WIDTH, SCENE_HEIGHT);
 		resetStage(login);
-		setLoginButtonHandlers(login);
+		setLoginButtonHandlers((LoginScene) login);
 	}
 }
