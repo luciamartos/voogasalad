@@ -2,14 +2,10 @@ package game_data.sprites;
 import game_data.Location;
 import game_data.Sprite;
 
-/**
- * @author austingartside
- *
- */
 public class Terrain extends Sprite{
 
-	public Terrain(Location aLocation, String aImagePath) {
-		super(aLocation, aImagePath);
+	public Terrain(Location aLocation, int aWidth, int aHeight, String aName, String aImagePath) {
+		super(aLocation, aWidth, aHeight, aName, aImagePath);
 	}
 	
 	public Terrain(Terrain aTerrain){
