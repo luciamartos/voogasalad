@@ -1,7 +1,7 @@
 package game_engine.actions;
 
 import game_data.Sprite;
-import game_data.characteristics.Health;
+import states.Health;
 import states.State;
 import game_data.Level;
 
@@ -21,7 +21,7 @@ public class Break implements Action {
 	//	myLevel.removeSprite(myBrokenSprite);
 		for(State myState:myBrokenSprite.getStates()){
 			if (myState instanceof Health){
-				myState.kill();
+				((Health) myState).kill();
 			}
 		}
 	}
