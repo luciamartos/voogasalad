@@ -5,7 +5,7 @@ import game_data.Sprite;
 import game_data.sprites.Player;
 import javafx.scene.control.Button;
 
-public class PlayerSpriteEditPage extends CharacterSpriteEditor {
+public class PlayerSpriteEditPage extends CharacterSpriteEditPage {
 
 	public PlayerSpriteEditPage() {
 		super();

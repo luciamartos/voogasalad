@@ -17,25 +17,24 @@ import javafx.scene.layout.VBox;
  * 
  * @author George Bernard
  */
-public abstract class SpriteEditPage {
+public abstract class BaseSpriteEditPage {
 	private Pane myPane;
 	private ToolBarBuilder myToolBarBuilder;
 	
 	private Sprite mySprite;
-	private SpriteEditBox mySpriteEditBox;
+	private BaseSpriteEditBox mySpriteEditBox;
 	
-	public SpriteEditPage(){
+	public BaseSpriteEditPage(){
 		myPane = new VBox();
 		myToolBarBuilder = new ToolBarBuilder();
-		mySpriteEditBox = new SpriteEditBox();
+		mySpriteEditBox = new BaseSpriteEditBox();
 		myPane.getChildren().addAll(myToolBarBuilder.getToolBar(), mySpriteEditBox.getPane());
-		
 		Button buildButton = new ButtonFactory().createButton("build", e -> buildSprite()).getButton();
 		myToolBarBuilder.addBurst(new Label(getName(), buildButton));
 
 	}
 
-	public SpriteEditPage(Sprite aSprite){
+	public BaseSpriteEditPage(Sprite aSprite){
 		this();
 		mySprite = aSprite;
 		mySpriteEditBox.setLocation(aSprite.getMyLocation());

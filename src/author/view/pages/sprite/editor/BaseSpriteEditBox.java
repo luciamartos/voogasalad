@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-class SpriteEditBox {
+public class BaseSpriteEditBox {
 
 	private Pane myPane;
 	private FileLoader myFileLoader;
@@ -30,19 +30,17 @@ class SpriteEditBox {
 	
 	private static final double CHAR_SIZE = 100;
 	
-	SpriteEditBox() {
-		myPane = new HBox();
-		myFile = new File("");
-		myFileLoader = new FileLoader(FileType.GIF, FileType.PNG, FileType.JPG, FileType.JPEG);
-
+	public BaseSpriteEditBox() {
+		myPane = new VBox();
+		myFileLoader = new FileLoader(FileType.PNG, FileType.GIF,FileType.JPG, FileType.JPEG);
 		myPane.getChildren().addAll(makeLocationFields(), makeImageSelect());	
 	}
 
-	Pane getPane(){
+	public final Pane getPane(){
 		return myPane;
 	}
 
-	Location getLocation(){
+	public final Location getLocation(){
 		int x, y, h;
 
 		x = Integer.parseInt(myXPositionField.getText());
@@ -53,29 +51,29 @@ class SpriteEditBox {
 
 	}
 
-	void setLocation(Location aLocation){
+	protected final void setLocation(Location aLocation){
 		myXPositionField.setText(Double.toString(aLocation.getXLocation()));
 		myYPositionField.setText(Double.toString(aLocation.getYLocation()));
 		myHeadingField.setText(Double.toString(aLocation.getMyHeading()));
 	}
 	
-	File getImageFile(){
+	protected final File getImageFile(){
 		return myFile;
 	}
 	
-	void setImageFile(File aFile){
+	protected final void setImageFile(File aFile){
 		myFile = aFile;
 		myImageView.setImage(new Image(myFile.toURI().toString()));
 	}
 	
 	/**
-	 * Standing on the shoulders of Evan Knowles
+	 * Standing on the shoulders of Evan Knowles here
 	 * http://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
 	 * 
 	 * @param aTextField
 	 * @return
 	 */
-	private ChangeListener<? super String> makeOnlyNumberProperty(TextField aTextField){
+	protected final ChangeListener<? super String> makeOnlyNumberProperty(TextField aTextField){
 		return (obs, ov, nv) -> { 
 			if(!nv.matches("\\d*")) 
 				aTextField.setText(nv.replaceAll("[^\\d]", ""));

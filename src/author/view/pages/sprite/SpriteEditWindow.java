@@ -1,6 +1,6 @@
 package author.view.pages.sprite;
 
-import author.view.pages.sprite.editor.SpriteEditPage;
+import author.view.pages.sprite.editor.BaseSpriteEditPage;
 import author.view.pages.sprite.editor.character.PlayerSpriteEditPage;
 import game_data.Sprite;
 import javafx.scene.Scene;
@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class SpriteEditWindow {
 
-	SpriteEditPage mySpriteEditPage;
+	BaseSpriteEditPage mySpriteEditPage;
 	
 	public SpriteEditWindow() {
 		mySpriteEditPage = new PlayerSpriteEditPage();
@@ -26,7 +26,7 @@ public class SpriteEditWindow {
 		stage.show();
 	}
 	
-	public SpriteEditPage getSpriteEdit(){
+	public BaseSpriteEditPage getSpriteEdit(){
 		return mySpriteEditPage;
 	}
 	
