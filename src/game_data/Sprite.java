@@ -6,13 +6,13 @@ import states.State;
 import game_data.characteristics.Characteristic;
 
 /**
- * Represents any viewable object in a Level including
- * characters, items, terrains, projectiles, etc.
+ * Represents any viewable object in a Level including characters, items,
+ * terrains, projectiles, etc.
  * 
- * @author Addison, Austin
+ * @author Addison, Austin, Cleveland Thompson
  */
-public abstract class Sprite {
-	
+public abstract class Sprite extends GameObject {
+
 	private Location myLocation;
 	private int myWidth;
 	private int myHeight;
@@ -21,6 +21,9 @@ public abstract class Sprite {
 	private double myVelocity;
 	private CollisionHandler myCollisionHandler;
 	private Set<Characteristic> myCharacteristics;
+	
+	private String id = "";
+	
 	private Set<State> myStates;
 	
 	public Sprite(Location aLocation, int aWidth, int aHeight, String aName, String aImagePath){
@@ -48,12 +51,11 @@ public abstract class Sprite {
 		myCharacteristics = copyCharacteristics(aSprite.getCharacteristics());
 		myStates = copyStates(aSprite.getStates());
 	}
-	
+
 	/**
 	 * should return a clone using the new Sprite(this) constructor
 	 */
 	public abstract Sprite clone();
-	
 	private Set<Characteristic> copyCharacteristics(Set<Characteristic> aCharacteristicSet){
 		if (aCharacteristicSet == null)
 			return null;
@@ -61,7 +63,7 @@ public abstract class Sprite {
 		for(Characteristic c: aCharacteristicSet){
 			characteristicCopies.add(c.copy());
 		}
-		return characteristicCopies;	
+		return characteristicCopies;
 	}
 	
 	private Set<State> copyStates(Set<State> aStateSet){
@@ -77,8 +79,8 @@ public abstract class Sprite {
 	public Set<Characteristic> getCharacteristics(){
 		return myCharacteristics;
 	}
-	
-	public void addCharacteristic(Characteristic aCharacteristic){
+
+	public void addCharacteristic(Characteristic aCharacteristic) {
 		myCharacteristics.add(aCharacteristic);
 	}
 	
@@ -93,26 +95,44 @@ public abstract class Sprite {
 	public Location getMyLocation() {
 		return myLocation;
 	}
+
 	public void setMyLocation(Location myLocation) {
 		this.myLocation = myLocation;
+		notifyListeners();
 	}
 	public double getMyVelocity() {
 		return myVelocity;
 	}
 	public void setMyVelocity(double myVelocity) {
 		this.myVelocity = myVelocity;
+		notifyListeners();
 	}
+
 	public String getMyImagePath() {
 		return myImagePath;
 	}
+
 	public void setMyImagePath(String myImagePath) {
 		this.myImagePath = myImagePath;
+		notifyListeners();
 	}
+
 	public CollisionHandler getMyCollisionHandler() {
 		return myCollisionHandler;
 	}
+
 	public void setMyCollisionHandler(CollisionHandler myCollisionHandler) {
 		this.myCollisionHandler = myCollisionHandler;
+		notifyListeners();
+	}
+
+	public void setId(String id) {
+		this.id = id;
+		notifyListeners();
+	}
+	
+	public String getId() {
+		return id;
 	}
 
 	public int getMyWidth() {

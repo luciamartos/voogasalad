@@ -9,9 +9,9 @@ public class GameDataTestingMain {
 
 	public static void main(String[] args){
 		Sprite aSprite = new Player(new Location(0,0,0), 100, 100, "Addison", "path/spriteImage.jpg");
-		Level aLevel = new Level(500, 8000, "path/backgroundImage.jpg");
+		Level aLevel = new Level("Level1", 500, 8000, "path/backgroundImage.jpg");
 		aLevel.addNewSprite(aSprite);
-		Game aGame = new Game();
+		Game aGame = new Game("Mario");
 		aGame.addNewLevel(aLevel);
 		File aFile = new File("XMLGameFiles/TestXMLFile.xml");
 		XMLTranslator myXMLSaver = new XMLTranslator();
