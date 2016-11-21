@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-class SpriteEditBox {
+public class BaseSpriteEditBox {
 
 	private Pane myPane;
 	private FileLoader myFileLoader;
@@ -26,18 +26,18 @@ class SpriteEditBox {
 
 	private File myFile;
 	
-	SpriteEditBox() {
+	public BaseSpriteEditBox() {
 		myPane = new VBox();
 		myFileLoader = new FileLoader(FileType.PNG, FileType.GIF,FileType.JPG, FileType.JPEG);
 
 		myPane.getChildren().addAll(makeLocationFields(), makeImageSelect());	
 	}
 
-	Pane getPane(){
+	public final Pane getPane(){
 		return myPane;
 	}
 
-	Location getLocation(){
+	public final Location getLocation(){
 		int x, y, h;
 
 		x = Integer.parseInt(myXPositionField.getText());
@@ -48,17 +48,17 @@ class SpriteEditBox {
 
 	}
 
-	void setLocation(Location aLocation){
+	protected final void setLocation(Location aLocation){
 		myXPositionField.setText(Double.toString(aLocation.getXLocation()));
 		myYPositionField.setText(Double.toString(aLocation.getYLocation()));
 		myHeadingField.setText(Double.toString(aLocation.getMyHeading()));
 	}
 	
-	File getImageFile(){
+	protected final File getImageFile(){
 		return myFile;
 	}
 	
-	void setImageFile(File aFile){
+	protected final void setImageFile(File aFile){
 		myFile = aFile;
 	}
 	
@@ -69,7 +69,7 @@ class SpriteEditBox {
 	 * @param aTextField
 	 * @return
 	 */
-	private ChangeListener<? super String> makeOnlyNumberProperty(TextField aTextField){
+	protected final ChangeListener<? super String> makeOnlyNumberProperty(TextField aTextField){
 		return (obs, ov, nv) -> { 
 			if(!nv.matches("\\d*")) 
 				aTextField.setText(nv.replaceAll("[^\\d]", ""));

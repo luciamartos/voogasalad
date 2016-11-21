@@ -2,7 +2,7 @@ package author.view.pages.sprite;
 
 import java.util.Arrays;
 
-import author.view.pages.sprite.editor.SpriteEditPage;
+import author.view.pages.sprite.editor.BaseSpriteEditPage;
 import author.view.pages.sprite.editor.character.EnemySpriteEditPage;
 import author.view.pages.sprite.editor.character.PlayerSpriteEditPage;
 import author.view.pages.sprite.editor.item.ItemSpriteEditPage;
@@ -19,7 +19,7 @@ public class SpritesPage {
 	public SpritesPage(){
 		mySpriteTabs = new TabPaneFacade();
 		mySpriteTabs.getTabPane().setSide(Side.LEFT);
-		SpriteEditPage[] spriteEditors= new SpriteEditPage[]{
+		BaseSpriteEditPage[] spriteEditors= new BaseSpriteEditPage[]{
 				new PlayerSpriteEditPage(), 
 				new EnemySpriteEditPage(), 
 				new ItemSpriteEditPage(),
