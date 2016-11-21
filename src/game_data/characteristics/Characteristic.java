@@ -1,5 +1,11 @@
 package game_data.characteristics;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import game_data.Sprite;
+import javafx.geometry.Side;
+
 public interface Characteristic {
 	
 	
@@ -9,8 +15,8 @@ public interface Characteristic {
 	 * 
 	 * @author Austin Gartside
 	 */
-	public boolean toAct();
-	
+	//public boolean toAct();
+	public void execute(Map<Sprite, Side> myCollisionMap);
 	public Characteristic copy();
 
 }

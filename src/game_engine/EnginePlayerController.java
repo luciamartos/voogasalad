@@ -1,10 +1,15 @@
 package game_engine;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import game_data.Sprite;
 import game_data.Level;
 import game_data.Location;
 import game_data.sprites.Character;
+import javafx.scene.image.ImageView;
+import states.Health;
+import states.State;
 public class EnginePlayerController {
 	private Level myLevel;
 	private int myWidth, myHeight;
@@ -16,6 +21,7 @@ public class EnginePlayerController {
 	private List<String> mySpriteImagePathList;
 	private List<Integer> mySpriteHealthList;
 	private List<Boolean> mySpriteIsAliveList;
+	private Map<Sprite, ImageView> mySpriteImages;
 	public EnginePlayerController(){
 		myLevel=null;
 		mySpriteList=null;
@@ -28,8 +34,9 @@ public class EnginePlayerController {
 		mySpriteImagePathList=null;
 		mySpriteHealthList=null;
 		mySpriteIsAliveList=null;
+		mySpriteImages = new HashMap<Sprite, ImageView>();
 	}
-	public EnginePlayerController(Level aLevel) {
+	public EnginePlayerController(Level aLevel){
 		myLevel=aLevel;
 		mySpriteList=myLevel.getMySpriteList();
 		myBackgroundImageFilePath=myLevel.getBackgroundImageFilePath();
@@ -53,8 +60,12 @@ public class EnginePlayerController {
 			mySpriteYCoordinateList.set(i, location.getYLocation());
 			mySpriteHeadingList.set(i, location.getMyHeading());
 			if(sprite instanceof Character){
-				mySpriteHealthList.set(i, ((Character) sprite).getMyHealth());
-				mySpriteIsAliveList.set(i, ((Character) sprite).isAlive());
+				for(State myState:((Character) sprite).getStates()){
+					if(myState instanceof Health){
+						mySpriteHealthList.set(i, ((Health) myState).getMyHealth());
+						mySpriteIsAliveList.set(i, ((Health) sprite).isAlive());
+					}
+				}
 			}
 			else{
 				mySpriteHealthList.set(i, null);
@@ -95,4 +106,10 @@ public class EnginePlayerController {
 	public List<Boolean> getMySpriteIsAliveList() {
 		return mySpriteIsAliveList;
 	} 
+	public void addImageView(Sprite aSprite, ImageView aImageView){
+		mySpriteImages.put(aSprite, aImageView);
+	}
+	public ImageView getImageView(Sprite aSprite){
+		return mySpriteImages.get(aSprite);
+	}
 }

@@ -27,8 +27,8 @@ public class PlayerSpriteEditPage extends CharacterSpriteEditPage {
 	public Sprite buildSprite() {
 		getSprite().setMyLocation(super.getLocation());
 		getSprite().setMyImagePath(super.getImageFile().toString());
-		
-		return new Player(super.getLocation(), super.getImageFile().toString(), 5);
+		// fixed this temporarily to resolve conflict, hard coded values need to go away somehow
+		return new Player(super.getLocation(), 20, 20, "Mario", super.getImageFile().toString());
 	}
 
 }

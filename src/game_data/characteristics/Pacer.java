@@ -1,5 +1,5 @@
 /*
- * Author: Alex
+ * Author: Alex and Austin
  * 
  * if toAct() is true run the following:
  * getSpeed()
@@ -8,7 +8,9 @@
 
 package game_data.characteristics;
 
-public class Pacer {
+import game_data.Sprite;
+
+public abstract class Pacer {
 	
 	private int mySpeed;
 	
@@ -23,5 +25,7 @@ public class Pacer {
 	public int getSpeed() {
 		return mySpeed;
 	}
+	
+	public abstract boolean toChangeDirection(Sprite aSprite);
 
 }
