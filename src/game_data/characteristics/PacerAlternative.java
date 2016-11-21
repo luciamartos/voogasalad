@@ -5,6 +5,10 @@ import java.util.Map;
 import game_data.Sprite;
 import javafx.geometry.Side;
 
+/**
+ * @author austingartside
+ * alternative version of pacer where user does not to include bounds, but rather how far it can travel
+ */
 public class PacerAlternative implements Characteristic{
 
 	private static final String VERTICAL = "VERTICAL";
