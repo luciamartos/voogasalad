@@ -1,18 +1,10 @@
 package author.view.pages.sprite;
 
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-
 import java.util.Arrays;
 
-import author.view.pages.sprite.editor.BaseSpriteEditPage;
-import author.view.pages.sprite.editor.character.EnemySpriteEditPage;
-import author.view.pages.sprite.editor.character.PlayerSpriteEditPage;
-import author.view.pages.sprite.editor.item.ItemSpriteEditPage;
-import author.view.pages.sprite.editor.projectile.ProjectileSpriteEditPage;
-import author.view.pages.sprite.editor.terrain.TerrainSpriteEditPage;
-import author.view.util.TabPaneFacade;
-import javafx.geometry.Side;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 public class SpritesPage {
@@ -32,13 +24,17 @@ public class SpritesPage {
 		myItemScroller = new SpriteScroller("Item");
 		myProjectileScroller = new SpriteScroller("Projectile");
 		
-		myPane.getChildren().addAll(
-				myPlayerScroller.getNode(),
-				myEnemyScroller.getNode(),
-				myTerrainScroller.getNode(),
-				myItemScroller.getNode(),
-				myProjectileScroller.getNode()
-				);		
+		SpriteScroller[] scrollers = new SpriteScroller[]{
+				myPlayerScroller,
+				myEnemyScroller,
+				myTerrainScroller,
+				myItemScroller,
+				myProjectileScroller};
+		
+		Arrays.asList(scrollers).forEach(s -> {
+			myPane.getChildren().add(s.getNode());
+			HBox.setHgrow(s.getNode(), Priority.ALWAYS);
+		});
 	}
 	
 	public Region getRegion(){

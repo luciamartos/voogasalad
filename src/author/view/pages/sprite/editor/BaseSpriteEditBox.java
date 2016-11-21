@@ -41,11 +41,25 @@ public class BaseSpriteEditBox {
 	}
 
 	public final Location getLocation(){
-		int x, y, h;
-
-		x = Integer.parseInt(myXPositionField.getText());
-		y = Integer.parseInt(myYPositionField.getText());
-		h = Integer.parseInt(myHeadingField.getText());
+		Double x, y, h;
+		
+		try {
+			x = Double.parseDouble(myXPositionField.getText());
+		} catch (Exception e) {
+			x = 0.0;
+		}
+		
+		try {
+			y = Double.parseDouble(myYPositionField.getText());
+		} catch (Exception e) {
+			y = 0.0;
+		}
+		
+		try {
+			h = Double.parseDouble(myHeadingField.getText());
+		} catch (Exception e){
+			h = 0.0;
+		}
 		
 		return new Location(x, y, h);
 
@@ -67,16 +81,18 @@ public class BaseSpriteEditBox {
 	}
 	
 	/**
-	 * Standing on the shoulders of Evan Knowles here
+	 * Standing on the shoulders of Evan Knowles and limc here
 	 * http://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
+	 * http://stackoverflow.com/questions/5011855/matching-decimals-in-strings-using-matcher
 	 * 
 	 * @param aTextField
 	 * @return
 	 */
 	protected final ChangeListener<? super String> makeOnlyNumberProperty(TextField aTextField){
 		return (obs, ov, nv) -> { 
-			if(!nv.matches("\\d*")) 
-				aTextField.setText(nv.replaceAll("[^\\d]", ""));
+			if(!nv.matches("\\d+(\\.\\d+)")){
+				aTextField.setText(nv.replaceAll("[^\\d+(\\.\\d+)]", ""));
+			}
 		}; 
 
 	}

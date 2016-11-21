@@ -1,8 +1,9 @@
 package author.view.pages.sprite;
 
 import java.io.File;
-
 import game_data.Sprite;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class SpriteViewBox {
+public class SpriteViewBox implements InvalidationListener {
 
 	private Pane myPane;
 	private Label myName;
@@ -31,7 +32,9 @@ public class SpriteViewBox {
 
 	public SpriteViewBox(Sprite aSprite){
 		this();
-		myName.setText(NAME_TEXT + aSprite.getClass().toString());
+		
+		myName.setText(NAME_TEXT + aSprite.getName());
+		
 		ImageView imageView = new ImageView( new Image(new File(aSprite.getMyImagePath()).toURI().toString()));
 		imageView.setFitWidth(100);
 		imageView.setFitHeight(100);
@@ -40,10 +43,25 @@ public class SpriteViewBox {
 			SpriteEditWindow sew = new SpriteEditWindow(aSprite);
 			sew.openWindow();
 		});
+		
+		aSprite.addListener(this);
+				
 	}
 	
 	public Node getNode(){
 		return myPane;
+	}
+
+	@Override
+	public void invalidated(Observable observable) {
+		if(observable instanceof Sprite){
+			Sprite s = (Sprite) observable;
+			myName.setText(NAME_TEXT + s.getName());
+			ImageView iv = new ImageView (new Image(new File(s.getMyImagePath()).toURI().toString()));
+			iv.setFitWidth(100);
+			iv.setFitHeight(100);
+			myImageButton.setGraphic(iv );
+		}
 	}
 	
 	}

@@ -29,8 +29,9 @@ public abstract class BaseSpriteEditPage {
 		myToolBarBuilder = new ToolBarBuilder();
 		mySpriteEditBox = new BaseSpriteEditBox();
 		myPane.getChildren().addAll(myToolBarBuilder.getToolBar(), mySpriteEditBox.getPane());
-		Button buildButton = new ButtonFactory().createButton("build", e -> buildSprite()).getButton();
-		myToolBarBuilder.addBurst(new Label(getName(), buildButton));
+		Button buildButton = new ButtonFactory().createButton("save", e -> buildSprite()).getButton();
+		myToolBarBuilder.addBurst(new Label(getName()));
+		myToolBarBuilder.addBurst(buildButton);
 
 	}
 
