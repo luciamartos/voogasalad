@@ -25,13 +25,14 @@ class SpriteEditBox {
 	private TextField myXPositionField;
 	private TextField myYPositionField;
 	private TextField myHeadingField;
-
+	private ImageView myImageView;
 	private File myFile;
 	
 	private static final double CHAR_SIZE = 100;
 	
 	SpriteEditBox() {
 		myPane = new HBox();
+		myFile = new File("");
 		myFileLoader = new FileLoader(FileType.GIF, FileType.PNG, FileType.JPG, FileType.JPEG);
 
 		myPane.getChildren().addAll(makeLocationFields(), makeImageSelect());	
@@ -64,6 +65,7 @@ class SpriteEditBox {
 	
 	void setImageFile(File aFile){
 		myFile = aFile;
+		myImageView.setImage(new Image(myFile.toURI().toString()));
 	}
 	
 	/**
@@ -119,22 +121,22 @@ class SpriteEditBox {
 	private Node makeImageSelect(){
 		Pane imageSelectBox = new HBox();
 		
-		ImageView imageView = new ImageView();
-		Button selectButton = new Button();
-		selectButton.setText("Select Image:");
-		selectButton.setContentDisplay(ContentDisplay.TOP);
-		selectButton.setGraphic(imageView);
+		myImageView = new ImageView();
+		Button imageButton = new Button();
+		imageButton.setText("Select Image:");
+		imageButton.setContentDisplay(ContentDisplay.TOP);
+		imageButton.setGraphic(myImageView);
 		
 		
-		imageView.setFitWidth(CHAR_SIZE);
-		imageView.setFitHeight(CHAR_SIZE);
+		myImageView.setFitWidth(CHAR_SIZE);
+		myImageView.setFitHeight(CHAR_SIZE);
 		
-		imageSelectBox.getChildren().addAll(selectButton, imageView);
+		imageSelectBox.getChildren().addAll(imageButton, myImageView);
 		
-		selectButton.setOnMouseClicked(e -> {
+		imageButton.setOnMouseClicked(e -> {
 			myFile = myFileLoader.loadImage();
 			if(myFile != null){
-				imageView.setImage(new Image(myFile.toURI().toString()));
+				myImageView.setImage(new Image(myFile.toURI().toString()));
 			}
 		});
 		

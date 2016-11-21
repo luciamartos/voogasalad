@@ -4,8 +4,8 @@ import game_data.Sprite;
 
 public class SpritePresetFactory {
 
-	public SpritePresetFactory() {
-		// TODO Nothing, On Purpose
+	private SpritePresetFactory() {
+		// Does Nothing
 	}
 
 	public ISpritePreset create(Sprite aObservableSprite){

@@ -25,6 +25,9 @@ public class PlayerSpriteEditPage extends CharacterSpriteEditor {
 
 	@Override
 	public Sprite buildSprite() {
+		getSprite().setMyLocation(super.getLocation());
+		getSprite().setMyImagePath(super.getImageFile().toString());
+		
 		return new Player(super.getLocation(), super.getImageFile().toString(), 5);
 	}
 
