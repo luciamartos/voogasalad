@@ -8,9 +8,11 @@ import javafx.geometry.Side;
 public class LosableByTime extends Losable implements Characteristic{
 
 	private double myTime;
+	private Sprite mySprite;
 	
-	public LosableByTime(double time){
+	public LosableByTime(double time, Sprite aSprite){
 		myTime = time;
+		mySprite = aSprite;
 	}
 	
 	public double getTime(){
@@ -23,7 +25,7 @@ public class LosableByTime extends Losable implements Characteristic{
 	
 	@Override
 	public Characteristic copy() {
-		return new LosableByTime(myTime);
+		return new LosableByTime(myTime, mySprite.clone());
 	}
 
 	@Override
