@@ -21,9 +21,8 @@ public class Physics implements State{
 	}
 
 	@Override
-	public void updateState() {
+	public void updateState(int number) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
