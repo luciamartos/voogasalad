@@ -13,8 +13,7 @@ public class UserInformationController implements IViewableUserInformation {
 	private Map<String, String> myUserInformation;
 
 	public UserInformationController() {
-		//deserializeTheXmlAndMakeMap();
-		//myUserInformation = new UserInformation(XStream); 
+		//deserializeTheXmlAndMakeMap(); 
 		myUserInformation = new HashMap<String, String>();
 //		myUserInformation.put("Teddy", "123");
 	}
@@ -35,8 +34,8 @@ public class UserInformationController implements IViewableUserInformation {
 	}
 	
 	private void assign(String aUserName, String aPassword){
-		myCurrentUser = aUserName;
-		myCurrentPassword = aPassword;
+		setMyCurrentUser(aUserName);
+		setMyCurrentPassword(aPassword);
 	}
 
 	private boolean isValidToEnter(String aUserName, String aPassword) throws Exception {
@@ -62,5 +61,21 @@ public class UserInformationController implements IViewableUserInformation {
 
 	private void saveToXML(String aUserName, String aPassword) throws Exception {
 		//Save
+	}
+
+	public String getMyCurrentPassword() {
+		return myCurrentPassword;
+	}
+
+	public void setMyCurrentPassword(String aPassword) {
+		this.myCurrentPassword = aPassword;
+	}
+
+	public String getMyCurrentUser() {
+		return myCurrentUser;
+	}
+
+	public void setMyCurrentUser(String aCurrentUser) {
+		this.myCurrentUser = aCurrentUser;
 	}
 }

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-
 import gameplayer.application_scene.ErrorAlert;
 import gameplayer.application_scene.FileController;
 import gameplayer.application_scene.IDisplay;
@@ -27,22 +26,25 @@ import javafx.stage.Stage;
 
 public class ApplicationController {
 	
+	public static final int SCENE_SIZE = 1000;
 	private static final String FILE = "gameplayerlabels.";
 	private static final String BUTTONLABEL = "ButtonLabels"; 
-	
-	public static final int SCENE_WIDTH = 1000;
-	public static final int SCENE_HEIGHT = 1000;
-
 	private Stage myStage;
 	private SceneFactory mySceneBuilder;
 	private PlayerInformationController myInformationController;
 	private ResourceBundle myButtonLabels; 
-
-	public ApplicationController(Stage aStage) {
+	
+	public ApplicationController (Stage aStage) {
 		myStage = aStage;
 		mySceneBuilder = new SceneFactory();
 		myInformationController = new PlayerInformationController();
 		myButtonLabels = PropertyResourceBundle.getBundle(FILE + BUTTONLABEL);
+	}
+	
+	public void startScene() throws FileNotFoundException {
+		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_SIZE, SCENE_SIZE);
+		resetStage(login);
+		setLoginButtonHandlers((LoginScene) login);
 	}
 
 	public void displayLogin() {
@@ -57,7 +59,7 @@ public class ApplicationController {
 		setMainMenuButtonHandlers(mainMenu);
 	}
 	
-	private void setLoginButtonHandlers(LoginScene login){
+	private void setLoginButtonHandlers(LoginScene login) {
 		login.addButton(myButtonLabels.getString("Enter"), e -> {
 			try {
 				myInformationController.userSignIn(login.getUserName(), login.getPassword());
@@ -124,7 +126,7 @@ public class ApplicationController {
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton(myButtonLabels.getString("Load"), e -> {
 			File chosenGame = new FileController().show(myStage);
-			if(chosenGame != null){
+			if (chosenGame != null) {
 				//TODO: Send selected file to backend
 			}
 		}, ButtonDisplay.TEXT);
@@ -143,11 +145,5 @@ public class ApplicationController {
 		myStage.setScene(aScene.init());
 		myStage.show();
 		createNavigationButtons(aScene);
-	}
-
-	public void startScene() throws FileNotFoundException {
-		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_WIDTH, SCENE_HEIGHT);
-		resetStage(login);
-		setLoginButtonHandlers((LoginScene) login);
 	}
 }
