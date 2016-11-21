@@ -2,7 +2,7 @@ package author.view.pages.sprite.editor.character;
 
 import game_data.Sprite;
 
-public class EnemySpriteEditPage extends CharacterSpriteEditor {
+public class EnemySpriteEditPage extends CharacterSpriteEditPage {
 
 	public EnemySpriteEditPage() {
 		super();

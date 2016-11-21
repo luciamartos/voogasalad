@@ -1,9 +1,9 @@
 package author.view.pages.sprite.editor.projectile;
 
-import author.view.pages.sprite.editor.SpriteEditPage;
+import author.view.pages.sprite.editor.BaseSpriteEditPage;
 import game_data.Sprite;
 
-public class ProjectileSpriteEditPage extends SpriteEditPage {
+public class ProjectileSpriteEditPage extends BaseSpriteEditPage {
 
 	public ProjectileSpriteEditPage() {
 		super();

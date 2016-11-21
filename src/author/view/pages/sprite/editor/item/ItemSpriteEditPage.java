@@ -1,9 +1,9 @@
 package author.view.pages.sprite.editor.item;
 
-import author.view.pages.sprite.editor.SpriteEditPage;
+import author.view.pages.sprite.editor.BaseSpriteEditPage;
 import game_data.Sprite;
 
-public class ItemSpriteEditPage extends SpriteEditPage {
+public class ItemSpriteEditPage extends BaseSpriteEditPage {
 
 	public ItemSpriteEditPage(){
 		super();

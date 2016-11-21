@@ -62,14 +62,15 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Level Window"));
 		tbb.addFiller();
-		tbb.addBurst(new ButtonFactory().createButton("Set Background", e -> {
-			setBackgroundImage();
-			System.out.println("Change background here");
-		}).getButton(), new ButtonFactory().createButton("Set Theme", e -> {
-			// TODO: Jordan - Add functionality to changing theme, what the
-			// fucks a theme
-			System.out.println("Change theme here");
-		}).getButton());
+		tbb.addBurst(
+				new ButtonFactory().createButton("Set Background", e -> {
+					setBackgroundImage();}).getButton(), 
+				new ButtonFactory().createButton("Set Theme", e -> {
+					// TODO: Jordan - Add functionality to changing theme, what the
+					// fucks a theme
+					System.out.println("Change theme here");
+				}).getButton()
+				);
 
 		super.getWindow().getChildren().add(tbb.getToolBar());
 	}
@@ -77,9 +78,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private void createLevelScroller() {
 		myLevelScroller = new ScrollPane();
 		myContainer = new Pane();
-		myContainer.setOnDragEntered(e -> {
-			System.out.println("Drag entered level editor pane");
-		});
+				myContainer.setOnDragEntered(e -> {
+					System.out.println("Drag entered level editor pane");
+				});
 
 		acceptDraggableSprites();
 		myContainer.prefWidthProperty().bind(myLevelScroller.widthProperty());
@@ -87,6 +88,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 		myLevelScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
 		myLevelScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+
 		myLevelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
 		myLevelScroller.setContent(myContainer);
 
@@ -101,7 +103,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			if (db.hasString()) {
 				String nodeId = db.getString();				
 				Sprite sprite = findSprite(nodeId);
-				
+
 				DraggableSprite newSprite = new ConcreteMovableSprite(sprite);
 
 				ImageView image = newSprite.getImageView();
@@ -126,6 +128,26 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		});
 	}
 
+	private void setBackgroundImage() {
+		File file = new FileLoader(
+				FileType.GIF, 
+				FileType.JPEG, 
+				FileType.PNG,
+				FileType.JPG ).loadImage();
+
+		System.out.println(file.toURI().toString());
+
+		Image image = new Image( file.toURI().toString() );
+		BackgroundImage backIm = new BackgroundImage(
+				image, 
+				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+				BackgroundPosition.DEFAULT, 
+				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
+
+		myContainer.setBackground(new Background(backIm));
+		myContainer.setMinSize(image.getWidth(), image.getHeight());
+	}
+
 	private Sprite findSprite(String nodeId) {
 		for (Sprite s : myController.getModel().getGame().getPresets()) {
 			if (nodeId.equals(s.getId())) {
@@ -135,20 +157,6 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		return null;
 	}
 
-	private void setBackgroundImage() {
-		File file = new FileLoader(FileType.GIF, FileType.JPEG, FileType.PNG, FileType.JPG).loadImage();
-
-		System.out.println(file.toURI().toString());
-
-		Image image = new Image(file.toURI().toString());
-		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.DEFAULT,
-				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
-		
-		myContainer.setBackground(new Background(backIm));
-		myContainer.setMinSize(image.getWidth(), image.getHeight());
-	}
-	
 	@Override
 	public void setLevel(Level aLevel){
 		super.setLevel(aLevel);
@@ -157,9 +165,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			updatePane();
 			System.out.println("Updated");
 		});
-		
+
 	}
-	
+
 	private void updatePane(){
 		myContainer.getChildren().clear();
 		getLevel().getMySpriteList().forEach((sprite) -> {
@@ -167,7 +175,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			myContainer.getChildren().add(draggableSprite.getImageView());
 		});
 	}
-	
+
 
 	/*
 	 * (non-Javadoc)
@@ -177,7 +185,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	 */
 	@Override
 	protected void initListener(IAuthorController authorController) {
-			
+
 	}
 
 }
