@@ -19,7 +19,7 @@ public class PlayerSpriteEditPage extends CharacterSpriteEditPage {
 	}
 
 	@Override
-	public String getName() {
+	public String getSpriteType() {
 		return "Player Editor";
 	}
 
@@ -27,8 +27,11 @@ public class PlayerSpriteEditPage extends CharacterSpriteEditPage {
 	public Sprite buildSprite() {
 		getSprite().setMyLocation(super.getLocation());
 		getSprite().setMyImagePath(super.getImageFile().toString());
-		// fixed this temporarily to resolve conflict, hard coded values need to go away somehow
-		return new Player(super.getLocation(), 20, 20, "Mario", super.getImageFile().toString());
+		getSprite().setMyWidth(super.getWidth());
+		getSprite().setMyHeight(super.getHeight());
+		getSprite().setName(super.getSpriteName());
+
+		return getSprite();
 	}
 
 }

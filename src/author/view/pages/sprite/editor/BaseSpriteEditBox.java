@@ -25,6 +25,9 @@ public class BaseSpriteEditBox {
 	private TextField myXPositionField;
 	private TextField myYPositionField;
 	private TextField myHeadingField;
+	private TextField myNameField;
+	private TextField myWidthField;
+	private TextField myHeightField;
 	private ImageView myImageView;
 	private File myFile;
 	
@@ -33,13 +36,52 @@ public class BaseSpriteEditBox {
 	public BaseSpriteEditBox() {
 		myPane = new VBox();
 		myFileLoader = new FileLoader(FileType.PNG, FileType.GIF,FileType.JPG, FileType.JPEG);
-		myPane.getChildren().addAll(makeLocationFields(), makeImageSelect());	
+		myPane.getChildren().addAll(makeNameField(), makeLocationFields(),makeSizeFields(), makeImageSelect());	
 	}
 
 	public final Pane getPane(){
 		return myPane;
 	}
 
+	public final String getName(){
+		return myNameField.getText();
+	}
+	
+	public final void setName(String aName){
+		myNameField.setText(aName);		
+	}
+	
+	public final void setSize(int aWidth, int aHeight){
+		myWidthField.setText("" + aWidth);
+		myHeightField.setText("" + aHeight);
+	}
+	
+	public final int getWidth(){
+		int width;
+		
+		try {
+			width = Integer.parseInt(myWidthField.getText());
+		}
+		catch (NumberFormatException e){
+			width = 0;
+		} 
+		
+		return width;
+	}
+	
+	public final int getHeight(){
+		int height;
+		
+		try {
+			height = Integer.parseInt(myHeightField.getText());
+		}
+		catch (NumberFormatException e){
+			height = 0;
+		} 
+		
+		return height;
+	}
+	
 	public final Location getLocation(){
 		Double x, y, h;
 		
@@ -97,6 +139,37 @@ public class BaseSpriteEditBox {
 
 	}
 
+	private Node makeNameField(){
+		Pane nameBox = new VBox();
+		
+		myNameField = new TextField();
+		nameBox.getChildren().addAll(new Label("Name: "), myNameField);
+		HBox.setHgrow(myNameField, Priority.ALWAYS);
+		
+		return nameBox;
+	}
+	
+	private Node makeSizeFields(){
+		Pane sizeBox = new VBox();
+		
+		Pane wBox = new HBox();
+		myWidthField = new TextField();
+		myWidthField.textProperty().addListener(makeOnlyNumberProperty(myWidthField));;
+		wBox.getChildren().addAll(new Label("Width: "), myWidthField);
+		HBox.setHgrow(myWidthField, Priority.ALWAYS);
+
+		
+		Pane hBox = new HBox();
+		myHeightField = new TextField();
+		myHeightField.textProperty().addListener(makeOnlyNumberProperty(myHeightField));;
+		hBox.getChildren().addAll(new Label("Height: "), myHeightField);
+		HBox.setHgrow(myHeightField, Priority.ALWAYS);
+
+		sizeBox.getChildren().addAll( new Label("Size: "), wBox, hBox);		
+		
+		return sizeBox;
+	}
+	
 	private Node makeLocationFields(){
 		Pane locationBox = new VBox();
 
@@ -109,14 +182,13 @@ public class BaseSpriteEditBox {
 		yBox.getChildren().addAll(new Label("Y: "), myYPositionField);
 		
 		myHeadingField = new TextField();
-		Pane hBox = new HBox();
-		hBox.getChildren().addAll(new Label("Angle:"), myHeadingField);
+		Pane hBox = new VBox();
+		hBox.getChildren().addAll(new Label("Angle: "), myHeadingField);
 		
 		HBox.setHgrow(myXPositionField, Priority.ALWAYS);
 		HBox.setHgrow(myYPositionField, Priority.ALWAYS);
 		HBox.setHgrow(myHeadingField, Priority.ALWAYS);
 
-		
 		Pane coordinateBox = new VBox();
 		coordinateBox.getChildren().addAll(xBox, yBox, hBox);
 			

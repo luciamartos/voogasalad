@@ -30,7 +30,7 @@ public abstract class BaseSpriteEditPage {
 		mySpriteEditBox = new BaseSpriteEditBox();
 		myPane.getChildren().addAll(myToolBarBuilder.getToolBar(), mySpriteEditBox.getPane());
 		Button buildButton = new ButtonFactory().createButton("save", e -> buildSprite()).getButton();
-		myToolBarBuilder.addBurst(new Label(getName()));
+		myToolBarBuilder.addBurst(new Label(getSpriteType()));
 		myToolBarBuilder.addBurst(buildButton);
 
 	}
@@ -40,14 +40,32 @@ public abstract class BaseSpriteEditPage {
 		mySprite = aSprite;
 		mySpriteEditBox.setLocation(aSprite.getMyLocation());
 		mySpriteEditBox.setImageFile(new File(aSprite.getMyImagePath()));
+		mySpriteEditBox.setName(aSprite.getName());
+		mySpriteEditBox.setSize(aSprite.getMyWidth(), aSprite.getMyHeight());
 	}
 	
 	public abstract Sprite buildSprite();
 	
-	public abstract String getName();
+	public abstract String getSpriteType();
 
 	public Pane getPane(){
 		return myPane;
+	}
+	
+	protected final String getSpriteName(){
+		return mySpriteEditBox.getName();
+	}
+	
+	protected final void setSpriteName(String aSpriteName){
+		mySpriteEditBox.setName(aSpriteName);
+	}
+	
+	protected final int getWidth(){
+		return mySpriteEditBox.getWidth();
+	}
+	
+	protected final int getHeight(){
+		return mySpriteEditBox.getWidth();
 	}
 	
 	protected final boolean hasSprite(){

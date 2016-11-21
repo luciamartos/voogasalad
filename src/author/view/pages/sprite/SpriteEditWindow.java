@@ -20,7 +20,7 @@ public class SpriteEditWindow {
 
 	public void openWindow(){
 		Stage stage = new Stage();
-		stage.setTitle(mySpriteEditPage.getName());
+		stage.setTitle(mySpriteEditPage.getSpriteType());
 		stage.setScene(new Scene(mySpriteEditPage.getPane()));
 		stage.setResizable(false);
 		stage.show();

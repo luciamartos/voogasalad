@@ -5,8 +5,8 @@ import game_data.Sprite;
 import game_data.sprites.Player;
 
 public enum TestSprite {
-	MARIO(new Player(new Location(0, 0, 0), "src/author/images/marioSMBW.png", 100)),
-	DUKE(new Player(new Location(10, 10, 10), "src/author/images/duke.gif", 100));
+	MARIO(new Player(new Location(0, 0, 0), 0, 0, "src/author/images/marioSMBW.png", "Mario")),
+	DUKE(new Player(new Location(10, 10, 10),0, 0, "src/author/images/duke.gif", "Duke"));
 	
 	Sprite mySprite;
 	
