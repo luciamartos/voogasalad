@@ -21,7 +21,8 @@ public class Game extends GameObject{
 	List<Level> myLevels;
 	Set<Sprite> spritePresets = new HashSet<>();
 	
-	public Game(){
+	public Game(String aName){
+		setName(aName);
 		myLevels = new ArrayList<Level>();
 	}
 

@@ -11,5 +11,9 @@ public class ConcreteDraggableSprite extends DraggableSprite {
 	public ConcreteDraggableSprite(Sprite sprite) {
 		super(sprite);
 	}
+	
+	public ConcreteDraggableSprite(Sprite sprite, boolean removable) {
+		super(sprite, removable);
+	}
 
 }

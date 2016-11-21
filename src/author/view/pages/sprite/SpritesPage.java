@@ -11,6 +11,7 @@ public class SpritesPage {
 	private SpriteScroller myEnemyScroller;
 	private SpriteScroller myTerrainScroller;
 	private SpriteScroller myItemScroller;
+	private SpriteScroller myProjectileScroller;
 	
 	public SpritesPage(){
 		myPane = new HBox();
@@ -18,12 +19,14 @@ public class SpritesPage {
 		myEnemyScroller = new SpriteScroller("Enemy");
 		myTerrainScroller = new SpriteScroller("Terrain");
 		myItemScroller = new SpriteScroller("Item");
+		myProjectileScroller = new SpriteScroller("Projectile");
 		
 		myPane.getChildren().addAll(
 				myPlayerScroller.getNode(),
 				myEnemyScroller.getNode(),
 				myTerrainScroller.getNode(),
-				myItemScroller.getNode()
+				myItemScroller.getNode(),
+				myProjectileScroller.getNode()
 				);
 		
 	}

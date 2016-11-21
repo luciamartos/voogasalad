@@ -22,10 +22,17 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 	private ScrollPane levelScroller;
 	private VBox container;
 
-	public LevelSelectionWindow(IAuthorController authorController, Level aLevel) {
-		super(authorController, aLevel);
+	public LevelSelectionWindow(IAuthorController authorController) {
+		super(authorController);
 	}
 
+	@Override
+	public <T extends Node> void addChildren(T... child) {
+		for (T node : child) {
+			container.getChildren().add(node);
+		}
+	}
+	
 	@Override
 	protected void createToolBar() {
 		ToolBarBuilder tbb = new ToolBarBuilder();
@@ -54,11 +61,11 @@ public class LevelSelectionWindow extends AbstractLevelEditorWindow {
 	 * @see author.view.pages.level_editor.windows.AbstractLevelEditorWindow#initListener(author.controller.IAuthorController, game_data.Level)
 	 */
 	@Override
-	protected void initListener(IAuthorController authorController, Level aLevel) {
+	protected void initListener(IAuthorController authorController) {
 		authorController.getModel().getGame().addListener((game) -> {
 			this.container.getChildren().clear();
 			authorController.getModel().getGame().getLevels().forEach((level) ->{
-				this.container.getChildren().add(new Label(level.toString()));
+				this.container.getChildren().add(new Label(level.getName()));
 			});
 		});
 	}
