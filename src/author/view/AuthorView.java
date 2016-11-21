@@ -63,8 +63,6 @@ public class AuthorView {
 			addLevel(createdLevel);
 			System.out.println("Create new level");
 			//testing
-			this.authorController.getModel().getGame().addPreset(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
-			createdLevel.addNewSprite(new Player(new Location(0, 0, 0), SPRITE_IMAGE_PATH, 5));
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {

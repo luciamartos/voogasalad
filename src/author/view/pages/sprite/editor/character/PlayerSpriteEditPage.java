@@ -25,7 +25,8 @@ public class PlayerSpriteEditPage extends CharacterSpriteEditor {
 
 	@Override
 	public Sprite buildSprite() {
-		return new Player(super.getLocation(), super.getImageFile().toString(), 5);
+		// TODO: Currently hardcoded, need to change
+		return new Player(super.getLocation(), 20, 20, "Mario", super.getImageFile().toString());
 	}
 
 }
