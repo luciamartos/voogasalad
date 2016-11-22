@@ -64,7 +64,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		tbb.addFiller();
 		tbb.addBurst(
 				new ButtonFactory().createButton("Set Background", e -> {
-					setBackgroundImage();}).getButton(), 
+					newBackgroundImage();}).getButton(), 
 				new ButtonFactory().createButton("Set Theme", e -> {
 					// TODO: Jordan - Add functionality to changing theme, what the
 					// fucks a theme
@@ -128,16 +128,18 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		});
 	}
 
-	private void setBackgroundImage() {
+	private void newBackgroundImage() {
 		File file = new FileLoader(
 				FileType.GIF, 
 				FileType.JPEG, 
 				FileType.PNG,
 				FileType.JPG ).loadImage();
 
-		System.out.println(file.toURI().toString());
-
-		Image image = new Image( file.toURI().toString() );
+		getLevel().setBackgroundImageFilePath(file.toURI().toString());
+	}
+	
+	private void setBackgroundImage(String filePath){
+		Image image = new Image(filePath);
 		BackgroundImage backIm = new BackgroundImage(
 				image, 
 				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
@@ -147,6 +149,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		myContainer.setBackground(new Background(backIm));
 		myContainer.setMinSize(image.getWidth(), image.getHeight());
 	}
+	
+	
 
 	private Sprite findSprite(String nodeId) {
 		for (Sprite s : myController.getModel().getGame().getPresets()) {
@@ -170,6 +174,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 	private void updatePane(){
 		myContainer.getChildren().clear();
+		setBackgroundImage(getLevel().getBackgroundImageFilePath());
 		getLevel().getMySpriteList().forEach((sprite) -> {
 			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
 			myContainer.getChildren().add(draggableSprite.getImageView());
