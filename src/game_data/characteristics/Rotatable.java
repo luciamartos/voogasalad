@@ -12,9 +12,11 @@ import javafx.geometry.Side;
 public class Rotatable implements Characteristic{
 
 	private double mySpeed;
+	private Sprite mySprite;
 	
-	public Rotatable(double speed){
+	public Rotatable(double speed, Sprite aSprite){
 		mySpeed = speed;
+		mySprite = aSprite;
 	}
 	
 	public double getSpeed(){
@@ -23,7 +25,7 @@ public class Rotatable implements Characteristic{
 
 	@Override
 	public Characteristic copy() {
-		return new Rotatable(mySpeed);
+		return new Rotatable(mySpeed, mySprite.clone());
 	}
 
 	@Override

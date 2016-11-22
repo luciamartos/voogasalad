@@ -18,6 +18,8 @@ import game_engine.actions.MoveLeft;
 import game_engine.actions.MoveRight;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
+import states.Physics;
+import states.State;
 
 /**
  * TODO make sure that player doesnt run into walls or thigns 
@@ -133,7 +135,12 @@ public class UpdateStates {
 	}
 
 	private void updateSpritePosition(Sprite sprite){
-		SpritePhysics spritePhysics = sprite.getPhysicsState().getPhysics();
+		SpritePhysics spritePhysics = null;
+		for(State s: sprite.getStates()){
+			if(s instanceof Physics){
+				spritePhysics = ((Physics) s).getPhysics();
+			}
+		}
 		
 		Location myCurrentLocation = sprite.getMyLocation();
 		double curXLoc = myCurrentLocation.getXLocation();
