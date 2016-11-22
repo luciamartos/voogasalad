@@ -72,11 +72,9 @@ public class UpdateStates {
 	}
 
 	private void executeCharacteristics() {
-		for(Sprite mySprite:mySpriteList){
-			
+		for(Sprite mySprite:mySpriteList){	
 			ListOfCollidingSprites collidingSprites = new ListOfCollidingSprites(mySprite, mySpriteList, enginePlayerController);
 			Map<Sprite, Side> myCollisionMap = collidingSprites.getCollisionSpriteMap();
-			
 			Set<Characteristic> characteristics = mySprite.getCharacteristics();
 			for(Characteristic myCharacteristic:characteristics){	
 				myCharacteristic.execute(myCollisionMap);
