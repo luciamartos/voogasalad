@@ -3,10 +3,14 @@ package game_data.characteristics;
 import java.util.Map;
 
 import game_data.Sprite;
+import game_data.characteristics.characteristic_annotations.CharacteristicAnnotation;
+import game_data.characteristics.characteristic_annotations.ParameterAnnotation;
 import javafx.geometry.Side;
 
+@CharacteristicAnnotation(name = "Horizontal Bounded Pacer")
 public class HorizontalBoundedPacer extends BoundedPacer implements Characteristic{
 
+	@ParameterAnnotation(parameters = {"Speed", "Lower Bound", "Upper Bound"})
 	public HorizontalBoundedPacer(int speed, double lowerBound, double upperBound) {
 		super(speed, lowerBound, upperBound);
 	}
