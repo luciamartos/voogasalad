@@ -5,6 +5,10 @@ import java.util.Map;
 import game_data.Sprite;
 import javafx.geometry.Side;
 
+/**
+ * @author austingartside
+ * alternative version of pacer where user does not to include bounds, but rather how far it can travel
+ */
 public class PacerAlternative implements Characteristic{
 
 	private static final String VERTICAL = "VERTICAL";
@@ -18,13 +22,21 @@ public class PacerAlternative implements Characteristic{
 	
 	public PacerAlternative(String type, double distance, Sprite associatedSprite){
 		myType = type;
-		distance = myDistance;
+		myDistance = distance;
 		mySprite = associatedSprite;
 		originalXPosition = associatedSprite.getMyLocation().getXLocation();
 		originalYPosition = associatedSprite.getMyLocation().getYLocation();
 	}
 	
-	private boolean directionToChange(){
+	public PacerAlternative(Sprite associatedSprite){
+		myType = "";
+		myDistance = 0;
+		mySprite = associatedSprite;
+		originalXPosition = associatedSprite.getMyLocation().getXLocation();
+		originalYPosition = associatedSprite.getMyLocation().getYLocation();
+	}
+	
+	private boolean changeDirection(){
 		if(myType.equals(VERTICAL)){
 			return atYBound();
 		}
@@ -52,9 +64,11 @@ public class PacerAlternative implements Characteristic{
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap) {
 		//TODO: make and execute action
+		if(changeDirection()){
+			//execute action
+		}
 		for(Sprite collidedSprite:myCollisionMap.keySet()){
-			//myAction = new ProjectilePowerUp();
-			//myAction.act();
+			//execute action
 		}
 	}
 
