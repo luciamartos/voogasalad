@@ -2,9 +2,9 @@ package gameplayer.application_controller;
 
 import java.util.HashSet;
 import java.util.Set;
-import gameplayer.application_scene.GamePlayScene;
-import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
-import gameplayer.heads_up_display.HeadsUpDisplay;
+import gameplayer.front_end.application_scene.AnimationScene;
+import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
+import gameplayer.front_end.heads_up_display.HeadsUpDisplay;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class GamePlayController {
 	
 	private Stage myStage;
-	private GamePlayScene myGamePlay;
+	private AnimationScene myGamePlay;
 	private HeadsUpDisplay myHeadsUpDisplay;
 	private StackPane myStack;
 	private Scene myScene;
@@ -35,7 +35,7 @@ public class GamePlayController {
 	}
 
 	private void initializeGameScene() {
-		myGamePlay = new GamePlayScene(myScene, myStage.getWidth(), myStage.getHeight());
+		myGamePlay = new AnimationScene(myScene, myStage.getWidth(), myStage.getHeight());
 		myStack.getChildren().add(myGamePlay.init());
 		myHeadsUpDisplay = new HeadsUpDisplay(myScene, myStage.getWidth(), myStage.getHeight());
 		myStack.getChildren().add(myHeadsUpDisplay.init());
