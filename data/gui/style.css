@@ -5,7 +5,7 @@
 
 #pane {
     -fx-background-image: url("hawaiian_shirt_background3.png");
-    -fx-background-repeat: contain;   
+    -fx-background-repeat: repeat;   
     -fx-background-width: 100%;
     -fx-background-height: 100%;
     -fx-background-position: center center;

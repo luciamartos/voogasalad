@@ -12,7 +12,9 @@ import javafx.scene.shape.Rectangle;
 public class SpriteDisplayFactory {
 
 	public Node buildSpriteDisplay(String aFileName) throws FileNotFoundException {
+		ImageView image = new ImageView(aFileName);
 		return new ImageView(aFileName);
+		
 	}
 
 	public Node buildSpriteDisplay(Shape aShape) {
