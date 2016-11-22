@@ -80,6 +80,7 @@ public abstract class Sprite extends GameObject {
 
 	public void addCharacteristic(Characteristic aCharacteristic) {
 		myCharacteristics.add(aCharacteristic);
+		notifyListeners();
 	}
 	
 	public Set<State> getStates(){
@@ -88,6 +89,7 @@ public abstract class Sprite extends GameObject {
 	
 	public void addState(State aState){
 		myStates.add(aState);
+		notifyListeners();
 	}
 	
 	public Location getMyLocation() {
@@ -141,6 +143,7 @@ public abstract class Sprite extends GameObject {
 
 	public void setMyWidth(int myWidth) {
 		this.myWidth = myWidth;
+		notifyListeners();
 	}
 
 	public int getMyHeight() {
@@ -149,6 +152,7 @@ public abstract class Sprite extends GameObject {
 
 	public void setMyHeight(int myHeight) {
 		this.myHeight = myHeight;
+		notifyListeners();
 	}
 
 }

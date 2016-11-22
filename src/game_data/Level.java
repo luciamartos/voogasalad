@@ -44,6 +44,7 @@ public class Level extends GameObject{
 	
 	public void setPlayerSprite(Player aPlayer){
 		myPlayerSprite = aPlayer;
+		notifyListeners();
 	}
 	
 	public int getWidth() {
