@@ -4,17 +4,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import gameplayer.application_scene.ErrorAlert;
-import gameplayer.application_scene.FileController;
-import gameplayer.application_scene.IDisplay;
-import gameplayer.application_scene.LoginScene;
-import gameplayer.application_scene.MainMenuScene;
-import gameplayer.application_scene.PlayerOptions;
-import gameplayer.application_scene.PopUpController;
+import gameplayer.front_end.application_scene.IDisplay;
+import gameplayer.front_end.application_scene.LoginScene;
+import gameplayer.front_end.application_scene.MainMenuScene;
 import javafx.scene.layout.HBox;
-import gameplayer.application_scene.SceneFactory;
-import gameplayer.application_scene.SceneIdentifier;
-import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
+import gameplayer.front_end.application_scene.SceneFactory;
+import gameplayer.front_end.application_scene.SceneIdentifier;
+import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
+import gameplayer.front_end.popup.ErrorAlert;
+import gameplayer.front_end.popup.PlayerOptionsPopUp;
+import gameplayer.front_end.popup.PopUpController;
 import javafx.stage.Stage;
 
 /**
@@ -132,7 +131,7 @@ public class ApplicationController {
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton(myButtonLabels.getString("Options"), a -> {
 			PopUpController popup = new PopUpController();
-			PlayerOptions options = new PlayerOptions();
+			PlayerOptionsPopUp options = new PlayerOptionsPopUp();
 			for(HBox box : options.addOptions()){
 				popup.addOption(box);
 			}

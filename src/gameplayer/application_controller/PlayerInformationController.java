@@ -1,9 +1,9 @@
 package gameplayer.application_controller;
 
-import gameplayer.game_display_information.GameDisplayInformation;
-import gameplayer.game_display_information.IViewableGameDisplayInformation;
-import gameplayer.user_information.IViewableUserInformation;
-import gameplayer.user_information.UserInformationController;
+import gameplayer.back_end.user_information.IViewableUserInformation;
+import gameplayer.back_end.user_information.UserInformationController;
+import gameplayer.front_end.game_display_information.GameDisplayInformation;
+import gameplayer.front_end.game_display_information.IViewableGameDisplayInformation;
 
 public class PlayerInformationController {
 	
