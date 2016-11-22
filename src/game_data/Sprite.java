@@ -16,12 +16,10 @@ public abstract class Sprite extends GameObject {
 	private Location myLocation;
 	private int myWidth;
 	private int myHeight;
-	private String myName;
 	private String myImagePath;
 	private double myVelocity;
 	private CollisionHandler myCollisionHandler;
 	private Set<Characteristic> myCharacteristics;
-	
 	private String id = "";
 	
 	private Set<State> myStates;
@@ -30,7 +28,7 @@ public abstract class Sprite extends GameObject {
 		myLocation = aLocation;
 		myWidth = aWidth;
 		myHeight = aHeight;
-		myName = aName;
+		setName(aName);
 		myImagePath = aImagePath;
 		myVelocity = 0;
 		myCollisionHandler = new CollisionHandler();
@@ -44,7 +42,7 @@ public abstract class Sprite extends GameObject {
 				aSprite.getMyLocation().getYLocation(), aSprite.getMyLocation().getMyHeading());
 		myWidth = aSprite.getMyWidth();
 		myHeight = aSprite.getMyHeight();
-		myName = aSprite.getMyName();
+		setName(aSprite.getName());
 		myImagePath = aSprite.getMyImagePath();
 		myVelocity = aSprite.getMyVelocity();
 		myCollisionHandler = aSprite.getMyCollisionHandler(); //to change: would need to have the same collision handler but we don't know what that is yet
@@ -126,11 +124,13 @@ public abstract class Sprite extends GameObject {
 		notifyListeners();
 	}
 
+	@Deprecated
 	public void setId(String id) {
 		this.id = id;
 		notifyListeners();
 	}
 	
+	@Deprecated
 	public String getId() {
 		return id;
 	}
@@ -149,14 +149,6 @@ public abstract class Sprite extends GameObject {
 
 	public void setMyHeight(int myHeight) {
 		this.myHeight = myHeight;
-	}
-
-	public String getMyName() {
-		return myName;
-	}
-
-	public void setMyName(String myName) {
-		this.myName = myName;
 	}
 
 }
