@@ -24,7 +24,6 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 	
 	private static final String STYLESHEET = "data/gui/style.css";
 	private static final String FILE = "file:";
-	
 	protected Scene myScene;
 	protected BorderPane myRoot;
 	protected VBox myOptions;
@@ -47,5 +46,4 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 	public void addNode(Node node){
 		myOptions.getChildren().add(node);
 	}
-
 }

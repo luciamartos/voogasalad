@@ -3,6 +3,7 @@ package gameplayer.user_information;
 import java.util.HashMap;
 import java.util.Map;
 import gameplayer.exceptions.IncorrectPasswordException;
+import gameplayer.exceptions.UsernameFieldEmptyException;
 import gameplayer.exceptions.UsernameNotFoundException;
 import gameplayer.exceptions.UsernameNotUniqueException;
 
@@ -34,14 +35,15 @@ public class UserInformationController implements IViewableUserInformation {
 	}
 	
 	private void assign(String aUserName, String aPassword){
+		myUserInformation.put(aUserName, aPassword);
 		setMyCurrentUser(aUserName);
 		setMyCurrentPassword(aPassword);
 	}
 
 	private boolean isValidToEnter(String aUserName, String aPassword) throws Exception {
 		if(aUserName.isEmpty() || aUserName.equals("Enter Username")){
-//			throw new UsernameFieldEmptyException();
-			return true;
+			throw new UsernameFieldEmptyException();
+//			return true;
 		} else if (!myUserInformation.containsKey(aUserName)) {
 			throw new UsernameNotFoundException(aUserName + " is not a valid username");
 		} else if (!myUserInformation.get(aUserName).equals(aPassword)){
@@ -68,7 +70,7 @@ public class UserInformationController implements IViewableUserInformation {
 	}
 
 	public void setMyCurrentPassword(String aPassword) {
-		this.myCurrentPassword = aPassword;
+		myCurrentPassword = aPassword;
 	}
 
 	public String getMyCurrentUser() {
@@ -76,6 +78,6 @@ public class UserInformationController implements IViewableUserInformation {
 	}
 
 	public void setMyCurrentUser(String aCurrentUser) {
-		this.myCurrentUser = aCurrentUser;
+		myCurrentUser = aCurrentUser;
 	}
 }
