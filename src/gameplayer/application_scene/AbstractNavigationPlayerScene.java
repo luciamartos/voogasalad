@@ -3,7 +3,6 @@ package gameplayer.application_scene;
 import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 

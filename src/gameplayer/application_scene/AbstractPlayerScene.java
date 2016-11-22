@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,12 +23,10 @@ import javafx.scene.layout.VBox;
  *
  */
 
-
 public abstract class AbstractPlayerScene  extends Observable implements IDisplay {
 	
 	private static final String STYLESHEET = "data/gui/style.css";
 	private static final String BACKGROUND_IMAGE = "gui/hawaiian_shirt_background3.png";
-	
 	protected Scene myScene;
 	protected BorderPane myRoot;
 	protected VBox myOptions;
@@ -55,5 +52,4 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 	public void addNode(Node node){
 		myOptions.getChildren().add(node);
 	}
-
 }

@@ -1,11 +1,12 @@
 package gameplayer.application_controller;
 
-import java.util.Observer;
-
+import java.util.HashSet;
+import java.util.Set;
 import gameplayer.application_scene.GamePlayScene;
 import gameplayer.gui_generator.IGUIGenerator.ButtonDisplay;
 import gameplayer.heads_up_display.HeadsUpDisplay;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -16,23 +17,18 @@ public class GamePlayController {
 	private HeadsUpDisplay myHeadsUpDisplay;
 	private StackPane myStack;
 	private Scene myScene;
+	private Set<KeyCode> myKeySet;
 	
-	private class GamePlayObserver implements Observer {
-
-        @Override
-        public void update(java.util.Observable o, Object arg) {
-        	//TODO: Send to game engine for processing
-            System.out.println(myGamePlay.getLastKeyPressed());
-        }
-	}
-	
-	public GamePlayController(Stage astage){
+	public GamePlayController(Stage astage) {
 		myStage = astage;
+		myKeySet = new HashSet<KeyCode>();
 		myStack = new StackPane();
 		myScene = new Scene(myStack, myStage.getWidth(), myStage.getHeight());
+		myScene.setOnKeyPressed(e -> handleKeyPress(e.getCode()));
+		myScene.setOnKeyReleased(e -> handleKeyRelease(e.getCode()));
 	}
 	
-	public void displayGame(){
+	public void displayGame() {
 		initializeGameScene();
 		resetStage();
 		setButtonHandlers();
@@ -40,7 +36,6 @@ public class GamePlayController {
 
 	private void initializeGameScene() {
 		myGamePlay = new GamePlayScene(myScene, myStage.getWidth(), myStage.getHeight());
-		myGamePlay.addObserver(new GamePlayObserver());
 		myStack.getChildren().add(myGamePlay.init());
 		myHeadsUpDisplay = new HeadsUpDisplay(myScene, myStage.getWidth(), myStage.getHeight());
 		myStack.getChildren().add(myHeadsUpDisplay.init());
@@ -60,9 +55,22 @@ public class GamePlayController {
 		}, ButtonDisplay.TEXT);
 	}
 	
-	private void resetStage(){
+	private void resetStage() {
 		myStage.close();
 		myStage.setScene(myScene);
 		myStage.show();
+	}
+	
+	private void handleKeyPress(KeyCode aKey) {
+        myKeySet.add(aKey);
+        System.out.println("new");
+        for (KeyCode key : myKeySet) {
+        	System.out.println(key);
+        }
+	}
+	
+	private void handleKeyRelease(KeyCode key) {
+		//System.out.println(myKeySet);
+		myKeySet.remove(key);
 	}
 }
