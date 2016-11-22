@@ -36,7 +36,10 @@ public abstract class AuthorModel implements IAuthorModel{
 	@Override
 	public Sprite addSprite(Sprite aSpritePreset){
 		Sprite createdSprite = aSpritePreset.clone();
-		this.activeLevel.addNewSprite(createdSprite);
+		
+		if(activeLevel != null) 
+			this.activeLevel.addNewSprite(createdSprite);
+		
 		return createdSprite;
 	}
 	

@@ -30,7 +30,7 @@ public class AuthorView {
 	IAuthorController authorController;
 
 	private LevelEditor myLevelEditor;
-	private SpritesPage mySpritesPage = new SpritesPage();
+	private SpritesPage mySpritesPage;
 
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
@@ -40,6 +40,7 @@ public class AuthorView {
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
+		this.mySpritesPage = new SpritesPage(authorController);
 		this.myLevelEditor = new LevelEditor(authorController);
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());

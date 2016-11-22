@@ -2,6 +2,7 @@ package author.view.pages.sprite;
 
 import java.util.Arrays;
 
+import author.controller.IAuthorController;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -16,13 +17,17 @@ public class SpritesPage {
 	private SpriteScroller myItemScroller;
 	private SpriteScroller myProjectileScroller;
 	
-	public SpritesPage(){
+	private IAuthorController myController;
+	
+	public SpritesPage(IAuthorController aController){
+		myController = aController;
+		
 		myPane = new HBox();
-		myPlayerScroller = new SpriteScroller("Player");
-		myEnemyScroller = new SpriteScroller("Enemy");
-		myTerrainScroller = new SpriteScroller("Terrain");
-		myItemScroller = new SpriteScroller("Item");
-		myProjectileScroller = new SpriteScroller("Projectile");
+		myPlayerScroller = new SpriteScroller("Player", myController);
+		myEnemyScroller = new SpriteScroller("Enemy", myController);
+		myTerrainScroller = new SpriteScroller("Terrain", myController);
+		myItemScroller = new SpriteScroller("Item", myController);
+		myProjectileScroller = new SpriteScroller("Projectile", myController);
 		
 		SpriteScroller[] scrollers = new SpriteScroller[]{
 				myPlayerScroller,
