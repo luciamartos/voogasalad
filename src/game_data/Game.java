@@ -23,11 +23,14 @@ public class Game extends GameObject{
 	List<Level> myLevels;
 	Set<Sprite> spritePresets = new HashSet<>();
 	XMLTranslator myXMLSaver;
+	Level currentLevel;
+
 	
 	public Game(String aName){
 		setName(aName);
 		myLevels = new ArrayList<Level>();
 		myXMLSaver = new XMLTranslator();
+		currentLevel=myLevels.get(0);
 	}
 
 	/**
@@ -57,6 +60,28 @@ public class Game extends GameObject{
 	
 	public Set<Sprite> getPresets(){
 		return Collections.unmodifiableSet(this.spritePresets);
+	}
+	public List<Level> getMyLevels(){
+		return myLevels;
+	}
+
+	public void setCurrentLevel(int levelNumber) {
+		currentLevel=myLevels.get(levelNumber);
+		
+	}
+	public Level getCurrentLevel(){
+		return currentLevel;
+	}
+	public Level goToNextLevel(){
+		int current=myLevels.indexOf(currentLevel);
+		if(current<myLevels.size()){
+			currentLevel=myLevels.get(current+1);
+		}
+		else{
+			//may or may not need to change this code
+			currentLevel=myLevels.get(0);
+		}
+		return currentLevel;
 	}
 
 }

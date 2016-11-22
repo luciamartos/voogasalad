@@ -9,7 +9,7 @@ public class EngineReceiverController {
 	private List<KeyCode> myKeys;
 	private String XMLRoute;
 	
-	public EngineReceiverController(IEnginePlayerControllerInterface myInterface) {
+	public EngineReceiverController(IEngineReceiverControllerInterface myInterface) {
 		myKeys = myInterface.getKeysBeingPressed();
 		XMLRoute = myInterface.getXMLRoute();
 	}
