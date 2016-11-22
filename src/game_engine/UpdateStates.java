@@ -102,7 +102,6 @@ public class UpdateStates {
 			
 			ListOfCollidingSprites collidingSprites = new ListOfCollidingSprites(mySprite, mySpriteList, mySpriteImages);
 			Map<Sprite, Side> myCollisionMap = collidingSprites.getCollisionSpriteMap();
-			
 			Set<Characteristic> characteristics = mySprite.getCharacteristics();
 			for(Characteristic myCharacteristic:characteristics){	
 				myCharacteristic.execute(myCollisionMap);
