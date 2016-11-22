@@ -30,14 +30,17 @@ class LevelEditBox {
 	private TextField nameField = new TextField();
 	private TextField widthField = createNumberField();
 	private TextField heightField = createNumberField();
+	private Level level;
 	
 	private VBox container;
 	LevelEditBox() {
-		container = initializeVBox();
+		this.container = initializeVBox();
+		this.level = new Level(null, 0, 0, null);
 	}
 	
 	LevelEditBox(Level aLevel){
 		this();
+		this.level = aLevel;
 		this.backgroundPath = aLevel.getBackgroundImageFilePath();
 		this.nameField.setText(aLevel.getName());
 		this.widthField.setText(new Integer(aLevel.getWidth()).toString());
@@ -46,6 +49,11 @@ class LevelEditBox {
 	
 	public VBox getEditBox(){
 		return this.container;
+	}
+	
+	public Level getLevel(){
+		this.level.setBackgroundImageFilePath(this.backgroundPath);
+		
 	}
 	
 	
