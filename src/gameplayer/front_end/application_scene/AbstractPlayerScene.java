@@ -15,6 +15,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * Representation of generic functionality each scene might need
@@ -26,7 +27,7 @@ import javafx.scene.layout.VBox;
 public abstract class AbstractPlayerScene  extends Observable implements IDisplay {
 	
 	private static final String STYLESHEET = "data/gui/style.css";
-	private static final String BACKGROUND_IMAGE = "gui/hawaiian_shirt_background3.png";
+	private static final String BACKGROUND_IMAGE = "data/gui/hawaiian_shirt_background3.png";
 	protected Scene myScene;
 	protected BorderPane myRoot;
 	protected VBox myOptions;
@@ -41,6 +42,7 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 	    myScene.getStylesheets().add(file.toURI().toString());
 	    //myRoot.setId("pane");
 	    Background backgroundDisplay = new BackgroundDisplayFactory().buildBackgroundDisplay(BACKGROUND_IMAGE, aWidth, aHeight);
+	    //Background backgroundDis = new BackgroundDisplayFactory().buildBackgroundDisplay(Color.RED, aWidth, aHeight);
 	    myRoot.setBackground(backgroundDisplay);
 	    myGUIGenerator = new GUIGenerator();
 	}
