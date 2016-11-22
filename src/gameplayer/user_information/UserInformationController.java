@@ -40,19 +40,19 @@ public class UserInformationController implements IViewableUserInformation {
 	}
 
 	private boolean isValidToEnter(String aUserName, String aPassword) throws Exception {
-		if(aUserName.isEmpty() || aUserName.equals("Enter Username")){
+		if (aUserName.isEmpty() || aUserName.equals("Enter Username")) {
 //			throw new UsernameFieldEmptyException();
 			return true;
 		} else if (!myUserInformation.containsKey(aUserName)) {
 			throw new UsernameNotFoundException(aUserName + " is not a valid username");
-		} else if (!myUserInformation.get(aUserName).equals(aPassword)){
+		} else if (!myUserInformation.get(aUserName).equals(aPassword)) {
 			throw new IncorrectPasswordException();
 		}
 		return true;
 	}
 	
 	private boolean isValidToSignUp(String aUserName) throws Exception {
-		if(myUserInformation.containsKey(aUserName)){
+		if (myUserInformation.containsKey(aUserName)) {
 			throw new UsernameNotUniqueException(aUserName + " has already been taken");
 		} else {
 			return true;
