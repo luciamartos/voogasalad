@@ -18,10 +18,11 @@ public class Game {
 	
 	List<Level> myLevels;
 	XMLTranslator myXMLSaver;
-	
+	Level currentLevel;
 	public Game(){
 		myLevels = new ArrayList<Level>();
 		myXMLSaver = new XMLTranslator();
+		currentLevel=myLevels.get(0);
 	}
 
 	/**
@@ -37,6 +38,28 @@ public class Game {
 
 	public void addNewLevel(Level aLevel){
 		myLevels.add(aLevel);
+	}
+	public List<Level> getMyLevels(){
+		return myLevels;
+	}
+
+	public void setCurrentLevel(int levelNumber) {
+		currentLevel=myLevels.get(levelNumber);
+		
+	}
+	public Level getCurrentLevel(){
+		return currentLevel;
+	}
+	public Level goToNextLevel(){
+		int current=myLevels.indexOf(currentLevel);
+		if(current<myLevels.size()){
+			currentLevel=myLevels.get(current+1);
+		}
+		else{
+			//may or may not need to change this code
+			currentLevel=myLevels.get(0);
+		}
+		return currentLevel;
 	}
 
 }
