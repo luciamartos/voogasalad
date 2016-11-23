@@ -4,6 +4,7 @@ import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -42,6 +43,8 @@ public class LoginScene extends AbstractPlayerScene {
 		myLoginOptions = new HBox(BOX_INSETS);
 		myUserName = myGUIGenerator.createTextField("Enter Username", 0, 0, 500);
 		myPassword = myGUIGenerator.createTextField("Enter Password", 0, 0, 500);
+		Label title = myGUIGenerator.createLabel("V00GASALAD", 0, 0);
+		myOptions.getChildren().add(title);
 		myOptions.getChildren().add(myUserName);
 		myOptions.getChildren().add(myPassword);
 		myLoginOptions.setAlignment(Pos.CENTER);

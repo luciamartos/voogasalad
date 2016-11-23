@@ -38,12 +38,9 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 		myRoot = new BorderPane();
 		myScene = new Scene(myRoot, aWidth, aHeight);
 		File file = new File(STYLESHEET);
-		//System.out.println(backgroundDisplay);
 	    myScene.getStylesheets().add(file.toURI().toString());
-	    //myRoot.setId("pane");
+	    myRoot.setId("pane");
 	    Background backgroundDisplay = new BackgroundDisplayFactory().buildBackgroundDisplay(BACKGROUND_IMAGE, aWidth, aHeight);
-	    //Background backgroundDis = new BackgroundDisplayFactory().buildBackgroundDisplay(Color.RED, aWidth, aHeight);
-	    myRoot.setBackground(backgroundDisplay);
 	    myGUIGenerator = new GUIGenerator();
 	}
 	

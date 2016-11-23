@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+
 import gameplayer.front_end.application_scene.IDisplay;
 import gameplayer.front_end.application_scene.LoginScene;
 import gameplayer.front_end.application_scene.MainMenuScene;
 import javafx.scene.layout.HBox;
 import gameplayer.front_end.application_scene.SceneFactory;
 import gameplayer.front_end.application_scene.SceneIdentifier;
+import gameplayer.front_end.gui_generator.GUIGenerator;
 import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
 import gameplayer.front_end.popup.ErrorAlert;
 import gameplayer.front_end.popup.PlayerOptionsPopUp;
@@ -32,12 +34,14 @@ public class ApplicationController {
 	private SceneFactory mySceneBuilder;
 	private PlayerInformationController myInformationController;
 	private ResourceBundle myButtonLabels; 
+	private GUIGenerator myGUIGenerator;
 	
 	public ApplicationController (Stage aStage) {
 		myStage = aStage;
 		mySceneBuilder = new SceneFactory();
 		myInformationController = new PlayerInformationController();
 		myButtonLabels = PropertyResourceBundle.getBundle(FILE + BUTTONLABEL);
+		myGUIGenerator = new GUIGenerator();
 	}
 	
 	public void startScene() throws FileNotFoundException {
@@ -90,7 +94,7 @@ public class ApplicationController {
 	
 	private void createNavigationButtons(IDisplay aMenu) {
 		aMenu.addNavigationButton(myButtonLabels.getString("Profile"), e -> {
-			displayUserProfile();
+			displayUserScene();
 		}, ButtonDisplay.CSS);
 		aMenu.addNavigationButton(myButtonLabels.getString("MainMenu"), e -> {
 			displayMainMenu();
@@ -100,7 +104,17 @@ public class ApplicationController {
 		}, ButtonDisplay.TEXT);
 	}
 	
-	private void displayUserProfile() {
+	public void displayHighScoreScene() {
+		IDisplay highScore = mySceneBuilder.create(SceneIdentifier.HIGHSCORE, myStage.getWidth(), myStage.getHeight());
+		resetStage(highScore);
+		setHighScoreHandlers(highScore);
+	}
+	
+	private void setHighScoreHandlers(IDisplay highScoreScene) {
+		highScoreScene.addNode(myGUIGenerator.createLabel("" + myInformationController.getHighScoresForUser("hi"), 0, 0));
+	}
+
+	private void displayUserScene() {
 		IDisplay userProfile = mySceneBuilder.create(SceneIdentifier.USERPROFILE, myStage.getWidth(), myStage.getHeight());
 		resetStage(userProfile);
 		setUserProfileButtonHandlers(userProfile);
