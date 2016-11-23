@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import util.XMLTranslator;
+
 /**
  * A Game has a List of Levels. Each Level may contain Sprites
  * and other elements. A Game can be saved to a serialized XML
@@ -20,10 +22,12 @@ public class Game extends GameObject{
 	
 	List<Level> myLevels;
 	Set<Sprite> spritePresets = new HashSet<>();
+	XMLTranslator myXMLSaver;
 	
 	public Game(String aName){
 		setName(aName);
 		myLevels = new ArrayList<Level>();
+		myXMLSaver = new XMLTranslator();
 	}
 
 	/**
@@ -33,15 +37,8 @@ public class Game extends GameObject{
 	 * @param fileName
 	 * @author Addison
 	 */
-	public void saveGameAs(String filePath, String fileName){
-	    java.io.FileWriter fw;
-		try {
-			fw = new java.io.FileWriter(filePath + fileName + ".xml");
-		    fw.write(((new XMLSaver()).serialize(this)));
-		    fw.close();
-		} catch (IOException e) {
-			System.out.println("Trouble printing XML to file");
-		}
+	public void saveGameAs(String aFilePath, String aFileName){
+	    myXMLSaver.saveToFile(this, aFilePath, aFileName);
 	}
 
 	public void addNewLevel(Level aLevel){

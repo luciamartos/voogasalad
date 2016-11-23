@@ -24,4 +24,5 @@
       <myKeyCommands/>
     </game__data.Level>
   </myLevels>
+  <myXMLSaver/>
 </game__data.Game>

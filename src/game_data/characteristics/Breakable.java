@@ -8,6 +8,14 @@
 
 package game_data.characteristics;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import game_data.Sprite;
+import game_engine.actions.Action;
+import game_engine.actions.Break;
+import javafx.geometry.Side;
+
 public class Breakable implements Characteristic{
 
 	private boolean breakableNorth;
@@ -15,17 +23,17 @@ public class Breakable implements Characteristic{
 	private boolean breakableEast;
 	private boolean breakableWest;
 	private int myDurability;
-	private final String NORTH = "NORTH";
-	private final String SOUTH = "SOUTH";
-	private final String EAST = "EAST";
-	private final String WEST = "WEST";
+	private Action myAction;
+	private Sprite mySprite;
 	
-	public Breakable(boolean north, boolean south, boolean east, boolean west, int durability){
+	
+	public Breakable(boolean north, boolean south, boolean east, boolean west, int durability, Sprite aSprite){
 		breakableNorth = north;
 		breakableSouth = south;
 		breakableEast = east;
 		breakableWest = west;
 		myDurability = durability;
+		mySprite = aSprite;
 	}
 	
 	public void setDurability(int durability){
@@ -37,11 +45,16 @@ public class Breakable implements Characteristic{
 	}
 	
 	@Override
-	public boolean toAct() {
-		return breakable();
+	public void execute(Map<Sprite, Side> myCollisionMap){
+		for(Sprite collidedSprite:myCollisionMap.keySet()){
+			if(breaksAtDirection(myCollisionMap.get(collidedSprite))){
+				myAction = new Break(mySprite, collidedSprite);
+				myAction.act();
+			}
+		}
 	}
 	
-	public boolean isBroken(String aDirection){
+	public boolean isBroken(Side aDirection){
 		
 		if( ! breaksAtDirection(aDirection))
 			return false;
@@ -50,14 +63,14 @@ public class Breakable implements Characteristic{
 		return myDurability<=0;
 	}
 	
-	private boolean breaksAtDirection(String aDirection) {
-		if(aDirection.equals(NORTH)) {
+	private boolean breaksAtDirection(Side aDirection) {
+		if(aDirection == Side.TOP) {
 			return breakableNorth;
-		} else if(aDirection.equals(SOUTH)) {
+		} else if(aDirection == Side.BOTTOM) {
 			return breakableSouth;
-		} else if(aDirection.equals(EAST)) {
+		} else if(aDirection == Side.RIGHT) {
 			return breakableEast;
-		} else if(aDirection.equals(WEST)) {
+		} else if(aDirection == Side.LEFT) {
 			return breakableWest;
 		} 
 		return false;
@@ -65,7 +78,8 @@ public class Breakable implements Characteristic{
 
 	@Override
 	public Characteristic copy() {
-		return new Breakable(breakableNorth, breakableSouth, breakableEast, breakableWest, myDurability);
+		return new Breakable(breakableNorth, breakableSouth, breakableEast, breakableWest, myDurability, mySprite);
 	}
+
 
 }

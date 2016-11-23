@@ -5,7 +5,7 @@ import game_data.Sprite;
 import game_data.sprites.Player;
 import javafx.scene.control.Button;
 
-public class PlayerSpriteEditPage extends CharacterSpriteEditor {
+public class PlayerSpriteEditPage extends CharacterSpriteEditPage {
 
 	public PlayerSpriteEditPage() {
 		super();
@@ -25,7 +25,10 @@ public class PlayerSpriteEditPage extends CharacterSpriteEditor {
 
 	@Override
 	public Sprite buildSprite() {
-		return new Player(super.getLocation(), super.getImageFile().toString(), 5);
+		getSprite().setMyLocation(super.getLocation());
+		getSprite().setMyImagePath(super.getImageFile().toString());
+		// fixed this temporarily to resolve conflict, hard coded values need to go away somehow
+		return new Player(super.getLocation(), 20, 20, "Mario", super.getImageFile().toString());
 	}
 
 }

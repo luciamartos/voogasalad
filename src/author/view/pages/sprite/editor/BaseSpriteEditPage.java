@@ -3,8 +3,10 @@ package author.view.pages.sprite.editor;
 import java.io.File;
 
 import author.view.util.ToolBarBuilder;
+import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Location;
 import game_data.Sprite;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -15,23 +17,26 @@ import javafx.scene.layout.VBox;
  * 
  * @author George Bernard
  */
-public abstract class SpriteEditPage {
+public abstract class BaseSpriteEditPage {
 	private Pane myPane;
 	private ToolBarBuilder myToolBarBuilder;
 	
 	private Sprite mySprite;
-	private SpriteEditBox mySpriteEditBox;
+	private BaseSpriteEditBox mySpriteEditBox;
 	
-	public SpriteEditPage(){
+	public BaseSpriteEditPage(){
 		myPane = new VBox();
 		myToolBarBuilder = new ToolBarBuilder();
-		mySpriteEditBox = new SpriteEditBox();
+		mySpriteEditBox = new BaseSpriteEditBox();
 		myPane.getChildren().addAll(myToolBarBuilder.getToolBar(), mySpriteEditBox.getPane());
+		Button buildButton = new ButtonFactory().createButton("save", e -> buildSprite()).getButton();
 		myToolBarBuilder.addBurst(new Label(getName()));
+		myToolBarBuilder.addBurst(buildButton);
 
 	}
 
-	public SpriteEditPage(Sprite aSprite){
+	public BaseSpriteEditPage(Sprite aSprite){
+		this();
 		mySprite = aSprite;
 		mySpriteEditBox.setLocation(aSprite.getMyLocation());
 		mySpriteEditBox.setImageFile(new File(aSprite.getMyImagePath()));
@@ -61,5 +66,8 @@ public abstract class SpriteEditPage {
 		return myToolBarBuilder;
 	}
 
+	protected Sprite getSprite(){
+		return mySprite;
+	}
 
 }
