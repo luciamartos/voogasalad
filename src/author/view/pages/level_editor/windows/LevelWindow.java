@@ -62,15 +62,13 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		ToolBarBuilder tbb = new ToolBarBuilder();
 		tbb.addBurst(new Label("Level Window"));
 		tbb.addFiller();
-		tbb.addBurst(
-				new ButtonFactory().createButton("Set Background", e -> {
-					setBackgroundImage();}).getButton(), 
-				new ButtonFactory().createButton("Set Theme", e -> {
-					// TODO: Jordan - Add functionality to changing theme, what the
-					// fucks a theme
-					System.out.println("Change theme here");
-				}).getButton()
-				);
+		tbb.addBurst(new ButtonFactory().createButton("Set Background", e -> {
+			setBackgroundImage();
+		}).getButton(), new ButtonFactory().createButton("Set Theme", e -> {
+			// TODO: Jordan - Add functionality to changing theme, what the
+			// fucks a theme
+			System.out.println("Change theme here");
+		}).getButton());
 
 		super.getWindow().getChildren().add(tbb.getToolBar());
 	}
@@ -78,9 +76,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private void createLevelScroller() {
 		myLevelScroller = new ScrollPane();
 		myContainer = new Pane();
-				myContainer.setOnDragEntered(e -> {
-					System.out.println("Drag entered level editor pane");
-				});
+		myContainer.setOnDragEntered(e -> {
+			System.out.println("Drag entered level editor pane");
+		});
 
 		acceptDraggableSprites();
 		myContainer.prefWidthProperty().bind(myLevelScroller.widthProperty());
@@ -96,23 +94,32 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	}
 
 	private void acceptDraggableSprites() {
+
 		myContainer.setOnDragDropped((DragEvent event) -> {
 			System.out.println("DRAG DROPPED IN PANE");
 			Dragboard db = event.getDragboard();
 			boolean success = false;
 			if (db.hasString()) {
-				String nodeId = db.getString();				
+				String nodeId = db.getString();
 				Sprite sprite = findSprite(nodeId);
 
-				DraggableSprite newSprite = new ConcreteMovableSprite(sprite);
+				DraggableSprite newSprite;
+				try {
+					newSprite = new ConcreteMovableSprite(sprite);
+				} catch (NullPointerException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+					throw new NullPointerException();
+				}
 
 				ImageView image = newSprite.getImageView();
 				image.setFitHeight(40);
 				image.setFitWidth(40);
 				if (image != null) {
 					myContainer.getChildren().add(image);
-					image.setLayoutX(event.getX() - 20);
-					image.setLayoutY(event.getY() - 20);
+					image.setLayoutX(event.getX());
+					image.setLayoutY(event.getY());
+					newSprite.getSprite().getMyLocation().setLocation(image.getLayoutX(), image.getLayoutY());
 					success = true;
 				}
 			}
@@ -129,19 +136,13 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	}
 
 	private void setBackgroundImage() {
-		File file = new FileLoader(
-				FileType.GIF, 
-				FileType.JPEG, 
-				FileType.PNG,
-				FileType.JPG ).loadImage();
+		File file = new FileLoader(FileType.GIF, FileType.JPEG, FileType.PNG, FileType.JPG).loadImage();
 
 		System.out.println(file.toURI().toString());
 
-		Image image = new Image( file.toURI().toString() );
-		BackgroundImage backIm = new BackgroundImage(
-				image, 
-				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.DEFAULT, 
+		Image image = new Image(file.toURI().toString());
+		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+				BackgroundPosition.DEFAULT,
 				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
 
 		myContainer.setBackground(new Background(backIm));
@@ -153,12 +154,12 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			if (nodeId.equals(s.getId())) {
 				return s;
 			}
-		} 
+		}
 		return null;
 	}
 
 	@Override
-	public void setLevel(Level aLevel){
+	public void setLevel(Level aLevel) {
 		super.setLevel(aLevel);
 		updatePane();
 		getLevel().addListener((level) -> {
@@ -168,14 +169,13 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 
 	}
 
-	private void updatePane(){
+	private void updatePane() {
 		myContainer.getChildren().clear();
 		getLevel().getMySpriteList().forEach((sprite) -> {
 			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
 			myContainer.getChildren().add(draggableSprite.getImageView());
 		});
 	}
-
 
 	/*
 	 * (non-Javadoc)

@@ -5,17 +5,18 @@ import author.view.pages.level_editor.LevelEditor;
 import author.view.pages.menu.MenuFactory;
 import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
+import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
-import game_data.Location;
-import game_data.sprites.Player;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  * AuthorView handles the JavaFX GUI.
@@ -43,6 +44,22 @@ public class AuthorView {
 		this.myLevelEditor = new LevelEditor(authorController);
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
+		myPane.getChildren().add(new ButtonFactory().createButton("shitfuck", e -> {
+			Stage stage = new Stage();
+			Pane root = new Pane();
+			Scene scene = new Scene(root, WIDTH, HEIGHT);
+			authorController.getModel().getGame().getPresets().forEach(event -> {
+//				root.getChildren().add();
+				ImageView v = new ImageView(event.getMyImagePath());
+				v.setFitHeight(40);
+				v.setFitWidth(40);
+				v.setLayoutX(event.getMyLocation().getXLocation());
+				v.setLayoutY(event.getMyLocation().getYLocation());
+				root.getChildren().add(v);
+			});
+			stage.setScene(scene);
+			stage.show();
+		}).getButton());
 	}
 
 	/**
@@ -59,17 +76,17 @@ public class AuthorView {
 		menuNew.getItems().addAll(new MenuFactory().createItem("New Game", e -> {
 			// TODO: Jordan(vooga) - create new game
 		}).getItem(), new MenuFactory().createItem("New Level", e -> {
-			Level createdLevel =new Level("Level 1", WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
+			Level createdLevel = new Level("Level 1", WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
 			addLevel(createdLevel);
 			System.out.println("Create new level");
-			//testing
+			// testing
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
 			// Save game
 		}).getItem());
-		
-		menuLoad.getItems().add(new MenuFactory().createItem("Load Game",  e -> {
+
+		menuLoad.getItems().add(new MenuFactory().createItem("Load Game", e -> {
 			// Load game
 		}).getItem());
 
@@ -84,14 +101,14 @@ public class AuthorView {
 		myTabPaneFacade.getTabPane().prefWidthProperty().bind(myScene.widthProperty());
 		myTabPaneFacade.getTabPane().prefHeightProperty().bind(myScene.heightProperty());
 		myTabPaneFacade.getTabPane().setSide(Side.BOTTOM);
-		
+
 		myTabPaneFacade.addTab(mySpritesPage.toString(), mySpritesPage.getRegion());
 		myTabPaneFacade.addTab(myLevelEditor.toString(), myLevelEditor.getPane());
-		
+
 		return myTabPaneFacade.getTabPane();
 	}
-	
-	private void addLevel(Level createdLevel){
+
+	private void addLevel(Level createdLevel) {
 		this.authorController.getModel().getGame().addNewLevel(createdLevel);
 		this.myLevelEditor.getMyLevelWindow().setLevel(createdLevel);
 	}
