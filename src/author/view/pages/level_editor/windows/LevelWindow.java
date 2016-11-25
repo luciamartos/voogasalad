@@ -1,11 +1,8 @@
 package author.view.pages.level_editor.windows;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import author.controller.IAuthorController;
-import author.model.game_observables.draggable_sprite.ConcreteDraggableSprite;
 import author.model.game_observables.draggable_sprite.ConcreteMovableSprite;
 import author.model.game_observables.draggable_sprite.DraggableSprite;
 import author.view.util.FileLoader;
@@ -14,6 +11,8 @@ import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
 import game_data.Sprite;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -43,10 +42,15 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private ScrollPane myLevelScroller;
 	private Pane myContainer;
 	private IAuthorController myController;
-
+	
+	private IntegerProperty horizontalPanes = new SimpleIntegerProperty();
+	private IntegerProperty verticalPanes = new SimpleIntegerProperty();
+	
 	public LevelWindow(IAuthorController authorController) {
 		super(authorController);
 		myController = authorController;
+		horizontalPanes.set(2);
+		verticalPanes.set(2);
 		createLevelScroller();
 	}
 
@@ -65,9 +69,14 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		tbb.addBurst(new ButtonFactory().createButton("Set Background", e -> {
 			setBackgroundImage();
 		}).getButton(), new ButtonFactory().createButton("Set Theme", e -> {
-			// TODO: Jordan - Add functionality to changing theme, what the
-			// fucks a theme
+			// TODO: Jordan(vooga) - Add functionality to changing theme
 			System.out.println("Change theme here");
+		}).getButton(), new ButtonFactory().createButton("Extend Right", e -> {
+			myContainer.setPrefWidth(myLevelScroller.getPrefViewportWidth() * horizontalPanes.get());
+			horizontalPanes.set(horizontalPanes.get() + 1);
+		}).getButton(), new ButtonFactory().createButton("Extend Down", e -> {
+			myContainer.setPrefHeight(myLevelScroller.getPrefViewportHeight() * verticalPanes.get());
+			verticalPanes.set(verticalPanes.get() + 1);
 		}).getButton());
 
 		super.getWindow().getChildren().add(tbb.getToolBar());
@@ -81,13 +90,20 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		});
 
 		acceptDraggableSprites();
-		myContainer.prefWidthProperty().bind(myLevelScroller.widthProperty());
-		myContainer.prefHeightProperty().bind(myLevelScroller.heightProperty());
+//		myContainer.prefWidthProperty().bind(myLevelScroller.widthProperty());
+//		myContainer.prefHeightProperty().bind(myLevelScroller.heightProperty());
 
-		myLevelScroller.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		myLevelScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+		myContainer.setPrefHeight(myLevelScroller.getPrefViewportHeight());
+		myContainer.setPrefWidth(myLevelScroller.getPrefViewportWidth());
+		
+		myLevelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		myLevelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+//		myLevelScroller.setFitToHeight(true);
+//		myLevelScroller.setFitToWidth(true);
 
 		myLevelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		myLevelScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
+
 		myLevelScroller.setContent(myContainer);
 
 		super.getWindow().getChildren().add(myLevelScroller);

@@ -52,8 +52,8 @@ public class AuthorView {
 				ImageView v = new ImageView(event.getMyImagePath());
 				v.setFitHeight(40);
 				v.setFitWidth(40);
-				v.setLayoutX(event.getMyLocation().getXLocation());
-				v.setLayoutY(event.getMyLocation().getYLocation());
+				v.setLayoutX(event.getMyLocation().getXLocation() * (800.0 / 500.0));
+				v.setLayoutY(event.getMyLocation().getYLocation() * (650.0 / 315.0));
 				root.getChildren().add(v);
 			});
 			stage.setScene(scene);
