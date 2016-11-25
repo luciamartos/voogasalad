@@ -89,22 +89,18 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			System.out.println("Drag entered level editor pane");
 		});
 
-		acceptDraggableSprites();
-//		myContainer.prefWidthProperty().bind(myLevelScroller.widthProperty());
-//		myContainer.prefHeightProperty().bind(myLevelScroller.heightProperty());
+		myLevelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		myLevelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
 
+		// Lol these are staying hard coded, the user gon have to pay extra for features like changing window size
+		myLevelScroller.setPrefViewportHeight(400);
+		myLevelScroller.setPrefViewportWidth(500);
+		
 		myContainer.setPrefHeight(myLevelScroller.getPrefViewportHeight());
 		myContainer.setPrefWidth(myLevelScroller.getPrefViewportWidth());
 		
-		myLevelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		myLevelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
-//		myLevelScroller.setFitToHeight(true);
-//		myLevelScroller.setFitToWidth(true);
-
-		myLevelScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
-		myLevelScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
-
 		myLevelScroller.setContent(myContainer);
+		acceptDraggableSprites();
 
 		super.getWindow().getChildren().add(myLevelScroller);
 	}

@@ -44,6 +44,10 @@ public class AuthorView {
 		this.myLevelEditor = new LevelEditor(authorController);
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
+		// TESTING SPRITE POSITIONS, DELETE THIS WHENEVER YOU WANT
+		// This is just going through the presets(so you can only display one mario and one of that other thing)
+		// and multiplying their positions by the ratio fo the new scenes width and height, so it should
+		// scale corrrectly
 		myPane.getChildren().add(new ButtonFactory().createButton("Test Sprite Positions", e -> {
 			Stage stage = new Stage();
 			Pane root = new Pane();
@@ -53,7 +57,7 @@ public class AuthorView {
 				v.setFitHeight(40);
 				v.setFitWidth(40);
 				v.setLayoutX(event.getMyLocation().getXLocation() * (800.0 / 500.0));
-				v.setLayoutY(event.getMyLocation().getYLocation() * (650.0 / 315.0));
+				v.setLayoutY(event.getMyLocation().getYLocation() * (650.0 / 400.0));
 				root.getChildren().add(v);
 			});
 			stage.setScene(scene);
