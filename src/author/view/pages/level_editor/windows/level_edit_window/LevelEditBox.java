@@ -10,6 +10,7 @@ import author.view.util.FileLoader.FileType;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
 import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -49,10 +50,16 @@ class LevelEditBox {
 	}
 	
 	public Level getLevel(){
+		
 		this.level.setBackgroundImageFilePath(this.backgroundPath);
 		this.level.setName(nameField.getText());
-		this.level.setWidth(Integer.parseInt(widthField.getText()));
-		this.level.setHeight(Integer.parseInt(heightField.getText()));
+		try{
+			this.level.setWidth(Integer.parseInt(widthField.getText()));
+			this.level.setHeight(Integer.parseInt(heightField.getText()));
+		}
+		catch (NumberFormatException e) {
+		}
+		
 		return this.level;
 	}
 	
@@ -64,7 +71,6 @@ class LevelEditBox {
 		editBox.getChildren().add(createHBox(new Label("Width:"), widthField));
 		editBox.getChildren().add(createHBox(new Label("Height:"), heightField));
 		editBox.getChildren().add(new ButtonFactory().createButton("Choose Background", e -> updateBackgroundString()).getButton());
-		
 		return editBox;
 	}
 	

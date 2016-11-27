@@ -4,7 +4,8 @@ package author.view.pages.level_editor;
 import author.controller.IAuthorController;
 import author.view.pages.level_editor.windows.AbstractLevelEditorWindow;
 import author.view.pages.level_editor.windows.LevelWindowFactory;
-import author.view.pages.level_editor.windows.level_edit_window.LevelEditWindow;
+import author.view.pages.level_editor.windows.level_edit_window.ILevelEditWindowExternal;
+import author.view.pages.level_editor.windows.level_edit_window.LevelEditWindowFactory;
 import game_data.Level;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -23,7 +24,6 @@ class LevelEditor implements ILevelEditorExternal, ILevelEditorInternal{
 	private AbstractLevelEditorWindow mySelectionWindow;
 	private AbstractLevelEditorWindow myProgressionWindow;
 	private IAuthorController authorController;
-	private Level level;
 
 	LevelEditor(IAuthorController authorController) {
 		this.authorController = authorController;
@@ -75,9 +75,15 @@ class LevelEditor implements ILevelEditorExternal, ILevelEditorInternal{
 	}
 	
 	public Level createLevel(){
-		LevelEditWindow levelEditWindow = new LevelEditWindow();
-		System.out.println("Done with editor");
-		return levelEditWindow.getLevel();
+		ILevelEditWindowExternal levelEditWindow = new LevelEditWindowFactory().create();
+		Level createdLevel = levelEditWindow.getLevel();
+		if (createdLevel != null){
+			this.myLevelWindow.setLevel(createdLevel);
+			this.myProgressionWindow.setLevel(createdLevel);
+			this.authorController.getModel().getGame().addNewLevel(createdLevel);
+		}
+		
+		return createdLevel;
 	}
 
 	@Override

@@ -12,21 +12,22 @@ import javafx.stage.Stage;
  * @author Cleveland Thompson V (ct168)
  *
  */
-public class LevelEditWindow{
+class LevelEditWindow implements ILevelEditWindowInternal, ILevelEditWindowExternal{
 	private Stage stage;
 	private static final String TITLE = "New Level";
 	private LevelEditPage levelEditPage;
 	
-	public LevelEditWindow(){
-		this.levelEditPage = new LevelEditPage();
+	LevelEditWindow(){
+		this.levelEditPage = new LevelEditPage((ILevelEditWindowInternal) this);
 		initializeWindow();
 	}
 	
-	public LevelEditWindow(Level aLevel){
-		this.levelEditPage = new LevelEditPage(aLevel);
+	LevelEditWindow(Level aLevel){
+		this.levelEditPage = new LevelEditPage(aLevel, (ILevelEditWindowInternal) this);
 		initializeWindow();
 	}
 	
+	@Override
 	public Level getLevel(){
 		return this.levelEditPage.getLevel();
 	}
@@ -36,7 +37,12 @@ public class LevelEditWindow{
 		this.stage.setTitle(TITLE);
 		this.stage.setScene(new Scene(this.levelEditPage.getPane()));
 		this.stage.setResizable(false);
-		this.stage.show();
+		this.stage.showAndWait();
+	}
+
+	@Override
+	public void close() {
+		this.stage.close();
 	}
 	
 }
