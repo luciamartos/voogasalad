@@ -5,17 +5,22 @@ package game_data.characteristics;
 import java.util.Map;
 
 import game_data.Sprite;
+import game_data.characteristics.characteristic_annotations.CharacteristicAnnotation;
+import game_data.characteristics.characteristic_annotations.ParameterAnnotation;
 import javafx.geometry.Side;
 
 /**
  * @author austingartside
  *
  */
+
+@CharacteristicAnnotation(name = "Speed Power Up")
 public class SpeedPowerUpper extends PowerUpper implements Characteristic{
 	
 	private double mySpeedBoost;
 	private double myTimeInEffect;
 	
+	@ParameterAnnotation(parameters = {"Speed Boost", "Time In Effect", "Sprite"})
 	public SpeedPowerUpper(double speedBoost, double timeInEffect, Sprite aSprite){
 		super(aSprite);
 		mySpeedBoost = speedBoost;

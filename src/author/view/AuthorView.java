@@ -1,7 +1,8 @@
 package author.view;
 
 import author.controller.IAuthorController;
-import author.view.pages.level_editor.LevelEditor;
+import author.view.pages.level_editor.ILevelEditorExternal;
+import author.view.pages.level_editor.LevelEditorFactory;
 import author.view.pages.menu.MenuFactory;
 import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
@@ -30,19 +31,20 @@ public class AuthorView {
 	TabPaneFacade myTabPaneFacade;
 	IAuthorController authorController;
 
-	private LevelEditor myLevelEditor;
 	private SpritesPage mySpritesPage;
+	private ILevelEditorExternal myLevelEditor;
 
 	// TODO move these to properties, as well as button names
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 650;
 	public static final String SPRITE_IMAGE_PATH = "author/images/mymario.jpg";
-	public static final String BACKGROUND_IMAGE_PATH = "author/images/mario.jpg";
+	//public static final String BACKGROUND_IMAGE_PATH = "author/images/mario.jpg";
 
 	public AuthorView(IAuthorController authorController) {
 		this.authorController = authorController;
 		this.mySpritesPage = new SpritesPage(authorController);
-		this.myLevelEditor = new LevelEditor(authorController);
+		this.myLevelEditor = new LevelEditorFactory().create(this.authorController);
+
 		myScene = new Scene(myPane, WIDTH, HEIGHT, Color.WHITE);
 		myPane.getChildren().addAll(buildToolBar(), buildTabPane());
 		// TESTING SPRITE POSITIONS, DELETE THIS WHENEVER YOU WANT
@@ -80,10 +82,10 @@ public class AuthorView {
 		menuNew.getItems().addAll(new MenuFactory().createItem("New Game", e -> {
 			// TODO: Jordan(vooga) - create new game
 		}).getItem(), new MenuFactory().createItem("New Level", e -> {
-			Level createdLevel = new Level("Level 1", WIDTH, HEIGHT, BACKGROUND_IMAGE_PATH);
-			addLevel(createdLevel);
-			System.out.println("Create new level");
-			// testing
+			Level createdLevel = this.myLevelEditor.createLevel();
+			if (createdLevel != null){
+				this.authorController.getModel().getGame().addNewLevel(createdLevel);
+			}
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
@@ -111,12 +113,7 @@ public class AuthorView {
 
 		return myTabPaneFacade.getTabPane();
 	}
-
-	private void addLevel(Level createdLevel) {
-		this.authorController.getModel().getGame().addNewLevel(createdLevel);
-		this.myLevelEditor.getMyLevelWindow().setLevel(createdLevel);
-	}
-
+	
 	public Scene getScene() {
 		return myScene;
 	}

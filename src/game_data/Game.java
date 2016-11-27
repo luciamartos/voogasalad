@@ -24,6 +24,8 @@ public class Game extends GameObject{
 	Set<Sprite> spritePresets = new HashSet<>();
 	XMLTranslator myXMLSaver;
 	
+	private Level currentLevel;
+	
 	public Game(String aName){
 		setName(aName);
 		myLevels = new ArrayList<Level>();
@@ -43,11 +45,21 @@ public class Game extends GameObject{
 
 	public void addNewLevel(Level aLevel){
 		myLevels.add(aLevel);
+		this.currentLevel = aLevel;
 		this.notifyListeners();
 	}
 	
 	public List<Level> getLevels(){
 		return myLevels;
+	}
+	
+	public void setCurrentLevel(Level aLevel){
+		this.currentLevel = aLevel;
+		this.notifyListeners();
+	}
+	
+	public Level getCurrentLevel(){
+		return this.currentLevel;
 	}
 	
 	public void addPreset(Sprite aPresetSprite){
