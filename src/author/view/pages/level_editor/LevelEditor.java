@@ -1,12 +1,10 @@
 package author.view.pages.level_editor;
 
-import java.io.File;
 
 import author.controller.IAuthorController;
 import author.view.pages.level_editor.windows.AbstractLevelEditorWindow;
 import author.view.pages.level_editor.windows.LevelWindowFactory;
-import author.view.util.FileLoader;
-import author.view.util.FileLoader.FileType;
+import author.view.pages.level_editor.windows.level_edit_window.LevelEditWindow;
 import game_data.Level;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -77,7 +75,9 @@ class LevelEditor implements ILevelEditorExternal, ILevelEditorInternal{
 	}
 	
 	public Level createLevel(){
-		return null;
+		LevelEditWindow levelEditWindow = new LevelEditWindow();
+		System.out.println("Done with editor");
+		return levelEditWindow.getLevel();
 	}
 
 	@Override

@@ -18,19 +18,25 @@ public class LevelEditWindow{
 	private LevelEditPage levelEditPage;
 	
 	public LevelEditWindow(){
-		levelEditPage = new LevelEditPage();
+		this.levelEditPage = new LevelEditPage();
+		initializeWindow();
 	}
 	
 	public LevelEditWindow(Level aLevel){
-		levelEditPage = new LevelEditPage(aLevel);
+		this.levelEditPage = new LevelEditPage(aLevel);
+		initializeWindow();
+	}
+	
+	public Level getLevel(){
+		return this.levelEditPage.getLevel();
 	}
 	
 	private void initializeWindow(){
 		this.stage = new Stage();
-		stage.setTitle(TITLE);
-		stage.setScene(new Scene(levelEditPage.getPane()));
-		stage.setResizable(false);
-		stage.show();
+		this.stage.setTitle(TITLE);
+		this.stage.setScene(new Scene(this.levelEditPage.getPane()));
+		this.stage.setResizable(false);
+		this.stage.show();
 	}
 	
 }

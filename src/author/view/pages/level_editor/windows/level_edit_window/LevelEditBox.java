@@ -5,9 +5,6 @@ package author.view.pages.level_editor.windows.level_edit_window;
 
 
 import java.io.File;
-import java.security.KeyStore.PrivateKeyEntry;
-import java.util.ResourceBundle;
-
 import author.view.util.FileLoader;
 import author.view.util.FileLoader.FileType;
 import author.view.util.authoring_buttons.ButtonFactory;
@@ -53,7 +50,10 @@ class LevelEditBox {
 	
 	public Level getLevel(){
 		this.level.setBackgroundImageFilePath(this.backgroundPath);
-		
+		this.level.setName(nameField.getText());
+		this.level.setWidth(Integer.parseInt(widthField.getText()));
+		this.level.setHeight(Integer.parseInt(heightField.getText()));
+		return this.level;
 	}
 	
 	
