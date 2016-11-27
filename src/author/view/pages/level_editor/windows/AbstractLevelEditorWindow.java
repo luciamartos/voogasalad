@@ -55,9 +55,11 @@ public abstract class AbstractLevelEditorWindow {
 	
 	protected ImageView getImageView(String path, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
 		ImageView imageView = new ImageView(path);
-		imageView.setPreserveRatio(true);
-		imageView.fitHeightProperty().bind(height);
-		imageView.fitWidthProperty().bind(width);
+//		imageView.setPreserveRatio(true);
+		imageView.setFitWidth(width.doubleValue());
+		imageView.setFitHeight(height.doubleValue());
+//		imageView.fitHeightProperty().bind(height);
+//		imageView.fitWidthProperty().bind(width);
 		return imageView;
 	}
 }

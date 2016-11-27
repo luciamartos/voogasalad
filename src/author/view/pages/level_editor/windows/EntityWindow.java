@@ -3,12 +3,15 @@ package author.view.pages.level_editor.windows;
 import author.controller.IAuthorController;
 import author.model.game_observables.draggable_sprite.ConcreteDraggableSprite;
 import author.model.game_observables.draggable_sprite.DraggableSprite;
+import author.model.presets.TestSprite;
 import author.view.util.ToolBarBuilder;
+import game_data.Sprite;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.FlowPane;
 
 /**
  * This window contains all of the preset sprites. A user will drag and drop
@@ -21,11 +24,25 @@ import javafx.scene.layout.VBox;
 public class EntityWindow extends AbstractLevelEditorWindow {
 
 	private ScrollPane entityScroller;
-	private VBox container = new VBox();
+	private FlowPane container = new FlowPane();
+	
+	private static final int PADDING = 5;
 
 	public EntityWindow(IAuthorController authorController) {
 		super(authorController);
 		super.getWindow().getChildren().add(createScroller());
+		styleContainer();
+		addshit(authorController);
+	}
+
+	public void addshit(IAuthorController controller) {
+		Sprite s = TestSprite.MARIO.getSprite();
+		Sprite t = TestSprite.DUKE.getSprite();
+		// DraggableSprite d1 = new ConcreteDraggableSprite(s);
+		// DraggableSprite d2 = new ConcreteDraggableSprite(t);
+		// addChildren(d1.getImageView(), d2.getImageView());
+		controller.getModel().getGame().addPreset(s);
+		controller.getModel().getGame().addPreset(t);
 	}
 
 	@Override
@@ -53,6 +70,12 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 		this.entityScroller.setContent(this.container);
 		return entityScroller;
 	}
+	
+	private void styleContainer() {
+		container.setPadding(new Insets(PADDING));
+		container.setHgap(PADDING);
+		container.setVgap(PADDING);
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -67,8 +90,6 @@ public class EntityWindow extends AbstractLevelEditorWindow {
 			System.out.println("yoooo");
 			authorController.getModel().getGame().getPresets().forEach((sprite) -> {
 				DraggableSprite dragSprite = new ConcreteDraggableSprite(sprite);
-				dragSprite.setImageView(getImageView(sprite.getMyImagePath(),
-						super.getWindow().widthProperty(), super.getWindow().heightProperty()));
 				this.container.getChildren().add(dragSprite.getImageView());
 			});
 		});
