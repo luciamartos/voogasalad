@@ -26,6 +26,7 @@ public abstract class AuthorModel implements IAuthorModel{
 		this.authorController = aAuthorController;
 	}
 	
+	
 	public Level addLevel(int aWidth, int aHeight, String aBackgroundImageFilePath){
 		this.activeLevel = new Level("Level 1", aWidth, aHeight, aBackgroundImageFilePath);
 		this.activeGame.addNewLevel(this.activeLevel);
