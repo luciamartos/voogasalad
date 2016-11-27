@@ -8,6 +8,10 @@ public class EnemySpriteEditPage extends CharacterSpriteEditPage {
 		super();
 	}
 
+	public EnemySpriteEditPage(Sprite aSprite){
+		super(aSprite);
+	}
+	
 	@Override
 	public String getSpriteType() {
 		return "Enemy Editor";

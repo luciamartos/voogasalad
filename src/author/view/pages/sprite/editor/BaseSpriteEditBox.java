@@ -36,7 +36,12 @@ public class BaseSpriteEditBox {
 	public BaseSpriteEditBox() {
 		myPane = new VBox();
 		myFileLoader = new FileLoader(FileType.PNG, FileType.GIF,FileType.JPG, FileType.JPEG);
-		myPane.getChildren().addAll(makeNameField(), makeLocationFields(),makeSizeFields(), makeImageSelect());	
+		myPane.getChildren().addAll(
+				makeNameField(), 
+				makeLocationFields(),
+				makeSizeFields(), 
+				makeImageSelect()
+				);	
 	}
 
 	public final Pane getPane(){
