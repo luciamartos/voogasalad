@@ -21,7 +21,6 @@ public abstract class AbstractLevelEditorWindow {
 
 	private Pane myWindow;
 	private IAuthorController authorController;
-	private Level level;
 	
 	public AbstractLevelEditorWindow(IAuthorController authorController){
 		this.authorController = authorController;
@@ -43,14 +42,6 @@ public abstract class AbstractLevelEditorWindow {
 	protected Pane createWindow() {
 		myWindow = new VBox();
 		return myWindow;
-	}
-	
-	public void setLevel(Level aLevel){
-		this.level = aLevel;
-	}
-	
-	protected Level getLevel(){
-		return this.level;
 	}
 	
 	protected ImageView getImageView(String path, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){

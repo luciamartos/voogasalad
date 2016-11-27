@@ -3,16 +3,21 @@ package game_data.characteristics;
 import java.util.Map;
 
 import game_data.Sprite;
+import game_data.characteristics.characteristic_annotations.CharacteristicAnnotation;
+import game_data.characteristics.characteristic_annotations.ParameterAnnotation;
 import javafx.geometry.Side;
 
 /**
  * @author austingartside
  *
  */
+
+@CharacteristicAnnotation(name = "Rotatable")
 public class Rotatable implements Characteristic{
 
 	private double mySpeed;
 	
+	@ParameterAnnotation(parameters = {"Speed"})
 	public Rotatable(double speed){
 		mySpeed = speed;
 	}
