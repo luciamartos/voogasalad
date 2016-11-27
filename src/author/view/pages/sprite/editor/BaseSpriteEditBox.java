@@ -29,7 +29,7 @@ public class BaseSpriteEditBox {
 	private TextField myWidthField;
 	private TextField myHeightField;
 	private ImageView myImageView;
-	private File myFile;
+	private String myImagePath;
 	
 	private static final double CHAR_SIZE = 100;
 	
@@ -113,13 +113,13 @@ public class BaseSpriteEditBox {
 		myHeadingField.setText(Double.toString(aLocation.getMyHeading()));
 	}
 	
-	protected final File getImageFile(){
-		return myFile;
+	protected final String getImageFile(){
+		return myImagePath;
 	}
 	
-	protected final void setImageFile(File aFile){
-		myFile = aFile;
-		myImageView.setImage(new Image(myFile.toURI().toString()));
+	protected final void setImageFile(String aImagePath){
+		myImagePath = aImagePath;
+		myImageView.setImage(new Image( myImagePath ));
 	}
 	
 	/**
@@ -220,9 +220,10 @@ public class BaseSpriteEditBox {
 		imageSelectBox.getChildren().addAll(imageButton, myImageView);
 		
 		imageButton.setOnMouseClicked(e -> {
-			myFile = myFileLoader.loadImage();
-			if(myFile != null){
-				myImageView.setImage(new Image(myFile.toURI().toString()));
+			File file = myFileLoader.loadImage();
+			if(file != null){
+				myImagePath = file.toURI().toString();
+				myImageView.setImage(new Image(myImagePath));
 			}
 		});
 		

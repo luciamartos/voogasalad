@@ -2,7 +2,6 @@ package author.view.pages.sprite.editor.character;
 
 import author.view.pages.sprite.SpriteEditWindow;
 import game_data.Sprite;
-import game_data.sprites.Player;
 import javafx.scene.control.Button;
 
 public class PlayerSpriteEditPage extends CharacterSpriteEditPage {

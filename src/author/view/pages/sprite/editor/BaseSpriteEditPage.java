@@ -1,7 +1,5 @@
 package author.view.pages.sprite.editor;
 
-import java.io.File;
-
 import author.view.util.ToolBarBuilder;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Location;
@@ -39,7 +37,7 @@ public abstract class BaseSpriteEditPage {
 		this();
 		mySprite = aSprite;
 		mySpriteEditBox.setLocation(aSprite.getMyLocation());
-		mySpriteEditBox.setImageFile(new File(aSprite.getMyImagePath()));
+		mySpriteEditBox.setImageFile(aSprite.getMyImagePath());
 		mySpriteEditBox.setName(aSprite.getName());
 		mySpriteEditBox.setSize(aSprite.getMyWidth(), aSprite.getMyHeight());
 	}
@@ -72,7 +70,7 @@ public abstract class BaseSpriteEditPage {
 		return mySprite == null;
 	}
 
-	protected final File getImageFile(){
+	protected final String getImageFile(){
 		return mySpriteEditBox.getImageFile();
 	}
 	

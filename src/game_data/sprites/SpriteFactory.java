@@ -1,5 +1,6 @@
 package game_data.sprites;
 
+import author.images.EmptyImage;
 import game_data.Location;
 import game_data.Sprite;
 
@@ -33,12 +34,12 @@ public enum SpriteFactory implements SpriteBuilder {
 	}
 	
 	public Sprite buildEmpty(){
-		return buildSprite(new Location(0,0,0), 0, 0, "", "");
+		return buildSprite(new Location(0,0,0), 0, 0, "No Name", EmptyImage.INSTANCE.getFile().toString());
 	}
 	
 	@Override
 	public Sprite buildSprite(Location aLocation, int aWidth, int aHeight, String aName, String aFilePath) {
-		return myBuilder.buildSprite(aLocation, aHeight, aHeight, aFilePath, aFilePath);
+		return myBuilder.buildSprite(aLocation, aHeight, aHeight, aName, aFilePath);
 	}
 		
 }
