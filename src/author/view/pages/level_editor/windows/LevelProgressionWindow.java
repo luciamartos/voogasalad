@@ -2,14 +2,12 @@ package author.view.pages.level_editor.windows;
 
 import author.controller.IAuthorController;
 import author.view.util.ToolBarBuilder;
-import game_data.Level;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 /**
  * This window will allow a user to see the progression of their levels. 
  * (@george so this window will need to automatically update when a user changes the 'end level' condition
@@ -46,8 +44,8 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		
 		progressionScroller.setVbarPolicy(ScrollBarPolicy.NEVER);
 		progressionScroller.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-		progressionScroller.prefHeightProperty().bind(super.getWindow().heightProperty());
-		progressionScroller.prefWidthProperty().bind(super.getWindow().widthProperty());
+		progressionScroller.prefViewportHeightProperty().bind(super.getWindow().heightProperty());
+		progressionScroller.prefViewportWidthProperty().bind(super.getWindow().widthProperty());
 
 		progressionScroller.setContent(container);
 		super.getWindow().setMaxHeight(150);
@@ -65,7 +63,7 @@ public class LevelProgressionWindow extends AbstractLevelEditorWindow {
 		authorController.getModel().getGame().addListener((game) -> {
 			this.container.getChildren().clear();
 			authorController.getModel().getGame().getLevels().forEach((level) -> {
-				ImageView imageView = getImageView(level.getBackgroundImageFilePath(), progressionScroller.prefWidthProperty(), progressionScroller.prefHeightProperty());
+				ImageView imageView = getImageView(level.getBackgroundImageFilePath(), progressionScroller.prefViewportWidthProperty(), progressionScroller.prefViewportHeightProperty());
 				this.container.getChildren().add(imageView);
 			});
 		});		

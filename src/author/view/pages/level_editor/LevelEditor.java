@@ -35,22 +35,22 @@ class LevelEditor implements ILevelEditorExternal, ILevelEditorInternal{
 	}
 
 	private Pane buildLevelWindow() {
-		myLevelWindow = new LevelWindowFactory().create("LevelWindow", this.authorController);
+		myLevelWindow = new LevelWindowFactory().createInstance("LevelWindow", this.authorController);
 		return myLevelWindow.getWindow();
 	}
 
 	private Pane buildEntityWindow() {
-		myEntityWindow = new LevelWindowFactory().create("EntityWindow", this.authorController);
+		myEntityWindow = new LevelWindowFactory().createInstance("EntityWindow", this.authorController);
 		return myEntityWindow.getWindow();
 	}
 
 	private Pane buildLevelProgressionWindow() {
-		myProgressionWindow = new LevelWindowFactory().create("LevelProgressionWindow", this.authorController);
+		myProgressionWindow = new LevelWindowFactory().createInstance("LevelProgressionWindow", this.authorController);
 		return myProgressionWindow.getWindow();
 	}
 
 	private Pane buildLevelSelectionWindow() {
-		mySelectionWindow = new LevelWindowFactory().create("LevelSelectionWindow", this.authorController);
+		mySelectionWindow = new LevelWindowFactory().createInstance("LevelSelectionWindow", this.authorController);
 		return mySelectionWindow.getWindow();
 	}
 
