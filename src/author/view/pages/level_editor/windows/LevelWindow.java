@@ -154,14 +154,15 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 				FileType.PNG,
 				FileType.JPG ).loadImage();
 
-		getLevel().setBackgroundImageFilePath(file.toURI().toString());
+		this.myController.getModel().getGame().getCurrentLevel().setBackgroundImageFilePath(file.toURI().toString());
 	}
 	
 	private void setBackgroundImage(String filePath){
-		Image image = new Image(filePath);
+		Level currentLevel = this.myController.getModel().getGame().getCurrentLevel();
+		Image image = new Image(filePath, currentLevel.getWidth(), currentLevel.getHeight(), false, false);
 		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, 
-				BackgroundRepeat.REPEAT,BackgroundPosition.DEFAULT, 
-				new BackgroundSize(image.getWidth(), image.getHeight(), false, false, false, false));
+				BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT, 
+				new BackgroundSize(currentLevel.getWidth(), currentLevel.getHeight(), false, false, false, true));
 
 		myContainer.setBackground(new Background(backIm));
 		myContainer.setMinSize(image.getWidth(), image.getHeight());
@@ -177,27 +178,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		}
 		return null;
 	}
-
-	@Override
-	public void setLevel(Level aLevel) {
-		super.setLevel(aLevel);
-		updatePane();
-		getLevel().addListener((level) -> {
-			updatePane();
-			System.out.println("Updated");
-		});
-
-	}
-
-	private void updatePane() {
-		myContainer.getChildren().clear();
-		setBackgroundImage(getLevel().getBackgroundImageFilePath());
-		getLevel().getMySpriteList().forEach((sprite) -> {
-			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
-			myContainer.getChildren().add(draggableSprite.getImageView());
-		});
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -206,7 +187,29 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	 */
 	@Override
 	protected void initListener(IAuthorController authorController) {
+		authorController.getModel().getGame().addListener((game) -> {
+			authorController.getModel().getGame().getLevels().forEach((level) ->{
+				updateLevel(authorController.getModel().getGame().getCurrentLevel());
+			});
+		});
+	}
 
+	private void updateLevel(Level aLevel) {
+		updatePane(aLevel);
+		aLevel.addListener((level) -> {
+			updatePane(aLevel);
+			System.out.println("Updated");
+		});
+
+	}
+
+	private void updatePane(Level aLevel) {
+		myContainer.getChildren().clear();
+		setBackgroundImage(aLevel.getBackgroundImageFilePath());
+		aLevel.getMySpriteList().forEach((sprite) -> {
+			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
+			myContainer.getChildren().add(draggableSprite.getImageView());
+		});
 	}
 
 }

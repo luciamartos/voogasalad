@@ -77,12 +77,6 @@ class LevelEditor implements ILevelEditorExternal, ILevelEditorInternal{
 	public Level createLevel(){
 		ILevelEditWindowExternal levelEditWindow = new LevelEditWindowFactory().create();
 		Level createdLevel = levelEditWindow.getLevel();
-		if (createdLevel != null){
-			this.myLevelWindow.setLevel(createdLevel);
-			this.myProgressionWindow.setLevel(createdLevel);
-			this.authorController.getModel().getGame().addNewLevel(createdLevel);
-		}
-		
 		return createdLevel;
 	}
 

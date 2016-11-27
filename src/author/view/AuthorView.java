@@ -7,6 +7,7 @@ import author.view.pages.menu.MenuFactory;
 import author.view.pages.sprite.SpritesPage;
 import author.view.util.TabPaneFacade;
 import author.view.util.authoring_buttons.ButtonFactory;
+import game_data.Level;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -79,7 +80,10 @@ public class AuthorView {
 		menuNew.getItems().addAll(new MenuFactory().createItem("New Game", e -> {
 			// TODO: Jordan(vooga) - create new game
 		}).getItem(), new MenuFactory().createItem("New Level", e -> {
-			this.myLevelEditor.createLevel();
+			Level createdLevel = this.myLevelEditor.createLevel();
+			if (createdLevel != null){
+				this.authorController.getModel().getGame().addNewLevel(createdLevel);
+			}
 		}).getItem());
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
