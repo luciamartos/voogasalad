@@ -45,12 +45,13 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	
 	private IntegerProperty horizontalPanes = new SimpleIntegerProperty();
 	private IntegerProperty verticalPanes = new SimpleIntegerProperty();
+	private static final int INITIAL_PANES = 2;
 	
 	public LevelWindow(IAuthorController authorController) {
 		super(authorController);
 		myController = authorController;
-		horizontalPanes.set(2);
-		verticalPanes.set(2);
+		horizontalPanes.set(INITIAL_PANES);
+		verticalPanes.set(INITIAL_PANES);
 		createLevelScroller();
 	}
 
@@ -72,14 +73,22 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			// TODO: Jordan(vooga) - Add functionality to changing theme
 			System.out.println("Change theme here");
 		}).getButton(), new ButtonFactory().createButton("Extend Right", e -> {
-			myContainer.setPrefWidth(myLevelScroller.getPrefViewportWidth() * horizontalPanes.get());
-			horizontalPanes.set(horizontalPanes.get() + 1);
+			extendPaneRight();
 		}).getButton(), new ButtonFactory().createButton("Extend Down", e -> {
-			myContainer.setPrefHeight(myLevelScroller.getPrefViewportHeight() * verticalPanes.get());
-			verticalPanes.set(verticalPanes.get() + 1);
+			extendPaneDown();
 		}).getButton());
 
 		super.getWindow().getChildren().add(tbb.getToolBar());
+	}
+
+	private void extendPaneDown() {
+		myContainer.setPrefHeight(myLevelScroller.getPrefViewportHeight() * verticalPanes.get());
+		verticalPanes.set(verticalPanes.get() + 1);
+	}
+
+	private void extendPaneRight() {
+		myContainer.setPrefWidth(myLevelScroller.getPrefViewportWidth() * horizontalPanes.get());
+		horizontalPanes.set(horizontalPanes.get() + 1);
 	}
 
 	private void createLevelScroller() {
@@ -125,8 +134,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 				}
 
 				ImageView image = newSprite.getImageView();
-				image.setFitHeight(40);
-				image.setFitWidth(40);
+				image.setFitHeight(sprite.getMyHeight());
+				image.setFitWidth(sprite.getMyWidth());
 				if (image != null) {
 					myContainer.getChildren().add(image);
 					image.setLayoutX(event.getX());
@@ -161,6 +170,12 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		myContainer.setMinSize(image.getWidth(), image.getHeight());
 	}
 
+	/**
+	 * Loops through all presets to find the correct sprite being dragged. 
+	 * TODO: Update this to more efficient method
+	 * @param nodeId
+	 * @return
+	 */
 	private Sprite findSprite(String nodeId) {
 		for (Sprite s : myController.getModel().getGame().getPresets()) {
 			if (nodeId.equals(s.getId())) {
