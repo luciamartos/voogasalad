@@ -1,11 +1,14 @@
 package gameplayer.front_end.gui_generator;
 
+import java.io.File;
+
 import gameplayer.front_end.gui_generator.button_generator.ButtonFactory;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -19,6 +22,11 @@ public class GUIGenerator implements IGUIGenerator {
 	
 	public GUIGenerator() {
 		myButtonBuilder = new ButtonFactory();
+	}
+	
+	public ImageView createImage(String aFileName) {
+		ImageView image = new ImageView(new File(aFileName).toURI().toString());
+		return image;
 	}
 	
 	

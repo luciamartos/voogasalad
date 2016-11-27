@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import gameplayer.front_end.animated_display.AnimatedTitleDisplay;
 import gameplayer.front_end.application_scene.IDisplay;
 import gameplayer.front_end.application_scene.LoginScene;
 import gameplayer.front_end.application_scene.MainMenuScene;
@@ -84,6 +85,8 @@ public class ApplicationController {
 	}
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
+		AnimatedTitleDisplay title = new AnimatedTitleDisplay();
+		mainMenu.addNode(title.buildAnimatedTitleDisplay());
 		mainMenu.addButton(myButtonLabels.getString("Play"), e -> {
 			displayGameChoice();
 		}, ButtonDisplay.TEXT);
