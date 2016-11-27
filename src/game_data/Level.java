@@ -32,6 +32,7 @@ public class Level {
 		this.backgroundImageFilePath = backgroundImageFilePath;
 		mySprites = new HashSet<Sprite>();
 		myKeyCommands = new HashMap<KeyCode, KeyCommand>();
+		
 	}
 	
 	public Player getMainPlayer(){
