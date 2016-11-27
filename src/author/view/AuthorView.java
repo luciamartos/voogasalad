@@ -53,7 +53,7 @@ public class AuthorView {
 			Stage stage = new Stage();
 			Pane root = new Pane();
 			Scene scene = new Scene(root, WIDTH, HEIGHT);
-			authorController.getModel().getGame().getPresets().forEach(event -> {
+			authorController.getModel().getGame().getLevels().get(0).getMySpriteList().forEach(event -> {
 				ImageView v = new ImageView(event.getMyImagePath());
 				v.setFitHeight(40);
 				v.setFitWidth(40);
