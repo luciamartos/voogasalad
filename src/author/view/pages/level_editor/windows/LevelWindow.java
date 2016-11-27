@@ -154,7 +154,8 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 				FileType.PNG,
 				FileType.JPG ).loadImage();
 
-		this.myController.getModel().getGame().getCurrentLevel().setBackgroundImageFilePath(file.toURI().toString());
+		if (file != null)
+			this.myController.getModel().getGame().getCurrentLevel().setBackgroundImageFilePath(file.toURI().toString());
 	}
 	
 	private void setBackgroundImage(String filePath){
