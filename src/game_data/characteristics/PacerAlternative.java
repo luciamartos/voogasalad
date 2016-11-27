@@ -3,6 +3,7 @@ package game_data.characteristics;
 import java.util.Map;
 
 import game_data.Sprite;
+import game_engine.actions.Pace;
 import javafx.geometry.Side;
 
 /**
@@ -36,14 +37,14 @@ public class PacerAlternative implements Characteristic{
 		originalYPosition = associatedSprite.getMyLocation().getYLocation();
 	}
 	
-	private boolean changeDirection(){
+	private boolean changeDirection(boolean collision){
 		if(myType.equals(VERTICAL)){
 			return atYBound();
 		}
 		if(myType.equals(HORIZONTAL)){
 			return atXBound();
 		}
-		return false;
+		return collision;
 	}
 	
 	private boolean atYBound(){
@@ -63,13 +64,8 @@ public class PacerAlternative implements Characteristic{
 
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap) {
-		//TODO: make and execute action
-		if(changeDirection()){
-			//execute action
-		}
-		for(Sprite collidedSprite:myCollisionMap.keySet()){
-			//execute action
-		}
+		Pace pace=new Pace(mySprite, changeDirection(myCollisionMap.keySet().size()>0));
+		pace.act();
 	}
 
 }
