@@ -123,9 +123,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 					e.printStackTrace();
 					throw new NullPointerException();
 				}
-				
-				this.myController.getModel().getGame().getCurrentLevel().addNewSprite(newSprite.getSprite());
-				
+
 				ImageView image = newSprite.getImageView();
 				image.setFitHeight(40);
 				image.setFitWidth(40);
