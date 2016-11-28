@@ -4,7 +4,7 @@ import java.io.File;
 
 import author.view.util.FileLoader;
 import author.view.util.FileLoader.FileType;
-import author.view.util.NumberField;
+import author.view.util.NumberFieldBox;
 import game_data.Location;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -22,12 +22,12 @@ public class BaseSpriteEditBox {
 
 	private Pane myPane;
 	private FileLoader myFileLoader;
-	private NumberField myXPositionField;
-	private NumberField myYPositionField;
-	private NumberField myHeadingField;
+	private NumberFieldBox myXPositionField;
+	private NumberFieldBox myYPositionField;
+	private NumberFieldBox myHeadingField;
 	private TextField myNameField;
-	private NumberField myWidthField;
-	private NumberField myHeightField;
+	private NumberFieldBox myWidthField;
+	private NumberFieldBox myHeightField;
 	private ImageView myImageView;
 	private String myImagePath;
 	
@@ -106,8 +106,8 @@ public class BaseSpriteEditBox {
 	private Node makeSizeFields(){
 		Pane sizeBox = new VBox();
 		
-		myWidthField = new NumberField("Width: ");
-		myHeightField = new NumberField("Height: ");
+		myWidthField = new NumberFieldBox("Width: ");
+		myHeightField = new NumberFieldBox("Height: ");
 		
 		sizeBox.getChildren().addAll(
 				new Label("Size: "), 
@@ -121,10 +121,10 @@ public class BaseSpriteEditBox {
 	private Node makeLocationFields(){
 		Pane locationBox = new VBox();
 
-		myXPositionField = new NumberField("X: ");
-		myYPositionField = new NumberField("Y: ");
+		myXPositionField = new NumberFieldBox("X: ");
+		myYPositionField = new NumberFieldBox("Y: ");
 		
-		myHeadingField = new NumberField("Angle: ");
+		myHeadingField = new NumberFieldBox("Angle: ");
 
 		Pane coordinateBox = new VBox();
 		coordinateBox.getChildren().addAll(
