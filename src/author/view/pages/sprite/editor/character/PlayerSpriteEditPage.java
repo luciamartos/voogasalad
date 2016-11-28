@@ -4,7 +4,7 @@ import game_data.Sprite;
 
 public class PlayerSpriteEditPage extends CharacterSpriteEditPage {
 
-	private PlayerSpriteEditPage() {
+	public PlayerSpriteEditPage() {
 		super();
 	}
 	
