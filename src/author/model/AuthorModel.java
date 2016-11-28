@@ -46,7 +46,7 @@ public abstract class AuthorModel implements IAuthorModel{
 	@Override
 	public void newGame(){
 		this.activeGame = new Game("Mario");
-		saveGame("plz");
+		saveGame("initial");
 	}
 	
 	@Override
