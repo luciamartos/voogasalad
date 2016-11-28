@@ -34,7 +34,7 @@ public abstract class AbstractLevelEditorWindow {
 	protected abstract void initListener(IAuthorController authorController);
 	
 	protected abstract void createToolBar();
-
+	
 	public Pane getWindow() {
 		return myWindow;
 	}

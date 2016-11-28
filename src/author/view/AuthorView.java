@@ -1,11 +1,15 @@
 package author.view;
 
+import java.io.File;
+
 import author.controller.IAuthorController;
 import author.view.pages.level_editor.ILevelEditorExternal;
 import author.view.pages.level_editor.LevelEditorFactory;
 import author.view.pages.menu.MenuFactory;
 import author.view.pages.sprite.SpritesPage;
+import author.view.util.FileLoader;
 import author.view.util.TabPaneFacade;
+import author.view.util.FileLoader.FileType;
 import author.view.util.authoring_buttons.ButtonFactory;
 import game_data.Level;
 import javafx.geometry.Side;
@@ -22,7 +26,7 @@ import javafx.stage.Stage;
 /**
  * AuthorView handles the JavaFX GUI.
  * 
- * @author George Bernard, Cleveland Thompson
+ * @author George Bernard, Cleveland Thompson, Addison Howenstine
  */
 public class AuthorView {
 
@@ -90,10 +94,11 @@ public class AuthorView {
 
 		menuSave.getItems().add(new MenuFactory().createItem(("Save Game"), e -> {
 			// Save game
+			authorController.getModel().saveGame("Saved");// TODO: prompt user for name
 		}).getItem());
 
 		menuLoad.getItems().add(new MenuFactory().createItem("Load Game", e -> {
-			// Load game
+			authorController.getModel().loadGame(loadFileChooser());;
 		}).getItem());
 
 		return menuBar;
@@ -116,6 +121,11 @@ public class AuthorView {
 	
 	public Scene getScene() {
 		return myScene;
+	}
+	
+	private File loadFileChooser() {
+		File file = new FileLoader(FileType.XML).loadImage();
+		return file;
 	}
 
 }
