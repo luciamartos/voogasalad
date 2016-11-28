@@ -6,6 +6,8 @@ package game_data;
 import java.util.Collection;
 import java.util.HashSet;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
@@ -14,7 +16,10 @@ import javafx.beans.Observable;
  *
  */
 abstract class GameObject implements Observable{
+	
+	@XStreamOmitField
 	private Collection<InvalidationListener> invalidationListeners = new HashSet<>();
+	
 	private String name;
 
 	/* (non-Javadoc)

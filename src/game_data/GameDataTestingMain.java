@@ -13,7 +13,7 @@ public class GameDataTestingMain {
 		aLevel.addNewSprite(aSprite);
 		Game aGame = new Game("Mario");
 		aGame.addNewLevel(aLevel);
-		File aFile = new File("XMLGameFiles/TestXMLFile.xml");
+		File aFile = new File("XMLGameFiles/TestXMLFilea.xml");
 		XMLTranslator myXMLSaver = new XMLTranslator();
 		aGame.saveGameAs("XMLGameFiles/","TestXMLFilea");
 		Game bGame = (Game) myXMLSaver.deserialize(aFile);
