@@ -1,0 +1,7 @@
+<game__data.Game>
+  <invalidationListeners class="set"/>
+  <name>Mario</name>
+  <myLevels/>
+  <spritePresets/>
+  <myXMLSaver/>
+</game__data.Game>
