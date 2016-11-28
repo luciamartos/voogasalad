@@ -26,14 +26,14 @@ public abstract class AuthorModel implements IAuthorModel{
 		this.authorController = aAuthorController;
 	}
 	
-	
+	@Deprecated
 	public Level addLevel(int aWidth, int aHeight, String aBackgroundImageFilePath){
 		this.activeLevel = new Level("Level 1", aWidth, aHeight, aBackgroundImageFilePath);
 		this.activeGame.addNewLevel(this.activeLevel);
 		return this.activeLevel;
 	}
 	
-	@Override
+	@Deprecated
 	public Sprite addSprite(Sprite aSpritePreset){
 		Sprite createdSprite = aSpritePreset.clone();
 		this.activeLevel.addNewSprite(createdSprite);

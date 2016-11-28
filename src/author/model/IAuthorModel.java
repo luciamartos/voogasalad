@@ -12,8 +12,6 @@ import game_data.Sprite;
  */
 public interface IAuthorModel {
 	
-	public Sprite addSprite(Sprite aSpritePreset);
-	
 	public void newGame();
 	
 	public Game getGame();

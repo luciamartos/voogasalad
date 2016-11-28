@@ -50,10 +50,9 @@ class LevelEditBox {
 	}
 	
 	public Level getLevel(){
-		
-		this.level.setBackgroundImageFilePath(this.backgroundPath);
-		this.level.setName(nameField.getText());
 		try{
+			this.level.setBackgroundImageFilePath(this.backgroundPath);
+			this.level.setName(nameField.getText());
 			this.level.setWidth(Integer.parseInt(widthField.getText()));
 			this.level.setHeight(Integer.parseInt(heightField.getText()));
 		}
@@ -81,7 +80,8 @@ class LevelEditBox {
 				FileType.PNG,
 				FileType.JPG ).loadImage();
 		
-		this.backgroundPath = file.toURI().toString();
+		if (file !=null)
+			this.backgroundPath = file.toURI().toString();
 	}
 	
 	private HBox createHBox(Node...nodes){

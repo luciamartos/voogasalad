@@ -123,7 +123,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 					e.printStackTrace();
 					throw new NullPointerException();
 				}
-
+				
+				this.myController.getModel().getGame().getCurrentLevel().addNewSprite(newSprite.getSprite());
+				
 				ImageView image = newSprite.getImageView();
 				image.setFitHeight(40);
 				image.setFitWidth(40);
@@ -189,9 +191,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	@Override
 	protected void initListener(IAuthorController authorController) {
 		authorController.getModel().getGame().addListener((game) -> {
-			authorController.getModel().getGame().getLevels().forEach((level) ->{
-				updateLevel(authorController.getModel().getGame().getCurrentLevel());
-			});
+			Level currentLevel = authorController.getModel().getGame().getCurrentLevel();
+			if (currentLevel!=null)
+				updateLevel(currentLevel);
 		});
 	}
 
@@ -201,7 +203,6 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			updatePane(aLevel);
 			System.out.println("Updated");
 		});
-
 	}
 
 	private void updatePane(Level aLevel) {
@@ -209,6 +210,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		setBackgroundImage(aLevel.getBackgroundImageFilePath());
 		aLevel.getMySpriteList().forEach((sprite) -> {
 			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
+			System.out.println("Adding sprites");
 			myContainer.getChildren().add(draggableSprite.getImageView());
 		});
 	}
