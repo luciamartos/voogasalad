@@ -186,9 +186,15 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	@Override
 	protected void initListener(IAuthorController authorController) {
 		authorController.getModel().getGame().addListener((game) -> {
+<<<<<<< HEAD
 			Level currentLevel = authorController.getModel().getGame().getCurrentLevel();
 			if (currentLevel!=null)
 				updateLevel(currentLevel);
+=======
+			authorController.getModel().getGame().getLevels().forEach((level) -> {
+				updateLevel(authorController.getModel().getGame().getCurrentLevel());
+			});
+>>>>>>> author
 		});
 	}
 
@@ -206,8 +212,12 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			setBackgroundImage(aLevel.getBackgroundImageFilePath());
 		aLevel.getMySpriteList().forEach((sprite) -> {
 			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
+<<<<<<< HEAD
+			System.out.println("Adding sprites");
+=======
 			draggableSprite.getImageView().setLayoutX(sprite.getMyLocation().getXLocation());
 			draggableSprite.getImageView().setLayoutY(sprite.getMyLocation().getYLocation());
+>>>>>>> author
 			myContainer.getChildren().add(draggableSprite.getImageView());
 		});
 	}

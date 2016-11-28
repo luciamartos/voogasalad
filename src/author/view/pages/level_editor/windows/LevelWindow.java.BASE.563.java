@@ -42,10 +42,10 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	private ScrollPane myLevelScroller;
 	private Pane myContainer;
 	private IAuthorController myController;
-
+	
 	private IntegerProperty horizontalPanes = new SimpleIntegerProperty();
 	private IntegerProperty verticalPanes = new SimpleIntegerProperty();
-
+	
 	public LevelWindow(IAuthorController authorController) {
 		super(authorController);
 		myController = authorController;
@@ -92,14 +92,13 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		myLevelScroller.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		myLevelScroller.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
 
-		// Lol these are staying hard coded, the user gon have to pay extra for
-		// features like changing window size
+		// Lol these are staying hard coded, the user gon have to pay extra for features like changing window size
 		myLevelScroller.setPrefViewportHeight(400);
 		myLevelScroller.setPrefViewportWidth(500);
-
+		
 		myContainer.setPrefHeight(myLevelScroller.getPrefViewportHeight());
 		myContainer.setPrefWidth(myLevelScroller.getPrefViewportWidth());
-
+		
 		myLevelScroller.setContent(myContainer);
 		acceptDraggableSprites();
 
@@ -124,19 +123,18 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 					e.printStackTrace();
 					throw new NullPointerException();
 				}
-				
+
 				ImageView image = newSprite.getImageView();
+				image.setFitHeight(40);
+				image.setFitWidth(40);
 				if (image != null) {
+					myContainer.getChildren().add(image);
 					image.setLayoutX(event.getX());
 					image.setLayoutY(event.getY());
+					newSprite.getSprite().getMyLocation().setLocation(image.getLayoutX(), image.getLayoutY());
 					success = true;
 				}
-				
-				Sprite clone = sprite.clone();
-				clone.getMyLocation().setLocation(event.getX(), event.getY());
-				this.myController.getModel().getGame().getCurrentLevel().addNewSprite(clone);
 			}
-			
 			event.setDropCompleted(success);
 			event.consume();
 		});
@@ -150,23 +148,28 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	}
 
 	private void newBackgroundImage() {
-		File file = new FileLoader(FileType.GIF, FileType.JPEG, FileType.PNG, FileType.JPG).loadImage();
+		File file = new FileLoader(
+				FileType.GIF, 
+				FileType.JPEG, 
+				FileType.PNG,
+				FileType.JPG ).loadImage();
 
 		if (file != null)
-			this.myController.getModel().getGame().getCurrentLevel()
-					.setBackgroundImageFilePath(file.toURI().toString());
+			this.myController.getModel().getGame().getCurrentLevel().setBackgroundImageFilePath(file.toURI().toString());
 	}
-
-	private void setBackgroundImage(String filePath) {
+	
+	private void setBackgroundImage(String filePath){
 		Level currentLevel = this.myController.getModel().getGame().getCurrentLevel();
 		Image image = new Image(filePath, currentLevel.getWidth(), currentLevel.getHeight(), false, false);
-		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
-				BackgroundPosition.DEFAULT,
+		BackgroundImage backIm = new BackgroundImage(image, BackgroundRepeat.REPEAT, 
+				BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT, 
 				new BackgroundSize(currentLevel.getWidth(), currentLevel.getHeight(), false, false, false, true));
 
 		myContainer.setBackground(new Background(backIm));
 		myContainer.setMinSize(image.getWidth(), image.getHeight());
 	}
+	
+	
 
 	private Sprite findSprite(String nodeId) {
 		for (Sprite s : myController.getModel().getGame().getPresets()) {
@@ -176,7 +179,7 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 		}
 		return null;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -186,9 +189,9 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 	@Override
 	protected void initListener(IAuthorController authorController) {
 		authorController.getModel().getGame().addListener((game) -> {
-			Level currentLevel = authorController.getModel().getGame().getCurrentLevel();
-			if (currentLevel!=null)
-				updateLevel(currentLevel);
+			authorController.getModel().getGame().getLevels().forEach((level) ->{
+				updateLevel(authorController.getModel().getGame().getCurrentLevel());
+			});
 		});
 	}
 
@@ -198,16 +201,14 @@ public class LevelWindow extends AbstractLevelEditorWindow {
 			updatePane(aLevel);
 			System.out.println("Updated");
 		});
+
 	}
 
 	private void updatePane(Level aLevel) {
 		myContainer.getChildren().clear();
-		if (aLevel.getBackgroundImageFilePath() != null)
-			setBackgroundImage(aLevel.getBackgroundImageFilePath());
+		setBackgroundImage(aLevel.getBackgroundImageFilePath());
 		aLevel.getMySpriteList().forEach((sprite) -> {
 			DraggableSprite draggableSprite = new ConcreteMovableSprite(sprite);
-			draggableSprite.getImageView().setLayoutX(sprite.getMyLocation().getXLocation());
-			draggableSprite.getImageView().setLayoutY(sprite.getMyLocation().getYLocation());
 			myContainer.getChildren().add(draggableSprite.getImageView());
 		});
 	}
