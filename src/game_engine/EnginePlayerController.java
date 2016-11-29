@@ -23,6 +23,7 @@ public class EnginePlayerController implements IEnginePlayerControllerInterface 
 	private List<Integer> mySpriteHealthList;
 	private List<Boolean> mySpriteIsAliveList;
 	private Game myGame;
+
 	public EnginePlayerController(){
 		myGame=null;
 		myLevel=null;
