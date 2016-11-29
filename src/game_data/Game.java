@@ -2,7 +2,6 @@ package game_data;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -40,8 +39,15 @@ public class Game extends GameObject{
 	 * @param fileName
 	 * @author Addison
 	 */
-	public void saveGameAs(String aFilePath, String aFileName){
-	    myXMLSaver.saveToFile(this, aFilePath, aFileName);
+	public void saveGameAs(String filePath, String fileName){
+	    java.io.FileWriter fw;
+		try {
+			fw = new java.io.FileWriter(filePath + fileName + ".xml");
+		    fw.write(((new XMLSaver()).serialize(this)));
+		    fw.close();
+		} catch (IOException e) {
+			System.out.println("Trouble printing XML to file");
+		}
 	}
 
 	public void addNewLevel(Level aLevel){

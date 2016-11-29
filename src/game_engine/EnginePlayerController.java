@@ -114,5 +114,7 @@ public class EnginePlayerController implements IEnginePlayerControllerInterface 
 	public boolean isLost(){
 		return myLevel.isLevelLost();
 	}
-	
+	public Game getMyGame(){
+		return myGame;
+	}
 }
