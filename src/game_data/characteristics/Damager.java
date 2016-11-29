@@ -5,6 +5,7 @@ import java.util.Map;
 import game_data.Sprite;
 import game_engine.actions.Action;
 import game_engine.actions.Break;
+import game_engine.actions.Damage;
 import javafx.geometry.Side;
 
 /**
@@ -33,9 +34,9 @@ public class Damager implements Characteristic{
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap) {
 		for(Sprite collidedSprite:myCollisionMap.keySet()){
-			//TODO need to make action
-			//Action myAction = new Damage(mySprite, collidedSprite);
-			//myAction.act();
+			
+			Action myAction = new Damage(getDamage(), collidedSprite);
+			myAction.act();
 		}
 	}
 
