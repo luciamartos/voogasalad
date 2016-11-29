@@ -2,112 +2,23 @@
   <name>Mario</name>
   <myLevels>
     <game__data.Level>
-      <name>Level1</name>
-      <width>200</width>
-      <height>200</height>
-      <backgroundImageFilePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-2.gif</backgroundImageFilePath>
+      <name>TestLevel</name>
+      <width>500</width>
+      <height>500</height>
+      <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
           <name>Mario</name>
           <myLocation>
             <myHeading>0.0</myHeading>
-            <myXLocation>307.0</myXLocation>
-            <myYLocation>258.0</myYLocation>
+            <myXLocation>315.0</myXLocation>
+            <myYLocation>102.5</myYLocation>
           </myLocation>
-          <myWidth>20</myWidth>
-          <myHeight>20</myHeight>
-          <myImagePath>author/images/MarioSMBW.png</myImagePath>
+          <myWidth>0</myWidth>
+          <myHeight>0</myHeight>
+          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
           <myVelocity>0.0</myVelocity>
           <myCollisionHandler/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Duke</name>
-          <myLocation>
-            <myHeading>10.0</myHeading>
-            <myXLocation>418.0</myXLocation>
-            <myYLocation>327.0</myYLocation>
-          </myLocation>
-          <myWidth>20</myWidth>
-          <myHeight>20</myHeight>
-          <myImagePath>author/images/duke.gif</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Duke</name>
-          <myLocation>
-            <myHeading>10.0</myHeading>
-            <myXLocation>121.0</myXLocation>
-            <myYLocation>95.0</myYLocation>
-          </myLocation>
-          <myWidth>20</myWidth>
-          <myHeight>20</myHeight>
-          <myImagePath>author/images/duke.gif</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player[2]/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-      </mySprites>
-      <myKeyCommands/>
-    </game__data.Level>
-    <game__data.Level>
-      <name>Level2</name>
-      <width>100</width>
-      <height>100</height>
-      <backgroundImageFilePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-2.gif</backgroundImageFilePath>
-      <mySprites>
-        <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>423.0</myXLocation>
-            <myYLocation>330.0</myYLocation>
-          </myLocation>
-          <myWidth>20</myWidth>
-          <myHeight>20</myHeight>
-          <myImagePath>author/images/MarioSMBW.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../../../game__data.Level/mySprites/game__data.sprites.Player/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Duke</name>
-          <myLocation>
-            <myHeading>10.0</myHeading>
-            <myXLocation>123.0</myXLocation>
-            <myYLocation>144.0</myYLocation>
-          </myLocation>
-          <myWidth>20</myWidth>
-          <myHeight>20</myHeight>
-          <myImagePath>author/images/duke.gif</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../../../game__data.Level/mySprites/game__data.sprites.Player[2]/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>284.0</myXLocation>
-            <myYLocation>258.0</myYLocation>
-          </myLocation>
-          <myWidth>20</myWidth>
-          <myHeight>20</myHeight>
-          <myImagePath>author/images/MarioSMBW.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../../../game__data.Level/mySprites/game__data.sprites.Player/myCollisionHandler"/>
           <myCharacteristics/>
           <id></id>
           <myStates/>
@@ -118,38 +29,22 @@
   </myLevels>
   <spritePresets>
     <game__data.sprites.Player>
-      <name>Duke</name>
-      <myLocation>
-        <myHeading>10.0</myHeading>
-        <myXLocation>10.0</myXLocation>
-        <myYLocation>10.0</myYLocation>
-      </myLocation>
-      <myWidth>20</myWidth>
-      <myHeight>20</myHeight>
-      <myImagePath>author/images/duke.gif</myImagePath>
-      <myVelocity>0.0</myVelocity>
-      <myCollisionHandler reference="../../../myLevels/game__data.Level/mySprites/game__data.sprites.Player[2]/myCollisionHandler"/>
-      <myCharacteristics/>
-      <id>ConcreteDraggableSprite1480345122925</id>
-      <myStates/>
-    </game__data.sprites.Player>
-    <game__data.sprites.Player>
       <name>Mario</name>
       <myLocation>
         <myHeading>0.0</myHeading>
         <myXLocation>0.0</myXLocation>
         <myYLocation>0.0</myYLocation>
       </myLocation>
-      <myWidth>20</myWidth>
-      <myHeight>20</myHeight>
-      <myImagePath>author/images/MarioSMBW.png</myImagePath>
+      <myWidth>0</myWidth>
+      <myHeight>0</myHeight>
+      <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
       <myVelocity>0.0</myVelocity>
       <myCollisionHandler reference="../../../myLevels/game__data.Level/mySprites/game__data.sprites.Player/myCollisionHandler"/>
       <myCharacteristics/>
-      <id>ConcreteDraggableSprite1480345129132</id>
+      <id>ConcreteDraggableSprite1480369842716</id>
       <myStates/>
     </game__data.sprites.Player>
   </spritePresets>
   <myXMLSaver/>
-  <currentLevel reference="../myLevels/game__data.Level[2]"/>
+  <currentLevel reference="../myLevels/game__data.Level"/>
 </game__data.Game>
