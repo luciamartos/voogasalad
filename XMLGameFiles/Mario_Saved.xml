@@ -2,21 +2,21 @@
   <name>Mario</name>
   <myLevels>
     <game__data.Level>
-      <name>TestLevel</name>
-      <width>500</width>
-      <height>500</height>
-      <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</backgroundImageFilePath>
+      <name>Level1</name>
+      <width>700</width>
+      <height>550</height>
+      <backgroundImageFilePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-2.gif</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
-          <name>Mario</name>
+          <name>No Name</name>
           <myLocation>
             <myHeading>0.0</myHeading>
-            <myXLocation>315.0</myXLocation>
-            <myYLocation>102.5</myYLocation>
+            <myXLocation>226.0</myXLocation>
+            <myYLocation>369.0</myYLocation>
           </myLocation>
-          <myWidth>0</myWidth>
-          <myHeight>0</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
+          <myWidth>100</myWidth>
+          <myHeight>100</myHeight>
+          <myImagePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
           <myVelocity>0.0</myVelocity>
           <myCollisionHandler/>
           <myCharacteristics/>
@@ -25,23 +25,25 @@
         </game__data.sprites.Player>
       </mySprites>
       <myKeyCommands/>
+      <isLevelLost>false</isLevelLost>
+      <isLevelWon>false</isLevelWon>
     </game__data.Level>
   </myLevels>
   <spritePresets>
     <game__data.sprites.Player>
-      <name>Mario</name>
+      <name>No Name</name>
       <myLocation>
         <myHeading>0.0</myHeading>
         <myXLocation>0.0</myXLocation>
         <myYLocation>0.0</myYLocation>
       </myLocation>
-      <myWidth>0</myWidth>
-      <myHeight>0</myHeight>
-      <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
+      <myWidth>100</myWidth>
+      <myHeight>100</myHeight>
+      <myImagePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
       <myVelocity>0.0</myVelocity>
       <myCollisionHandler reference="../../../myLevels/game__data.Level/mySprites/game__data.sprites.Player/myCollisionHandler"/>
       <myCharacteristics/>
-      <id>ConcreteDraggableSprite1480369842716</id>
+      <id>ConcreteDraggableSprite1480386505583</id>
       <myStates/>
     </game__data.sprites.Player>
   </spritePresets>
