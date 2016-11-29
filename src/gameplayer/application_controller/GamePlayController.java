@@ -62,10 +62,10 @@ public class GamePlayController {
 	
 	private void handleKeyPress(KeyCode aKey) {
         myKeySet.add(aKey);
-        System.out.println("new");
-        for (KeyCode key : myKeySet) {
-        	System.out.println(key);
-        }
+        //System.out.println("new");
+        //for (KeyCode key : myKeySet) {
+        	//System.out.println(key);
+        //}
 	}
 	
 	private void handleKeyRelease(KeyCode key) {
