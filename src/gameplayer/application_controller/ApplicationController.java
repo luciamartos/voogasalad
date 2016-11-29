@@ -123,8 +123,8 @@ public class ApplicationController {
 
 	private void setGameChoiceButtonHandlers(IDisplay gameChoice) {
 		gameChoice.addButton(myButtonLabels.getString("ChooseGame"), e -> {
-			GamePlayController gamePlay = new GamePlayController(myStage);
-			gamePlay.displayGame();
+//			GamePlayController gamePlay = new GamePlayController(myStage);
+//			gamePlay.displayGame();
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton(myButtonLabels.getString("Load"), e -> {
 			File chosenGame = new FileController().show(myStage);

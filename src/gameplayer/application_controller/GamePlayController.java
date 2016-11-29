@@ -31,15 +31,6 @@ public class GamePlayController {
 	private Map<Sprite, ImageView> mySprites;
 	private Set<KeyCode> myKeySet;
 	
-	public GamePlayController(Stage aStage) {
-		myStage = aStage;
-		myKeySet = new HashSet<KeyCode>();
-		myStack = new StackPane();
-		initializeEngine();
-		initializeAnimation();
-		initializeScene();
-	}
-	
 	public GamePlayController(Stage aStage, String aFilePath) {
 		myStage = aStage;
 		myKeySet = new HashSet<KeyCode>();
@@ -56,14 +47,8 @@ public class GamePlayController {
 	}
 
 	private void initializeEngine(String aFilePath, int level) {
-//		myGameEngine = new GameEngine(aFilePath, level);
+		myGameEngine = new GameEngine(aFilePath, level);
 		myGameController = myGameEngine.getMyEnginePlayerController();
-		myGameUpdater = new UpdateGame();
-	}
-	
-	private void initializeEngine() {
-//		myGameEngine = new GameEngine(aFilePath, 0);
-		myGameController = new EnginePlayerController();
 		myGameUpdater = new UpdateGame();
 	}
 
