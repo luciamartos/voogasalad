@@ -8,5 +8,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/voogasalad_experiments/lib/xstream-doc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/hannahfuchshuber/Downloads/restfb-1.34.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

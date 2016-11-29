@@ -46,16 +46,16 @@ public class ApplicationController {
 	}
 	
 	public void startScene() throws FileNotFoundException {
-		IDisplay login = mySceneBuilder.create(SceneIdentifier.LOGIN, SCENE_SIZE, SCENE_SIZE);
-		resetStage(login);
-		setLoginButtonHandlers((LoginScene) login);
+		IDisplay mainMenu = mySceneBuilder.create(SceneIdentifier.MAINMENU, SCENE_SIZE, SCENE_SIZE);
+		resetStage(mainMenu);
+		setMainMenuButtonHandlers((MainMenuScene) mainMenu);
 	}
 
-	public void displayLogin() {
-		LoginScene login = (LoginScene) mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
-		resetStage(login);
-		setLoginButtonHandlers((LoginScene) login);
-	}
+	//public void displayLogin() {
+		//LoginScene login = (LoginScene) mySceneBuilder.create(SceneIdentifier.LOGIN, myStage.getWidth(), myStage.getHeight());
+		//resetStage(login);
+		//setLoginButtonHandlers((LoginScene) login);
+	//}
 
 	public void displayMainMenu() {
 		MainMenuScene mainMenu = (MainMenuScene) mySceneBuilder.create(SceneIdentifier.MAINMENU, myStage.getWidth(), myStage.getHeight());
@@ -102,9 +102,9 @@ public class ApplicationController {
 		aMenu.addNavigationButton(myButtonLabels.getString("MainMenu"), e -> {
 			displayMainMenu();
 		}, ButtonDisplay.TEXT);
-		aMenu.addNavigationButton(myButtonLabels.getString("SignOut"), e -> {
-			displayLogin();
-		}, ButtonDisplay.TEXT);
+		//aMenu.addNavigationButton(myButtonLabels.getString("SignOut"), e -> {
+			//displayLogin();
+		//}, ButtonDisplay.TEXT);
 	}
 	
 	public void displayHighScoreScene() {
