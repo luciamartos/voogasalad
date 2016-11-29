@@ -45,6 +45,7 @@ public class ApplicationController {
 		myInformationController = new PlayerInformationController();
 		myButtonLabels = PropertyResourceBundle.getBundle(FILE + BUTTONLABEL);
 		myGUIGenerator = new GUIGenerator();
+		myFacebookInformation = new FacebookInformation();
 	}
 	
 	public void startScene() throws FileNotFoundException {
