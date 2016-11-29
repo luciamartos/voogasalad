@@ -10,7 +10,7 @@ import game_engine.actions.Break;
 import javafx.geometry.Side;
 
 /**
- * @author austingartside
+ * @author Alex & James
  *
  */
 public class Bouncer implements Characteristic{
@@ -32,7 +32,7 @@ public class Bouncer implements Characteristic{
 	public void execute(Map<Sprite, Side> myCollisionMap){
 		for(Sprite collidedSprite:myCollisionMap.keySet()){
 			//is going to need to have arguments after implemented
-			myAction = new Bounce(getBounceSpeed(), collidedSprite);
+			myAction = new Bounce(getBounceSpeed(), collidedSprite, myCollisionMap.get(collidedSprite));
 			myAction.act();
 		}
 	}
