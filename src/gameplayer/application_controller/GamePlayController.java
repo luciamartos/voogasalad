@@ -43,16 +43,15 @@ public class GamePlayController {
 	
 //austin is great
 	private void setButtonHandlers() {
-		myHeadsUpDisplay.addButton("Main Menu", e -> {
+		String[] names = {"Main Menu", "Restart", "Change to Red"};
+		myHeadsUpDisplay.addMenu(names, e -> {
 			ApplicationController appControl = new ApplicationController(myStage);
 			appControl.displayMainMenu();
-		}, ButtonDisplay.TEXT);
-		myHeadsUpDisplay.addButton("Restart", e -> {
+		}, e -> {
 			displayGame();
-		}, ButtonDisplay.TEXT);
-		myHeadsUpDisplay.addButton("Change to Red", e -> {
+		}, e -> {
 			myGamePlay.makeRed();
-		}, ButtonDisplay.TEXT);
+		});
 	}
 	
 	private void resetStage() {

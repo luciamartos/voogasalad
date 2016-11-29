@@ -1,9 +1,14 @@
 package gameplayer.front_end.gui_generator;
 
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -24,6 +29,8 @@ public interface IGUIGenerator {
 	public void setBackground(Pane aValue, String aFilepath);
 		
 	public void setBackground(Pane aValue, Paint aFill);
+
+	public Menu createMenu(String[] aString, EventHandler<ActionEvent>[] aHandler);
 
 	
 }

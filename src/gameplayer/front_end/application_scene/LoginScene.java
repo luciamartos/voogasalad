@@ -1,6 +1,8 @@
 package gameplayer.front_end.application_scene;
 
 import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -62,7 +64,7 @@ public class LoginScene extends AbstractPlayerScene {
 	}
 
 	@Override
-	public void addNavigationButton(String aText, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType) {
+	public void addNavigationMenu(String[] aString, EventHandler<ActionEvent>... aHandler) {
 		// do nothing
 	}
 }

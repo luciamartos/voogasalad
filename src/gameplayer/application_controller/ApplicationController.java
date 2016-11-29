@@ -88,8 +88,8 @@ public class ApplicationController {
 	}*/
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
-		AnimatedTitleDisplay title = new AnimatedTitleDisplay();
-		mainMenu.addNode(title.buildAnimatedTitleDisplay());
+		//AnimatedTitleDisplay title = new AnimatedTitleDisplay();
+		//mainMenu.addNode(title.buildAnimatedTitleDisplay());
 		mainMenu.addButton(myButtonLabels.getString("Play"), e -> {
 			displayGameChoice();
 		}, ButtonDisplay.TEXT);
@@ -102,12 +102,17 @@ public class ApplicationController {
 	}
 	
 	private void createNavigationButtons(IDisplay aMenu) {
-		aMenu.addNavigationButton(myButtonLabels.getString("Profile"), e -> {
-			displayUserScene();
-		}, ButtonDisplay.CSS);
-		aMenu.addNavigationButton(myButtonLabels.getString("MainMenu"), e -> {
+		String[] names = {"MAIN MENU", "PROFILE"};
+		aMenu.addNavigationMenu(names, e -> {
 			displayMainMenu();
-		}, ButtonDisplay.TEXT);
+		}, e -> {
+			displayUserScene();
+		});
+			//displayUserScene();
+		//});
+		//aMenu.addNavigationMenu(myButtonLabels.getString("MainMenu"), e -> {
+			//displayMainMenu();
+		//});
 		//aMenu.addNavigationButton(myButtonLabels.getString("SignOut"), e -> {
 			//displayLogin();
 		//}, ButtonDisplay.TEXT);

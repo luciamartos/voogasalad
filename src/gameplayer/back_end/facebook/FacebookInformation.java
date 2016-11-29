@@ -1,5 +1,7 @@
 package gameplayer.back_end.facebook;
 
+import java.io.File;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -26,8 +28,8 @@ public class FacebookInformation {
 		String authenticateURL = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id=" + appID + 
 				"&redirect_uri=" + domain + "&scope=user_about_me";
 		
-		System.setProperty("webdriver.chrome.driver", "data/chromedriver");
-		
+		System.setProperty("webdriver.chrome.driver", "data/XMLUserPlayer/chromedriver");
+ 
 		WebDriver driver = new ChromeDriver();
 		driver.get(authenticateURL);
 		

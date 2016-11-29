@@ -10,6 +10,7 @@ import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
@@ -31,7 +32,6 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 	protected Scene myScene;
 	protected BorderPane myRoot;
 	protected VBox myOptions;
-	protected HBox myNavigation;
 	protected IGUIGenerator myGUIGenerator;
 	
 	public AbstractPlayerScene(double aWidth, double aHeight) {
@@ -48,7 +48,9 @@ public abstract class AbstractPlayerScene  extends Observable implements IDispla
 		myOptions.getChildren().add(myGUIGenerator.createButton(text, 0, 0, handler, aButtonDisplayType));
 	}
 	
-	public void addNode(Node node){
-		myOptions.getChildren().add(node);
+	public void addNode(Node aNode){
+		aNode.setLayoutX(0);
+		aNode.setLayoutY(0);
+		myOptions.getChildren().add(aNode);
 	}
 }
