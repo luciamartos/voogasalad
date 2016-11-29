@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import gameplayer.back_end.facebook.FacebookInformation;
 import gameplayer.front_end.animated_display.AnimatedTitleDisplay;
 import gameplayer.front_end.application_scene.IDisplay;
 import gameplayer.front_end.application_scene.LoginScene;
@@ -36,6 +37,7 @@ public class ApplicationController {
 	private PlayerInformationController myInformationController;
 	private ResourceBundle myButtonLabels; 
 	private GUIGenerator myGUIGenerator;
+	private FacebookInformation myFacebookInformation;
 	
 	public ApplicationController (Stage aStage) {
 		myStage = aStage;
@@ -63,7 +65,7 @@ public class ApplicationController {
 		setMainMenuButtonHandlers(mainMenu);
 	}
 	
-	private void setLoginButtonHandlers(LoginScene login) {
+	/*private void setLoginButtonHandlers(LoginScene login) {
 		login.addButton(myButtonLabels.getString("Enter"), e -> {
 			try {
 				myInformationController.userSignIn(login.getUserName(), login.getPassword());
@@ -82,7 +84,7 @@ public class ApplicationController {
 				error.show(x);
 			}
 		}, ButtonDisplay.TEXT);
-	}
+	}*/
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
 		AnimatedTitleDisplay title = new AnimatedTitleDisplay();
@@ -92,6 +94,9 @@ public class ApplicationController {
 		}, ButtonDisplay.TEXT);
 		mainMenu.addButton(myButtonLabels.getString("Author"), e -> {
 			//TODO: implement authoring environment
+		}, ButtonDisplay.TEXT);
+		mainMenu.addButton(myButtonLabels.getString("SignUp"), e -> {
+			myFacebookInformation.authenticatePlayer();
 		}, ButtonDisplay.TEXT);
 	}
 	
