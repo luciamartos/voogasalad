@@ -6,7 +6,7 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 import gameplayer.back_end.facebook.FacebookInformation;
-import gameplayer.front_end.animated_display.AnimatedTitleDisplay;
+import gameplayer.front_end.animated_display.AnimatedDisplay;
 import gameplayer.front_end.application_scene.IDisplay;
 import gameplayer.front_end.application_scene.LoginScene;
 import gameplayer.front_end.application_scene.MainMenuScene;

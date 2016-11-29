@@ -1,5 +1,5 @@
 package gameplayer.front_end.application_scene;
-import gameplayer.front_end.animated_display.AnimatedTitleDisplay;
+import gameplayer.front_end.animated_display.AnimatedDisplay;
 import gameplayer.front_end.gui_generator.GUIGenerator;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -17,29 +17,24 @@ import javafx.scene.layout.VBox;
 public class MainMenuScene extends AbstractNavigationPlayerScene {
 	
 	//private GUIGenerator myCreator;
-	private AnimatedTitleDisplay myTitle;
+	private AnimatedDisplay myAnimation;
 	private Pane myPane; 
 	private double myWidth;
 	private double myHeight;
+	private GUIGenerator myGUIGenerator; 
 
 	public MainMenuScene(double aWidth, double aHeight) {
 		super(aWidth, aHeight);
 		//myCreator = new GUIGenerator();
 		myPane = new Pane();
-		myTitle = new AnimatedTitleDisplay();
+		myAnimation = new AnimatedDisplay();
 		myWidth = aWidth;
 		myHeight = aHeight;
+		myGUIGenerator = new GUIGenerator();
 	}
 
 	@Override
 	public Scene init() {
-		HBox title = myTitle.buildAnimatedTitleDisplay();
-		title.prefHeightProperty().bind(myPane.heightProperty());
-		title.prefWidthProperty().bind(myPane.widthProperty());
-		title.setLayoutX(myWidth / 3);
-		title.setLayoutY(myHeight / 3);
-		myPane.getChildren().add(title);
-		
 		myPane.getChildren().add(addNodes());
 		myRoot.setCenter(myPane);
 		return myScene;
@@ -50,7 +45,9 @@ public class MainMenuScene extends AbstractNavigationPlayerScene {
 		myOptions.prefHeightProperty().bind(myPane.heightProperty());
 		myOptions.prefWidthProperty().bind(myPane.widthProperty());
 		myOptions.setLayoutX(0);
-		myOptions.setLayoutY(myHeight / 8);
+		myOptions.setLayoutY(0);
+		myOptions.getChildren().add(myAnimation.makeFadeTransition(myGUIGenerator.createImage("data/gui/praying-for-the-six.png", myWidth / 10)));
+		myOptions.getChildren().add(myGUIGenerator.createImage("data/gui/it_works.png", myWidth / 5));
 		myOptions.setAlignment(Pos.CENTER);
 		return myOptions;
 	}
