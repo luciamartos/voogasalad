@@ -14,9 +14,8 @@ public class UserInformationController implements IViewableUserInformation {
 	private Map<String, String> myUserInformation;
 
 	public UserInformationController() {
-		//deserializeTheXmlAndMakeMap(); 
+//		deserializeTheXmlAndMakeMap(); 
 		myUserInformation = new HashMap<String, String>();
-//		myUserInformation.put("Teddy", "123");
 	}
 
 	@Override
@@ -58,7 +57,6 @@ public class UserInformationController implements IViewableUserInformation {
 		} else {
 			return true;
 		}
-		
 	}
 
 	private void saveToXML(String aUserName, String aPassword) throws Exception {
