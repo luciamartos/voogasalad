@@ -73,8 +73,7 @@ public class ApplicationController {
 				myInformationController.userSignIn(login.getUserName(), login.getPassword());
 				displayMainMenu();
 			} catch (Exception x) {
-				ErrorAlert error = new ErrorAlert();
-				error.show(x);
+				showError(x);
 			}
 		}, ButtonDisplay.TEXT);
 		login.addButton(myButtonLabels.getString("SignUp"), e -> {
@@ -82,11 +81,15 @@ public class ApplicationController {
 				myInformationController.userSignUp(login.getUserName(), login.getPassword());
 				displayMainMenu();
 			} catch (Exception x) {
-				ErrorAlert error = new ErrorAlert();
-				error.show(x);
+				showError(x);
 			}
 		}, ButtonDisplay.TEXT);
 	}*/
+
+	private void showError(Exception x) {
+		ErrorAlert error = new ErrorAlert();
+		error.show(x);
+	}
 
 	private void setMainMenuButtonHandlers(IDisplay mainMenu) {
 		//AnimatedTitleDisplay title = new AnimatedTitleDisplay();
@@ -150,13 +153,14 @@ public class ApplicationController {
 
 	private void setGameChoiceButtonHandlers(IDisplay gameChoice) {
 		gameChoice.addButton(myButtonLabels.getString("ChooseGame"), e -> {
-			GamePlayController gamePlay = new GamePlayController(myStage);
-			gamePlay.displayGame();
+//			GamePlayController gamePlay = new GamePlayController(myStage);
+//			gamePlay.displayGame();
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton(myButtonLabels.getString("Load"), e -> {
 			File chosenGame = new FileController().show(myStage);
 			if (chosenGame != null) {
-				//TODO: Send selected file to backend
+				GamePlayController gamePlay = new GamePlayController(myStage, chosenGame.getAbsolutePath());
+				gamePlay.displayGame();
 			}
 		}, ButtonDisplay.TEXT);
 		gameChoice.addButton(myButtonLabels.getString("Options"), a -> {
