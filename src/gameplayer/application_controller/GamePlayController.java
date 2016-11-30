@@ -1,5 +1,6 @@
 package gameplayer.application_controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +36,7 @@ public class GamePlayController {
 		myStage = aStage;
 		myKeySet = new HashSet<KeyCode>();
 		myStack = new StackPane();
+		mySprites = new HashMap<Sprite, ImageView>();
 		initializeEngine(aFilePath, 0);
 		initializeAnimation();
 		initializeScene();
@@ -61,6 +63,7 @@ public class GamePlayController {
 	private void initializeAnimation() {
 		myAnimationLoop = new AnimationLoop();
 		myAnimationLoop.init( elapsedTime -> {
+			//This is what gets called every update cycle
 			myGameUpdater.update(myGameController.getMyGame(), elapsedTime, myKeySet, mySprites);;
 			updateSprites();
 		});
