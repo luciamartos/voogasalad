@@ -5,198 +5,47 @@
       <name>Level1</name>
       <width>700</width>
       <height>550</height>
-      <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-2.gif</backgroundImageFilePath>
+      <backgroundImageFilePath>XMLGameFiles/mari-background-1.png</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
-          <name>Kanye</name>
+          <name>No Name</name>
           <myLocation>
             <myHeading>0.0</myHeading>
-            <myXLocation>332.5</myXLocation>
-            <myYLocation>166.5</myYLocation>
+            <myXLocation>226.0</myXLocation>
+            <myYLocation>369.0</myYLocation>
           </myLocation>
-          <preset class="game_data.sprites.Player">
-            <name>Kanye</name>
-            <myLocation>
-              <myHeading>0.0</myHeading>
-              <myXLocation>0.0</myXLocation>
-              <myYLocation>0.0</myYLocation>
-            </myLocation>
-            <myWidth>50</myWidth>
-            <myHeight>50</myHeight>
-            <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
-            <myVelocity>0.0</myVelocity>
-            <myCollisionHandler/>
-            <myCharacteristics/>
-            <id>ConcreteDraggableSprite1480400278456</id>
-            <myStates/>
-          </preset>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
+          <myWidth>100</myWidth>
+          <myHeight>100</myHeight>
+          <myImagePath>author/images/MarioSMBW.png</myImagePath>
           <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Kanye</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>577.5</myXLocation>
-            <myYLocation>36.0</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>448.0</myXLocation>
-            <myYLocation>270.5</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player">
-            <name>Mario</name>
-            <myLocation>
-              <myHeading>0.0</myHeading>
-              <myXLocation>0.0</myXLocation>
-              <myYLocation>0.0</myYLocation>
-            </myLocation>
-            <myWidth>50</myWidth>
-            <myHeight>50</myHeight>
-            <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
-            <myVelocity>0.0</myVelocity>
-            <myCollisionHandler/>
-            <myCharacteristics/>
-            <id>ConcreteDraggableSprite1480400311389</id>
-            <myStates/>
-          </preset>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Kanye</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>443.5</myXLocation>
-            <myYLocation>152.5</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Kanye</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>370.0</myXLocation>
-            <myYLocation>126.0</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Kanye</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>587.0</myXLocation>
-            <myYLocation>431.5</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>96.5</myXLocation>
-            <myYLocation>88.0</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player[3]/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player[3]/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Kanye</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>535.5</myXLocation>
-            <myYLocation>283.5</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/newyeezy.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>295.5</myXLocation>
-            <myYLocation>237.0</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player[3]/preset"/>
-          <myWidth>50</myWidth>
-          <myHeight>50</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/Desktop/mymario.jpg</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player[3]/preset/myCollisionHandler"/>
+          <myCollisionHandler/>
           <myCharacteristics/>
           <id></id>
           <myStates/>
         </game__data.sprites.Player>
       </mySprites>
       <myKeyCommands/>
+      <isLevelLost>false</isLevelLost>
+      <isLevelWon>false</isLevelWon>
     </game__data.Level>
   </myLevels>
   <spritePresets>
-    <game__data.sprites.Player reference="../../myLevels/game__data.Level/mySprites/game__data.sprites.Player[3]/preset"/>
-    <game__data.sprites.Player reference="../../myLevels/game__data.Level/mySprites/game__data.sprites.Player/preset"/>
+    <game__data.sprites.Player>
+      <name>No Name</name>
+      <myLocation>
+        <myHeading>0.0</myHeading>
+        <myXLocation>0.0</myXLocation>
+        <myYLocation>0.0</myYLocation>
+      </myLocation>
+      <myWidth>100</myWidth>
+      <myHeight>100</myHeight>
+      <myImagePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
+      <myVelocity>0.0</myVelocity>
+      <myCollisionHandler reference="../../../myLevels/game__data.Level/mySprites/game__data.sprites.Player/myCollisionHandler"/>
+      <myCharacteristics/>
+      <id>ConcreteDraggableSprite1480386505583</id>
+      <myStates/>
+    </game__data.sprites.Player>
   </spritePresets>
   <myXMLSaver/>
   <currentLevel reference="../myLevels/game__data.Level"/>
