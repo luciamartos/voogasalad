@@ -68,9 +68,12 @@
     -fx-background-insets: 0,2;
     -fx-background-radius: 9,8,5,4;
     -fx-font-weight: bold;
+}
+
+#facebook-label {
     -fx-font-family: Lucida;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 13px;
+    -fx-font-size: 16px;
 }
 
 #facebook-button:hover {
