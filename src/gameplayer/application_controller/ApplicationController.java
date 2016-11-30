@@ -10,6 +10,7 @@ import gameplayer.front_end.animated_display.AnimatedDisplay;
 import gameplayer.front_end.application_scene.IDisplay;
 import gameplayer.front_end.application_scene.LoginScene;
 import gameplayer.front_end.application_scene.MainMenuScene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import gameplayer.front_end.application_scene.SceneFactory;
 import gameplayer.front_end.application_scene.SceneIdentifier;
@@ -96,14 +97,15 @@ public class ApplicationController {
 		mainMenu.addButton(myButtonLabels.getString("Author"), e -> {
 			//TODO: implement authoring environment
 		}, ButtonDisplay.TEXT);
-		mainMenu.addButton(myButtonLabels.getString("SignUp"), e -> {
+		mainMenu.addButton("LOGIN TO FACEBOOK", e -> {
 			myFacebookInformation.authenticatePlayer();
-		}, ButtonDisplay.TEXT);
+		}, ButtonDisplay.FACEBOOK);
 	}
 	
 	private void createNavigationButtons(IDisplay aMenu) {
 		String[] names = {"MAIN MENU", "PROFILE"};
-		aMenu.addNavigationMenu(names, e -> {
+		ImageView image = myGUIGenerator.createImage("data/gui/clip_art_hawaiian_flower.png",30);
+		aMenu.addNavigationMenu(image, names, e -> {
 			displayMainMenu();
 		}, e -> {
 			displayUserScene();

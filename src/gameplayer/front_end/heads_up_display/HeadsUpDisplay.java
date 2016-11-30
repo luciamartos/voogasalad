@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
@@ -28,8 +29,12 @@ public class HeadsUpDisplay {
 		myRoot = new BorderPane();
 	}
 	
-	public void addMenu(String[] aText, EventHandler<ActionEvent>... aHandler) {
-		myTopMenu.getMenus().add(myGUIGenerator.createMenu(aText, aHandler));
+	public void addMenu(String aTitle, String[] aText, EventHandler<ActionEvent>... aHandler) {
+		myTopMenu.getMenus().add(myGUIGenerator.createMenu(aTitle, aText, aHandler));
+	}
+	
+	public void addMenu(ImageView aImage, String[] aText, EventHandler<ActionEvent> ...aHandler) {
+		myTopMenu.getMenus().add(myGUIGenerator.createMenu(aImage, aText, aHandler));
 	}
 
 	private Node createTop() {

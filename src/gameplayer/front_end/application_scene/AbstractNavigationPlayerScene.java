@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.MenuBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
@@ -18,8 +19,8 @@ public abstract class AbstractNavigationPlayerScene extends AbstractPlayerScene 
 		addNavigation();
 	}
 	
-	public void addNavigationMenu(String[] aString, EventHandler<ActionEvent> ... aHandler) {
-		myNavigation.getMenus().add(myGUIGenerator.createMenu(aString, aHandler));
+	public void addNavigationMenu(ImageView aImage, String[] aString, EventHandler<ActionEvent> ... aHandler) {
+		myNavigation.getMenus().add(myGUIGenerator.createMenu(aImage, aString, aHandler));
 	}
 	
 	private void addNavigation() {

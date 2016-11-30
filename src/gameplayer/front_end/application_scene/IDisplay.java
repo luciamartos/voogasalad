@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -23,7 +24,7 @@ public interface IDisplay {
 	
 	public void addButton(String aLabel, EventHandler<? super MouseEvent> aHandler, ButtonDisplay aType);
 	
-	public void addNavigationMenu(String[] aString, EventHandler<ActionEvent> ...aHandlers);
+	public void addNavigationMenu(ImageView aImage, String[] aString, EventHandler<ActionEvent> ...aHandlers);
 	
 	public void addNode(Node aNode);
 	

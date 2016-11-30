@@ -3,9 +3,11 @@ package gameplayer.application_controller;
 import java.util.HashSet;
 import java.util.Set;
 import gameplayer.front_end.application_scene.AnimationScene;
+import gameplayer.front_end.gui_generator.GUIGenerator;
 import gameplayer.front_end.gui_generator.IGUIGenerator.ButtonDisplay;
 import gameplayer.front_end.heads_up_display.HeadsUpDisplay;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -18,6 +20,7 @@ public class GamePlayController {
 	private StackPane myStack;
 	private Scene myScene;
 	private Set<KeyCode> myKeySet;
+	private GUIGenerator myGUIGenerator;
 	
 	public GamePlayController(Stage astage) {
 		myStage = astage;
@@ -26,12 +29,13 @@ public class GamePlayController {
 		myScene = new Scene(myStack, myStage.getWidth(), myStage.getHeight());
 		myScene.setOnKeyPressed(e -> handleKeyPress(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyRelease(e.getCode()));
+		myGUIGenerator = new GUIGenerator();
 	}
 	
 	public void displayGame() {
 		initializeGameScene();
 		resetStage();
-		setButtonHandlers();
+		setMenu();
 	}
 
 	private void initializeGameScene() {
@@ -42,12 +46,15 @@ public class GamePlayController {
 	}
 	
 //austin is great
-	private void setButtonHandlers() {
-		String[] names = {"Main Menu", "Restart", "Change to Red"};
-		myHeadsUpDisplay.addMenu(names, e -> {
+	private void setMenu() {
+		String[] names = {"Main Menu"};
+		ImageView image = myGUIGenerator.createImage("data/gui/clip_art_hawaiian_flower.png",30);
+		myHeadsUpDisplay.addMenu(image, names, e -> {
 			ApplicationController appControl = new ApplicationController(myStage);
 			appControl.displayMainMenu();
-		}, e -> {
+		});
+		String[] namesForGamePlay = {"Restart", "Change to Red"};
+		myHeadsUpDisplay.addMenu("GAME PLAY", namesForGamePlay, e -> {
 			displayGame();
 		}, e -> {
 			myGamePlay.makeRed();

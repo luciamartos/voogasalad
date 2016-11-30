@@ -73,9 +73,19 @@ public class GUIGenerator implements IGUIGenerator {
 	}
 
 	@Override
-	public Menu createMenu(String[] aString, EventHandler<ActionEvent>... aHandler) {
+	public Menu createMenu(ImageView aImage, String[] aString, EventHandler<ActionEvent>... aHandler) {
 		Menu menu = new Menu();
-		menu.setGraphic(createImage("data/gui/clip_art_hawaiian_flower.png",30));
+		menu.setGraphic(aImage);
+		for (int i = 0; i < aHandler.length; i++) {
+			MenuItem item = new MenuItem(aString[i]);
+			item.setOnAction(aHandler[i]);
+			menu.getItems().add(item);
+		}
+		return menu;
+	}
+	
+	public Menu createMenu(String aTitle, String[] aString, EventHandler<ActionEvent>...aHandler) {
+		Menu menu = new Menu(aTitle); 
 		for (int i = 0; i < aHandler.length; i++) {
 			MenuItem item = new MenuItem(aString[i]);
 			item.setOnAction(aHandler[i]);

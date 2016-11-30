@@ -28,8 +28,11 @@ public class FacebookInformation {
 		String authenticateURL = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id=" + appID + 
 				"&redirect_uri=" + domain + "&scope=user_about_me";
 		
-		System.setProperty("webdriver.chrome.driver", "data/XMLUserPlayer/chromedriver");
- 
+		File chromeDriverFile = new File("data/chromedriver");
+		chromeDriverFile.setExecutable(true);
+		
+		System.setProperty("webdriver.chrome.driver", chromeDriverFile.toString());
+		
 		WebDriver driver = new ChromeDriver();
 		driver.get(authenticateURL);
 		
@@ -48,6 +51,9 @@ public class FacebookInformation {
 			}
 			
 		}
+		System.out.println("hi");
+		driver.quit();
+		return;
 	}
 	 
 	

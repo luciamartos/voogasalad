@@ -12,6 +12,9 @@ public class ButtonFactory {
 		if (aDisplayType.equals(ButtonDisplay.CSS)) {
 			buttonClass = new CSSButton();
 		}
+		else if (aDisplayType.equals(ButtonDisplay.FACEBOOK)) {
+			buttonClass = new FacebookButton();
+		}
 		else if (aDisplayType.equals(ButtonDisplay.TEXT)) {
 			buttonClass = new TextButton();
 		} else if (aDisplayType.equals(ButtonDisplay.IMAGE)) {
@@ -19,5 +22,5 @@ public class ButtonFactory {
 		}
 		return buttonClass.createButton(aMessage, aXPos, aYPos, aHandler);
 	}
-
+	
 }
