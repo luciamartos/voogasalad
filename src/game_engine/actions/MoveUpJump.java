@@ -13,22 +13,22 @@ import javafx.scene.image.ImageView;
 public class MoveUpJump extends Move {
 	private List<Sprite>mySpriteList;
 	private Map<Sprite, ImageView>mySpriteImages;
-	public MoveUpJump(Sprite aSprite, double aVelocity, List<Sprite> aSpriteList, Map<Sprite, ImageView>aSpriteImages) {
-		super(aSprite, aVelocity);
+	public MoveUpJump(Sprite aSprite, double aVelocity, double aTimeStep, List<Sprite> aSpriteList, Map<Sprite, ImageView>aSpriteImages) {
+		super(aSprite, aVelocity, aTimeStep);
 		mySpriteList=aSpriteList;
 		mySpriteImages=aSpriteImages;
 	}
-/*	@Override
+	@Override
 	public Location changeCoordinates(){
-		myNewLocation.setLocation(myOldLocation.getXLocation(), myOldLocation.getYLocation()-myVelocity);
+		myNewLocation.setLocation(myOldLocation.getXLocation(), myOldLocation.getYLocation()-myVelocity*timeStep);
 		return myNewLocation;
-	}*/
-	public void setVelocity(){
-		ListOfCollidingSprites collidingSprites = new ListOfCollidingSprites(mySprite, mySpriteList, mySpriteImages);
-		Map<Sprite, Side> myCollisionMap = collidingSprites.getCollisionSpriteMap();
-		if(!myCollisionMap.isEmpty()){
-			mySprite.setMyYVelocity(-myVelocity);
-		}
 	}
+//	public void setVelocity(){
+//		ListOfCollidingSprites collidingSprites = new ListOfCollidingSprites(mySprite, mySpriteList, mySpriteImages);
+//		Map<Sprite, Side> myCollisionMap = collidingSprites.getCollisionSpriteMap();
+//		if(!myCollisionMap.isEmpty()){
+//			mySprite.setMyYVelocity(-myVelocity);
+//		}
+//	}
 
 }

@@ -46,26 +46,31 @@ public class ListOfCollidingSprites {
 			}*/
 			//System.out.println(mySpriteImages.get(targetSprite).getLayoutY());
 		}
-		if(targetSprite instanceof Player){
-			System.out.println(collisionSprites.size());
-		}
+//		if(targetSprite instanceof Player){
+//			System.out.println(collisionSprites.size());
+//		}
 		return collisionSprites;
 	}
+	
+//	private  Side findSideOfCollission(Sprite mySprite, Sprite targetSprite) {
+//			
+//	return
+//}
 
 	private  Side findSideOfCollission(Sprite mySprite, Sprite targetSprite) {
-		if(mySprite.getMyLocation().getYLocation() <= targetSprite.getMyLocation().getYLocation()){
-			return Side.BOTTOM;
-		}
-		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation()){
-			return Side.TOP;
-		}
-		if(mySprite.getMyLocation().getXLocation() < targetSprite.getMyLocation().getXLocation()){
-			return Side.LEFT;
-		}
-		if(mySprite.getMyLocation().getXLocation() > targetSprite.getMyLocation().getXLocation()){
-			return Side.RIGHT;
-		}
-		return null;
+//		if(mySprite.getMyLocation().getYLocation() >= targetSprite.getMyLocation().getYLocation()){
+//			return Side.BOTTOM;
+//		}
+//		if(mySprite.getMyLocation().getYLocation() <= (targetSprite.getMyLocation().getYLocation()+targetSprite.getMyHeight())){
+//			return Side.TOP;
+//		}
+//		if(mySprite.getMyLocation().getXLocation() < targetSprite.getMyLocation().getXLocation()){
+//			return Side.LEFT;
+//		}
+//		if(mySprite.getMyLocation().getXLocation() > targetSprite.getMyLocation().getXLocation()){
+//			return Side.RIGHT;
+//		}
+		return Side.TOP;
 		
 	}
 	

@@ -15,6 +15,7 @@ import game_data.Sprite;
 import game_data.characteristics.Characteristic;
 import game_data.sprites.WinningObject;
 import game_engine.actions.Action;
+import game_engine.actions.MoveDown;
 import game_engine.actions.MoveLeft;
 import game_engine.actions.MoveRight;
 import game_engine.actions.MoveUpFly;
@@ -73,10 +74,9 @@ public class UpdateStates {
 		this.myKeyReleasedMap = new HashMap<KeyCode, Action>();
 		generateDefaultKeyPressedMap();
 		generateDefaultKeyReleasedMap();
-		executeCharacteristics();
-
 		runKeyCalls();
 		runKeyReleased();
+		executeCharacteristics();
 		updateSpritePositions();
 		checkForWin();
 		checkForLoss();
@@ -103,9 +103,10 @@ public class UpdateStates {
 	private void generateDefaultKeyPressedMap() {
 		//System.out.println(GameResources.MOVE_RIGHT_SPEED.getDoubleResource());
 		//System.out.println(myLevel.getMainPlayer()==null);
-		myKeyPressedMap.put(KeyCode.RIGHT, new MoveRight(myLevel.getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getDoubleResource()));
-		myKeyPressedMap.put(KeyCode.LEFT, new MoveLeft(myLevel.getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getDoubleResource()));
-		myKeyPressedMap.put(KeyCode.UP, new MoveUpFly(myLevel.getMainPlayer(), GameResources.JUMP_SPEED.getDoubleResource()));	
+		myKeyPressedMap.put(KeyCode.RIGHT, new MoveRight(myLevel.getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getDoubleResource(), timeElapsed));
+		myKeyPressedMap.put(KeyCode.LEFT, new MoveLeft(myLevel.getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getDoubleResource(),timeElapsed));
+		myKeyPressedMap.put(KeyCode.UP, new MoveUpFly(myLevel.getMainPlayer(), GameResources.JUMP_SPEED.getDoubleResource(),timeElapsed));	
+		myKeyPressedMap.put(KeyCode.DOWN, new MoveUpFly(myLevel.getMainPlayer(), GameResources.JUMP_SPEED.getDoubleResource(),timeElapsed));	
 		//, mySpriteList, mySpriteImages)
 	}
 	private void generateDefaultKeyReleasedMap(){
