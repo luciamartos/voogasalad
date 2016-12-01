@@ -3,16 +3,16 @@
   <myLevels>
     <game__data.Level>
       <name>Level1</name>
-      <width>700</width>
-      <height>550</height>
-      <backgroundImageFilePath>XMLGameFiles/mari-background-1.png</backgroundImageFilePath>
+      <width>1279</width>
+      <height>847</height>
+      <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-1.png</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
-          <name>No Name</name>
+          <name>Goomba</name>
           <myLocation>
             <myHeading>0.0</myHeading>
-            <myXLocation>226.0</myXLocation>
-            <myYLocation>369.0</myYLocation>
+            <myXLocation>389.5</myXLocation>
+            <myYLocation>595.0</myYLocation>
           </myLocation>
           <myWidth>100</myWidth>
           <myHeight>100</myHeight>
