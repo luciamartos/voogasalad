@@ -139,7 +139,7 @@ public class UpdateStates {
 			Map<Sprite, Side> myCollisionMap = collidingSprites.getCollisionSpriteMap();
 			Set<Characteristic> characteristics = mySprite.getCharacteristics();
 			//System.out.println(myCollisionMap.size());
-			for(Characteristic myCharacteristic:characteristics){	
+			for(Characteristic myCharacteristic:characteristics){
 				myCharacteristic.execute(myCollisionMap);
 			}
 		}

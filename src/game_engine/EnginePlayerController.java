@@ -51,7 +51,7 @@ public class EnginePlayerController implements IEnginePlayerControllerInterface 
 		myLevel.getMainPlayer().addState(new Physics(new SpritePhysics()));
 		myLevel.getMainPlayer().getMyLocation().setMyHeading(-1*270*Math.PI/180);
 		int j = 1;
-		for(int i = 226; i<1226; i+=100){
+		for(int i = 226; i<226; i+=100){
 			myLevel.addNewSprite(new Terrain(new Location(i, 500, 90), 100, 100, "block" + j, "author/images/duvall_scary.png"));
 			//myLevel.getMySpriteList().get(j).addCharacteristic(new Bouncer(20, myLevel.getMySpriteList().get(j)));
 			//System.out.println(myLevel.getMySpriteList().get(j).getStates().size());

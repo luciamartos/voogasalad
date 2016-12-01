@@ -24,6 +24,7 @@ public class Impassable implements Characteristic {
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap) {
 		for (Sprite collidedSprite : myCollisionMap.keySet()) {
+			System.out.println("LUCIA");
 			if (collidedSprite instanceof Player) {
 				myAction = new Hit(collidedSprite, myCollisionMap.get(collidedSprite), mySprite);
 				myAction.act();
