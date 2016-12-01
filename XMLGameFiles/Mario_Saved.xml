@@ -8,60 +8,11 @@
       <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-1.png</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>377.0</myXLocation>
-            <myYLocation>477.0</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player">
-            <name>Mario</name>
-            <myLocation>
-              <myHeading>0.0</myHeading>
-              <myXLocation>0.0</myXLocation>
-              <myYLocation>0.0</myYLocation>
-            </myLocation>
-            <myWidth>65</myWidth>
-            <myHeight>65</myHeight>
-            <myImagePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
-            <myVelocity>0.0</myVelocity>
-            <myCollisionHandler/>
-            <myCharacteristics/>
-            <id>ConcreteDraggableSprite1480575960682</id>
-            <myStates/>
-          </preset>
-          <myWidth>65</myWidth>
-          <myHeight>65</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
-          <name>Mario</name>
-          <myLocation>
-            <myHeading>0.0</myHeading>
-            <myXLocation>268.0</myXLocation>
-            <myYLocation>458.0</myYLocation>
-          </myLocation>
-          <preset class="game_data.sprites.Player" reference="../../game__data.sprites.Player/preset"/>
-          <myWidth>65</myWidth>
-          <myHeight>65</myHeight>
-          <myImagePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
-          <myCollisionHandler reference="../../game__data.sprites.Player/preset/myCollisionHandler"/>
-          <myCharacteristics/>
-          <id></id>
-          <myStates/>
-        </game__data.sprites.Player>
-        <game__data.sprites.Player>
           <name>Goomba</name>
           <myLocation>
             <myHeading>0.0</myHeading>
-            <myXLocation>895.0</myXLocation>
-            <myYLocation>383.5</myYLocation>
+            <myXLocation>389.5</myXLocation>
+            <myYLocation>595.0</myYLocation>
           </myLocation>
           <preset class="game_data.sprites.Player">
             <name>Goomba</name>
@@ -76,7 +27,7 @@
             <myVelocity>0.0</myVelocity>
             <myCollisionHandler/>
             <myCharacteristics/>
-            <id>ConcreteDraggableSprite1480575962390</id>
+            <id>ConcreteDraggableSprite1480576558850</id>
             <myStates/>
           </preset>
           <myWidth>50</myWidth>
@@ -96,12 +47,46 @@
       <width>1279</width>
       <height>847</height>
       <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-2.gif</backgroundImageFilePath>
-      <mySprites/>
+      <mySprites>
+        <game__data.sprites.Player>
+          <name>Goomba</name>
+          <myLocation>
+            <myHeading>0.0</myHeading>
+            <myXLocation>699.0</myXLocation>
+            <myYLocation>459.0</myYLocation>
+          </myLocation>
+          <preset class="game_data.sprites.Player" reference="../../../../game__data.Level/mySprites/game__data.sprites.Player/preset"/>
+          <myWidth>50</myWidth>
+          <myHeight>50</myHeight>
+          <myImagePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/angry_goomba.png</myImagePath>
+          <myVelocity>0.0</myVelocity>
+          <myCollisionHandler reference="../../../../game__data.Level/mySprites/game__data.sprites.Player/preset/myCollisionHandler"/>
+          <myCharacteristics/>
+          <id></id>
+          <myStates/>
+        </game__data.sprites.Player>
+        <game__data.sprites.Player>
+          <name>Goomba</name>
+          <myLocation>
+            <myHeading>0.0</myHeading>
+            <myXLocation>437.5</myXLocation>
+            <myYLocation>455.5</myYLocation>
+          </myLocation>
+          <preset class="game_data.sprites.Player" reference="../../../../game__data.Level/mySprites/game__data.sprites.Player/preset"/>
+          <myWidth>50</myWidth>
+          <myHeight>50</myHeight>
+          <myImagePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/angry_goomba.png</myImagePath>
+          <myVelocity>0.0</myVelocity>
+          <myCollisionHandler reference="../../../../game__data.Level/mySprites/game__data.sprites.Player/preset/myCollisionHandler"/>
+          <myCharacteristics/>
+          <id></id>
+          <myStates/>
+        </game__data.sprites.Player>
+      </mySprites>
       <myKeyCommands/>
     </game__data.Level>
   </myLevels>
   <spritePresets>
-    <game__data.sprites.Player reference="../../myLevels/game__data.Level/mySprites/game__data.sprites.Player[3]/preset"/>
     <game__data.sprites.Player reference="../../myLevels/game__data.Level/mySprites/game__data.sprites.Player/preset"/>
   </spritePresets>
   <currentLevel reference="../myLevels/game__data.Level"/>
