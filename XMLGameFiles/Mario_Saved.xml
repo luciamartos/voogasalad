@@ -17,7 +17,8 @@
           <myWidth>100</myWidth>
           <myHeight>100</myHeight>
           <myImagePath>author/images/MarioSMBW.png</myImagePath>
-          <myVelocity>0.0</myVelocity>
+          <myXVelocity>0.0</myXVelocity>
+          <myYVelocity>0.0</myYVelocity>
           <myCollisionHandler/>
           <myCharacteristics/>
           <id></id>
@@ -40,7 +41,8 @@
       <myWidth>100</myWidth>
       <myHeight>100</myHeight>
       <myImagePath>file:/Users/Addison/Documents/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mario.png</myImagePath>
-      <myVelocity>0.0</myVelocity>
+      <myXVelocity>0.0</myXVelocity>
+      <myYVelocity>0.0</myYVelocity>
       <myCollisionHandler reference="../../../myLevels/game__data.Level/mySprites/game__data.sprites.Player/myCollisionHandler"/>
       <myCharacteristics/>
       <id>ConcreteDraggableSprite1480386505583</id>
