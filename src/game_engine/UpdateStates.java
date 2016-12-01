@@ -106,7 +106,7 @@ public class UpdateStates {
 		myKeyPressedMap.put(KeyCode.RIGHT, new MoveRight(myLevel.getMainPlayer(), GameResources.MOVE_RIGHT_SPEED.getDoubleResource(), timeElapsed));
 		myKeyPressedMap.put(KeyCode.LEFT, new MoveLeft(myLevel.getMainPlayer(), GameResources.MOVE_LEFT_SPEED.getDoubleResource(),timeElapsed));
 		myKeyPressedMap.put(KeyCode.UP, new MoveUpFly(myLevel.getMainPlayer(), GameResources.JUMP_SPEED.getDoubleResource(),timeElapsed));	
-		myKeyPressedMap.put(KeyCode.DOWN, new MoveUpFly(myLevel.getMainPlayer(), GameResources.JUMP_SPEED.getDoubleResource(),timeElapsed));	
+		myKeyPressedMap.put(KeyCode.DOWN, new MoveUpFly(myLevel.getMainPlayer(), -GameResources.JUMP_SPEED.getDoubleResource(),timeElapsed));	
 		//, mySpriteList, mySpriteImages)
 	}
 	private void generateDefaultKeyReleasedMap(){
