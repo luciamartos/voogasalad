@@ -8,14 +8,14 @@
       <backgroundImageFilePath>file:/C:/Users/ClevelandThompson/workspace/voogasalad_letsjustprayitworks/XMLGameFiles/mari-background-1.png</backgroundImageFilePath>
       <mySprites>
         <game__data.sprites.Player>
-          <name>Goomba</name>
+          <name>goomb</name>
           <myLocation>
             <myHeading>0.0</myHeading>
-            <myXLocation>722.5</myXLocation>
-            <myYLocation>216.5</myYLocation>
+            <myXLocation>831.0</myXLocation>
+            <myYLocation>179.5</myYLocation>
           </myLocation>
           <preset class="game_data.sprites.Player">
-            <name>Goomba</name>
+            <name>goomb</name>
             <myLocation>
               <myHeading>0.0</myHeading>
               <myXLocation>0.0</myXLocation>
@@ -27,7 +27,7 @@
             <myVelocity>0.0</myVelocity>
             <myCollisionHandler/>
             <myCharacteristics/>
-            <id>ConcreteDraggableSprite1480572033765</id>
+            <id>ConcreteDraggableSprite1480573817019</id>
             <myStates/>
           </preset>
           <myWidth>50</myWidth>
