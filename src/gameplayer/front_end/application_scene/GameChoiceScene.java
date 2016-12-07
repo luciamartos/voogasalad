@@ -1,8 +1,6 @@
 package gameplayer.front_end.application_scene;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 
 /**
  * Concrete representation of the scene where users can choose which game to play
@@ -17,16 +15,7 @@ public class GameChoiceScene extends AbstractNavigationPlayerScene {
 	}
 
 	@Override
-	public Scene init(){
-		myRoot.setCenter(addNodes());
+	public Scene init() {
 		return myScene;
 	}
-
-	private VBox addNodes() {
-		myOptions = new VBox(BOX_INSETS);
-		myOptions.setAlignment(Pos.CENTER);
-		//myOptions.bin
-		return myOptions;
-	}
-
 }

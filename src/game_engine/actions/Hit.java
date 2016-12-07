@@ -2,28 +2,28 @@ package game_engine.actions;
 
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
-import states.Physics;
-import states.State;
 import game_data.Location;
+import game_data.states.Physics;
+import game_data.states.State;
 import game_data.Sprite;
 import game_engine.SpritePhysics;
 
 /**
- * @author Alex
+ * @author Katrina
  *
  */
 
 public class Hit implements Action {
 	
 	private Sprite myPlayerSprite;
+	private Sprite myNonPlayerSprite;
 	private Side mySide;
 	private Sprite block;
 	
-
-	public Hit(Sprite player,  Side aSide, Sprite block) {
+	public Hit(Sprite player,  Side aSide, Sprite nonPlayerSprite) {
 		myPlayerSprite = player;
+		myNonPlayerSprite = nonPlayerSprite;
 		mySide = aSide;
-		this.block = block;
 	}
 
 	@Override
@@ -31,30 +31,44 @@ public class Hit implements Action {
 		
 		
 		//get new Velocity –– gets horizontal or vertical components to zero
-
 		setNewVelocity();
 	//	setNewAcceleration();
 	}
 	
+	private boolean pastPlatform(){
+		return myPlayerSprite.getMyLocation().getYLocation()+myPlayerSprite.getMyHeight()>myNonPlayerSprite
+				.getMyLocation().getYLocation() && myPlayerSprite.getMyYVelocity()>0;		
+	}
+	
 	private void setNewVelocity() {
-		if(mySide==Side.TOP){
-			myPlayerSprite.getMyLocation().setLocation(myPlayerSprite.getMyLocation().getXLocation(), block.getMyLocation().getYLocation()-myPlayerSprite.getMyHeight());
-			//myPlayerSprite.setMyLocation(new Location(myPlayerSprite.getMyLocation().getXLocation(), block.getMyLocation().getYLocation()-myPlayerSprite.getMyHeight(),  0));
-//			if(myPlayerSprite.getMyYVelocity() >=0)
-			myPlayerSprite.setMyYVelocity(0);
-			myPlayerSprite.setMyYAcceleration(0);
+				
+		if(mySide == Side.LEFT) {
+			//System.out.println("hitting this");
+			if(myPlayerSprite.getMyXVelocity()>0){
+				
+				myPlayerSprite.setMyXVelocity(0);
+				//System.out.println("hittin left side of block");
+			}
 		}
-			
-//		if(mySide == Side.LEFT || mySide == Side.RIGHT) {
-//			myPlayerSprite.setMyXVelocity(0);
-//		}
-//		if(mySide==Side.TOP){
-//			System.out.println("top");
-//			myPlayerSprite.setMyYVelocity(0);
-//		}
-//		if(mySide==Side.BOTTOM){
-//			myPlayerSprite.setMyYVelocity(-myPlayerSprite.getMyYVelocity());
-//		}
+		if(mySide==Side.RIGHT) {
+			if(myPlayerSprite.getMyXVelocity()<0){
+				//System.out.println("hittin right side of block");
+				myPlayerSprite.setMyXVelocity(0);
+			}
+		}
+		if(mySide==Side.TOP){
+			//System.out.println("top");
+			if(myPlayerSprite.getMyYVelocity()>0){
+				//System.out.println("this should be a thing");
+				myPlayerSprite.setMyYVelocity(0);
+			}
+		}
+		if(mySide==Side.BOTTOM){
+			if(myPlayerSprite.getMyYVelocity()<0){
+				myPlayerSprite.setMyYVelocity(-.5*myPlayerSprite.getMyYVelocity());
+			}
+		}
+
 	}
 	private void setNewAcceleration(){
 		SpritePhysics mySpritePhysics = null;
@@ -63,12 +77,14 @@ public class Hit implements Action {
 				mySpritePhysics = ((Physics) s).getPhysics();
 			}
 		}
-		if(mySide == Side.LEFT || mySide==Side.RIGHT){
+		if((mySide == Side.LEFT && mySpritePhysics.getHorizontalGravity()>0)||(mySide == Side.RIGHT && mySpritePhysics.getHorizontalGravity()<0)){
 			myPlayerSprite.setMyXAcceleration(-mySpritePhysics.getHorizontalGravity());
 		}
-//		if(mySide==Side.TOP){
-//			myPlayerSprite.setMyYAcceleration(-mySpritePhysics.getVerticalGravity());
-//		}
+
+		else if((mySide==Side.TOP && mySpritePhysics.getVerticalGravity()>0)||(mySide==Side.BOTTOM && mySpritePhysics.getVerticalGravity()<0)){
+			//System.out.println("this should also be a thing");
+			myPlayerSprite.setMyYAcceleration(-mySpritePhysics.getVerticalGravity());
+		}
 		
 	}
 /*	private double getNewHeading(double oldHeading, double oldVelocity) {

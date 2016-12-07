@@ -15,21 +15,20 @@ public abstract class Move implements Action {
 	protected Location myNewLocation;
 	protected double myVelocity;
 	protected double timeStep;
-	public Move(Sprite aSprite, double aVelocity, double timeStep) {
+	public Move(Sprite aSprite, double aVelocity) {
 		mySprite=aSprite;
 		myVelocity=aVelocity;
 		myOldLocation=mySprite.getMyLocation();
-		double heading = myOldLocation.getMyHeading();
-		myNewLocation = new Location(0, 0, heading);
-		this.timeStep = timeStep;
+		myNewLocation = new Location(0, 0);
 	}
 
 	@Override
 	public void act() {
-		mySprite.setMyLocation(changeCoordinates());
-		//setVelocity();
+//		mySprite.setMyLocation(changeCoordinates());
+		setVelocity();
 	}
-	public abstract Location changeCoordinates();
-	//public abstract void setVelocity();
+	public abstract void stop();
+	//public abstract Location changeCoordinates();
+	public abstract void setVelocity();
 	
 }
