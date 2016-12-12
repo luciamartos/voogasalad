@@ -42,6 +42,7 @@ public class GamePlayController extends AbstractController {
 	private SpriteDisplay mySpriteDisplay;
 	private MediaController myMusic;
 	private Score myScore;
+	private MovementHandlerFactory myMovementHandler;
 	private PlayerInformationController myPlayerInformation;
 	
 	public GamePlayController(Stage aStage, File aFile, ApplicationController aAppController, 
@@ -80,7 +81,6 @@ public class GamePlayController extends AbstractController {
 		} else {
 			myKeyCodeHandler = new KeyCodeHandler("default");
 		}
-		//getGUIGenerator().createMediaPlayer("");
 	}
 	
 	public void displayGame() {
@@ -113,8 +113,12 @@ public class GamePlayController extends AbstractController {
 	private void updateScene() {
 		//the below line makes sure the keys released aren't stored in the set after they're released
 		myKeyCodeHandler.clearReleased();
-		XYMovementHandler movementHandler = new MovementHandlerFactory().buildMovementHandler(myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getXLocation(), 
-				myStage.getWidth(), myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getYLocation(), myStage.getHeight(), 3);
+		XYMovementHandler movementHandler = new MovementHandlerFactory().buildMovementHandler(
+				myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getXLocation(), 
+				myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getYLocation(), 
+				myStage.getWidth(), 
+				myStage.getHeight(), 
+				myGameController.getMyGame().getScrollType());
 		checkResult();
 		myGamePlayScene.moveScreen(movementHandler);
 		setHealthLabel();
