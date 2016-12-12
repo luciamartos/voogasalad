@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 
 public class HeadsUpDisplay {
 
-	private HBox myTop;
 	private MenuBar myTopMenu;
 	private IGUIGenerator myGUIGenerator;
 	private BorderPane myRoot;
@@ -36,7 +35,6 @@ public class HeadsUpDisplay {
 	public void addMenu(ImageView aImage, String[] aText, @SuppressWarnings("unchecked") EventHandler<ActionEvent> ... aHandler) {
 		myTopMenu.getMenus().add(myGUIGenerator.createMenu(aImage, aText, aHandler));
 	}
-	
 
 	public void addLabel(String aText){
 		if(myBottom.getChildren().size() > 0){
@@ -65,5 +63,20 @@ public class HeadsUpDisplay {
 		myRoot.setTop(createTop());
 		myRoot.setBackground(Background.EMPTY);
 		return myRoot;
+	}
+
+	public void addNode(Node aNode) {
+		aNode.setId("animation-label");
+		aNode.setStyle("-fx-text-fill: " + myFontColor.toLowerCase());
+		myBottom.getChildren().add(aNode);
+	}
+	
+	public void addNode(Node aNode, int aPos) {
+		if (myBottom.getChildren().size() > 2) {
+			myBottom.getChildren().remove(aPos);
+			addNode(aNode);
+		} else {
+			addNode(aNode);
+		}
 	}
 }
