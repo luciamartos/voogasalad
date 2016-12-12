@@ -20,14 +20,20 @@ import author.view.util.undo.IRevertManager;
 import author.view.util.undo.RevertManagerFactory;
 import game_data.Level;
 import game_data.Location;
+import game_data.ScrollType;
 import game_data.Sprite;
+import game_engine.properties.RandomMoveDisjointHandler;
+import game_engine.properties.RandomMoveHandler;
+import game_engine.properties.RandomMoveHandler.Orientation;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -109,7 +115,7 @@ public class LevelWindow extends AbstractLevelEditorWindow implements ILevelWind
 
 	private void createUndo(Level aLevel) {
 		this.revertManagers.put(aLevel, new RevertManagerFactory().create(aLevel));
-		this.levelWindowPane.getPane().setOnKeyPressed((event) -> {
+		this.getWindow().setOnKeyPressed((event) -> {
 			if (event.getCode().equals(KeyCode.Z) && event.isControlDown()) {
 				this.revertManagers.get(this.getController().getModel().getGame().getCurrentLevel()).undo();
 			} else if (event.getCode().equals(KeyCode.Y) && event.isControlDown()) {
@@ -143,8 +149,8 @@ public class LevelWindow extends AbstractLevelEditorWindow implements ILevelWind
 		// EventHandler<? super MouseEvent> clickedHandler =
 		// draggableSprite.getDraggableItem().getOnMouseClicked();
 		draggableSprite.getDraggableItem().setOnMouseClicked((event) -> {
-			// clickedHandler.handle(event);
-			this.levelWindowPane.getPane().requestFocus();
+			//clickedHandler.handle(event);
+			this.getWindow().requestFocus();
 			if (((MouseEvent) event).getButton() == MouseButton.SECONDARY) {
 				openContextMenu(draggableSprite, event);
 				event.consume();
@@ -207,11 +213,25 @@ public class LevelWindow extends AbstractLevelEditorWindow implements ILevelWind
 
 	private void openContextMenu(DraggableSprite sprite, MouseEvent event) {
 		SpriteContextMenu contextMenu = new SpriteContextMenu(sprite, this.getController());
-		if (this.getRandomProperty().get())
-			contextMenu.getMenu().getItems().add(new FunctionalMenuItemFactory().create("Random", e -> {
-
-			}).getItem());
+		if (this.getRandomProperty().get()) contextMenu.getMenu().getItems().add(new FunctionalMenuItemFactory().create("Randomize", e -> {
+			ScrollType scrollType = getController().getModel().getGame().getScrollType();
+			if (scrollType.equals(ScrollType.CENTER)){
+				showAlert();
+			}
+			else{
+				RandomMoveHandler randomMoveHandler = new RandomMoveDisjointHandler(scrollType.equals(ScrollType.HORIZONTAL_LEFT) | scrollType.equals(ScrollType.HORIZONTAL_RIGHT) ? Orientation.HORIZONTAL : Orientation.VERTICAL);
+				sprite.getSprite().setMyRandomMoveHandler(randomMoveHandler);
+			}
+			
+		}).getItem());
 		contextMenu.getMenu().show(sprite.getImageView(), event.getScreenX(), event.getScreenY());
+	}
+	
+	private void showAlert(){
+		Alert scrollAlert = new Alert(AlertType.WARNING);
+		scrollAlert.setTitle("Improper Scroller Type");
+		scrollAlert.setContentText("Cannot Randomize a Centered Scroller");
+		scrollAlert.show();
 	}
 
 	private void setBackgroundImage(String filePath) {
