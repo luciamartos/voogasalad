@@ -49,6 +49,7 @@ public class SpriteDisplay {
 		ImageView image = null;
 		if (aSprite instanceof Player) {
 			if (myAnimationSpriteImage.size() < 1) {
+				int count = 1;
 				String file = aSprite.getImagePath(); 
 				image = buildSpriteDisplay(aSprite);
 				for (int i = 0; i < 15; i++) {
@@ -57,7 +58,9 @@ public class SpriteDisplay {
 				String[] array = file.split("\\.");
 				StringBuilder buildString = new StringBuilder();
 				buildString.append(array[0]);
-				buildString.append("_animation.");
+				buildString.append("_animation");
+				buildString.append(count);
+				buildString.append(".");
 				buildString.append(array[1]);
 				String filePathOfAnimation = buildString.toString();
 				fileOfAnimation = new File(filePathOfAnimation);
