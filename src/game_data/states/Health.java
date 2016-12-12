@@ -11,16 +11,17 @@ public class Health implements State{
 	@ParameterAnnotation(parameters={"Health"})
 	public Health(int health){
 		myHealth = health;
-		isAlive = true;
 	}
 	
 	@ViewableMethodOutput(type=int.class, description="Health")
 	public int getHealth() {
 		return myHealth;
 	}
-	
+	public void setHealth(int health){
+		myHealth=health;
+	}
 	public boolean isAlive(){
-		return isAlive;
+		return myHealth>0;
 	}
 	
 	@Override
@@ -29,16 +30,12 @@ public class Health implements State{
 	}
 	
 	public void kill(){
-		isAlive = false;
+		myHealth = 0;
 	}
 
 	@Override
 	public void updateState(double pointsToGive) {
 		myHealth-=pointsToGive;
-	}
-	
-	public int getMyHealth() {
-		return myHealth;
 	}
 
 	

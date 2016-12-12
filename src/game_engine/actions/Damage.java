@@ -48,7 +48,7 @@ public class Damage extends PointsChanger implements Action {
 			spriteAffected.addCharacteristic(invincibility);
 			invincibility.getInterface().addToPowerUpMap(spriteAffected, GameResources.RECOVERY_TIME.getDoubleResource());
 //			UpdateStates.activateSingularPowerUp(invincibility, spriteAffected, GameResources.RECOVERY_TIME.getDoubleResource());
-			if(((Health) health).getMyHealth()<=0){
+			if(((Health) health).getHealth()<=0){
 				((Health) health).kill();
 			}
 		}

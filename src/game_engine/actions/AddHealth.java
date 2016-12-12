@@ -24,7 +24,7 @@ public class AddHealth extends PointsChanger implements Action {
 		for(State i : spriteAffected.getStates()){
 			if (i instanceof Health){
 				((Health) i).updateState(pointsToGive);
-				if(((Health) i).getMyHealth()<=0){
+				if(((Health) i).getHealth()<=0){
 					((Health) i).kill();
 				}
 			}

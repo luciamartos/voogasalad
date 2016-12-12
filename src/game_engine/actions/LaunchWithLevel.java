@@ -4,6 +4,8 @@ import game_data.Controllable;
 import game_data.Level;
 import game_data.LevelSetter;
 import game_data.Sprite;
+import game_data.states.Health;
+import game_data.states.State;
 /**
  * @author Katrina
  *
@@ -18,15 +20,22 @@ public class LaunchWithLevel implements Launch{
 		myProjectile.setXAcceleration(0);
 		myProjectile.setYAcceleration(0);
 		myProjectile.setControllable(new Controllable());
-		this.myProjectile=myProjectile.clone();
+		//this.myProjectile=myProjectile.clone();
+		this.myProjectile=myProjectile;
 		this.myVelocity=myVelocity;
 		this.myLevel=myLevel;
 	}
 
 	@Override
 	public void act() {
+		for(State s: myProjectile.getStates()){
+			if(s instanceof Health){
+				((Health)s).setHealth(1);
+			}
+		}
 		boolean right=true;
-		myProjectile=myProjectile.clone();
+		//myProjectile=myProjectile.clone();
+		//myProjectile=myProjectile
 		double myXVelocity=0;
 		double myYVelocity=0;
 		double velocityAngle=0;
@@ -38,10 +47,10 @@ public class LaunchWithLevel implements Launch{
 		System.out.println(myLauncher.getLocation().getXLocation());
 		System.out.println(myLauncher.getLocation().getYLocation());*/
 		if(right){
-			myProjectile.getLocation().setLocation(myLauncher.getLocation().getXLocation()+myLauncher.getWidth()+100, myLauncher.getLocation().getYLocation()+myLauncher.getHeight()/2);
+			myProjectile.getLocation().setLocation(myLauncher.getLocation().getXLocation()+myLauncher.getWidth()+10, myLauncher.getLocation().getYLocation()+myLauncher.getHeight()/2);
 		}
 		else{
-			myProjectile.getLocation().setLocation(myLauncher.getLocation().getXLocation()-100, myLauncher.getLocation().getYLocation() + myLauncher.getHeight()/2);
+			myProjectile.getLocation().setLocation(myLauncher.getLocation().getXLocation()-10, myLauncher.getLocation().getYLocation() + myLauncher.getHeight()/2);
 		}
 		if(myLauncher.getXVelocity()==0 && myLauncher.getYVelocity()==0){
 			myXVelocity=myVelocity;

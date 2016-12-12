@@ -14,7 +14,8 @@ public class LaunchSkeleton implements Launch{
 	private double myVelocity;
 	public LaunchSkeleton(Sprite myLauncher, Sprite myProjectile, double myVelocity){
 		this.myLauncher=myLauncher;
-		this.myProjectile=myProjectile.clone();
+		//this.myProjectile=myProjectile.clone();
+		this.myProjectile=myProjectile;
 		this.myVelocity=myVelocity;
 	}
 
