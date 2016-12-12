@@ -124,7 +124,7 @@ public class EnginePlayerController implements IEnginePlayerControllerInterface 
 			if (sprite instanceof Character) {
 				for (State myState : ((Character) sprite).getStates()) {
 					if (myState instanceof Health) {
-						mySpriteHealthList.add(((Health) myState).getMyHealth());
+						mySpriteHealthList.add(((Health) myState).getHealth());
 					}
 					if (sprite instanceof Health) {
 						mySpriteIsAliveList.add(((Health) sprite).isAlive());
