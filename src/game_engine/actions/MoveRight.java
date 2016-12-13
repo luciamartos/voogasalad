@@ -48,9 +48,9 @@ public class MoveRight extends Move {
 }*/
 	public void stop(){
 		if(mySprite.getXVelocity()>0){
-			//mySprite.setXVelocity(0);\
-			//System.out.println("stopping" + mySprite.getXVelocity());
-			mySprite.setXVelocity(mySprite.getXVelocity()-myVelocity);
+			mySprite.setXVelocity(0);
+//			System.out.println("stopping" + mySprite.getXVelocity());
+//			mySprite.setXVelocity(mySprite.getXVelocity()-myVelocity);
 		}
 	}
 

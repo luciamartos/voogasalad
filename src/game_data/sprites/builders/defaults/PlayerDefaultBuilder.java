@@ -3,7 +3,6 @@ package game_data.sprites.builders.defaults;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
-import game_data.characteristics.Controllable;
 import game_data.sprites.Player;
 import game_data.sprites.builders.SpriteDefaultBuilder;
 import game_data.states.Health;
@@ -37,7 +36,7 @@ public class PlayerDefaultBuilder implements SpriteDefaultBuilder {
 	private static final String NAME = "Player_Name";
 
 	@Override
-	public Sprite build() {
+	public Sprite buildDefault() {
 		for(Characteristic characteristic : CHARACTERISTICS) {
 			player.addCharacteristic(characteristic);
 		}
