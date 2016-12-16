@@ -6,7 +6,12 @@ import game_data.Level;
 import game_data.Sprite;
 /**
  * LaunchProxyHorizontal exists to set a launch action without knowing the level.
- * 
+ * This is the only launch object that the front end has to worry about.
+ * This way, the front end need only pass in a launcher, a projectile, and a velocity,
+ * without setting a level, even though the launch action itself needs a level.
+ * Because of the interfaces implemented, it's very easy to check in other classes
+ * if this class is an instanceof LevelSetter, and if so, I simply need to call the method
+ * setLevel().
  * @author Katrina Zhu
  */
 public class LaunchProxyHorizontal implements LevelSetter, Launch {

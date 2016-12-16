@@ -5,6 +5,9 @@ package game_engine.actions;
 import game_data.Level;
 /**
  * The LevelSetter interface allows a class to set a level.
+ * This interface is good code because it easily allows other classes 
+ * to check if an object needs to have a level set, and subsequently
+ * call setLevel().
  * @author Katrina Zhu
  */
 public interface LevelSetter {

@@ -3,7 +3,8 @@
 package game_engine.actions;
 /**
  * The Launch Interface represents any action that seeks to launch a projectile.
- * 
+ * This is an important interface to not only identify specific launch actions,
+ * but to implement the method getVelocity() of the launch actions.
  * @author Katrina Zhu
  */
 public interface Launch extends Action {
