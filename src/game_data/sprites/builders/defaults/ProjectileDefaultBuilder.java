@@ -2,6 +2,7 @@ package game_data.sprites.builders.defaults;
 
 import java.io.File;
 
+import game_data.Controllable;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Breakable;
@@ -48,7 +49,9 @@ public class ProjectileDefaultBuilder implements SpriteDefaultBuilder {
 		projectile.setLocation(new Location(0, 0));
 		projectile.setWidth(10);
 		projectile.setHeight(10);
-		System.out.println("building the default");
+		projectile.setXAcceleration(0);
+		projectile.setYAcceleration(0);
+		projectile.setControllable(new Controllable());
 		projectile.setImagePath("data/images/sprite_images/Bullet_Bill_SMW_SNES_Sprite_Right.png");
 		projectile.setName(NAME);
 		return projectile;

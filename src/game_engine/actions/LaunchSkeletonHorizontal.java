@@ -1,17 +1,22 @@
+// This entire file is part of my masterpiece
+// Katrina Zhu
 package game_engine.actions;
 
-import game_data.Controllable;
 import game_data.Level;
-import game_data.LevelSetter;
 import game_data.Sprite;
 /**
- * @author Katrina
+ * The LaunchSkeletonHorizontal class instantiates a Launch object without a level
+ * @author Katrina Zhu
  *
  */
 public class LaunchSkeletonHorizontal implements Launch{
 	private Sprite myLauncher;
 	private Sprite myProjectile;
 	private double myVelocity;
+	
+	/**
+	  * This constructor builds a launch object without a level.
+	  */
 	public LaunchSkeletonHorizontal(Sprite myLauncher, Sprite myProjectile, double myVelocity){
 		this.myLauncher=myLauncher;
 		this.myProjectile=myProjectile.clone();

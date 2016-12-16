@@ -10,6 +10,7 @@ import java.util.Set;
 import game_data.sprites.Player;
 import game_data.states.LevelWon;
 import game_engine.actions.Action;
+import game_engine.actions.LevelSetter;
 import javafx.scene.input.KeyCode;
 
 /**

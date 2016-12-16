@@ -1,8 +1,6 @@
 package game_engine.actions;
 
-import game_data.Controllable;
 import game_data.Level;
-import game_data.LevelSetter;
 import game_data.Sprite;
 /**
  * @author Katrina

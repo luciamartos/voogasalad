@@ -2,7 +2,6 @@ package game_engine;
 
 import game_data.Controllable;
 import game_data.Level;
-import game_data.LevelSetter;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
 import game_data.characteristics.TemporalPowerUpper;
@@ -16,6 +15,7 @@ import game_engine.actions.Action;
 import game_engine.actions.Launch;
 import game_engine.actions.LaunchProxyHorizontal;
 import game_engine.actions.LaunchProxyVertical;
+import game_engine.actions.LevelSetter;
 import game_engine.actions.MoveLeft;
 import game_engine.actions.MoveRight;
 import game_engine.actions.MoveUpJump;

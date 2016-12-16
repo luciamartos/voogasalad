@@ -1,26 +1,27 @@
+// This entire file is part of my masterpiece.
+// Katrina Zhu
 package game_engine.actions;
 
-import game_data.Controllable;
 import game_data.Level;
-import game_data.LevelSetter;
 import game_data.Sprite;
 /**
- * @author Katrina
- *
+ * This class is a Launch object with a Level.
+ * @author Katrina Zhu
  */
 public class LaunchWithLevelHorizontal implements Launch{
 	private Sprite myLauncher;
 	private Sprite myProjectile;
 	private double myVelocity;
 	private Level myLevel;
+	
+	/**
+	 * This constructor sets the launcher sprite, the projectile, the velocity, and the level.
+	 */
 	public LaunchWithLevelHorizontal(Sprite myLauncher, Sprite myProjectile, double myVelocity, Level myLevel){
 		this.myLauncher=myLauncher;
-		myProjectile.setXAcceleration(0);
-		myProjectile.setYAcceleration(0);
-		myProjectile.setControllable(new Controllable());
-		this.myProjectile=myProjectile.clone();
 		this.myVelocity=myVelocity;
 		this.myLevel=myLevel;
+		this.myProjectile=myProjectile;
 	}
 
 	@Override
@@ -30,10 +31,6 @@ public class LaunchWithLevelHorizontal implements Launch{
 		if(myLauncher.getXVelocity()<0){
 			right=false;
 		}
-		
-/*		System.out.println(myLauncher.getName());
-		System.out.println(myLauncher.getLocation().getXLocation());
-		System.out.println(myLauncher.getLocation().getYLocation());*/
 		if(right){
 			myProjectile.getLocation().setLocation(myLauncher.getLocation().getXLocation()+myLauncher.getWidth()+20, myLauncher.getLocation().getYLocation()+myLauncher.getHeight()/2);
 			myProjectile.setXVelocity(myVelocity);
