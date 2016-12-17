@@ -1,5 +1,7 @@
-package game_engine.properties;
+// This entire file is part of my masterpiece.
+// Alex Zaldastani
 
+package game_engine.properties;
 import game_data.Sprite;
 
 public abstract class RandomMoveHandler {
@@ -18,15 +20,22 @@ public abstract class RandomMoveHandler {
 	public void move(Sprite aMySprite, double aMyScreenWidth, double aMyScreenHeight, 
 			double aMyScreenXPosition, double aMyScreenYPosition) {
 		
+		setVariables(aMySprite, aMyScreenWidth, aMyScreenHeight, aMyScreenXPosition, aMyScreenYPosition);
+		
+		if(objectPassed()) {
+			setSpritesNewLocation();
+		}
+		
+	}
+	
+	private void setVariables(Sprite aMySprite, double aMyScreenWidth, double aMyScreenHeight, 
+			double aMyScreenXPosition, double aMyScreenYPosition) {
+		
 		mySprite = aMySprite;
 		myScreenWidth = aMyScreenWidth;
 		myScreenHeight = aMyScreenHeight;
 		myScreenXPosition = aMyScreenXPosition*-1; //switch to different coordinates
 		myScreenYPosition = aMyScreenYPosition*-1; //switch to different coordinates
-		
-		if(objectPassed()) {
-			setSpritesNewLocation();
-		}
 		
 	}
 	
@@ -39,6 +48,7 @@ public abstract class RandomMoveHandler {
 	}
 	
 	protected abstract void setSpritesNewLocation();
+	
 	public abstract RandomMoveHandler copy();
 	
 	public Orientation getOrientation() {

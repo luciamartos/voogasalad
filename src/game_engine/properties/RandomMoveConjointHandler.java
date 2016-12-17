@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Alex Zaldastani
+
 package game_engine.properties;
 
 import game_data.Sprite;
@@ -15,23 +18,52 @@ public class RandomMoveConjointHandler extends RandomMoveHandler {
 	
 	protected void setSpritesNewLocation() {
 		
-		double newXLoc, newYLoc;
-		if(getOrientation().equals(Orientation.VERTICAL)) {
-			newXLoc = Math.random()*(getScreenWidth() - myDistanceApart) - getSprite().getWidth();
-			newYLoc = getSprite().getLocation().getYLocation() - getScreenHeight() - getSprite().getHeight();
-		} else {
-			newXLoc = getSprite().getLocation().getXLocation() + getScreenWidth() + getSprite().getWidth();
-			newYLoc = Math.random()*(getScreenHeight() - myDistanceApart) - getSprite().getHeight();
-		}
-		getSprite().getLocation().setLocation(newXLoc, newYLoc);
+		double newMainXLoc = getNewMainXLocation();
+		double newMainYLoc = getNewMainYLocation();
 		
-		if(getOrientation().equals(Orientation.VERTICAL)) {
-			newXLoc += myDistanceApart + getSprite().getWidth();
-		} else {
-			newYLoc += myDistanceApart + getSprite().getHeight();
-		}
-		myConnectedSprite.getLocation().setLocation(newXLoc,newYLoc);
+		getSprite().getLocation().setLocation(newMainXLoc, newMainYLoc);
 		
+		double newConnectedXLoc = newMainXLoc + getConnectedXOffset();
+		double newConnectedYLoc = newMainYLoc + getConnectedYOffset();
+		
+		getConnectedSprite().getLocation().setLocation(newConnectedXLoc, newConnectedYLoc);
+		
+	}
+	
+	private double getNewMainXLocation() {
+		if(isVertical()) {
+			return Math.random()*(getScreenWidth() - getDistanceApart()) - getSprite().getWidth();
+		} else {
+			return getSprite().getLocation().getXLocation() + getScreenWidth() + getSprite().getWidth();
+		}
+	}
+	
+	private double getNewMainYLocation() {
+		if(isVertical()) {
+			return getSprite().getLocation().getYLocation() - getScreenHeight() - getSprite().getHeight();
+		} else {
+			return Math.random()*(getScreenHeight() - getDistanceApart()) - getSprite().getHeight();
+		}
+	}
+	
+	private double getConnectedXOffset() {
+		if(isVertical()) {
+			return getDistanceApart() + getSprite().getWidth();
+		} else {
+			return 0;
+		}
+	}
+
+	private double getConnectedYOffset() {
+		if(isVertical()) {
+			return 0;
+		} else {
+			return getDistanceApart() + getSprite().getHeight();
+		}
+	}
+	
+	private boolean isVertical() {
+		return getOrientation().equals(Orientation.VERTICAL);
 	}
 	
 	public RandomMoveHandler copy() {
