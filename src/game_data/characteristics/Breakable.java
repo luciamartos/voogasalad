@@ -12,6 +12,7 @@ import game_data.characteristics.characteristic_annotations.NameAnnotation;
 import game_data.characteristics.characteristic_annotations.ParameterAnnotation;
 import game_data.characteristics.characteristic_annotations.ViewableMethodOutput;
 import game_data.sprites.Player;
+import game_data.sprites.Projectile;
 import game_engine.Bottom;
 import game_engine.Left;
 import game_engine.Right;
@@ -31,8 +32,9 @@ public class Breakable implements Characteristic{
 	private int myDurability;
 	private Action myAction;
 	private Sprite mySprite;
+	private int timeSinceHit;
 	
-	@ParameterAnnotation(parameters = {"Breaks on Top", "Breaks on Bottom", "Breaks on Left", "Breaks on Right", "Durability", "Sprite"})
+	@ParameterAnnotation(parameters = {"Breaks on Top", "Breaks on Bottom", "Breaks on Right", "Breaks on Left", "Durability", "Sprite"})
 	public Breakable(boolean north, boolean south, boolean east, boolean west, int durability, Sprite aSprite){
 		breakableNorth = north;
 		breakableSouth = south;
@@ -40,6 +42,7 @@ public class Breakable implements Characteristic{
 		breakableWest = west;
 		myDurability = durability;
 		mySprite = aSprite;
+		timeSinceHit = 20;
 	}
 	
 	public void setDurability(int durability){
@@ -53,15 +56,31 @@ public class Breakable implements Characteristic{
 	
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap){
-		for(Sprite collidedSprite:myCollisionMap.keySet()){
-			if(breaksAtDirection(myCollisionMap.get(collidedSprite)) && collidedSprite instanceof Player){
-//				System.out.println("SIDE HIT: "+myCollisionMap.get(collidedSprite));
-				if(isBroken()) {
-					myAction = new Break(mySprite, collidedSprite);
+		//System.out.println("durability" + myDurability);
+		if(inUnbreakablePeriod()) {
+			return;
+		}
+		
+		for(Sprite collidedSprite:myCollisionMap.keySet() ){
+			if(breaksAtDirection(myCollisionMap.get(collidedSprite))&& validPairing(collidedSprite) ){
+				timeSinceHit = 0;
+				if(isBroken()){	
+					myAction = new Break(mySprite);
 					myAction.act();
 				}
 			}
 		}
+		
+	}
+	
+	
+	private boolean validPairing(Sprite collidedSprite){
+		return (mySprite instanceof Projectile || collidedSprite instanceof Player);
+	}
+	
+	private boolean inUnbreakablePeriod() {
+		timeSinceHit++;
+		return timeSinceHit < 20;
 	}
 	
 	private boolean isBroken() {
@@ -70,15 +89,6 @@ public class Breakable implements Characteristic{
 	}
 	
 	private boolean breaksAtDirection(Side aDirection) {
-//		if(aDirection == Side.TOP) {
-//			return breakableNorth;
-//		} else if(aDirection == Side.BOTTOM) {
-//			return breakableSouth;
-//		} else if(aDirection == Side.RIGHT) {
-//			return breakableEast;
-//		} else if(aDirection == Side.LEFT) {
-//			return breakableWest;
-//		} 
 		if(aDirection instanceof Top) {
 			return breakableNorth;
 		} else if(aDirection instanceof Bottom) {
@@ -92,8 +102,8 @@ public class Breakable implements Characteristic{
 	}
 
 	@Override
-	public Characteristic copy() {
-		return new Breakable(breakableNorth, breakableSouth, breakableEast, breakableWest, myDurability, mySprite);
+	public Characteristic copy(Sprite aSprite) {
+		return new Breakable(breakableNorth, breakableSouth, breakableEast, breakableWest, myDurability, aSprite);
 	}
 
 	@ViewableMethodOutput(description="Breaks on Top", type=boolean.class)
@@ -119,4 +129,6 @@ public class Breakable implements Characteristic{
 		//return breaksAtDirection(Side.RIGHT);
 		return breaksAtDirection(new Right());
 	}
+	
+	
 }

@@ -13,17 +13,15 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class HeadsUpDisplay {
 
-	private HBox myTop;
 	private MenuBar myTopMenu;
 	private IGUIGenerator myGUIGenerator;
 	private BorderPane myRoot;
 	private String myFontColor;
 	private HBox myBottom;
-	
+
 	public HeadsUpDisplay(double aWidth, double aHeight, String aFontColor) {
 		myGUIGenerator = new GUIGenerator();
 		myRoot = new BorderPane();
@@ -37,9 +35,8 @@ public class HeadsUpDisplay {
 	public void addMenu(ImageView aImage, String[] aText, @SuppressWarnings("unchecked") EventHandler<ActionEvent> ... aHandler) {
 		myTopMenu.getMenus().add(myGUIGenerator.createMenu(aImage, aText, aHandler));
 	}
-	
 
-	public void addLabel(String aText){
+	public void addLabel(String aText) {
 		if(myBottom.getChildren().size() > 0){
 			myBottom.getChildren().remove(0);
 		}
@@ -50,12 +47,10 @@ public class HeadsUpDisplay {
 
 	private Node createTop() {
 		myTopMenu = new MenuBar();
-		//myTop.getChildren().add(myTopMenu);
-		//myTopMenu.setAlignment(Pos.CENTER);
 		return myTopMenu;
 	}
 
-	private Node createBottom(){
+	private Node createBottom() {
 		myBottom = new HBox();
 		myBottom.setAlignment(Pos.CENTER);
 		return myBottom;
@@ -66,5 +61,32 @@ public class HeadsUpDisplay {
 		myRoot.setTop(createTop());
 		myRoot.setBackground(Background.EMPTY);
 		return myRoot;
+	}
+
+	public void addNode(Node aNode) {
+		aNode.setId("animation-label");
+		aNode.setStyle("-fx-text-fill: " + myFontColor.toLowerCase());
+		myBottom.getChildren().add(aNode);
+	}
+
+	public void addNode(Node aNode, int aPos) {
+		aNode.setId("animation-label");
+		aNode.setStyle("-fx-text-fill: " + myFontColor.toLowerCase());
+		if (myBottom.getChildren().size() == 0) {
+			addNode(aNode);
+		} else {
+			boolean added = false;
+			for (int i = 0; i < myBottom.getChildren().size(); i++) {
+				if ((int) myBottom.getChildren().get(i).getUserData() == aPos) {
+					myBottom.getChildren().remove(i);
+					myBottom.getChildren().add(i, aNode);
+					added = true;
+					break;
+				}
+			}
+			if (!added) {
+				addNode(aNode);
+			}
+		}
 	}
 }

@@ -17,7 +17,11 @@ public class BounceTopOnly implements Action {
 	private Sprite myBouncer;
 	private Side mySide;
 	
-
+	public BounceTopOnly(Sprite aSprite, Sprite aPlayer) {
+		myPlayerSprite = aPlayer;
+		myBouncer = aSprite;
+	}
+	
 	public BounceTopOnly(double bouncerSpeed, Sprite player, Side aSide, Sprite bouncer) {
 		myBounceSpeed = bouncerSpeed;
 		myPlayerSprite = player;
@@ -52,13 +56,15 @@ public class BounceTopOnly implements Action {
 		//
 	}
 	
-	private boolean pastPlatform(){
-		/*return myPlayerSprite.getLocation().getYLocation()+myPlayerSprite.getHeight()>myBouncer
-				.getLocation().getYLocation() && myPlayerSprite.getYVelocity()>0;*/
+	public boolean pastPlatform(){
 
 		return myPlayerSprite.getLocation().getYLocation()+myPlayerSprite.getHeight()<myBouncer
 				.getLocation().getYLocation()+(myBouncer.getHeight()*.5) && myPlayerSprite.getYVelocity()>=0;
 	}
 	
+	@Override
+	public Action copyWithNewSprite(Sprite aSprite) {
+		return new BounceTopOnly(myBounceSpeed, aSprite, mySide, myBouncer);
+	}
 	
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 import game_data.Sprite;
 import game_data.characteristics.characteristic_annotations.NameAnnotation;
 import game_data.characteristics.characteristic_annotations.ParameterAnnotation;
+import game_data.characteristics.characteristic_annotations.ViewableMethodOutput;
 import game_data.sprites.Player;
 import game_engine.GameResources;
 import game_engine.actions.Action;
@@ -28,17 +29,21 @@ public class ScoreBasedOnTime implements Characteristic {
 		mySprite = aSprite;
 		this.scorePerSecond = scorePerSecond;
 	}
+	
+	@ViewableMethodOutput(description="Score Per Second", type=double.class)
+	public double getScorePerSecond(){
+		return scorePerSecond;
+	}
 
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap) {
 		Action myAction = new ScoreAdder(scorePerSecond/GameResources.TIME_FRAME.getDoubleResource(), mySprite);
-//		System.out.println("HELLO")
 		myAction.act();
 	}
 
 	@Override
-	public Characteristic copy() {
-		return new ScoreBasedOnTime(mySprite, scorePerSecond);
+	public Characteristic copy(Sprite aSprite) {
+		return new ScoreBasedOnTime(aSprite, scorePerSecond);
 	}
 
 }

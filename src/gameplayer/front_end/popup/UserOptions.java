@@ -1,6 +1,5 @@
 package gameplayer.front_end.popup;
 
-import gameplayer.back_end.keycode_handler.KeyCodeHandler;
 
 public class UserOptions {
 
@@ -12,7 +11,7 @@ public class UserOptions {
 		setMyKeyInput(aKeyInput);
 	}
 	
-	public UserOptions(){
+	public UserOptions() {
 		setMyKeyInput("Default");
 	}
 
@@ -21,7 +20,7 @@ public class UserOptions {
 	}
 
 	public void setMyKeyInput(String aKeyInput) {
-		myKeyInput = aKeyInput;
+		myKeyInput = aKeyInput == null ? "default": aKeyInput;
 	}
 
 	public String getMyFontColor() {
@@ -29,6 +28,6 @@ public class UserOptions {
 	}
 
 	public void setMyFontColor(String aFontColor) {
-		myFontColor = aFontColor;
+		myFontColor = aFontColor == null ? "#fdbe3b" : aFontColor;
 	}
 }

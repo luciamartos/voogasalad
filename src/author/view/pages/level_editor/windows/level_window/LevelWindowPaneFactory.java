@@ -97,9 +97,10 @@ public class LevelWindowPaneFactory {
 
 	private void addSprite(Sprite aSprite, int xPos, int yPos) {
 		Sprite clone = aSprite.clone();
-		if (clone instanceof LevelSetter)
-			((LevelSetter) clone).setLevel(this.authorController.getModel().getGame().getCurrentLevel());
-
+		if(clone instanceof LevelSetter) 
+			((LevelSetter) clone).setLevel(
+					this.authorController.getModel().getGame().getCurrentLevel());
+			
 		clone.getLocation().setLocation(levelWindowPane.adjustX(xPos), levelWindowPane.adjustY(yPos));
 		this.authorController.getModel().getGame().getCurrentLevel().addNewSprite(clone);
 	}

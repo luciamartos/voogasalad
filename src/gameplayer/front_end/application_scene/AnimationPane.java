@@ -53,8 +53,11 @@ public class AnimationPane {
 		return myGamePlayCanvas.getTranslateY();
 	}
 	
-	public void addImageToView(ImageView aImage) {
-		myGamePlayCanvas.getChildren().add(aImage);
+	public void addImageToView(ImageView aImage, boolean aVisible) {
+		aImage.setVisible(aVisible);
+		if (!myGamePlayCanvas.getChildren().contains(aImage)) {
+			myGamePlayCanvas.getChildren().add(aImage);
+		}
 	}
 }
 

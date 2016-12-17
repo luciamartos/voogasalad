@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import game_data.characteristics.Characteristic;
+import game_data.characteristics.ScoreBasedOnPosition;
 import util.XMLTranslator;
 
 /**
@@ -22,7 +25,7 @@ public class Game extends GameObject {
 	 * description
 	 * icon
 	 */
-	
+
 	List<Level> myLevels;
 	Set<Sprite> mySpritePresets = new HashSet<>();
 	Level myCurrentLevel;
@@ -43,7 +46,7 @@ public class Game extends GameObject {
 		hasWon=false;
 		hasLost=false;
 	}
-	
+
 	public boolean hasWon() {
 		return hasWon;
 	}
@@ -66,18 +69,23 @@ public class Game extends GameObject {
 	 * @param filePath
 	 * @param fileName
 	 * @author Addison
+	 * @throws IOException 
 	 */
-	public void saveGameAs(String filePath, String fileName) {
+	public void saveGameAs(String filePath, String fileName) throws IOException {
 		java.io.FileWriter fw;
 		try {
 			fw = new java.io.FileWriter(filePath + fileName + ".xml");
 			fw.write(((new XMLTranslator()).serialize(this)));
 			fw.close();
 		} catch (IOException e) {
-			System.out.println("Trouble printing XML to file");
+			System.out.println(e.getMessage());
+			throw new IOException();
+//			System.out.println("Trouble printing XML to file");
 		}
 	}
-
+	public int getLevelNumber(){
+		return myLevels.indexOf(myCurrentLevel);
+	}
 	public void addNewLevel(Level aLevel) {
 		this.myCurrentLevel = aLevel;
 		myLevels.add(aLevel);
@@ -90,6 +98,13 @@ public class Game extends GameObject {
 
 	public void setCurrentLevel(Level aLevel) {
 		this.myCurrentLevel = aLevel;
+		if (this.myCurrentLevel.getMainPlayer()!=null)
+			for(Characteristic c: myCurrentLevel.getMainPlayer().getCharacteristics()){
+				if(c instanceof ScoreBasedOnPosition){
+					((ScoreBasedOnPosition) c).setScrollDirection(myScrollType);
+				}
+			}
+		
 		this.notifyListeners();
 	}
 
@@ -110,6 +125,13 @@ public class Game extends GameObject {
 
 	public void setCurrentLevel(int levelNumber) {
 		myCurrentLevel = myLevels.get(levelNumber);
+		if(myCurrentLevel.getMainPlayer() != null){
+			for(Characteristic c: myCurrentLevel.getMainPlayer().getCharacteristics()){
+				if(c instanceof ScoreBasedOnPosition){
+					((ScoreBasedOnPosition) c).setScrollDirection(myScrollType);
+				}
+			}
+		}
 		this.notifyListeners();
 	}
 
@@ -152,11 +174,11 @@ public class Game extends GameObject {
 	public void setScrollType(ScrollType aScrollType) {
 		this.myScrollType = aScrollType;
 	}
-	
+
 	public String getAudioFilePath() {
 		return this.myAudioFilePath;
 	}
-	
+
 	public void setAudioFilePath(String aAudioFilePath) {
 		this.myAudioFilePath = aAudioFilePath;
 	}
