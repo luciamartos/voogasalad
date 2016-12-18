@@ -30,46 +30,16 @@ public class HitTop implements Action {
 	@Override
 	public void act() {
 		
-		
-		//get new Velocity –– gets horizontal or vertical components to zero
-		//setNewVelocity();
-		//setNewAcceleration();
-		Physics mySpritePhysics = null;
-		for(State s: myPlayerSprite.getStates()){
-			if(s instanceof Physics){
-				mySpritePhysics = (Physics) s;
-			}
-		}
-		
 		if(mySide instanceof Top && pastPlatform()){
-			mySide.hitImpassable(myPlayerSprite, mySpritePhysics);
+			mySide.hitImpassable(myPlayerSprite);
 		}
 	}
-	
-//	private void setNewVelocity() {
-
-
-//		if(mySide==Side.TOP){
-//			if(myPlayerSprite.getYVelocity()>0){
-//				if(pastPlatform()){
-//					myPlayerSprite.setYVelocity(0);
-//				}
-//			}
-//		}
-//	}
 	
 	private boolean pastPlatform(){
 		return myPlayerSprite.getLocation().getYLocation()+myPlayerSprite.getHeight()<myNonPlayerSprite
 				.getLocation().getYLocation()+(myNonPlayerSprite.getHeight()*.5) && myPlayerSprite.getYVelocity()>=0;
 	}
-//		if(mySide==Side.TOP){
-//			if(myPlayerSprite.getYVelocity()>0){
-//				if(pastPlatform()){
-//					myPlayerSprite.setYVelocity(0);
-//				}
-//			}
-//		}
-
+	
 	@Override
 	public Action copyWithNewSprite(Sprite aSprite) {
 		return new HitTop(aSprite, mySide, myNonPlayerSprite);

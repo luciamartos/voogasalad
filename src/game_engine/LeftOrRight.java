@@ -16,13 +16,7 @@ public class LeftOrRight extends Side{
 	}
 
 	@Override
-	public boolean breaksOnSide(boolean isBreakable) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void hitImpassable(Sprite aSprite, Physics aSpritePhysics) {
+	public void hitImpassable(Sprite aSprite) {
 		// TODO Auto-generated method stub
 		
 	}

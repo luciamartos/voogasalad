@@ -2,24 +2,21 @@ package game_engine;
 
 import game_data.Sprite;
 import game_data.states.Physics;
-import game_data.states.State;
 
+/**
+ * @author austingartside
+ *
+ */
 public class Top extends Side{
-
-	public Top() {
-	}
 	
 	@Override
 	public void bounce(Sprite aSprite, double bounceSpeed){
 		aSprite.setYVelocity(-bounceSpeed);
 	}
-	@Override
-	public boolean breaksOnSide(boolean isBreakable){
-		return isBreakable;
-	}
 	
 	@Override
-	public void hitImpassable(Sprite aSprite, Physics aSpritePhysics){
+	public void hitImpassable(Sprite aSprite){
+		Physics aSpritePhysics = getPhysics(aSprite);
 		if(aSprite.getYVelocity()>0){
 			aSprite.setYVelocity(0);
 		}
@@ -39,20 +36,11 @@ public class Top extends Side{
 	}
 
 	@Override
-	public void Movable(Sprite aSprite, Sprite movableSprite) {
-		
-		if(aSprite.getYVelocity()>=0 ){
-			
-			for(State i : aSprite.getStates()){
-				if(i instanceof Physics){
-					
-					aSprite.setYAcceleration(-((Physics)i).getVerticalGravity());
-					aSprite.setYVelocity(0);
-					movableSprite.setYAcceleration(((Physics)i).getVerticalGravity());
-					
-				}
-			}
-
+	public void Movable(Sprite aSprite, Sprite movableSprite) {	
+		if(aSprite.getYVelocity()>=0 ){	
+			aSprite.setYAcceleration(getPhysics(aSprite).getVerticalGravity());
+			aSprite.setYVelocity(0);
+			movableSprite.setYAcceleration(getPhysics(aSprite).getVerticalGravity());				
 		}
 	}
 }

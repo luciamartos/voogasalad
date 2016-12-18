@@ -2,7 +2,10 @@ package game_engine;
 
 import game_data.Sprite;
 import game_data.states.Physics;
-
+/**
+ * @author austingartside
+ *
+ */
 public class Left extends Side{
 
 	public Left() {
@@ -14,12 +17,8 @@ public class Left extends Side{
 	}
 	
 	@Override
-	public boolean breaksOnSide(boolean isBreakable){
-		return isBreakable;
-	}
-	
-	@Override
-	public void hitImpassable(Sprite aSprite, Physics aSpritePhysics){
+	public void hitImpassable(Sprite aSprite){
+		Physics aSpritePhysics = getPhysics(aSprite);
 		if(aSprite.getXVelocity()>0){
 			aSprite.setXVelocity(0);
 		}
@@ -43,10 +42,11 @@ public class Left extends Side{
 		
 		if(aSprite.getXVelocity()>=0 ){	
 			if(aSprite.getXVelocity()==0){
-				aSprite.setXVelocity(100);
+				aSprite.setXVelocity(MOVE_SPEED);
 			}
 			
-			movableSprite.getLocation().setLocation(movableSprite.getLocation().getXLocation()+(aSprite.getXVelocity()/60), movableSprite.getLocation().getYLocation());
+			movableSprite.getLocation().setLocation(movableSprite.getLocation().getXLocation()+(aSprite.getXVelocity()/FRAMES_PER_SECOND),
+					movableSprite.getLocation().getYLocation());
 			aSprite.setXVelocity(0);	}
 		
 	}}
