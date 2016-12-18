@@ -1,11 +1,7 @@
 package game_engine;
-
 import game_data.Sprite;
 import game_data.states.Physics;
-/**
- * @author austingartside
- *
- */
+
 public class Right extends Side{
 
 	public Right() {
