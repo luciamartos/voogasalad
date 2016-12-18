@@ -9,34 +9,48 @@ import game_data.Sprite;
 import javafx.beans.InvalidationListener;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
+
+//This entire file is part of my masterpiece.
+//Jordan Frazier
 /**
- * Extension of DraggableSprite. This class defines the functionality of the sprites that are actually placed on 
- * the level editor. 
- * Allows users to click and drag sprites around the level editor, along with other functionality.
+ * Extension of DraggableSprite. This class defines the functionality of the
+ * sprites that are actually placed on the level editor. Allows users to click
+ * and drag sprites around the level editor, along with other functionality.
+ * 
  * @author Jordan Frazier
  *
  */
 public class ConcreteMovableSprite extends DraggableSprite implements ResizableSprite {
 
-	private double mouseX;
-	private double mouseY;
-	private Sprite spritePreset;
-	private InvalidationListener presetInvalidationListener;
+	private Sprite mySpritePreset;
+	private InvalidationListener myPresetInvalidationListener;
 
 	public ConcreteMovableSprite(Sprite aSpriteInstance, Sprite aSpritePreset) {
 		super(aSpriteInstance);
-		this.spritePreset = aSpritePreset;
-		this.presetInvalidationListener = this.spritePreset == null ? null : initPresetListener(aSpriteInstance, this.spritePreset);
+		mySpritePreset = aSpritePreset;
+		myPresetInvalidationListener = mySpritePreset == null ? null
+				: initPresetListener(aSpriteInstance, mySpritePreset);
 		styleSprite();
-		//makeDraggable();
-		DragResizeMod resizer = new DragResizeMod(this, this.getDraggableItem(), this.spritePreset, this.presetInvalidationListener,  null);
-		resizer.makeResizable(this.getDraggableItem(), null);
-		
+		makeSpriteResizable();
 	}
-	
-	public void removePresetListener(){
-		if (this.spritePreset!=null){
-			this.spritePreset.removeListener(presetInvalidationListener);
+
+	/**
+	 * Passes in a ResizableSprite to the @DragResizeMod that gives the
+	 * DraggableItem the resizable functionality
+	 */
+	private void makeSpriteResizable() {
+		DragResizeMod resizer = new DragResizeMod(this, this.getDraggableItem(), mySpritePreset,
+				myPresetInvalidationListener, null);
+		resizer.makeResizable(this.getDraggableItem(), null);
+	}
+
+	/**
+	 * Removes the listener for garbage collection to avoid memory
+	 * over-allocation
+	 */
+	public void removePresetListener() {
+		if (mySpritePreset != null) {
+			mySpritePreset.removeListener(myPresetInvalidationListener);
 			this.getSprite().setPreset(null);
 		}
 	}
@@ -46,19 +60,8 @@ public class ConcreteMovableSprite extends DraggableSprite implements ResizableS
 		getDraggableItem().setLayoutY(getSprite().getLocation().getYLocation());
 		getDraggableItem().setPrefWidth(getSprite().getWidth());
 		getDraggableItem().setPrefHeight(getSprite().getHeight());
-		//getDraggableItem().setRotate(getSprite().getLocation().getMyHeading());
 	}
 
-	/**
-	 * http://stackoverflow.com/questions/27080039/proper-way-to-move-a-javafx8-node-around
-	 */
-	@Override
-	protected void makeDraggable() {
-		onMousePressed();
-		onMouseDragged();
-		onMouseReleased();
-	}
-	
 	@Override
 	protected void openPreferences() {
 		this.getDraggableItem().setOnMouseClicked(e -> {
@@ -71,12 +74,20 @@ public class ConcreteMovableSprite extends DraggableSprite implements ResizableS
 		});
 	}
 
+	/**
+	 * Creates a listener for the Sprite preset, so when the preset is changed,
+	 * all instances of this sprite on the level are altered unless the listener
+	 * has been removed.
+	 * 
+	 * @param instanceSprite
+	 * @param spritePreset
+	 * @return
+	 */
 	private InvalidationListener initPresetListener(Sprite instanceSprite, Sprite spritePreset) {
 		InvalidationListener invalidationListener = (sprite) -> {
 			instanceSprite.setImagePath(spritePreset.getImagePath());
 			instanceSprite.setWidth(spritePreset.getWidth());
 			instanceSprite.setHeight(spritePreset.getHeight());
-			//instanceSprite.setLocation(new Location(instanceSprite.getLocation().getXLocation(), instanceSprite.getLocation().getYLocation()));
 			spritePreset.getCharacteristics()
 					.forEach((characteristic) -> instanceSprite.addCharacteristic(characteristic));
 		};
@@ -84,41 +95,18 @@ public class ConcreteMovableSprite extends DraggableSprite implements ResizableS
 		return invalidationListener;
 	}
 
-	private void onMouseReleased() {
-		super.getDraggableItem().setOnMouseReleased(e -> {
-			super.getSprite().getLocation().setLocation(super.getDraggableItem().getLayoutX(),
-					super.getDraggableItem().getLayoutY());
-			super.getSprite().setName(super.getSprite().getName());
-		});
-	}
-
-	private void onMouseDragged() {
-		super.getDraggableItem().setOnMouseDragged(event -> {
-			double deltaX = event.getSceneX() - mouseX;
-			double deltaY = event.getSceneY() - mouseY;
-			super.getDraggableItem().relocate(super.getDraggableItem().getLayoutX() + deltaX,
-					super.getDraggableItem().getLayoutY() + deltaY);
-			mouseX = event.getSceneX();
-			mouseY = event.getSceneY();
-		});
-	}
-
-	private void onMousePressed() {
-		super.getDraggableItem().setOnMousePressed(event -> {
-			mouseX = event.getSceneX();
-			mouseY = event.getSceneY();
-			super.getDraggableItem().toFront();
-		});
-	}
-
+	/**
+	 * The sprite listener, which relocates the draggable item's image, size,
+	 * and width to match the sprite's
+	 */
 	@Override
 	protected InvalidationListener initListener(Sprite aSprite) {
 		InvalidationListener invalidationListener = (sprite) -> {
 			this.getImageView().setImage(new Image((new File(aSprite.getImagePath()).toURI().toString())));
 			this.getDraggableItem().setPrefWidth(aSprite.getWidth());
 			this.getDraggableItem().setPrefHeight(aSprite.getHeight());
-			this.getDraggableItem().relocate(aSprite.getLocation().getXLocation(), aSprite.getLocation().getYLocation());
-			//this.getDraggableItem().setRotate(aSprite.getLocation().getMyHeading());
+			this.getDraggableItem().relocate(aSprite.getLocation().getXLocation(),
+					aSprite.getLocation().getYLocation());
 		};
 		return invalidationListener;
 	}

@@ -1,6 +1,7 @@
 package author.model.game_observables.draggable_sprite;
 
 import java.io.File;
+
 import author.view.pages.sprite.SpriteEditWindow;
 import game_data.Sprite;
 import javafx.beans.InvalidationListener;
@@ -10,52 +11,60 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
+//This entire file is part of my masterpiece.
+//Jordan Frazier
 /**
- * This abstract class is the framework for making a sprite draggable
- * 
+ * This abstract class is the framework for making a sprite draggable. The
+ * purpose of this class is to provide basic functionality for any sprite that
+ * is destined to be represented graphically and granted the ability to be
+ * dragged from window to window.
+ * This section is well designed because it uses several abstractions, such as this abstract class and the
+ * @ResizableSprite interface to pass around only what is necessary for other code to interact successfully.
  * @author Jordan Frazier
  *
  */
 public abstract class DraggableSprite {
 
-	private HBox draggableItem;
+	/**
+	 * These CSS strings alter the DraggableItem Pane when the mouse enters or
+	 * exits its boundaries
+	 */
+	private static final String SPRITE_SELECTED_STYLE = "-fx-border-color: red;" + "-fx-border-width: 1;"
+			+ "-fx-border-style: dotted;";
+	private static final String SPRITE_DESELECTED_STYLE = "";
+
+	private Pane myDraggableItem;
 	private ImageView myImageView;
 	private Sprite mySprite;
-	private InvalidationListener invalidationListener;
+	private InvalidationListener myInvalidationListener;
 	private Boolean isSelected = false;
-
-	// These define the size of the ghost image that follows the mouse when
-	// dragging
-	public static final int DRAG_IMAGE_WIDTH = 40;
-	public static final int DRAG_IMAGE_HEIGHT = 40;
+	private Tooltip myToolTip;
 
 	public DraggableSprite(Sprite aSprite) {
 		mySprite = aSprite;
-		draggableItem = new HBox();
+		myDraggableItem = new HBox();
 		myImageView = new ImageView(new Image((new File(aSprite.getImagePath()).toURI().toString())));
 		addImageToContainer();
 		setListener(aSprite);
-		makeDraggable();
 		openPreferences();
 		setOnMouseHover();
 	}
 
 	private void addImageToContainer() {
-		draggableItem.getChildren().add(myImageView);
-		draggableItem.setPrefHeight(DRAG_IMAGE_HEIGHT);
-		draggableItem.setPrefWidth(DRAG_IMAGE_WIDTH);
-		myImageView.fitHeightProperty().bind(draggableItem.prefHeightProperty());
-		myImageView.fitWidthProperty().bind(draggableItem.prefWidthProperty());
+		myDraggableItem.getChildren().add(myImageView);
+		myImageView.fitHeightProperty().bind(myDraggableItem.prefHeightProperty());
+		myImageView.fitWidthProperty().bind(myDraggableItem.prefWidthProperty());
 	}
 
 	public void removeListener() {
-		this.mySprite.removeListener(this.invalidationListener);
+		this.mySprite.removeListener(this.myInvalidationListener);
 	}
 
 	private void setListener(Sprite aSprite) {
-		this.invalidationListener = initListener(aSprite);
-		aSprite.addListener(this.invalidationListener);
+		myInvalidationListener = initListener(aSprite);
+		aSprite.addListener(this.myInvalidationListener);
 	}
 
 	protected InvalidationListener initListener(Sprite aSprite) {
@@ -65,8 +74,14 @@ public abstract class DraggableSprite {
 		return invalidationListener;
 	}
 
+	/**
+	 * Opens the Sprite Preferences Dialog, where you can alter characteristics,
+	 * states, etc
+	 * 
+	 * @see SpriteEditWindow
+	 */
 	protected void openPreferences() {
-		draggableItem.setOnMouseClicked(e -> {
+		myDraggableItem.setOnMouseClicked(e -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				if (e.getClickCount() == 2) {
 					new SpriteEditWindow(mySprite).openWindow();
@@ -75,49 +90,47 @@ public abstract class DraggableSprite {
 		});
 	}
 
-	protected abstract void makeDraggable();
-
 	private void setOnMouseHover() {
-		draggableItem.setOnMouseEntered(e -> {
-			styleSelected();
-			draggableItem.setCursor(Cursor.HAND);
+		myDraggableItem.setOnMouseEntered(e -> {
+			applyCSSSelected();
 			displayNameOnHover();
-
 		});
-		draggableItem.setOnMouseExited(e -> {
-			if (!this.isSelected)
-				styleDeselected();
+		myDraggableItem.setOnMouseExited(e -> {
+			applyCSS(SPRITE_DESELECTED_STYLE);
 		});
-
 	}
-	
-	public void setSelected(){
+
+	public void setSelected() {
 		this.isSelected = true;
-		styleSelected();
+		applyCSS(SPRITE_SELECTED_STYLE);
 	}
-	
-	public void setDeselected(){
+
+	public void setDeselected() {
 		this.isSelected = false;
-		styleDeselected();
+		applyCSS(SPRITE_DESELECTED_STYLE);
 	}
-	
-	private void styleSelected(){
-		String style_inner = "-fx-border-color: red;" + "-fx-border-width: 1;" + "-fx-border-style: dotted;";
-		draggableItem.setStyle(style_inner);
+
+	private void applyCSSSelected() {
+		myDraggableItem.setCursor(Cursor.HAND);
+		applyCSS(SPRITE_SELECTED_STYLE);
 	}
-	
-	private void styleDeselected(){
-		String style_inner = "";
-		draggableItem.setStyle(style_inner);
+
+	private void applyCSS(String style) {
+		myDraggableItem.setStyle(style);
+		myDraggableItem.applyCss();
 	}
 
 	private void displayNameOnHover() {
-		Tooltip tip = new Tooltip(mySprite.getName());
-		Tooltip.install(draggableItem, tip);
+		if (myToolTip == null) {
+			myToolTip = new Tooltip(mySprite.getName());
+		} else {
+			myToolTip.setText(mySprite.getName());
+		}
+		Tooltip.install(myDraggableItem, myToolTip);
 	}
 
-	public HBox getDraggableItem() {
-		return draggableItem;
+	public Pane getDraggableItem() {
+		return myDraggableItem;
 	}
 
 	public Sprite getSprite() {
@@ -128,10 +141,10 @@ public abstract class DraggableSprite {
 		return myImageView;
 	}
 
-	public void setImageView(ImageView imageView) {
-		this.myImageView = imageView;
-		makeDraggable();
-	}
-
+	/**
+	 * Abstract method implemented to remove the preset listener, which prevents
+	 * updates to the sprite preset from altering unique instances of the sprite
+	 * on the level window
+	 */
 	public abstract void removePresetListener();
 }
