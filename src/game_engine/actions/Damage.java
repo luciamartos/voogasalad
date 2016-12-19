@@ -35,7 +35,7 @@ public class Damage extends PointsChanger implements Action {
 	@Override
 	public void act() {
 		boolean hasHealth = false;
-		boolean isVincible = false;
+		boolean isVincible = true;
 		State health = null;
 
 		for (State state : spriteAffected.getStates()) {
@@ -43,8 +43,8 @@ public class Damage extends PointsChanger implements Action {
 				health = state;
 				hasHealth = true;
 			}
-			if (state instanceof Vincibility && ((Vincibility) state).isVincibility())
-				isVincible = true;
+			if (state instanceof Vincibility && !((Vincibility) state).isVincibility())
+				isVincible = false;
 		}
 
 		if (hasHealth && isVincible) {

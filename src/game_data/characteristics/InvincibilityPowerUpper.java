@@ -81,7 +81,7 @@ public class InvincibilityPowerUpper extends TemporalPowerUpper implements Chara
 	}
 
 	@Override
-	public void activatePowerUp(Sprite playerSprite) {
+	public void maintainPowerUp(Sprite playerSprite) {
 		double timeElapsed = playerSprite.getPowerUps().get(this);
 		boolean hasVisibility = false;
 		for (State state : playerSprite.getStates()) {

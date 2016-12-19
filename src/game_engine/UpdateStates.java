@@ -170,7 +170,7 @@ public class UpdateStates implements IUpdateStatesAndPowerUps {
 	}
 	private void activatePowerUps() {
 		for (Characteristic powerUp : myCurrentPowerUps.keySet()) {
-				((TemporalPowerUpper) powerUp).activatePowerUp(myLevel.getMainPlayer());
+				((TemporalPowerUpper) powerUp).maintainPowerUp(myLevel.getMainPlayer());
 		}
 	}
 

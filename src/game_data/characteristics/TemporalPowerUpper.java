@@ -30,7 +30,7 @@ public abstract class TemporalPowerUpper extends PowerUpper implements Character
 
 	public abstract void reversePowerUp(Sprite playerSprite);
 
-	public abstract void activatePowerUp(Sprite palyerSprite);
+	public abstract void maintainPowerUp(Sprite palyerSprite);
 
 	public void addToPowerUpMap(Sprite collidedSprite, double myTimeInEffect) {
 		for (Characteristic characteristic : collidedSprite.getPowerUps().keySet()) {
