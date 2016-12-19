@@ -6,7 +6,8 @@ import author.view.pages.level_editor.windows.splash_screen.IAuthoringSplashScre
 import gameplayer.back_end.exceptions.GameNotFunctionalException;
 import gameplayer.back_end.exceptions.VoogaFacebookException;
 import gameplayer.back_end.resources.FrontEndResources;
-import gameplayer.back_end.stored_games.StoredGames;
+import gameplayer.back_end.stored_games.IStoredGames;
+import gameplayer.back_end.stored_games.StoredGameFactory;
 import gameplayer.back_end.user_information.LevelManager;
 import gameplayer.front_end.application_scene.IDisplay;
 import gameplayer.front_end.application_scene.INavigationDisplay;
@@ -31,14 +32,12 @@ import javafx.stage.Stage;
 
 public class ApplicationController extends AbstractController {
 
-	private StoredGames myStoredGames;
 	private GamePlayController myGamePlay;
 	private IDisplay myCurrentDisplay;
 
 	public ApplicationController (Stage aStage) {
 		super(aStage);
 		setPlayerInformationController(new PlayerInformationController());
-		myStoredGames = new StoredGames();
 	}
 
 	public void displayMainMenu(double aWidth, double aHeight) {
@@ -116,9 +115,10 @@ public class ApplicationController extends AbstractController {
 	}
 
 	private void setGameChoiceButtonHandlers(INavigationDisplay gameChoice, String aLabel) {
-		gameChoice.addNode(getGUIGenerator().createComboBox(aLabel, myStoredGames.getGames(), 
-				myStoredGames.getIcons(), myStoredGames.getDescriptions(), getStage().getScene().getWidth(), (chosenGame) -> {
-					handleNewGameFile(myStoredGames.getGameFilePath(chosenGame));
+		IStoredGames storedGames = (new StoredGameFactory()).create();
+		gameChoice.addNode(getGUIGenerator().createComboBox(aLabel, storedGames.getGames(), 
+				storedGames.getIcons(), storedGames.getDescriptions(), getStage().getScene().getWidth(), (chosenGame) -> {
+					handleNewGameFile(storedGames.getGameFilePath(chosenGame));
 				}));
 		gameChoice.addButton(getButtonLabels().getString("Load"), e -> {
 			File chosenGame = new FileChoiceController().show(getStage());

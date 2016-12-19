@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import game_data.Game;
 import util.XMLTranslator;
 
-public class StoredGames {
+public class StoredGames implements IStoredGames {
 
 	private Map<String, File> myStoredGameFiles;
 	private Map<String, String> myStoredGameIcons;
@@ -50,18 +50,22 @@ public class StoredGames {
 		myStoredGameDescriptions.put(aGame.getName(), aGame.getDescription());
 	}
 
+	@Override
 	public File getGameFilePath(String aGamename) {
 		return myStoredGameFiles.get(aGamename);
 	}
 	
+	@Override
 	public List<String> getGames() {
 		return new ArrayList<>(myStoredGameFiles.keySet());
 	}
 
+	@Override
 	public List<String> getIcons() {
 		return new ArrayList<>(myStoredGameIcons.values());
 	}
 	
+	@Override
 	public List<String> getDescriptions() {
 		return new ArrayList<>(myStoredGameDescriptions.values());
 	}

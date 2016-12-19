@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 import gameplayer.back_end.resources.FrontEndResources;
 import gameplayer.back_end.user_information.HighscoreManager;
-import gameplayer.front_end.background_display.BackgroundDisplayFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
