@@ -1,10 +1,10 @@
-package game_data.sprites.builders.defaults;
+package game_data.sprites;
 
+import author.view.util.EmptyImage;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
-import game_data.sprites.Item;
-import game_data.sprites.builders.SpriteDefaultBuilder;
+import game_data.sprites.builder.SpriteDefaultBuilder;
 import game_data.states.Health;
 import game_data.states.Physics;
 import game_data.states.State;
@@ -16,7 +16,7 @@ import game_data.states.State;
  */
 public class ItemDefaultBuilder implements SpriteDefaultBuilder {
 
-	private Sprite item = new Item();
+	private Item item = new Item();
 	
 	private final Characteristic[] CHARACTERISTICS = new Characteristic[] {
 			
@@ -30,8 +30,7 @@ public class ItemDefaultBuilder implements SpriteDefaultBuilder {
 	private static final String NAME = "Item_Name";
 
 	@Override
-	public Sprite buildDefault() {
-//		Sprite player = new Terrain();
+	public Item buildDefault() {
 		for(Characteristic characteristic : CHARACTERISTICS) {
 			item.addCharacteristic(characteristic);
 		}

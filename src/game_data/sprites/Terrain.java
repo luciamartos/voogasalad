@@ -5,15 +5,15 @@ import game_data.Sprite;
 
 public class Terrain extends Sprite {
 
-	public Terrain(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
+	Terrain(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
 		super(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
 	}
 
-	public Terrain(Terrain aTerrain) {
+	Terrain(Terrain aTerrain) {
 		super(aTerrain);
 	}
 
-	public Terrain() {
+	Terrain() {
 		super();
 	}
 
@@ -21,5 +21,16 @@ public class Terrain extends Sprite {
 	public Sprite clone() {
 		return new Terrain(this);
 	}
+
+	public static Terrain build(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
+			String aName, String aImagePath) {
+		return new Terrain(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
+	}
+
+	public static Sprite buildDefault() {
+		return new TerrainDefaultBuilder().buildDefault();
+	}
+	
+	
 
 }

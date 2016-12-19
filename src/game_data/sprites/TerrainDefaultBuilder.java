@@ -1,11 +1,11 @@
-package game_data.sprites.builders.defaults;
+package game_data.sprites;
 
+import author.view.util.EmptyImage;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
 import game_data.characteristics.Impassable;
-import game_data.sprites.Terrain;
-import game_data.sprites.builders.SpriteDefaultBuilder;
+import game_data.sprites.builder.SpriteDefaultBuilder;
 import game_data.states.Health;
 import game_data.states.Physics;
 import game_data.states.State;
@@ -15,9 +15,9 @@ import game_data.states.State;
  * @author Jordan Frazier
  *
  */
-public class TerrainDefaultBuilder implements SpriteDefaultBuilder {
+class TerrainDefaultBuilder implements SpriteDefaultBuilder {
 	
-	private Sprite terrain = new Terrain();
+	private Terrain terrain = new Terrain();
 	
 	private final Characteristic[] CHARACTERISTICS = new Characteristic[] {
 			new Impassable(terrain)
@@ -31,7 +31,7 @@ public class TerrainDefaultBuilder implements SpriteDefaultBuilder {
 	private static final String NAME = "Terrain_Name";
 
 	@Override
-	public Sprite buildDefault() {
+	public Terrain buildDefault() {
 //		Sprite player = new Terrain();
 		for(Characteristic characteristic : CHARACTERISTICS) {
 			terrain.addCharacteristic(characteristic);

@@ -9,15 +9,15 @@ import game_data.Sprite;
  */
 public class Projectile extends Sprite{
 	
-	public Projectile(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
+	Projectile(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
 		super(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
 	}
 	
-	public Projectile(Projectile aProjectile){
+	Projectile(Projectile aProjectile){
 		super(aProjectile);
 	}
 	
-	public Projectile() {
+	Projectile() {
 		super();
 	}
 
@@ -26,4 +26,13 @@ public class Projectile extends Sprite{
 		return new Projectile(this);
 	}
 
+	public static Projectile build(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
+			String aName, String aImagePath) {
+		return new Projectile(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
+	}
+
+	public static Projectile buildDefault() {
+		return new ProjectileDefaultBuilder().buildDefault();
+	}
+	
 }

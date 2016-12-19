@@ -98,7 +98,7 @@ public abstract class Sprite extends GameObject {
 	 * should return a clone using the new Sprite(this) constructor
 	 */
 	public abstract Sprite clone();
-
+		
 	private Set<Characteristic> copyCharacteristics(Set<Characteristic> aCharacteristicSet) {
 		if (aCharacteristicSet == null)
 			return null;

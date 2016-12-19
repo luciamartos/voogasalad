@@ -1,4 +1,4 @@
-package game_data.sprites.builders.defaults;
+package game_data.sprites;
 
 import java.io.File;
 
@@ -8,8 +8,7 @@ import game_data.characteristics.Breakable;
 import game_data.characteristics.Characteristic;
 import game_data.characteristics.Damager;
 import game_data.characteristics.Impassable;
-import game_data.sprites.Projectile;
-import game_data.sprites.builders.SpriteDefaultBuilder;
+import game_data.sprites.builder.SpriteDefaultBuilder;
 import game_data.states.Health;
 import game_data.states.Physics;
 import game_data.states.State;
@@ -19,9 +18,9 @@ import game_data.states.State;
  * @author Jordan Frazier
  *
  */
-public class ProjectileDefaultBuilder implements SpriteDefaultBuilder {
+class ProjectileDefaultBuilder implements SpriteDefaultBuilder {
 
-	private Sprite projectile = new Projectile();
+	private Projectile projectile = new Projectile();
 
 	private final Characteristic[] CHARACTERISTICS = 
 			new Characteristic[]{
@@ -38,7 +37,7 @@ public class ProjectileDefaultBuilder implements SpriteDefaultBuilder {
 	private static final String NAME = "Projectile_Name";
 
 	@Override
-	public Sprite buildDefault() {
+	public Projectile buildDefault() {
 		for(Characteristic characteristic : CHARACTERISTICS) {
 			projectile.addCharacteristic(characteristic);
 		}

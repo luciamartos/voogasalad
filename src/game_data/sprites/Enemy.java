@@ -5,21 +5,30 @@ import game_data.Sprite;
 
 public class Enemy extends Character {
 
-	public Enemy(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
+	Enemy(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
 		super(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
 	}
 	
-	public Enemy(Enemy aEnemy){
+	Enemy(Enemy aEnemy){
 		super(aEnemy);
 	}
 	
-	public Enemy() {
+	Enemy() {
 		super();
 	}
 
 	@Override
 	public Sprite clone() {
 		return new Enemy(this);
+	}
+	
+	public static Enemy build(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
+			String aName, String aImagePath) {
+		return new Enemy(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
+	}
+	
+	public static Enemy buildDefault(){
+		return new EnemyDefaultBuilder().buildDefault();
 	}
 
 }

@@ -9,14 +9,16 @@ import game_data.Sprite;
 import game_engine.actions.Action;
 
 public class Player extends Character implements LevelSetter {
-	public Player(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
+	
+	Player(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity, String aName, String aImagePath) {
 		super(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
 	}
-	public Player() {
+	
+	Player() {
 		super();
 	}
 	
-	public Player(Player aPlayer){
+	Player(Player aPlayer){
 		super(aPlayer);
 	}
 
@@ -33,6 +35,15 @@ public class Player extends Character implements LevelSetter {
 				((LevelSetter) action).setLevel(aLevel);
 			}
 		}		
+	}
+	
+	public static Player build(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
+			String aName, String aImagePath) {
+		return new Player(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
+	}
+	
+	public static Player buildDefault(){
+		return new PlayerDefaultBuilder().buildDefault();
 	}
 
 

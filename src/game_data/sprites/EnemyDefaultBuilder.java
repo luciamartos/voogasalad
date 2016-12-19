@@ -1,10 +1,10 @@
-package game_data.sprites.builders.defaults;
+package game_data.sprites;
 
+import author.view.util.EmptyImage;
 import game_data.Location;
 import game_data.Sprite;
 import game_data.characteristics.Characteristic;
-import game_data.sprites.Enemy;
-import game_data.sprites.builders.SpriteDefaultBuilder;
+import game_data.sprites.builder.SpriteDefaultBuilder;
 import game_data.states.Health;
 import game_data.states.Physics;
 import game_data.states.State;
@@ -16,7 +16,7 @@ import game_engine.GameResources;
  */
 public class EnemyDefaultBuilder implements SpriteDefaultBuilder {
 
-	private Sprite enemy = new Enemy();
+	private Enemy enemy = new Enemy();
 
 	private final Characteristic[] CHARACTERISTICS = new Characteristic[] {
 
@@ -31,7 +31,7 @@ public class EnemyDefaultBuilder implements SpriteDefaultBuilder {
 
 
 	@Override
-	public Sprite buildDefault() {
+	public Enemy buildDefault() {
 		for(Characteristic characteristic : CHARACTERISTICS) {
 			enemy.addCharacteristic(characteristic);
 		}
