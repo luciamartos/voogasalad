@@ -21,7 +21,7 @@ import game_engine.IUpdateStatesAndPowerUps;
  */
 
 @NameAnnotation(name = "Temporal Power Up")
-public abstract class TemporalPowerUpper extends PowerUpper implements Characteristic, ICharactericticAction {
+public abstract class TemporalPowerUpper extends PowerUpper implements Characteristic {
 
 	@ParameterAnnotation(parameters = { "Sprite" })
 	public TemporalPowerUpper(Sprite aSprite) {
