@@ -17,10 +17,11 @@
  * anyone outside of this package to never directly instantiate a sprite. Ensuring encapsulation.
  * 
  * Second we use two functional interfaces: one for building with full customization and one 
- * for defaults. These are static (stateless) methods on the sprite subclasses. This allows us to
- * take advantage of one more quality of the enum. Anyone who would like to instantiate any of these
- * classes can simply call SpriteFactory.SUBCLASS.build( _args ) and get the exact subclass they want.
- * Adding a new subclass is thus much easier than searching for the if tree and adding another two lines.  
+ * for defaults. One is as simple as the :: operator to access the sprite constructor the other is 
+ * a delgation call to the default builder. This allows us to take advantage of one more quality of 
+ * the enum. Anyone who would like to instantiate any of these classes can simply call 
+ * SpriteFactory.SUBCLASS.build( _args ) and get the exact subclass they want. Adding a new subclass 
+ * is thus much easier than searching for the if tree and adding another two lines.  
  *  
  */
 package game_data.sprites;

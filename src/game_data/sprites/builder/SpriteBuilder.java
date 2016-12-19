@@ -1,3 +1,7 @@
+// This entire file is a part of my masterpiece.
+// George Bernard
+// See SpriteFactory for discussion
+
 package game_data.sprites.builder;
 
 import game_data.Location;
