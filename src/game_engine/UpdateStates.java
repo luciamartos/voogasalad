@@ -170,8 +170,7 @@ public class UpdateStates implements IUpdateStatesAndPowerUps {
 	}
 	private void activatePowerUps() {
 		for (Characteristic powerUp : myCurrentPowerUps.keySet()) {
-				((TemporalPowerUpper) powerUp).activatePowerUp(myLevel.getMainPlayer(), this,
-						myCurrentPowerUps.get(powerUp));
+				((TemporalPowerUpper) powerUp).activatePowerUp(myLevel.getMainPlayer());
 		}
 	}
 
@@ -191,7 +190,7 @@ public class UpdateStates implements IUpdateStatesAndPowerUps {
 	}
 
 	private void powerUpHasBeenRemoved(Characteristic powerUp) {
-		((TemporalPowerUpper) powerUp).reversePowerUp(myLevel.getMainPlayer(), this);
+		((TemporalPowerUpper) powerUp).reversePowerUp(myLevel.getMainPlayer());
 	}
 
 	private void cleanGame() {
