@@ -1,3 +1,10 @@
+// This entire file is part of my masterpiece.
+// Ted Marchildon
+
+/*
+ * Implements the factory design pattern for the scenes
+ */
+
 package gameplayer.front_end.application_scene;
 
 import gameplayer.back_end.user_information.HighscoreManager;
