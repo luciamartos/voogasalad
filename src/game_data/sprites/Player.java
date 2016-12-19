@@ -37,11 +37,6 @@ public class Player extends Character implements LevelSetter {
 		}		
 	}
 	
-	public static Player build(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
-			String aName, String aImagePath) {
-		return new Player(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
-	}
-	
 	public static Player buildDefault(){
 		return new PlayerDefaultBuilder().buildDefault();
 	}

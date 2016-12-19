@@ -23,13 +23,6 @@ public class Item extends Sprite{
 	
 	public static Item buildDefault(){
 		return new ItemDefaultBuilder().buildDefault();
-	}
-
-	public static Sprite build (Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
-			String aName, String aImagePath) {
-		return new Item(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
-	}
-	
-	
+	}	
 
 }

@@ -26,11 +26,6 @@ public class Projectile extends Sprite{
 		return new Projectile(this);
 	}
 
-	public static Projectile build(Location aLocation, int aWidth, int aHeight, double xVelocity, double yVelocity,
-			String aName, String aImagePath) {
-		return new Projectile(aLocation, aWidth, aHeight, xVelocity, yVelocity, aName, aImagePath);
-	}
-
 	public static Projectile buildDefault() {
 		return new ProjectileDefaultBuilder().buildDefault();
 	}

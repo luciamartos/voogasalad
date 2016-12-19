@@ -38,23 +38,23 @@ public enum SpriteFactory implements SpriteBuilder, SpriteDefaultBuilder {
 	/**
 	 * PlayerFactory
 	 */
-	PLAYER( Player::build, Player::buildDefault ),
+	PLAYER( Player::new, Player::buildDefault ),
 	/**
 	 * EnemyFactory
 	 */
-	ENEMY( Enemy::build, Enemy::buildDefault ),	
+	ENEMY( Enemy::new, Enemy::buildDefault ),	
 	/**
 	 * TerrainFactory
 	 */
-	TERRAIN( Terrain::build , Terrain::buildDefault ),
+	TERRAIN( Terrain::new , Terrain::buildDefault ),
 	/**
 	 * Item Factory
 	 */
-	ITEM( Item::build , Item::buildDefault ),
+	ITEM( Item::new , Item::buildDefault ),
 	/**
 	 * ProjectileFactory
 	 */
-	PROJECTILE( Projectile::build , Projectile::buildDefault );
+	PROJECTILE( Projectile::new , Projectile::buildDefault );
 
 	private SpriteBuilder myBuilder;
 	private SpriteDefaultBuilder myDefaultBuilder;
