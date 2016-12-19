@@ -20,8 +20,19 @@ import game_engine.actions.Invincibility;
 import game_engine.actions.SpeedBoost;
 //import javafx.geometry.Side;
 
+//This entire file is part of my masterpiece.
+//LUCIA MARTOS
 /**
- * @author austingartside
+ * This is an example of a temporal power upper (invincibility one) which give
+ * the sprite invincibility for a given number of seconds and it also makes it
+ * flash so the user know he has entered this mode.
+ * 
+ * Here I am interacting with states of the sprite to make him invincible (so
+ * that it cannot get affected by damage) and to change its visibility on the
+ * screen.
+ * 
+ * 
+ * @author Lucia Martos
  *
  */
 
@@ -36,12 +47,12 @@ public class InvincibilityPowerUpper extends TemporalPowerUpper implements Chara
 		super(aSprite);
 		myTimeInEffect = timeInEffect;
 	}
-	
-	@ViewableMethodOutput(description="Time In Effect", type=double.class)
+
+	@ViewableMethodOutput(description = "Time In Effect", type = double.class)
 	public double getTimeInEffect() {
 		return myTimeInEffect;
 	}
-	
+
 	@Override
 	public Characteristic copy(Sprite aSprite) {
 		return new InvincibilityPowerUpper(myTimeInEffect, aSprite);
@@ -49,69 +60,48 @@ public class InvincibilityPowerUpper extends TemporalPowerUpper implements Chara
 
 	@Override
 	public void execute(Map<Sprite, Side> myCollisionMap) {
-		// TODO: make and execute speed Up action
-
 		for (Sprite collidedSprite : myCollisionMap.keySet()) {
-			// unless we want non players to be able to speed up upon hitting a
-			// powerup
 			if (collidedSprite instanceof Player) {
-
-//				System.out.println("HELLO");
 				addToPowerUpMap(collidedSprite, myTimeInEffect);
 				myAction = new Invincibility(collidedSprite);
-				// System.out.println("characteristic in");
 				myAction.act();
 			}
 		}
 	}
 
 	@Override
-	public void reversePowerUp(Sprite playerSprite, IUpdateStatesAndPowerUps  myInterface) {
+	public void reversePowerUp(Sprite playerSprite) {
 		for (State state : playerSprite.getStates()) {
-			if (state instanceof Vincibility) {
+			if (state instanceof Vincibility)
 				((Vincibility) state).setVincibility(true);
-			}
-			if (state instanceof Visible) {
+			if (state instanceof Visible)
 				((Visible) state).setVisibility(true);
-			}
 		}
 
 	}
 
 	@Override
-	public void activatePowerUp(Sprite playerSprite, IUpdateStatesAndPowerUps myInterface, Double timeElapsed) {
-//		System.out.println("Should be invisible");
-//		System.out.println("activate power up");
-
-		addToPowerUpMap(playerSprite, timeElapsed);
+	public void activatePowerUp(Sprite playerSprite) {
+		double timeElapsed = playerSprite.getPowerUps().get(this);
 		boolean hasVisibility = false;
 		for (State state : playerSprite.getStates()) {
-//			System.out.println("1");
-
 			if (state instanceof Visible) {
+				((Visible) state).setVisibility(timeElapsed % GameResources.FLASH_RATE.getDoubleResource() == 0);
 				hasVisibility = true;
-//				System.out.println("2");
-//				System.out.println("Should be invisible");
-				((Visible) state).setVisibility((timeElapsed.intValue()) % GameResources.FLASH_RATE.getDoubleResource() == 0);
-
 			}
 		}
-		if (!hasVisibility) {
-//			System.out.println("3");
-
-			playerSprite.addState(new Visible((timeElapsed.intValue()) % GameResources.FLASH_RATE.getDoubleResource() == 0));
-		}
+		if (!hasVisibility) 
+			playerSprite.addState(new Visible(timeElapsed % GameResources.FLASH_RATE.getDoubleResource() == 0));
+		
 	}
 
 	@Override
-	public boolean checkForSpecificTemporalPowerUpper(Sprite collidedSprite, double myTimeInEffect, boolean hasChanged,
-			Characteristic characteristic) {
-			if(characteristic instanceof InvincibilityPowerUpper){
-//				System.out.println("LUCIA:");
-				collidedSprite.getPowerUps().put(characteristic, myTimeInEffect);
-				hasChanged = true;
-			}
-			return hasChanged;
+	public boolean updateMapIfPowerUpExists(Sprite collidedSprite, double myTimeInEffect, Characteristic characteristic) {
+		if (characteristic instanceof InvincibilityPowerUpper) {
+			collidedSprite.getPowerUps().put(this, myTimeInEffect);
+			return true;
+		}
+		return false;
 	}
 
 }

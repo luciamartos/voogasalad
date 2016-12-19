@@ -45,7 +45,7 @@ public class Movable implements Characteristic{
 						if( i instanceof Movable){
 							
 							Side temp = myCollisionMap.get(collidedSprite);
-							System.out.println(temp.toString());
+//							System.out.println(temp.toString());
 							
 							if(temp.isHorizontal()){
 								

@@ -75,7 +75,7 @@ public class SpeedPowerUpper extends TemporalPowerUpper implements Characteristi
 	}
 
 	@Override
-	public void reversePowerUp(Sprite playerSprite, IUpdateStatesAndPowerUps myInterface) {
+	public void reversePowerUp(Sprite playerSprite) {
 		playerSprite.resetTerminalVelocities();
 		for(KeyCode key:  playerSprite.getControllable().getMyKeyPressedMap().keySet()){
 			( (Move) playerSprite.getControllable().getMyKeyPressedMap().get(key)).setMyVelocity(defaultKeyPressedMap.get(key));
@@ -88,7 +88,7 @@ public class SpeedPowerUpper extends TemporalPowerUpper implements Characteristi
 
 	
 	@Override
-	public void activatePowerUp(Sprite playerSprite, IUpdateStatesAndPowerUps myInterface, Double timeElapsed) {
+	public void activatePowerUp(Sprite playerSprite) {
 //		System.out.println("LUCIA");
 //		System.out.println("power up " );
 //		playerSprite.getControllable().resetMyKeyPressedMap();
@@ -110,9 +110,9 @@ public class SpeedPowerUpper extends TemporalPowerUpper implements Characteristi
 	}
 
 	@Override
-	public boolean checkForSpecificTemporalPowerUpper(Sprite collidedSprite, double myTimeInEffect, boolean hasChanged,
+	public boolean updateMapIfPowerUpExists(Sprite collidedSprite, double myTimeInEffect, 
 			Characteristic characteristic) {
-//		System.out.println("LUCIA");
+		boolean hasChanged = false;
 			if(characteristic instanceof SpeedPowerUpper){
 				collidedSprite.getPowerUps().put(characteristic, myTimeInEffect);
 				hasChanged = true;

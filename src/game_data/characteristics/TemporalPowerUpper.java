@@ -4,51 +4,43 @@ import game_data.Sprite;
 import game_data.characteristics.characteristic_annotations.NameAnnotation;
 import game_data.characteristics.characteristic_annotations.ParameterAnnotation;
 import game_engine.IUpdateStatesAndPowerUps;
-import game_engine.UpdateStates;
 
+//This entire file is part of my masterpiece.
+//LUCIA MARTOS
 /**
- *@author Lucia Martos
+ * This is the superclass of Temporal Power Ups which is an extension of
+ * PowerUppers and it is a type of characteristic The reason why I think this is
+ * a good class for the master people is because it shows the functionality of
+ * temporal power ups these are a type of characteristic which activates a
+ * de-activates power ups. This representative of how the characteristics work
+ * in our project. It shows my understanding of inheritance and hierarchies. I
+ * try to minimize code repetition by making all the generic temporal power up
+ * code here, like adding to the power up map
+ * 
+ * @author Lucia Martos
  */
 
 @NameAnnotation(name = "Temporal Power Up")
 public abstract class TemporalPowerUpper extends PowerUpper implements Characteristic, ICharactericticAction {
-		
-	@ParameterAnnotation(parameters = {"Sprite"})
-	public TemporalPowerUpper(Sprite aSprite){
+
+	@ParameterAnnotation(parameters = { "Sprite" })
+	public TemporalPowerUpper(Sprite aSprite) {
 		super(aSprite);
 	}
-	
-	
-	public abstract void reversePowerUp(Sprite playerSprite,IUpdateStatesAndPowerUps myInterface);
-	
-	public abstract void activatePowerUp(Sprite palyerSprite, IUpdateStatesAndPowerUps myInterface, Double timeElapsed);
-	
-//	public abstract void initializePowerUp(Sprite playerSprite);
-	
-	public void addToPowerUpMap(Sprite collidedSprite, double myTimeInEffect){
 
-		boolean hasChanged = false;
-		for(Characteristic characteristic: collidedSprite.getPowerUps().keySet()){
-			hasChanged = checkForSpecificTemporalPowerUpper(collidedSprite, myTimeInEffect, hasChanged, characteristic);
-		}
-		if(!hasChanged) {
-//			if(this == null) System.out.println("Austin is right");
-			collidedSprite.getPowerUps().put(this, myTimeInEffect);
-//			System.out.println("second if");
-		}
-		
-//		collidedSprite.setPowerUps(collidedSprite.getPowerUps());
-//		System.out.println("map size later  "+collidedSprite.getPowerUps().size());
+	public abstract void reversePowerUp(Sprite playerSprite);
 
+	public abstract void activatePowerUp(Sprite palyerSprite);
+
+	public void addToPowerUpMap(Sprite collidedSprite, double myTimeInEffect) {
+		for (Characteristic characteristic : collidedSprite.getPowerUps().keySet()) {
+			if (!updateMapIfPowerUpExists(collidedSprite,myTimeInEffect, characteristic))
+				collidedSprite.getPowerUps().put(this, myTimeInEffect);
+		}
 	}
 
-
-	public abstract boolean checkForSpecificTemporalPowerUpper(Sprite collidedSprite, double myTimeInEffect, boolean hasChanged,
+	public abstract boolean updateMapIfPowerUpExists(Sprite collidedSprite, double myTimeInEffect,
 			Characteristic characteristic);
-	
-	public ICharactericticAction getInterface(){
-		return this;
-	}
-	
+
 
 }
