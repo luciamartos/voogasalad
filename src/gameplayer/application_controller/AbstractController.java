@@ -12,6 +12,18 @@ import gameplayer.front_end.gui_generator.IGUIGenerator;
 import gameplayer.front_end.popup.ErrorAlert;
 import javafx.stage.Stage;
 
+//This entire file is part of my masterpiece.
+//HANNAH FUCHSHUBER
+
+/**
+ * This file is part of my masterpiece because it is part of the inheritance hierarchy for the Application Controller. It also
+ * shows that we used inheritance for the Controllers because we ended up having two controllers and there was lots of repeated 
+ * code and we were using the same Stage and passing it around, so we made a class to be the parent of both of those classes.
+ * 
+ * @author hannahfuchshuber
+ *
+ */
+
 public abstract class AbstractController {
 	
 	protected static final String FILE = "gameplayerlabels.";

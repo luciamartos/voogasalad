@@ -277,7 +277,7 @@ public class GamePlayController extends AbstractController {
 			}
 		}, ButtonDisplay.TEXT));
 		resultScene.getChildren().add(getGUIGenerator().createButton(getButtonLabels().getString("HighScores"), 0,0, e -> {
-			//myApplicationController.displayHighScoreScene(getStage().getWidth(), getStage().getHeight());
+			myApplicationController.displayHighScoreScene(myGameController.getMyGame().getName());
 		}, ButtonDisplay.TEXT));
 		resultScene.getChildren().add(getGUIGenerator().createButton(getButtonLabels().getString("Publish"), 0, 0, e -> {
 			try {
