@@ -1,7 +1,6 @@
 package author.view.pages.level_editor.windows;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,7 +9,7 @@ import java.util.Set;
 import author.controller.IAuthorController;
 import author.model.game_observables.draggable_sprite.ConcreteMovableSprite;
 import author.model.game_observables.draggable_sprite.DraggableSprite;
-import author.model.game_observables.draggable_sprite.context_menu.FunctionalMenuItemFactory;
+import author.model.game_observables.draggable_sprite.IDraggableSprite;
 import author.model.game_observables.draggable_sprite.context_menu.SpriteContextMenu;
 import author.view.pages.level_editor.windows.level_window.ILevelWindowPane;
 import author.view.pages.level_editor.windows.level_window.LevelWindowPaneFactory;
@@ -27,21 +26,17 @@ import game_engine.properties.RandomMoveConjointHandler;
 import game_engine.properties.RandomMoveDisjointHandler;
 import game_engine.properties.RandomMoveHandler;
 import game_engine.properties.RandomMoveHandler.Orientation;
-import javafx.application.Platform;
 import javafx.beans.Observable;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SetProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleSetProperty;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -216,7 +211,7 @@ public class LevelWindow extends AbstractLevelEditorWindow implements ILevelWind
 	}
 
 	private void removeSprites(Set<Sprite> removedSprites, Level aLevel) {
-		Set<DraggableSprite> removeDraggables = new HashSet<>();
+		Set<IDraggableSprite> removeDraggables = new HashSet<>();
 		removedSprites.forEach((removedSprite) -> {
 			this.getMovableSprites(aLevel).forEach((movableSprite) -> {
 				if (movableSprite.getSprite() == removedSprite) {

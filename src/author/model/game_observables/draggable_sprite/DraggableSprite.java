@@ -22,10 +22,11 @@ import javafx.scene.layout.Pane;
  * dragged from window to window.
  * This section is well designed because it uses several abstractions, such as this abstract class and the
  * @ResizableSprite interface to pass around only what is necessary for other code to interact successfully.
+ * Methods are grouped based on functionality rather than access modifier
  * @author Jordan Frazier
  *
  */
-public abstract class DraggableSprite {
+public abstract class DraggableSprite implements IDraggableSprite {
 
 	/**
 	 * These CSS strings alter the DraggableItem Pane when the mouse enters or
@@ -58,8 +59,9 @@ public abstract class DraggableSprite {
 		myImageView.fitWidthProperty().bind(myDraggableItem.prefWidthProperty());
 	}
 
+	@Override
 	public void removeListener() {
-		this.mySprite.removeListener(this.myInvalidationListener);
+		mySprite.removeListener(myInvalidationListener);
 	}
 
 	private void setListener(Sprite aSprite) {
@@ -82,10 +84,8 @@ public abstract class DraggableSprite {
 	 */
 	protected void openPreferences() {
 		myDraggableItem.setOnMouseClicked(e -> {
-			if (e.getButton().equals(MouseButton.PRIMARY)) {
-				if (e.getClickCount() == 2) {
+			if (e.getButton().equals(MouseButton.PRIMARY) && e.getClickCount() == 2) {
 					new SpriteEditWindow(mySprite).openWindow();
-				}
 			}
 		});
 	}
@@ -99,12 +99,14 @@ public abstract class DraggableSprite {
 			applyCSS(SPRITE_DESELECTED_STYLE);
 		});
 	}
-
+	
+	@Override
 	public void setSelected() {
 		this.isSelected = true;
 		applyCSS(SPRITE_SELECTED_STYLE);
 	}
-
+	
+	@Override
 	public void setDeselected() {
 		this.isSelected = false;
 		applyCSS(SPRITE_DESELECTED_STYLE);
@@ -129,14 +131,17 @@ public abstract class DraggableSprite {
 		Tooltip.install(myDraggableItem, myToolTip);
 	}
 
+	@Override
 	public Pane getDraggableItem() {
 		return myDraggableItem;
 	}
 
+	@Override
 	public Sprite getSprite() {
 		return mySprite;
 	}
 
+	@Override
 	public ImageView getImageView() {
 		return myImageView;
 	}
