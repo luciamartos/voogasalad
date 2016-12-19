@@ -13,9 +13,10 @@ public class PlayerOptionsPopUp extends AbstractPopUp implements IPopUpDisplay {
 
 	private String myCurrentKeyChoice;
 	private String myCurrentColorChoice;
-
+	
 	public PlayerOptionsPopUp() {
 		super();
+
 		addOptions();
 	}
 
@@ -26,7 +27,9 @@ public class PlayerOptionsPopUp extends AbstractPopUp implements IPopUpDisplay {
 
 	private Pane createKeyInputOption() {
 		HBox keyOption = new HBox(20);
-		keyOption.getChildren().add(new Label(getString("KeyInput")));
+		Label label = new Label(getString("KeyInput"));
+		label.setId("options-label");
+		keyOption.getChildren().add(label);
 		final ToggleGroup keyboardGroup = new ToggleGroup();
 		RadioButton defaultKey = createRadioButton(getString("Default"), keyboardGroup);
 		RadioButton leftKeys = createRadioButton(getString("Left"), keyboardGroup);
@@ -42,7 +45,9 @@ public class PlayerOptionsPopUp extends AbstractPopUp implements IPopUpDisplay {
 
 	private Pane createFontOption() {
 		HBox fontOption = new HBox(20);
-		fontOption.getChildren().add(new Label(getString("HUD")));
+		Label label = new Label(getString("HUD"));
+		label.setId("options-label");
+		fontOption.getChildren().add(label);
 		final ToggleGroup fontGroup = new ToggleGroup();
 		RadioButton red = createRadioButton(getString("Red"), fontGroup);
 		RadioButton green = createRadioButton(getString("Green"), fontGroup);
@@ -60,10 +65,10 @@ public class PlayerOptionsPopUp extends AbstractPopUp implements IPopUpDisplay {
 	}
 
 	public String getKeyChoice() {
-		return myCurrentKeyChoice == null ? "black": myCurrentKeyChoice;
+		return myCurrentKeyChoice == null ? "default": myCurrentKeyChoice;
 	}
 
 	public String getColorChoice() {
-		return myCurrentColorChoice == null ? "black": myCurrentColorChoice;
+		return myCurrentColorChoice == null ? "#fdbe3b": myCurrentColorChoice;
 	}
 }

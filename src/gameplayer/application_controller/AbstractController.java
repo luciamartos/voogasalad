@@ -33,7 +33,7 @@ public abstract class AbstractController {
 	}
 	
 	protected void resetStage(IDisplay aScene) {
-		myStage.close();
+		//myStage.close();
 		myStage.setScene(aScene.init());
 		myStage.show();
 	}
@@ -75,7 +75,6 @@ public abstract class AbstractController {
 		}
 		return hm;
 	}
-	
 
 	protected void showError(Exception x) {
 		ErrorAlert ea = new ErrorAlert();

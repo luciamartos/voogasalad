@@ -35,5 +35,16 @@ public class Location {
 		}
 		return false;
 	}
+	
+	public double calculateDistance(Location location){
+		double xDiff = myXLocation - location.getXLocation();
+		double yDiff = myYLocation - location.getYLocation();
+		return Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
+	}
 
+	@Override
+	public String toString(){
+		return myXLocation + " x "  + myYLocation;
+	}
+	
 }

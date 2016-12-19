@@ -1,10 +1,10 @@
 package gameplayer.front_end.gui_generator;
 
 import java.util.List;
+
 import gameplayer.application_controller.Choosable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.MediaPlayer;
 
 public interface IGUIGenerator {
 	
@@ -33,7 +32,7 @@ public interface IGUIGenerator {
 	public Menu createMenu(ImageView aImage, String[] aString, EventHandler<ActionEvent>[] aHandler);
 	
 	public ComboBox<Pane> createComboBox(String aLabel, List<String> aList, List<String> aListOfFiles, 
-			List<String> aListOfDescriptions, Choosable aChoice);
+			List<String> aListOfDescriptions, double aWidth, Choosable aChoice);
 
 	public Label createLabel(String aText, double aXPos, double aYPos);
 	

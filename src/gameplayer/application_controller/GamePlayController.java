@@ -1,5 +1,6 @@
 package gameplayer.application_controller;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import game_data.Game;
 import game_data.Sprite;
@@ -41,27 +42,33 @@ public class GamePlayController extends AbstractController {
 	private MediaController myMusic;
 	private Score myScore;
 	private Health myHealth;
+	private int myLevel;
 
-	public GamePlayController(Stage aStage, File aFile, ApplicationController aAppController, PlayerInformationController aInfoController) throws Exception {
+	public GamePlayController(Stage aStage, File aFile, ApplicationController aAppController, PlayerInformationController aInfoController) throws GameNotFunctionalException {
 		super(aStage);
 		myGameFile = aFile;
 		myApplicationController = aAppController;
+		myLevel = 0;
 		myKeyCodeHandler = new KeyCodeHandler();
 		setPlayerInformationController(aInfoController);
 		initializeKeySets(myUserOptions);
 		initializeEngineComponents(0);
 	}
 
-	public GamePlayController(Stage aStage, File aFile, ApplicationController aAppController, PlayerInformationController aPlayerController, UserOptions aOptions) throws Exception {
+	public GamePlayController(Stage aStage, File aFile, ApplicationController aAppController, PlayerInformationController aPlayerController, UserOptions aOptions) throws GameNotFunctionalException {
 		this(aStage, aFile, aAppController, aPlayerController); 
 		myUserOptions = aOptions;
 		myKeyCodeHandler = new KeyCodeHandler(aOptions.getMyKeyInput());
 	}
 
-	String initializeEngineComponents(int aLevel) throws Exception {
-		myGameEngine = new GameEngine(myGameFile, aLevel);
-		myGameController = myGameEngine.getMyEnginePlayerController();
-		myGameUpdater = new UpdateGame(myGameController.getMyGame());
+	protected String initializeEngineComponents(int aLevel) throws GameNotFunctionalException {
+		try {
+			myGameEngine = new GameEngine(myGameFile, aLevel);
+			myGameController = myGameEngine.getMyEnginePlayerController();
+			myGameUpdater = new UpdateGame(myGameController.getMyGame());
+		} catch (Exception e) {
+			throw new GameNotFunctionalException(e.getMessage() + getButtonLabels().getString("GameNotFunctionalException"));
+		}
 		return myGameController.getMyGame().getName();
 	}
 
@@ -75,13 +82,13 @@ public class GamePlayController extends AbstractController {
 	/**
 	 * Displays the currently set up game
 	 */
-	public void displayGame() throws Exception {
+	public void displayGame() throws GameNotFunctionalException {
 		initializeScene(myUserOptions);
 		setMenu();
 		try {
 			updateSprites();
 		} catch (Exception e) {
-			throw new GameNotFunctionalException();
+			throw new GameNotFunctionalException(getButtonLabels().getString("GameNotFunctionalException"));
 		}
 		myKeyCodeHandler.addMainPlayer(mySpriteDisplay.getMainPlayer());
 		initializeAnimation();
@@ -92,9 +99,9 @@ public class GamePlayController extends AbstractController {
 	private void initializeScene(UserOptions aOptions) {
 		mySpriteDisplay = new SpriteDisplay();
 		if (aOptions != null) {
-			myGamePlayScene = new GamePlayScene(myGameController.getMyBackgroundImageFilePath(), getStage().getWidth(), getStage().getHeight(), aOptions.getMyFontColor());
+			myGamePlayScene = new GamePlayScene(myGameController.getMyBackgroundImageFilePath(), getStage().getScene().getWidth(), getStage().getScene().getHeight(), aOptions.getMyFontColor());
 		} else {
-			myGamePlayScene = new GamePlayScene(myGameController.getMyBackgroundImageFilePath(), getStage().getWidth(), getStage().getHeight(), "#fdbe3b");
+			myGamePlayScene = new GamePlayScene(myGameController.getMyBackgroundImageFilePath(), getStage().getScene().getWidth(), getStage().getScene().getHeight(), "#fdbe3b");
 		}
 		myGamePlayScene.setKeyHandlers(e -> myKeyCodeHandler.handleKeyPress(e, myGameController.getMyGame().getCurrentLevel().getMainPlayer().getControllable().getMyKeyPressedMap()), e -> myKeyCodeHandler.handleKeyRelease(e));
 	}
@@ -110,14 +117,15 @@ public class GamePlayController extends AbstractController {
 	private void updateScene() {
 		//the below line makes sure the keys released aren't stored in the set after they're released
 		myKeyCodeHandler.clearReleased();
-		XYMovementHandler movementHandler = new MovementHandlerFactory().buildMovementHandler(
-				myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getXLocation(), 
-				myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getYLocation(), 
-				getStage().getWidth(), 
-				getStage().getHeight(), 
-				myGameController.getMyGame().getScrollType());
+		XYMovementHandler movementHandler = new MovementHandlerFactory().buildMovementHandler(myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getXLocation(), 
+				getStage().getWidth(), myGameController.getMyGame().getCurrentLevel().getMainPlayer().getLocation().getYLocation(), getStage().getHeight(), 
+				myGameController.getMyGame().getScrollType(), myGameController.getMyGame().getCurrentLevel().getMainPlayer().getStates());
 		checkResult();
 		myGamePlayScene.moveScreen(movementHandler);
+		if (myGameController.getMyGame().getLevelNumber() != myLevel) {
+			myLevel = myGameController.getMyGame().getLevelNumber();
+			myGamePlayScene.setBackground(myGameController.getMyGame().getCurrentLevel().getBackgroundImageFilePath(), getStage().getWidth(), getStage().getHeight());
+		}
 		setLevelLabel();
 		setHealthLabel();
 		setScoreLabel();
@@ -148,6 +156,8 @@ public class GamePlayController extends AbstractController {
 				myGamePlayScene.addImageToView(mySpriteDisplay.getUpdatedSpriteMap(sprite), true);
 			}
 		}
+		if (myKeyCodeHandler.checkNoKeysPressed()) mySpriteDisplay.stopAnimation();
+		else mySpriteDisplay.playAnimation();
 	}
 
 	private void setMenu() {
@@ -167,6 +177,8 @@ public class GamePlayController extends AbstractController {
 		}, e -> {
 			save();
 		}, e -> {
+			stopLoops();
+			saveHighscore();
 			myApplicationController.displayHighScoreScene(myGameController.getMyGame().getName());
 		});
 	}
@@ -197,7 +209,9 @@ public class GamePlayController extends AbstractController {
 	private void setScoreLabel() {
 		determineScore();
 		if (myScore != null) {
-			myGamePlayScene.addNode(getGUIGenerator().createLabel("Score: " + myScore.getMyScore(), 0, 0), 2);
+			DecimalFormat twoDForm = new DecimalFormat("#.##");
+			Double d = Double.valueOf(twoDForm.format(myScore.getMyScore()));
+			myGamePlayScene.addNode(getGUIGenerator().createLabel("Score: " + d.doubleValue(), 0, 0), 2);
 		}
 	}
 
@@ -210,7 +224,8 @@ public class GamePlayController extends AbstractController {
 	}
 
 	private void setLevelLabel() {
-		myGamePlayScene.addNode(getGUIGenerator().createLabel("Level: " + myGameController.getMyGame().getLevelNumber() + 1, 0, 0), 0);
+		int level = myGameController.getMyGame().getLevelNumber() + 1;
+		myGamePlayScene.addNode(getGUIGenerator().createLabel("Level: " + level, 0, 0), 0);
 	}
 
 	private void handleRestart() throws Exception {
@@ -262,14 +277,18 @@ public class GamePlayController extends AbstractController {
 			}
 		}, ButtonDisplay.TEXT));
 		resultScene.getChildren().add(getGUIGenerator().createButton(getButtonLabels().getString("HighScores"), 0,0, e -> {
-			myApplicationController.displayHighScoreScene(myGameController.getMyGame().getName());
+			//myApplicationController.displayHighScoreScene(getStage().getWidth(), getStage().getHeight());
 		}, ButtonDisplay.TEXT));
 		resultScene.getChildren().add(getGUIGenerator().createButton(getButtonLabels().getString("Publish"), 0, 0, e -> {
-			myApplicationController.publishToFacebook(MessageFormat.format(getButtonLabels().getString("MessageTitle"), 
-					myGameController.getMyGame().getName()), 
-					getButtonLabels().getString("PublishMessage"));
-			MessageFormat.format(getButtonLabels().getString("PublishMessage"), 
-					myGameController.getMyGame().getName());
+			try {
+				myApplicationController.publishToFacebook(MessageFormat.format(getButtonLabels().getString("MessageTitle"), 
+						myGameController.getMyGame().getName()), 
+						MessageFormat.format(getButtonLabels().getString("PublishMessage"), myGameController.getMyGame().getName(),  myScore.getMyScore()));
+				MessageFormat.format(getButtonLabels().getString("PublishMessage"), 
+						myGameController.getMyGame().getName(), myScore.getMyScore());
+			} catch (Exception x) {
+				showError(x);
+			}
 		}, ButtonDisplay.TEXT));
 	}
 

@@ -20,7 +20,7 @@ public class KeyCodeHandler {
 	private Set<KeyCode> myKeysPressed;
 	private Set<KeyCode> myKeysReleased;
 	private KeyCodeTranslator myKeyCodeTranslator;
-	private List<ImageView> myMainPlayerImage;
+	private List<ImageView> myMainPlayerImage; 
 
 	public KeyCodeHandler(String aInput) {
 		myKeySet = new HashSet<KeyCode>();
@@ -60,22 +60,20 @@ public class KeyCodeHandler {
 
 	public void clearReleased() {
 		myKeysReleased.clear();
-		myKeysPressed.clear();
 	}
 
-	public void handleKeyPress(KeyCode aKeyCode, Map<KeyCode, Action> aVelocity) {
+	public void handleKeyPress(KeyCode aKeyCode, Map<KeyCode, Action> aKeyMap) {
 		myKeysPressed.add(myKeyCodeTranslator.getCode(aKeyCode));
 		myKeySet.add(myKeyCodeTranslator.getCode(aKeyCode));
 		
 		KeyCode leftKey = null;
 		KeyCode rightKey = null;
 		
-		for(Entry<KeyCode, Action> e : aVelocity.entrySet()) {
+		for(Entry<KeyCode, Action> e : aKeyMap.entrySet()) {
 			if(leftKey == null && e.getValue() instanceof MoveLeft)
 				leftKey = e.getKey();
 			if(rightKey == null && e.getValue() instanceof MoveRight)
 				rightKey = e.getKey();
-			
 		}
 		
 		if (aKeyCode == leftKey || myKeyCodeTranslator.getCode(aKeyCode).equals(KeyCode.LEFT)) {
@@ -87,6 +85,10 @@ public class KeyCodeHandler {
 				myMainPlayerImage.get(i).setRotate(0);
 			}
 		}
+	}
+	
+	public boolean checkNoKeysPressed() {
+		return myKeySet.isEmpty();
 	}
 
 	public void handleKeyRelease(KeyCode aKeyCode) {

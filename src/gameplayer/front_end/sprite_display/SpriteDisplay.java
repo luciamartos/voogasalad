@@ -17,6 +17,7 @@ public class SpriteDisplay {
 	private Map<Sprite, ImageView> mySpriteViews;
 	private List<ImageView> myAnimationSpriteImage;
 	private int myCurrentImage; 
+	private boolean myStopAnimation = false;
 	
 	public SpriteDisplay() {
 		mySpriteViews = new HashMap<Sprite, ImageView>();
@@ -26,7 +27,6 @@ public class SpriteDisplay {
 	private ImageView buildSpriteDisplay(Sprite aSprite) {
 		ImageView image = new ImageView(new File(aSprite.getImagePath()).toURI().toString());
 		return image;
-		
 	}
 	
 	public ImageView getUpdatedSpriteMap(Sprite aSprite) {
@@ -50,14 +50,16 @@ public class SpriteDisplay {
 			if (myAnimationSpriteImage.size() < 1) {
 				createAnimationSpriteImageList(image, aSprite);
 			} else {
-				image = myAnimationSpriteImage.get(myCurrentImage);
-				if (myCurrentImage == myAnimationSpriteImage.size() - 1) {
-					myCurrentImage = 0;
-				} else {
-					myCurrentImage++;
+				if (!myStopAnimation) {
+					image = myAnimationSpriteImage.get(myCurrentImage);
+					if (myCurrentImage == myAnimationSpriteImage.size() - 1) {
+						myCurrentImage = 0;
+					} else {
+						myCurrentImage++;
+					}
+					mySpriteViews.put(aSprite, image);
+					setImageProperties(aSprite, image);
 				}
-				mySpriteViews.put(aSprite, image);
-				setImageProperties(aSprite, image);
 			}
 		}
 		return image;
@@ -81,11 +83,8 @@ public class SpriteDisplay {
 			buildString.append(".");
 			buildString.append(array[1]);
 			String filePathOfAnimation = buildString.toString();
-			System.out.println(filePathOfAnimation);
 			fileOfAnimation = new File(filePathOfAnimation);
 			if (fileOfAnimation.exists()) {
-				System.out.println(fileOfAnimation.exists());
-				System.out.println("fileOfAnimation");
 				image = new ImageView(fileOfAnimation.toURI().toString());
 				numberOfImages.add(image);
 				count++;
@@ -102,7 +101,7 @@ public class SpriteDisplay {
 	}
 	
 	private int calculateTheFrameRateChange(int numberOfAnimations) {
-		return Math.round(50 / numberOfAnimations);
+		return Math.round(25 / numberOfAnimations);
 	}
 	
 	public Node get(Sprite aSprite) {
@@ -125,4 +124,11 @@ public class SpriteDisplay {
 		return myAnimationSpriteImage;
 	}
 
+	public void stopAnimation() {
+		myStopAnimation = true;
+	}
+	
+	public void playAnimation() {
+		myStopAnimation = false;
+	}
 }

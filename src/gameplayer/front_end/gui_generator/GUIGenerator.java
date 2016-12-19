@@ -3,8 +3,6 @@ package gameplayer.front_end.gui_generator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import gameplayer.application_controller.Choosable;
 import gameplayer.back_end.resources.FrontEndResources;
 import gameplayer.front_end.gui_generator.button_generator.ButtonFactory;
@@ -15,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -66,21 +65,21 @@ public class GUIGenerator implements IGUIGenerator {
 	}
 	
 	@Override
-	public ComboBox<Pane> createComboBox(String aLabel, List<String> aListOfNames, List<String> aListOfFilePaths, List<String> aListOfDescriptions, Choosable aChooser) {
+	public ComboBox<Pane> createComboBox(String aLabel, List<String> aListOfNames, List<String> aListOfFilePaths, List<String> aListOfDescriptions, double aWidth, Choosable aChooser) {
 		ComboBox<Pane> box = new ComboBox<Pane>();
 		box.setPromptText(aLabel);
+		box.setMaxWidth(aWidth * .45);
 		List<HBox> options = createListOfComboBoxHbox(aListOfNames, aListOfFilePaths, aListOfDescriptions, box);
 		ObservableList<Pane> items = FXCollections.observableArrayList(options);
 		box.setItems(items);
 		//box.setMinWidth(box.getWidth());
 		//box.setEditable(true);
+		box.setVisibleRowCount(1);
 		box.setConverter(new StringConverter<Pane>() {
-
 		    @Override
 		    public Pane fromString(String string) {
 		        return box.getSelectionModel().getSelectedItem();
 		    }
-
 			@Override
 			public String toString (Pane object) {
 				if (object == null) return null;
@@ -97,7 +96,7 @@ public class GUIGenerator implements IGUIGenerator {
 		});
 		return box;
 	}
-
+	
 	private List<HBox> createListOfComboBoxHbox(List<String> aListOfNames, List<String> aListOfFilePaths,
 			List<String> aListOfDescriptions, ComboBox<Pane> box) {
 		List<HBox> options = new ArrayList<HBox>();
@@ -105,14 +104,18 @@ public class GUIGenerator implements IGUIGenerator {
 			HBox hbox = new HBox(FrontEndResources.BOX_INSETS.getDoubleResource());
 			hbox.setMaxWidth(box.getMaxWidth());
 			if(aListOfFilePaths != null && i < aListOfFilePaths.size()){
-				hbox.getChildren().add(createImage(aListOfFilePaths.get(i), 40));
+				hbox.getChildren().add(createImage(aListOfFilePaths.get(i), box.getMaxWidth() * .1));
 			} else {
 				hbox.getChildren().add(new ImageView());
 			}
 			Label name = createComboBoxLabel(aListOfNames.get(i));
 			Label des = createComboBoxLabel(aListOfDescriptions.get(i));
-			hbox.setHgrow(name, Priority.ALWAYS);
-			hbox.setHgrow(des, Priority.ALWAYS);
+			name.setMaxWidth(box.getMaxWidth() * .2);
+			des.setMaxWidth(box.getMaxWidth() * .6);
+			des.setWrapText(true);
+			name.setWrapText(true);
+//			hbox.setHgrow(name, Priority.ALWAYS);
+//			hbox.setHgrow(des, Priority.ALWAYS);
 			hbox.getChildren().add(name);
 			hbox.getChildren().add(des);
 			options.add(hbox);
