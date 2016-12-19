@@ -1,3 +1,9 @@
+// This entire file is part of my masterpiece.
+// Ted Marchildon
+/*
+ * Represents part of the Composite Design pattern implemented in the Application Controller.
+ */
+
 package gameplayer.front_end.application_scene;
 
 import javafx.event.ActionEvent;

@@ -1,3 +1,17 @@
+// This entire file is part of my masterpiece.
+// Ted Marchildon
+/*
+ * This is part of my masterpiece because it uses a lot of the concepts we have used throughout the course. For example,
+ * it is part of an inheritance hierarchy that eliminates a lot of the duplicated code associated with the loading
+ * and storing of xml files. It also used the factory design pattern to instantiate all the scenes into IDisplay type which only
+ * has an init() method, and it uses the factory design pattern to instantiate the stored games. Additionally, it uses
+ * functional interfaces such as Choosable to implement our own lambda expressions and keep all of those objects completely
+ * encapsulated in this class. It also makes use of the Composite design pattern because the INavigationDisplay interface
+ * inherits from the IDisplay interface and adds some more functionality that the navigation scenes need to be able to do.
+ * All of the scenes do those things slightly differently but the Application controller does not have to know that.
+ * 
+ * 
+ */
 package gameplayer.application_controller;
 
 import java.io.File;

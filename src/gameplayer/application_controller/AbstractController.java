@@ -1,3 +1,12 @@
+// This entire file is part of my masterpiece.
+// Ted Marchildon
+/*
+ * This is part of my masterpiece because it displays part of the hierarchy for the controllers. It eliminated duplicated code by 
+ * implementing the methods in the abstract class.
+ * 
+ * 
+ */
+
 package gameplayer.application_controller;
 
 import java.util.PropertyResourceBundle;

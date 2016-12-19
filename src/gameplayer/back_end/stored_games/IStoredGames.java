@@ -1,3 +1,7 @@
+
+// This entire file is part of my masterpiece.
+// Ted Marchildon
+
 package gameplayer.back_end.stored_games;
 
 import java.io.File;
