@@ -88,9 +88,10 @@ public class LevelWindow extends AbstractLevelEditorWindow implements ILevelWind
 
 	@Override
 	protected void createToolBar() {
-		super.getWindow().getChildren().clear();
+		if (super.getWindow().getChildren().size() > 0)
+			super.getWindow().getChildren().remove(0);
 		super.getWindow().getChildren()
-		.add(new LevelWindowToolBarFactory().createToolBar((ILevelWindowInternal) this, this.getController()));
+		.add(0, new LevelWindowToolBarFactory().createToolBar((ILevelWindowInternal) this, this.getController()));
 	}
 
 	@Override
