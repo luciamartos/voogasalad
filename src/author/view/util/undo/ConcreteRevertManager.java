@@ -1,17 +1,7 @@
 // This entire file is part of my masterpiece.
 // Cleveland Thompson V (ct168)
 
-/*
- * This class is the top level entity for my undo functionality in the authoring
- * environment front end. This class, in combination with GameChangeEvent, represents
- * several facets of good design.
- * 
- * First, this framework relies heavily on the concept of API's and Factory Implementation.
- * From an external API perspective, RevertManagerFactory limits external access to
- * RevertManager just that through its external API (IRevertManager). Since this class is
- * package friendly, the only way to instantiate an instance of this class is through the
- * factory, which returns only the external API.
- */
+
 package author.view.util.undo;
 
 import java.util.Collection;

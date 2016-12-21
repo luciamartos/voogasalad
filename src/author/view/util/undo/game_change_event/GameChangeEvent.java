@@ -1,6 +1,10 @@
-/**
+// This entire file is part of my masterpiece.
+// Cleveland Thompson V (ct168)
+
+/*
  * 
  */
+
 package author.view.util.undo.game_change_event;
 
 import java.util.ArrayDeque;

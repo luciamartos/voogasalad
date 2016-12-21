@@ -1,5 +1,38 @@
-/**
+// This entire file is part of my masterpiece.
+// Cleveland Thompson V (ct168)
+
+/*
+ * This class is the top level entity for my undo functionality in the authoring
+ * environment front end. This class, in combination with GameChangeEvent, represents
+ * several facets of good design.
  * 
+ * First, this framework relies heavily on the concept of APIs and Factory Implementation.
+ * From an external API perspective, RevertManagerFactory limits external access to
+ * RevertManager to just that through its external API (IRevertManager). Since this class is
+ * package friendly, the only way to instantiate an instance of this class is through the
+ * factory, which returns only the external API.
+ * 
+ * Second, this framework completely fulfills the open-closed principle. For anyone looking
+ * to implement this undo manager, it will work on any class that implements Observable.
+ * The user only needs to extend RevertManager and GameChangeEvent and override a couple 
+ * methods to get all the functionality that I currently have on my authoring environment.
+ * 
+ * The use of generic types ensures that these classes work for any class that implements
+ * Observable, and will manage undo and redo without needing any access to the calling class
+ * or application framework. This combined with proper inheritance and classic Interface
+ * design yields a powerful API.
+ * 
+ * Finally, and most importantly, this class and GameChangeEvent display the powers of
+ * the Observer design pattern. As is mentioned above, this framework accomplishes what
+ * is essentially short-term version control (that's really what undo/redo is) on an
+ * object without ever needing access to the overarching application. Since, in our case,
+ * our entire authoring environment is an observer to the Game object (and its levels
+ * and sprites), the RevertManager only has to listen for a change in its managed object
+ * (in this case a level and its sprites) to know that it needs to take a snapshot of
+ * a sprite. Then, when the calling framework wants to undo a change, calling "undo" will 
+ * cause the revert manager to reset the back end object to its previous state. This will
+ * then trigger the listeners in the authoring environment, propagating this change to the
+ * GUI. 
  */
 package author.view.util.undo;
 
