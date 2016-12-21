@@ -1,6 +1,5 @@
-/**
- * 
- */
+// This entire file is part of my masterpiece.
+// Cleveland Thompson V (ct168)
 package author.view.util.undo;
 
 import game_data.Level;
@@ -15,11 +14,11 @@ public class RevertManagerFactory {
 	 * 
 	 */
 	public RevertManagerFactory() {
-		// TODO Auto-generated constructor stub
+		// Do Nothing
 	}
 	
 	public IRevertManager create(Level aLevel){
-		return new RevertManager(aLevel);
+		return new ConcreteRevertManager(aLevel);
 	}
 
 }

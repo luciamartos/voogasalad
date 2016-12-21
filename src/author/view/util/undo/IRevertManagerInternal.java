@@ -1,18 +1,18 @@
-/**
- * 
- */
+// This entire file is part of my masterpiece.
+// Cleveland Thompson V (ct168)
 package author.view.util.undo;
 
-import game_data.Sprite;
+import author.view.util.undo.game_change_event.IGameChangeEvent;
+import javafx.beans.Observable;
 
 /**
  * @author Cleveland Thompson V (ct168)
  *
  */
-public interface IRevertManagerInternal {
+public interface IRevertManagerInternal <V extends Observable>{
 
-	public void addHistory(GameChangeEvent gameChangeEvent);
+	public void addHistory(IGameChangeEvent<V> gameChangeEvent);
 	
-	public void addFuture(GameChangeEvent gameChangeEvent);
+	public void addFuture(IGameChangeEvent<V> gameChangeEvent);
 
 }

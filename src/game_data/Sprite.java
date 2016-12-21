@@ -1,3 +1,12 @@
+// This entire file is part of my masterpiece.
+// Cleveland Thompson V (ct168)
+
+/* This class is only included in my masterpiece as a concrete implementation of GameObject.
+ * This class has a much larger impact on the project than I discuss here, and while I worked on it
+ * in some capacity, I didn't refactor this as part of my masterpiece. On that note, I will
+ * leave most of my masterpiece discussion for the comments on other classes (Primarily
+ * GameObject and RevertManager).
+ */
 package game_data;
 
 import java.util.HashMap;
@@ -8,7 +17,6 @@ import java.util.Set;
 import game_data.characteristics.Characteristic;
 import game_data.states.State;
 import game_engine.GameResources;
-import game_engine.properties.RandomMoveConjointHandler;
 import game_engine.properties.RandomMoveDisjointHandler;
 import game_engine.properties.RandomMoveHandler;
 import game_engine.properties.RandomMoveHandler.Orientation;

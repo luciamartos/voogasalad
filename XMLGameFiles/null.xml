@@ -1,0 +1,11 @@
+<game__data.Game>
+  <name>egasq</name>
+  <myLevels/>
+  <mySpritePresets/>
+  <myDescription>New VOOGASalad Game</myDescription>
+  <myIconPath>data/images/game_icons/flower-icon.jpg</myIconPath>
+  <myScrollType>CENTER</myScrollType>
+  <myAudioFilePath>data/audio/Super-Mario-Song.mp3</myAudioFilePath>
+  <hasWon>false</hasWon>
+  <hasLost>false</hasLost>
+</game__data.Game>
