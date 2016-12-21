@@ -2,10 +2,13 @@
 // Cleveland Thompson V (ct168)
 
 /* 
- * This class, in combination with RevertManager, represents multiple instances of good design.
+ * This class represents good design for the same reasons as RevertManager--I won't repeat
+ * the same reasons here.
  * 
- * shows one of the many uses of 
- * the Observer pattern in our authoring environment. 
+ * The things to note are that the user extending my framework has the ability to define 
+ * what it means for an observable to "change" in compare snapshot--and likewise the ability
+ * to decide what is updated in update. These two methods allow the user to define
+ * which actions can be reverted.
  */
 package author.view.util.undo.game_change_event;
 
