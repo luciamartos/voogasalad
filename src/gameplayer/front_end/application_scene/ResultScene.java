@@ -8,11 +8,12 @@ import javafx.scene.layout.Pane;
 
 public class ResultScene extends AbstractPlayerScene {
 	
+	private final String INITIAL_FILE_PATH = "gui/style.css";
 	private BorderPane myPane;
 
 	public ResultScene() {
 		myPane = new BorderPane();
-		myPane.setId(new File("gui/style.css").toURI().toString());
+		myPane.setId(new File(INITIAL_FILE_PATH).toURI().toString());
 		myPane.getChildren().add(getOptions());
 		myPane.setId("pane");
 	}

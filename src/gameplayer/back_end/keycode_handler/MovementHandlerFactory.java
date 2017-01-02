@@ -8,8 +8,7 @@ import game_data.states.State;
 
 public class MovementHandlerFactory {
 	
-	public XYMovementHandler buildMovementHandler(double aXLocation, double aScreenWidth, double aYLocation, double aScreenHeight, 
-			ScrollType scrollType, Set<State> set) {
+	public XYMovementHandler buildMovementHandler(double aXLocation, double aScreenWidth, double aYLocation, double aScreenHeight, ScrollType scrollType, Set<State> set) {
 		double XMovement = 0;
 		double YMovement = 0;
 		double screenRatioTop = .5;

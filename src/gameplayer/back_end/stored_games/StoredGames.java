@@ -27,7 +27,7 @@ public class StoredGames implements IStoredGames {
 	}
 
 	private void getStoredGames() {
-		try(Stream<Path> paths = Files.walk(Paths.get("XMLGameFiles"))) {
+		try (Stream<Path> paths = Files.walk(Paths.get("XMLGameFiles"))) {
 			paths.forEach(filePath -> {
 				if (Files.isRegularFile(filePath) && filePath.toUri().toString().endsWith(".xml")) {
 					try {

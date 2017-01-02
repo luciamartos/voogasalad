@@ -18,4 +18,5 @@ public class GameChoiceScene extends AbstractNavigationPlayerScene {
 	public Scene init() {
 		return myScene;
 	}
+	
 }

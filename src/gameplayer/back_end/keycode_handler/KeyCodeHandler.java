@@ -70,10 +70,12 @@ public class KeyCodeHandler {
 		KeyCode rightKey = null;
 		
 		for(Entry<KeyCode, Action> e : aKeyMap.entrySet()) {
-			if(leftKey == null && e.getValue() instanceof MoveLeft)
+			if (leftKey == null && e.getValue() instanceof MoveLeft) {
 				leftKey = e.getKey();
-			if(rightKey == null && e.getValue() instanceof MoveRight)
+			}
+			if (rightKey == null && e.getValue() instanceof MoveRight) {
 				rightKey = e.getKey();
+			}
 		}
 		
 		if (aKeyCode == leftKey || myKeyCodeTranslator.getCode(aKeyCode).equals(KeyCode.LEFT)) {

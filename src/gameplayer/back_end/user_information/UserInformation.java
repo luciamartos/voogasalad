@@ -25,6 +25,4 @@ public class UserInformation {
 	public String getPictureUrl() {
 		return myImageFilePath;
 	}
-
-	
 }

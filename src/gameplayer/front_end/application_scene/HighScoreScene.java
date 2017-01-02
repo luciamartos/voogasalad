@@ -28,7 +28,8 @@ public class HighScoreScene extends AbstractNavigationPlayerScene {
 	
 	public HighScoreScene(double aWidth, double aHeight) {
 		super(aWidth, aHeight);
-		initialize("");
+		initialize(""); // potentially create a different class for something to inherit so that we dont have to call another method besides the 
+							// super constructor
 	}
 
 	public HighScoreScene(double aWidth, double aHeight, String aGamename){
@@ -51,8 +52,7 @@ public class HighScoreScene extends AbstractNavigationPlayerScene {
 	@Override
 	public Scene init() {
 		XMLTranslator myTranslator = new XMLTranslator();
-		myHighscoreManager = (HighscoreManager) myTranslator.loadFromFile(
-				new File("XMLGameFiles/" + "highscores" + ".xml"));
+		myHighscoreManager = (HighscoreManager) myTranslator.loadFromFile(new File("XMLGameFiles/" + "highscores" + ".xml"));
 		getRoot().setCenter(addNodes());
 		addScores(myHighscoreManager);
 		return myScene;

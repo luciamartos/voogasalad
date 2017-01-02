@@ -1,5 +1,12 @@
 package gameplayer.back_end.facebook;
 
+
+/**
+ * Facebook user login information, including posting to facebook and managing users login, creating a user object, and passing it to the apporpriate classes.
+ * It is important to understand that a lot of this is hardcoded, and it only works on computers using google chrome. Other than that, it allows us to pull
+ * facebook information including user name and user profile information. Some of the methods are deprecated and currently work but we need to be able to 
+ * write our own methods to accomplish those goals.
+ */
 import java.io.File;
 
 import org.openqa.selenium.WebDriver;
@@ -8,10 +15,8 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
 import com.restfb.Parameter;
-import com.restfb.exception.FacebookException;
 import com.restfb.json.JsonObject;
 import com.restfb.types.FacebookType;
-import com.restfb.types.Page;
 import com.restfb.types.User;
 
 import gameplayer.back_end.exceptions.VoogaFacebookException;
@@ -81,11 +86,11 @@ public class FacebookInformation {
 		String appID = "204787326597008";
 		String appSecret = "f87efe0946d1584af720280c6e95036f";
 		
-		FacebookClient fb = new DefaultFacebookClient(pageAccessToken);
+		FacebookClient fb = new DefaultFacebookClient(pageAccessToken); // Deprecated method we cant use
 		
 		AccessToken extendedAccessToken = fb.obtainExtendedAccessToken(appID, appSecret, accessToken);
 		String extendedToken = extendedAccessToken.getAccessToken();
-		FacebookClient f = new DefaultFacebookClient(extendedToken);
+		FacebookClient f = new DefaultFacebookClient(extendedToken); // Deprecated method we cant use
 		
 	   //Page page = myFBClient.fetchObject("me/feed", Page.class);
 

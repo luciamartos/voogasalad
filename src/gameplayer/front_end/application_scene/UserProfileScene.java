@@ -36,7 +36,6 @@ public class UserProfileScene extends AbstractNavigationPlayerScene {
 
 	@Override
 	public Scene init() {
-		//getRoot().setCenter(addNodes());
 		addTop();
 		getRoot().setCenter(myPane);
 		return myScene;
@@ -48,10 +47,8 @@ public class UserProfileScene extends AbstractNavigationPlayerScene {
 		ImageView profilePicture = new ImageView(new Image(myPictureUrl));
 		profilePicture.setFitWidth(myWidth * .1);
 		profilePicture.setPreserveRatio(true);
-		//profilePicture.setFitHeight(myHeight * .1);
 		hbox.getChildren().add(profilePicture);
 		Label userName = myGUIGenerator.createLabel(myUserName, 0, 0);
-		//userName.setId("heading");
 		hbox.getChildren().add(userName);
 		hbox.setAlignment(Pos.TOP_LEFT);
 		myPane.getChildren().add(hbox);

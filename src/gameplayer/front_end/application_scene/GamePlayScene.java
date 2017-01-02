@@ -25,6 +25,11 @@ public class GamePlayScene extends AbstractPlayerScene {
 	private ResultScene myResultScene;
 	
 	public GamePlayScene(String aBackgroundImageFilePath, double aWidth, double aHeight, String aFontColor) {
+		initInternal(aBackgroundImageFilePath, aWidth, aHeight, aFontColor);
+		initializeScene();
+	}
+
+	private void initInternal(String aBackgroundImageFilePath, double aWidth, double aHeight, String aFontColor) {
 		myStack = new StackPane();
 		myScene = new Scene(myStack, aWidth, aHeight);
 		File file = new File(STYLESHEET);
@@ -33,7 +38,6 @@ public class GamePlayScene extends AbstractPlayerScene {
 		myHeadsUpDisplay = new HeadsUpDisplay(aWidth, aHeight, aFontColor);
 		myBackgroundDisplay = new BackgroundDisplayFactory().buildBackgroundDisplay(aBackgroundImageFilePath, aWidth, aHeight);
 		myResultScene = new ResultScene();
-		initializeScene();
 	}
 	
 	public Pane createResultScene() {
@@ -81,10 +85,6 @@ public class GamePlayScene extends AbstractPlayerScene {
 		myHeadsUpDisplay.addMenu(aImage, names, eventHandler);
 	}
 	
-	//public void addLabel(String aText){
-		//myHeadsUpDisplay.addLabel(aText);
-	//}
-
 	public void setKeyHandlers(KeyPressable aPressHandler, KeyPressable aReleaseHandler) {
 		myScene.setOnKeyPressed(e -> aPressHandler.handleKeyInput(e.getCode()));
 		myScene.setOnKeyReleased(e -> aReleaseHandler.handleKeyInput(e.getCode()));
