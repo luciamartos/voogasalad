@@ -54,7 +54,7 @@ public class FacebookInformation {
 				
 				//accessToken = "EAAC6QMPbN5ABANZB0ihZBhoQBiFJjVg6EZCrZBLuJdtMZBs3HQIOgq2GnySXnrxTaN984EiulwXMsuFkkfhTf6FSvpdJPtimQtvsPlNZCgsJsAxJ2iEPfqk4dwJSIpyfDBFfs6B8Xxkgv60RpRHQPtLd8RZA8uvZAf2ZA1w96u33GtAZDZD";
 				
-				myFBClient = new DefaultFacebookClient(accessToken);
+				myFBClient = new DefaultFacebookClient(accessToken); // Deprecated method we cant use
 				myUser = myFBClient.fetchObject("me", User.class);
 				JsonObject picture = 
 					      myFBClient.fetchObject("me/picture/data", 
